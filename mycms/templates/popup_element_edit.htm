@@ -1,0 +1,26 @@
+<h2>Edit element</h2>
+		<form action="index.php?module=elements&act=EditElement&document_id=<%DOCUMENT_ID%>" method="post" onsubmit="if(envIsSubmit(this,event)){elementEditSendForm(this);}return false;">
+		<div class="form" id="form">
+			<div class="label">Title:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="title" value="<%TITLE%>" maxlength="255" id="fst-input"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+						
+			<div class="label">Field:</div>
+			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="field_title" value="<%FIELD_DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="field" value="<%FIELD_DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%FIELD_OPTIONS%></span></span></div>
+			<div class="reset"></div>
+							
+			<div class="label">Type:</div>
+			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="type_title" value="<%TYPE_DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="type" value="<%TYPE_DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%TYPE_OPTIONS%></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Order:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order" value="<%ORDER%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Show:</div>
+			<div class="fld"><span class="inp-checkbox<%CB_SHOW%>"><input type="checkbox" name="show"<%SHOW%>/></span></div>
+			<div class="reset"><input type="hidden" name="id" value="<%ID%>"/></div>
+			
+			<div class="btn-common"><span class="btn" onclick="domD(currPopup);hideCover();currPopup=null;"><span class="l"></span><input type="button" value="Cancel"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Save"/><span class="r"></span></span></div>
+		</div>
+		</form>

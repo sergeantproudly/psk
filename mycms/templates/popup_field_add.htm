@@ -1,0 +1,14 @@
+<h2>Add field</h2>
+		<form action="index.php?module=fields&act=AddField&table_id=<%TABLE_ID%>" method="post" onsubmit="if(envIsSubmit(this,event)){fieldAddSendForm(this);}return false;">
+		<div class="form" id="form">
+			<div class="label">Field name:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="name" value="" maxlength="255" id="fst-input"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+							
+			<div class="label">Type:</div>
+			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="type_title" value="<%DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="type" value="<%DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_TYPE%></span></span></div>
+			<div class="reset"><input type="hidden" name="id" value="1"/></div>
+			
+			<div class="btn-common"><span class="btn" onclick="domD(currPopup);hideCover();currPopup=null;"><span class="l"></span><input type="button" value="Cancel"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Save"/><span class="r"></span></span></div>
+		</div>
+		</form>

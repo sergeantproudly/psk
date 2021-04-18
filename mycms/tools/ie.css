@@ -1,0 +1,48 @@
+.top-line .authorised .ico{
+	margin-top: 1px;
+}
+.col-left .mn-main ul li.curr{
+	padding: 14px 20px 6px 15px;
+}
+.inp-text input{
+	margin-top: -1px;
+}
+.clear-fix .tools-r .inp-text{
+	width: 45px;
+}
+.btn input{
+	*width: auto;
+	*overflow: visible;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+.inp-file .r{
+	right: auto;
+	left: 300px;
+}
+.inp-select input{
+	margin-top: -1px;
+}
+.form .inp-text{
+	width: 340px;
+}
+.form .fld{
+	zoom: 1;
+}
+.form .inp-select{
+	width: 340px;
+}
+.form .inp-textarea{
+	width: 340px;
+}
+.form .inp-textarea textarea{
+	margin: -1px 0;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.form .fld .it-small{
+	width: 160px;
+}
+.form .fld .is-small{
+	width: 148px;
+}

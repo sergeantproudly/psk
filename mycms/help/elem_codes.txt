@@ -1,0 +1,11 @@
+Elements codes
+
+1	text	
+2	textarea
+3	date	
+4	image	
+5	file	
+6	checkbox
+7	radio	
+8	select	
+9	multiselect

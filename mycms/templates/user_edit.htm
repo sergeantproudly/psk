@@ -1,0 +1,21 @@
+
+		<div class="form<%EVEN%>" id="form<%NUM%>">
+			<div class="num-holder"><a href="#anc<%NUM%>" name="anc<%NUM%>"><%NUM%></a></div>
+			<div class="label">Имя пользователя:</div>
+			<div class="fld"><span class="inp-text" id="name<%NUM%>"><span class="l"></span><input type="text" name="name[<%NUM%>]" value="<%NAME%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Логин:</div>
+			<div class="fld"><span class="inp-text" id="login<%NUM%>"><span class="l"></span><input type="text" name="login[<%NUM%>]" value="<%LOGIN%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Пароль:</div>
+			<div class="fld"><span class="inp-text" id="password<%NUM%>"><span class="l"></span><input type="text" name="password[<%NUM%>]" value="<%PASSWORD%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			<div class="comment">Оставьте это поле незаполненным, если не хотите менять пароль</div>
+			
+			<div class="label">Статус:</div>
+			<div class="fld"><span class="inp-select" id="status<%NUM%>"><span class="l"></span><input type="text" name="status_title[<%NUM%>]" value="<%DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="status[<%NUM%>]" value="<%DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_TYPE%></span></span></div>
+			<div class="reset"><input type="hidden" name="id[<%NUM%>]" value="<%NUM%>"/></div>
+			
+		</div>

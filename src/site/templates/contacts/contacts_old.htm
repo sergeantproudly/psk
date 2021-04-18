@@ -1,0 +1,44 @@
+		<div id="page-folders">
+			<div class="holder">
+				<h1 class="folder">Контакты</h1>
+			</div>
+		</div>
+
+		<section>
+			<div class="holder">
+				<div id="contacts">
+					<ul>
+						<li class="address">
+							<div class="label">Мы находимся по адресу:</div>
+							<div class="value">{{LOCATION}}</div>
+						</li>
+						<li class="phone">
+							<div class="label">Телефон для обратной связи:</div>
+							<div class="value"><a href="tel:{{PHONE}}">{{PHONE}}</a></div>
+						</li>
+						<li class="email">
+							<div class="label">Почта для обратной связи:</div>
+							<div class="value">
+								<a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="gray-section">
+				<div class="holder">
+					<h2 class="h1">Задать вопрос</h2>
+
+					<form action="/ajax/addquestion" method="post" id="question">
+						<div class="fld-half"><input type="text" name="name" maxlength="255" placeholder="Имя" required/></div><!--
+						--><div class="fld-half"><input type="email" name="email" maxlength="255" placeholder="E-mail" required/></div>
+						<div class="fld"><input type="text" name="text" maxlength="2048" placeholder="Вопрос" required></div>
+						<div class="agree"><input type="checkbox" name="agree" id="agree-question" required><label for="agree-question">Я согласен на обработку своих персональных данных</label></div>
+						<div class="btn-line"><input type="submit" class="btn" value="Отправить"></div>
+					</form>
+				</div>
+			</div>
+
+			<div id="map"></div>
+		</section>

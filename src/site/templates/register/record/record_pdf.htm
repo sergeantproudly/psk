@@ -1,0 +1,60 @@
+<style type="text/css">
+  table {
+    border: 1px solid #aaa;
+    border-collapse: collapse;
+    font-size: 12px;
+    color: #000;
+  }
+  th {
+    border: 1px solid #aaa;
+    font-size: 6px;
+  }
+  td {
+    border: 1px solid #aaa;
+    font-weight: normal;
+    font-size: 6px;
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  .note {
+    font-size: 6px;
+    color: #666;
+  }
+  .number {
+    width: 4%;
+  }
+  .amount {
+    width: 6%;
+  }
+  .title-product {
+    width: 25%;
+  }
+</style>
+<table cellpadding="2" cellspacing="0">
+        <thead>
+        <tr>
+          <th class="number">№ п/п</th>
+          <th>Номер договора поставки*</th>
+          <th>Номер товарной накладной</th>
+          <th>Дата  товарной накладной</th>
+          <th>Мнемокод**</th>
+          <th class="title-product">Наименование товара</th>
+          <th class="amount">Кол-во</th>
+          <th class="number">Ед. изм</th>
+          <th>Цена без НДС</th>
+          <th>Сумма без НДС</th>
+          <th class="number">Ставка НДС</th>
+          <th>Сумма с НДС</th>
+        </tr>
+        </thead>
+        <tbody>
+          {{TABLE}}
+        </tbody>
+      </table>
+
+      <br>
+      <div class="note">* – между Подрядчиком и Поставщиком<br>** – в соответствии с номенклатурой, используемой ОАО "Сетевая компания"<br></div>
+
+      <div class="note">Выгрузка информационной базы бухгалтерского учета Поставщика по состоянию на {{TODAY}}</div>

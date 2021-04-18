@@ -1,0 +1,42 @@
+<h2>Edit document</h2>
+		<form action="index.php?module=documents&act=EditDocument" method="post" onsubmit="if(envIsSubmit(this,event)){docEditSendForm(this);}return false;">
+		<div class="form" id="form">
+			<div class="label">Title:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="title" value="<%TITLE%>" maxlength="255" id="fst-input"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Main element:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="lead_element" value="<%LEADELEMENT%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Order element:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order_element" value="<%ORDERELEMENT%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Order direction:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order_direction" value="<%ORDERDIRECTION%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+						
+			<div class="label">Table:</div>
+			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="table_title" value="<%DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="table" value="<%DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_TYPE%></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Parent document:</div>
+			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="parent_title" value="<%DEFAULT_TITLE_PARENT%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="parent_id" value="<%DEFAULT_VALUE_PARENT%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_PARENT%></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Link field:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="parent_field" value="<%PARENTFIELD%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Action code:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="action_code" value="<%ACTIONCODE%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>			
+							
+			<div class="label">Order:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order" value="<%ORDER%>" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"><input type="hidden" name="id" value="<%ID%>"/></div>
+			
+			<div class="btn-common"><span class="btn" onclick="domD(currPopup);hideCover();currPopup=null;"><span class="l"></span><input type="button" value="Cancel"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Save"/><span class="r"></span></span></div>
+		</div>
+		</form>

@@ -1,0 +1,47 @@
+{{BREADCRUMBS}}
+
+<section>
+  <div class="holder">
+    <h1>{{TITLE}}</h1>
+
+    <div class="filter">
+      <select class="js-select-type" name="type">
+        <!--<option selected value="0">Выбрать тип товара</option>-->
+        {{TYPE:DEFAULT}}
+        {{TYPE:OPTIONS}}
+      </select>
+      <select class="js-select-manufacturer" name="manufacturer">
+        {{MANUFACTURER:DEFAULT}}
+        {{MANUFACTURER:OPTIONS}}
+      </select>
+    </div>
+
+    <div id="certs">
+      <table class="private" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+          <th class="js-sort sort {{CLASS:TYPE}}" data-sort-by="type">
+            <span>Тип товара</span>
+          </th>
+          <th class="js-sort sort {{CLASS:MAN}}" data-sort-by="man">
+            <span>Производитель</span>
+          </th>
+          <th class="js-sort sort {{CLASS:NAME}}" data-sort-by="name">
+            <span>Наименование</span>
+          </th>
+          <th class="js-sort sort {{CLASS:LINK}}" data-sort-by="link">
+            <span>Ссылка</span>
+          </th>
+          <th class="js-sort sort {{CLASS:DATE}}" data-sort-by="date">
+            <span>Срок действия</span>
+          </th>
+        </tr>
+        </thead>
+        <tbody class="js-certificates-tbody">
+          {{TABLE}}
+        </tbody>
+      </table>
+    </div>
+    {{PAGINATION}}
+  </div>
+</section>

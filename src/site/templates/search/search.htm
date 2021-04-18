@@ -1,0 +1,11 @@
+<div class="holder search-container">
+  
+  <form class="search__form" action="/search" method="GET">
+    <input class="search__input" type="search" name="keyword" maxlength="255" placeholder="Что ищем?">
+    <button class="search__button">Поиск</button>
+  </form>
+
+  <div class="search__results" data-target="{{TARGET}}">
+    {{INCLUDE:CONTENT}}
+  </div>
+</div>

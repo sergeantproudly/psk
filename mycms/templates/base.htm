@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title><%PAGE_TITLE%></title>
+<link rel="shortcut icon" href="/favicon.ico?1"/>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" />
+<link type="text/css" rel="stylesheet" href="tools/main.css?9"/>
+<link type="text/css" rel="stylesheet" href="datepicker/jquery-ui-1.8.17.custom.css" />
+<link type="text/css" rel="stylesheet" href="tools/jquery.jscrollpane.css"/>
+<script type="text/javascript" src="tools/jquery.latest.js"></script>
+<script type="text/javascript" src="tools/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="tools/jquery.ui.custom.js"></script>
+<script type="text/javascript" src="tools/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="tools/ajax.js"></script>
+<script type="text/javascript" src="tools/main.js?8"></script>
+<script type="text/javascript" src="tools/dom.js"></script>
+<script type="text/javascript" src="tools/environment.js?8"></script>
+<script type="text/javascript" src="tools/popup.js"></script>
+<script type="text/javascript" src="tools/uploader.js"></script>
+<script type="text/javascript" src="tools/syntax.js?8"></script>
+<script type="text/javascript" src="tools/misc.js?9"></script>
+<script type="text/javascript" src="datepicker/jquery.ui.timepicker.addon.js"></script>
+<script type="text/javascript" src="datepicker/jquery-ui-i18n.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="tools/jquery.counterup.min.js"></script>
+<script type="text/javascript" src="tools/jquery.waypoints.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+	<script type="text/javascript" src="tools/html5.js"></script> 
+	<script type="text/javascript">
+		var E=('article:aside:audio:canvas:figure:footer:header:hgroup:nav:section:video:output:details:keygen:meter:progress:figcaption:main:mark:summary:time:wbr').split(':');
+		for(var c=0;c<E.length;c++){document.createElement(E[c]);} 
+	</script>
+<![endif]-->
+</head>
+<body onload="envInit()">
+<div class="main">
+	
+	<div class="top-line">
+		<div class="logo"><a href="index.php"><%SITE_TITLE%></a></div>
+		<div class="tips">
+			<div class="inner"><%NOTIFICATIONS%></div>
+		</div>
+		<div class="authorised">Привет, <a href="index.php?module=users&mode=Edit&user_id=<%USER_ID%>"><%USER_NAME%></a> <img src="images/ico_logout.png" alt="Logout" title="Logout" class="ico" onclick="authLogout();"/></div>
+	</div>
+	
+	<div class="col-left">
+		<div class="inner">
+		
+			<div class="mn-main">
+				<h2>Разделы</h2>
+				<%MENU%>
+			</div>
+		
+		</div>
+	</div>
+	
+	<div class="col-main">
+	
+		<%CONTENT%>
+	
+	</div>
+	<div class="clear-l"></div>
+	<div class="spc4footer"></div>
+	
+</div>
+
+<div class="footer">
+
+	<div class="we"><%SITE_TITLE%>, <%YEAR%> ©</div>
+
+</div>
+
+<div id="cover"></div>
+</body>
+</html>

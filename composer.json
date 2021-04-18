@@ -1,0 +1,41 @@
+{
+    "name": "ПСК Смарт Инвест",
+    "type": "project",
+    "authors": [
+      {
+        "name": "Vitaly Krenel",
+        "email": "vitaly.post@yahoo.com",
+        "homepage": "https://vilab.work",
+        "role": "Backend developer"
+      }
+    ],
+    "config": {
+      "platform": {
+        "php": "7.2.3"
+      }
+    },
+    "require": {
+        "respect/validation": "^1.1",
+        "tecnickcom/tcpdf": "dev-master",
+        "phpoffice/phpspreadsheet": "^1.4"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:tecnickcom/tcpdf.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Engine\\": "src/engine",
+            "Engine\\Library\\": "src/engine/library",
+            "Engine\\Components\\": "src/engine/components",
+            "Engine\\Utility\\": "src/engine/utility",
+            "Engine\\Helper\\": "src/engine/Helper",
+            "Site\\": "src/site",
+            "Site\\Pages\\": "src/site/pages",
+            "Site\\Models\\": "src/site/models",
+            "Site\\Components\\": "src/site/components"
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{{BREADCRUMBS}}
+<section>
+  <div class="holder">
+    <h1>{{TITLE}}</h1>
+
+    <div class="tools-right">
+      <a href="{{DOWNLOADLINK}}" target="_blank"><button class="btn"><img src="/images/ico_download.svg" alt="Скачать в pdf"> Скачать в pdf</button></a>
+    </div>
+    <!-- data-search attribute is used for quering sorted data from server with    applied sorting method -->
+    <form accept="#" id="js-search" action="{{SEARCH:ACTION}}" method="GET" data-search="{{SEARCH:VALUE}}">
+      <input class="search"
+        type="text"
+        name="search"
+        value="{{SEARCH:VALUE}}"
+        placeholder="Поиск по номеру или объекту">
+    </form>
+
+    <div id="invoices">
+      <table class="private" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+          <th>№</th>
+          <th>Контрагент</th>
+          <th class="js-sort sort {{OBJECT}}" data-sort-by="object">
+            <span>Объект</span>
+          </th>
+          <th class="js-sort sort {{BRANCHOFFICE}}" data-sort-by="branch">
+            <span>Филиал</span>
+          </th>
+          <th class="js-sort sort {{DATE}}" data-sort-by="date">
+            <span>Дата</span>
+          </th>
+        </tr>
+        </thead>
+        <tbody class="js-register-tbody">
+          {{TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="holder">
+      {{PAGINATION}}
+    </div>
+  </div>
+</section>

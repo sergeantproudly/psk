@@ -1,0 +1,8 @@
+<h2>Создать запись</h2>
+		<form action="index.php?module=records&act=AddRecord&document_id=<%DOCUMENT_ID%>" method="post" onsubmit="if(envIsSubmit(this,event)){recAddSendForm(this);}return false;">
+		<div class="form" id="form">
+			<%CONTENT%>			
+			
+			<div class="btn-common"><span class="btn cancel" onclick="domD(currPopup);hideCover();currPopup=null;"><span class="l"></span><input type="button" value="Отмена"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Сохранить"/><span class="r"></span></span></div>
+		</div>
+		</form>

@@ -1,0 +1,30 @@
+<div id="bl-feedback">
+            <div class="holder">
+                <h2 class="h1">{{TITLE}}</h2>
+
+                <p class="form__status js-form-status"></p> 
+                
+                <form class="js-form-question" action="/form/add-question/" method="post" id="question" novalidate>
+                    <div class="line bite">
+                        <input type="text" name="name" placeholder="Имя" maxlength="255" autocomplete="off" aria-hidden="true">
+                        <input type="tel" name="phone" placeholder="Телефон" maxlength="255" autocomplete="off" aria-hidden="true">
+                        <input type="email" name="email" placeholder="Email" maxlength="255" autocomplete="off" aria-hidden="true">
+                    </div>
+                    <div class="line bite">
+                        <textarea name="text" placeholder="Сообщение" aria-hidden="true"></textarea>
+                    </div>
+
+                    <div class="line">
+                        <input class="js-form-input" type="text" name="{{NOISE}}name" maxlength="255" placeholder="Имя" data-form-input/>
+                        <input class="js-form-input" type="tel" name="{{NOISE}}phone" placeholder="Телефон" maxlength="255" data-form-input>
+                        <input class="js-form-input" type="email" name="{{NOISE}}email" placeholder="Email" maxlength="255" data-form-input>
+                    </div>
+                    <div class="line">
+                        <textarea name="{{NOISE}}text" placeholder="Сообщение" data-form-input></textarea>
+                    </div>
+
+                    <div class="cb-line"><input type="checkbox" name="{{NOISE}}agree" id="agree-question" checked="checked" class="js-form-input js-form-checkbox" data-form-input><label for="agree-question">Нажимая на кнопку, вы даете согласие на обработку своих персональных данных</label></div>
+                    <div class="btn-line"><input type="submit" class="btn js-form-submit" value="Отправить"/></div>
+                </form>
+            </div>
+        </div>

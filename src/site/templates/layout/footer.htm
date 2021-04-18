@@ -1,0 +1,32 @@
+<footer>
+        <div class="holder">
+            <a href="/" class="logo"><img src="/assets/images/logo.svg" alt="{{ALT}}" title="{{ALT}}"></a>
+            <div id="copyrights">&copy; {{YEAR}} ООО «ПСК СтройИнвест»</div>
+            <ul id="mn-bottom">
+                <li><a href="/privacy-policy/">Политика конфиденциальности</a></li>
+            </ul>
+            <div id="we">Сделано в <a href="https://proudly.ru" target="_blank"><img src="/assets/images/we.svg" alt="Proudly - Разработка сайтов для бизнеса" title="Proudly - Разработка сайтов для бизнеса"></a></div>
+        </div>
+    </footer>
+
+    <div class="js-auth-popup popup-container" style="display: none">
+  <div class="popup">
+
+    <div class="auth">
+      <form class="js-auth-form auth__form form" action="/auth/log-in/" method="POST">
+            <input class="form__input form__input--text" type="text" name="email" value="" maxlength="255" placeholder="E-mail" required/><br/>
+            <input class="form__input form__input--text" type="password" name="password" value="" maxlength="255" placeholder="Пароль"
+                   required/><br/>
+            <!--<input type="checkbox" name="remember" id="remember"/><label for="remember">Запомнить меня</label><br/>-->
+            <div class="auth__submit-container">
+              <input class="auth__submit btn form__button form__button--submit" type="submit" value="Войти" name="submit_btn"/><br/>
+              <!--<a href="#" onclick="Popup('registration',{width:303}); return false;" class="forgot">Регистрация</a><br/>-->
+              <!--<a href="#" onclick="Popup('forget',{width:525}); return false;" class="forgot">Забыли пароль?</a>-->
+            </div>
+        </form>
+      <div class="auth__close" onclick="document.querySelector('.js-auth-popup').style.display = 'none'">
+        <img src="/images/ico_close_white.svg" alt="Закрыть" title="Закрыть"/>
+      </div>
+    </div>
+  </div>
+</div>

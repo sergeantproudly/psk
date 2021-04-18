@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title><%PAGE_TITLE%></title>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" />
+<link type="text/css" rel="stylesheet" href="tools/main.css"/>
+<script type="text/javascript" src="tools/ajax.js"></script>
+<script type="text/javascript" src="tools/main.js"></script>
+<script type="text/javascript" src="tools/dom.js"></script>
+<script type="text/javascript" src="tools/environment.js"></script>
+<script type="text/javascript" src="tools/syntax.js"></script>
+<script type="text/javascript" src="tools/misc.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+	<script type="text/javascript" src="tools/html5.js"></script> 
+	<script type="text/javascript">
+		var E=('article:aside:audio:canvas:figure:footer:header:hgroup:nav:section:video:output:details:keygen:meter:progress:figcaption:main:mark:summary:time:wbr').split(':');
+		for(var c=0;c<E.length;c++){document.createElement(E[c]);} 
+	</script>
+<![endif]-->
+</head>
+<body onload="envInit(); gei('fst-input').focus();" style="background: #fff;">
+	<form action="index.php?module=enter&act=Authorise" method="post" onsubmit="authSendForm(this);return false;">
+	<div class="form" style="position: absolute; top: 50%; left: 50%; margin: -75px 0px 0px -320px;">
+		<div class="label">Логин:</div>
+		<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="login" value="" maxlength="255" id="fst-input"/><span class="r"></span></span></div>
+		<div class="reset"></div>
+							
+		<div class="label">Пароль:</div>
+		<div class="fld"><span class="inp-text"><span class="l"></span><input type="password" name="password" value="" maxlength="255"/><span class="r"></span></span></div>
+		
+		<div class="btn-extended"></div>
+		<div class="btn-main"><span class="btn"><span class="l"></span><input type="submit" value="Вперёд"/><span class="r"></span></span></div>
+	</div>
+	</form>
+	
+</body>
+</html>

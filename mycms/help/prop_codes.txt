@@ -1,0 +1,76 @@
+Codes properties of the elements
+
+common
+======
+1 required
+2 unique field
+3 the default value
+4 review
+5 syntax pattern
+
+line
+======
+10 max. number of characters
+
+text
+======
+20 type editor (wysiwyg,simple)
+21 max. number of characters
+22 width
+23 height
+
+date
+====
+30 date type (date,datetime,time)
+
+image
+===========
+40 the path (relative)
+41 do not translate the file name in translit
+42 resize image (if not, then original)
+43 source resizing
+44 type resizing
+45 resize - width
+46 resize - height
+
+file
+====
+50 save path (relative)
+51 do not translate the file name in translit
+
+checkbox
+=======
+
+radiogruppa
+===========
+70 option-option
+
+list
+======
+80 lookup table
+81 placeholder (Id)
+82 field join (Title)
+83 prohibition of samosdelka
+84 order field
+85 order direction
+
+multilist
+======
+90 lookup table
+91 placeholder (Id)
+92 field join (Title)
+94 order field
+95 order direction
+96 storage table
+97 value field
+98 value field 2
+
+cms
+======
+1 the name of the site
+2 website Address
+3 Records per page
+4 Pages in the group
+5 Directory download the file, if not specified in svoystva element
+6 Size preview downloaded image - Width
+7 Size preview downloaded image - Height

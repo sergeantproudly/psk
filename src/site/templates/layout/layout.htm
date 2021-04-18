@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="keywords" content="{{SETTINGS:SEO_KEYWORDS}}">
+	<meta name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="{{SETTINGS:SITE_TITLE}}">
+	<meta property="og:title" content="{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}">
+	<meta property="og:description" name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
+	{{SETTINGS:SITE_META_VIEWPORT}}
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png?v2">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png?v2">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png?v2">
+	<link rel="manifest" href="/assets/images/site.webmanifest?v2">
+	<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg?v2" color="#5bbad5">
+	<link rel="shortcut icon" href="/favicon.ico?v2">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-config" content="/assets/images/browserconfig.xml?v2">
+	<meta name="theme-color" content="#ffffff">
+	<title>{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}</title>
+	<link type="text/css" rel="stylesheet" href="/assets/css/style.css{{VERSION}}"/>
+</head>
+
+<body>
+	{{SETTINGS:YANDEX_METRIKA}}
+	
+	<div id="layout">
+		{{INCLUDE:HEADER}}
+
+		{{CONTENT}}
+
+		{{CONTACTS}}
+
+        {{LINKS}}
+	</div>
+
+	{{INCLUDE:FOOTER}}
+
+	<div class="modal-fadeout"></div>
+
+    <script type="text/javascript" src="/assets/js/scripts.js{{VERSION}}"></script>
+  	<script type="text/javascript" src="/engine/js/cart.actions.js?v2"></script>
+  	<script type="text/javascript" src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="clear-fix marg-st">
+			<h2 id="bread-crumbs"><%BREAD_CRUMBS%><%DOCUMENT_TITLE%></h2>
+			<div class="tools-r"></div>
+			<div class="clear-a"></div>
+		</div>
+		
+		<div class="inner-wrapper">
+			<form action="<%ACTION_FORM%>" method="post" onsubmit="if(envIsSubmit(this,event)){<%ACTION_SUBMIT%>}return false;">
+			<div class="forms-container">
+			<%CONTENT%>
+			
+			<div class="form marg-none padd-none">
+				<div class="btn-extended"><span class="btn cancel" onclick="<%ACTION_CANCEL%>"><span class="l"></span><input type="button" value="Отмена"/><span class="r"></span></span></div>
+				<div class="btn-main"><span class="btn"><span class="l"></span><input type="submit" value="Сохранить"/><span class="r"></span></span></div>
+			</div>
+			</div>
+			</form>
+		</div>

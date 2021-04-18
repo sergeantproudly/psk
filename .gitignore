@@ -1,0 +1,13 @@
+email/
+import1c/
+node_modules/
+vendor/
+.vscode/
+.idea/
+import1c/
+public/uploads/
+error.log
+*.zip
+*.gzip
+robots.txt
+.htaccess

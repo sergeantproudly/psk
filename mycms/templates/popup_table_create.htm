@@ -1,0 +1,18 @@
+<h2>Create table</h2>
+		<form action="index.php?module=tables&act=CreateTable" method="post" onsubmit="if(envIsSubmit(this,event)){tableCreateSendForm(this);}return false;">
+		<div class="form" id="form">
+			<div class="label">Table name:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="name" value="" maxlength="255" id="fst-input"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Order:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order" value="" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+							
+			<div class="label" id="clone-point">Field:</div>
+			<div class="fld"><span class="inp-text it-small" style="margin-right: 10px;"><span class="l"></span><input type="text" name="field[]" value="Имя" maxlength="255" onfocus="unsetDefault(this,'Имя');" onblur="setDefault(this,'Имя');"/><span class="r"></span></span><span class="inp-select is-small"><span class="l"></span><input type="text" name="type_title[]" value="<%DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="type[]" value="<%DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_TYPE%></span></span></div>
+			<div class="reset"></div>
+			
+			<div class="btn-common"><span class="btn" onclick="tableCreateAddField();"><span class="l"></span><input type="button" value="Another field"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Save"/><span class="r"></span></span></div>
+		</div>
+		</form>

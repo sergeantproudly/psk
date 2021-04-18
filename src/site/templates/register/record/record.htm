@@ -1,0 +1,40 @@
+{{BREADCRUMBS}}
+<section>
+  <div class="holder">
+    <h1>{{TITLE}}</h1>   
+
+    <div class="tools-right">
+      <a href="{{DOWNLOADLINK}}" target="_blank"><button class="btn"><img src="/images/ico_download.svg" alt="Скачать в pdf"> Скачать в pdf</button></a>
+    </div>
+
+    <h3>{{OBJECT}}</h3>
+
+    <form accept="#" id="js-search" action="{{SEARCH:ACTION}}" method="GET">
+      <input class="search" type="text" name="search" value="{{SEARCH:VALUE}}" placeholder="Поиск по номеру накладной, мнемокоду или наименованию товара">
+    </form>
+
+    <div id="invoice">
+      <table class="private" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+          <th>№ п/п</th>
+          <th>Номер договора поставки между Подрядчиком и Поставщиком</th>
+          <th>Номер товарной накладной</th>
+          <th>Дата  товарной накладной</th>
+          <th>Мнемокод (в соответствии с номенклатурой, используемой ОАО "Сетевая компания")</th>
+          <th>Наименование товара</th>
+          <th>Кол-во</th>
+          <th>Ед. изм</th>
+          <th>Цена без НДС</th>
+          <th>Сумма без НДС</th>
+          <th>Ставка НДС</th>
+          <th>Сумма с НДС</th>
+        </tr>
+        </thead>
+        <tbody class="js-register-tbody">
+          {{TABLE}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

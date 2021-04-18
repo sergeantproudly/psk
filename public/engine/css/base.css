@@ -1,0 +1,33 @@
+.c-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.c-pagination__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  text-decoration: none;
+}
+
+.c-pagination__item {
+  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  margin: 0 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.c-pagination__item::before {
+  display: none;
+}
+
+.c-pagination__link--active {
+  color: #fffffb;
+  background: #2A3140;
+}
+
