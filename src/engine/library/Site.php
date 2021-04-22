@@ -145,6 +145,7 @@ class Site {
 				'site_protocol' => $settings->get('SiteProtocol'),
 				'site_domain' => $settings->get('SiteDomain'),
 				'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
+				'yandex_metrika' => $settings->get('YandexMetrika'),
 			],
 			'Page' => [
 				'title' => $page->getTitle(),
