@@ -174,7 +174,6 @@ function importCerts($rows) {
 
 if (!isset($task) || $task == 'import/certs') {
 	$certModel = new \Site\Models\CertModel($Database);
-	die($certModel);
 
 	$certModel->truncateAll();
 
