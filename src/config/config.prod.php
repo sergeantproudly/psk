@@ -8,8 +8,8 @@
 $Config = [];
 
 $Config['Database']['host'] 	  = 'localhost';
-$Config['Database']['user'] 	  = 'codeshow_psk';
-$Config['Database']['pass'] 	  = 'MayT|-|EfoRce_be_with_u';
+$Config['Database']['user'] 	  = 'codeshow_psk_new';
+$Config['Database']['pass'] 	  = 'Sergeantr1';
 $Config['Database']['db']      = 'codeshow_psk_new';
 
 return $Config;
