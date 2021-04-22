@@ -172,6 +172,8 @@ function importCerts($rows) {
 	return true;
 }
 
+die($task);
+
 if (!isset($task) || $task == 'import/certs') {
 	$certModel = new \Site\Models\CertModel($Database);
 
