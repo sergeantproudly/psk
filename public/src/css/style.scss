@@ -5629,3 +5629,27 @@ section,
     margin-right: 5px;
   }
 }
+
+.certs {
+    .file {
+        margin-bottom: 10px;
+    }
+
+    .term {
+        margin-bottom: 10px;
+    }
+
+    .hidden {
+        .term {
+            color: #8c8c8c;
+        }
+    }
+
+    .toggler {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 12px;
+        color: #666;
+        border-bottom: 1px dashed #666;
+    }
+}

@@ -41,6 +41,10 @@
 
   $Router->add('GET', '/catalog/filter/{filter}/search/{search}/{page?}', 'CatalogPage@index', ['page' => 1]);
 
+  $Router->add('GET', '/certs/download/', 'CertsPage@download');
+  $Router->add('GET', '/certs/{page?}', 'CertsPage@index', ['page' => 1]);
+  $Router->add('GET', '/certs/search/{search}/{page?}', 'CertsPage@index', ['page' => 1]);
+
   $Router->add('GET', '/register/download/', 'RegisterPage@download');
   $Router->add('GET', '/register/download/{number}', 'RegisterPage@download');
   

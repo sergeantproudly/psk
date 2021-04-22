@@ -495,3 +495,12 @@ $.preloadImages = function () {
         };
     }
 }
+
+
+function redirect(url) {
+  window.location = url;
+}
+
+function reload(forceGet) {
+  window.location.reload(forceGet);
+} 

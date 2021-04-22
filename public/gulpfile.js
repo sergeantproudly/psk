@@ -24,6 +24,8 @@ const jsFiles = [
 	'./src/js/slick.min.js',
 	/*'./src/js/wow.min.js',
 	'./src/js/cookies_notice.js',*/
+	'./src/js/messages.js',
+	'./src/js/checks.js',
 	'./src/js/common.js',
 	'./src/js/scripts.js'
 ];

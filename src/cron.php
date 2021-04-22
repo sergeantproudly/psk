@@ -111,6 +111,7 @@ function importRegisterContents($rows) {
 }
 
 
+/*
 // Импорт номенклатора (task = import/catalog)
 if (!isset($task) || $task == 'import/catalog') {
 	$catalogModel = new \Site\Models\CatalogModel($Database);
@@ -139,4 +140,43 @@ if (!isset($task) || $task == 'import/register') {
 		$file = str_replace('%', $counter?$counter:'', $importFile);
 		if (file_exists($file)) importRegisterContents(file($file));
 	}
+}
+*/
+
+function importCerts($rows) {
+	global $certModel;
+
+	$counter = 0;
+	foreach ($rows as $row) {
+		$csv = str_getcsv($row, ',');
+
+		$mnemocode = trim($csv[0], '"');
+		$title = trim($csv[1], '"');
+		$file = '/import1c/certs/' . trim($csv[2], '"');
+		$csv[3] = str_replace(array(chr(239),chr(187),chr(191)), '', trim($csv[3], '"'));
+		$termDate = mb_substr($csv[3], 6, 4) . '-' . mb_substr($csv[3], 3, 2) . '-' . mb_substr($csv[3], 0, 2) . ' 00:00:00';
+
+		if (!strtotime($termDate)) continue;
+
+		$item = array(
+			'Mnemocode' => $mnemocode,
+			'Title' => $title,
+			'File' => $file,
+			'TermDate' => $termDate
+		);
+		$certModel->manageItem($item);
+
+		$counter++;
+	}
+	echo 'command import/certs - '.$counter.' records managed'.PHP_EOL;
+	return true;
+}
+
+if (!isset($task) || $task == 'import/certs') {
+	$certModel = new \Site\Models\CertModel($Database);
+
+	$certModel->truncateAll();
+
+	$importFile = ROOT.'/import1c/certs/_certs.csv';
+	if (file_exists($importFile)) importCerts(file($importFile));
 }

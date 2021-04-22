@@ -694,4 +694,13 @@ $(document).ready(function(){
 
     /** /MODES 13.06.2018 */
 
+    /** MODES 22.04.2021 */
+    if ($('#catalogue.certs').length) {
+      $('#catalogue.certs .js-toggler').click(function() {
+        $(this).closest('tr').find('.hidden').slideDown(__animationSpeed);
+        $(this).hide();
+      });
+    }
+    /** MODES 22.04.2021 */
+
 });

@@ -1,0 +1,65 @@
+{{BREADCRUMBS}}
+<section>
+	<div class="holder">
+		<h1>{{TITLE}}</h1>
+
+		<div id="catalogue" class="certs">
+			<form accept="#" id="js-search" action="{{SEARCHACTION}}" method="GET">
+				<input class="search" type="text" name="search" value="{{SEARCH}}" placeholder="Поиск по мнемокоду или наименованию">
+			</form>
+
+			<table class="private" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Мнемокод</th>
+						<th>Наименование</th>
+						<th>Файл сертификата</th>
+						<th>Срок действия</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{TABLE}}
+				</tbody>
+			</table>
+		</div>
+
+		{{PAGINATION}}
+	</div>
+
+	<div id="bl-cart" class="js-cart" {{CARTEMPTY}}>
+		<div class="holder">
+			<span class="count">В корзине: <strong>{{CARTMESSAGE}}</strong></span>
+			<a href="#" class="edit" id="cart-edit">Редактировать</a>
+
+			<button class="js-cart-make-order-quick btn" id="cart-order-quick">Отправить заявку</button>
+		</div>
+	</div>
+
+	<div id="layout-cart">
+		<div class="holder js-cart-container">
+			<div class="h1">Корзина</div>
+
+			<table class="private" cellspacing="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Мнемокод</th>
+						<th>Наименование</th>
+						<th>Редактирование</th>
+					</tr>
+				</thead>
+				<tbody class="js-cart-table">
+				{{CART}}
+				</tbody>
+			</table>
+
+			<div class="btn-line">
+        <!--<form action="/cart/make-order/" method="POST" >-->
+					<button class="js-cart-update btn cancel" id="cart-save-changes" type="button">Сохранить изменения</button>
+
+					<button class="js-cart-make-order btn" id="cart-order" type="submit" data-user-id="{{USER:ID}}">Отправить заявку</button>
+				<!--</form>-->
+			</div>
+		</div>
+		<div class="ico-close"></div>
+	</div>
+</section>

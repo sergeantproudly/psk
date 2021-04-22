@@ -58,6 +58,9 @@ abstract class Model {
     
     'catalog' => 'data_items',
     'catalog_filters' => '`data_catalog-filters`',
+
+    'catalog_cert' => 'data_items_certs',
+    'catalog_cert_file' => 'data_items_certs_files',
     
     'register-record' => '`data_register_record`',
     'register-company' => 'data_register_company',
