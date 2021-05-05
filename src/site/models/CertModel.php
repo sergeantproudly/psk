@@ -55,7 +55,8 @@ class CertModel extends Model {
     $itemList = $this->db->getAll(
       "SELECT * FROM {$this->tables['catalog_cert']} 
        WHERE `Mnemocode` LIKE ?s 
-       OR `Title` LIKE ?s " . $limit,
+       OR `Title` LIKE ?s 
+       ORDER BY Title " . $limit,
       $search, $search);
     $itemList = $this->_loopFormatDate($itemList, 'Date');
     foreach ($itemList as $k => $item) {
@@ -75,7 +76,8 @@ class CertModel extends Model {
     return $this->db->getOne(
       "SELECT COUNT(`Id`) FROM {$this->tables['catalog_cert']} 
        WHERE `Mnemocode` LIKE ?s 
-       OR `Title` LIKE ?s",
+       OR `Title` LIKE ?s 
+       ORDER BY Title",
       $search, $search
     );
   }
