@@ -47,6 +47,12 @@ class ProductionPage extends Page {
 
     $this->getPage('index')->addInclude($this->partial('list'));
 
+    $blockCertsTemplate = new Template('bl-catalog-certs', 'production');
+    $blockCertsRendered = $blockCertsTemplate->parse([
+      'Heading' => strip_tags($content['CertBlockHeading']),
+      'Text' => $content['CertBlockText'],
+    ]);
+
     $staffModel = new \Site\Models\StaffModel($Database); 
     $person = $staffModel->getPersonById(self::PERSON_ID);
 
@@ -65,7 +71,8 @@ class ProductionPage extends Page {
 
     return $this->getPage('index')->parse($this->page + [
       'list' => $products,
-      'promo' => $blockPromoRendered
+      'certs' => $blockCertsRendered,
+      'promo' => $blockPromoRendered,
     ]);
   }
 

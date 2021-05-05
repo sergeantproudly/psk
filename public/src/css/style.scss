@@ -5653,3 +5653,156 @@ section,
         border-bottom: 1px dashed #666;
     }
 }
+
+#bl-catalog-certs {
+    position: relative;
+    padding: 70px 448px 80px 85px;
+    min-height: 406px;
+    background: $background-color-blue url('../images/bg4.svg') no-repeat right bottom;
+    background-image: url('../images/bg4.svg'), linear-gradient(188.82deg, #1A5492 11.88%, #1E6DC0 92.66%);
+    color: #fff;
+    margin-bottom: 139px;
+    @include radius(7px);
+
+    @media (max-width: $adaptive-width-tablet) {
+        padding: 50px 400px 60px 57px;
+        margin-bottom: 90px;
+    }
+
+    @media (max-width: $adaptive-width-tablet-middle) {
+        padding: 43px 57px 57px;
+        margin-bottom: 58px;
+    }
+
+    @media (max-width: $adaptive-width-mobile) {
+        padding: 26px 18px 34px;
+        min-height: 0;
+        margin-bottom: 40px;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: -30px;
+        right: -140px;
+        width: 638px;
+        height: 530px;
+        background: url('../images/cert_bg.png') no-repeat;
+        background-size: contain;
+
+        @media (max-width: $adaptive-width-tablet) {
+            right: -190px;
+        }
+
+        @media (max-width: $adaptive-width-tablet-middle) {
+            width: 490px;
+            height: 390px;
+            right: -160px;
+            top: auto;
+            bottom: -100px;
+        }
+
+        @media (max-width: $adaptive-width-tablet-small) {
+            width: 300px;
+            height: 200px;
+            top: -40px;
+            right: -120px;
+            bottom: auto;
+        }
+
+        @media (max-width: $adaptive-width-mobile) {
+            width: 240px;
+            height: 150px;
+            right: -115px;
+        }
+    }
+
+    h2,
+    .h2 {
+        font-size: 36px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 20px;
+
+        @media (max-width: $adaptive-width-tablet) {
+            font-size: 33px;
+        }
+
+        @media (max-width: $adaptive-width-tablet-middle) {
+            font-size: 31px;
+        }
+
+        @media (max-width: $adaptive-width-tablet-small) {
+            font-size: 26px;
+            margin-bottom: 30px;
+            padding-right: 180px;
+        }
+
+        @media (max-width: $adaptive-width-mobile) {
+            font-size: 20px;
+            line-height: 1.35;
+            margin-bottom: 29px;
+        }
+    }
+
+    .text {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.56;
+        max-width: 667px;
+        margin-bottom: 55px;
+
+        @media (max-width: $adaptive-width-tablet-middle) {
+            font-size: 16px;
+            line-height: 1.75;
+            font-weight: 400;
+            padding-right: 250px;
+            margin-bottom: 67px;
+        }
+
+        @media (max-width: $adaptive-width-tablet-small) {
+            padding-right: 0;
+            margin-bottom: 45px;
+        }
+
+        @media (max-width: $adaptive-width-mobile) {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 2.15;
+            margin-bottom: 27px;
+        }
+
+        p {
+            margin-bottom: 30px;
+
+            @media (max-width: $adaptive-width-mobile) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .btn {
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        display: inline-block;
+        white-space: nowrap;
+        text-decoration: none;
+        background-color: transparent;
+        border: 2px solid #fff;
+        text-transform: uppercase;
+        @include radius(4px);
+
+        @media (max-width: $adaptive-width-mobile) {
+            font-size: 14px;
+            width: 100%;
+            padding: 14px 28px;
+            display: block;
+        }
+
+        &:hover {
+            background-color: #fff;
+            color: #1c61aa;
+        }
+    }
+}
