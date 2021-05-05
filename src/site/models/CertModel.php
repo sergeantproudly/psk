@@ -27,7 +27,7 @@ class CertModel extends Model {
       $limit = '';
     }
 
-    $itemList = $this->db->getAll("SELECT * FROM {$this->tables['catalog_cert']} ORDER BY Date DESC {$limit}");
+    $itemList = $this->db->getAll("SELECT * FROM {$this->tables['catalog_cert']} ORDER BY Title ASC {$limit}");
     $itemList = $this->_loopFormatDate($itemList, 'Date');
     foreach ($itemList as $k => $item) {
       $itemList[$k]['Files'] = $this->getFilesByItem($item);
@@ -56,7 +56,7 @@ class CertModel extends Model {
       "SELECT * FROM {$this->tables['catalog_cert']} 
        WHERE `Mnemocode` LIKE ?s 
        OR `Title` LIKE ?s 
-       ORDER BY Title " . $limit,
+       ORDER BY Title ASC " . $limit,
       $search, $search);
     $itemList = $this->_loopFormatDate($itemList, 'Date');
     foreach ($itemList as $k => $item) {
@@ -76,8 +76,7 @@ class CertModel extends Model {
     return $this->db->getOne(
       "SELECT COUNT(`Id`) FROM {$this->tables['catalog_cert']} 
        WHERE `Mnemocode` LIKE ?s 
-       OR `Title` LIKE ?s 
-       ORDER BY Title",
+       OR `Title` LIKE ?s",
       $search, $search
     );
   }
