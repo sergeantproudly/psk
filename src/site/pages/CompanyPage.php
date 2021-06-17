@@ -206,9 +206,9 @@ class CompanyPage extends Page {
             $counter = 0;
             foreach ($store['Photos'] as $photo) {
               $counter++;
-              if ($counter > 4) {
-                $photo['Class'] = $counter == 4 ? ' more-photos' : '';
-                $photo['MoreText'] = $counter == 4 ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
+              if ($counter <= 4) {
+                $photo['Class'] = ($counter == 4 && count($store['Photos']) > 4) ? ' more-photos' : '';
+                $photo['MoreText'] = ($counter == 4 && count($store['Photos']) > 4) ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
                 $store['PhotosHtml'] .= $photoTemplate->parse($photo);
               } else {
                 $store['PhotosHtml'] .= '<a href="' . $photo['ImageFull'] . '" style="display:none;" class="js-lightbox"  data-gallery="store' . $photo['StoreId'] . '-photos" title="' . $photo['Alt'] . '"></a>';
