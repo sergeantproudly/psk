@@ -206,7 +206,7 @@ class CompanyPage extends Page {
             $counter = 0;
             foreach ($store['Photos'] as $photo) {
               $counter++;
-              if ($counter <= 4) {
+              if ($counter > 4) {
                 $photo['Class'] = $counter == 4 ? ' more-photos' : '';
                 $photo['MoreText'] = $counter == 4 ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
                 $store['PhotosHtml'] .= $photoTemplate->parse($photo);
