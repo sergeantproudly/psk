@@ -703,4 +703,35 @@ $(document).ready(function(){
     }
     /** MODES 22.04.2021 */
 
+    /** MODES 15.06.2021 */
+    // ANCHORS
+    $('.js-anchor').click(function(e) {
+    	e.preventDefault();
+    	_scrollTo($(this).attr('href'), -$(window).height() * 0.1);
+    });
+
+    // STORES
+		if ($('#stores').length) {
+			function storesCheckTitles() {
+				if (__isMobileTabletMiddle) {
+					$('#stores .navigation ul>li>a').each(function(i, item) {
+						if ($(item).text().indexOf('Набережные') != -1) {
+							$(item).text($(item).text().replace('Набережные', 'Наб.'));
+						}
+					});
+				} else {
+					$('#stores .navigation ul>li>a').each(function(i, item) {
+						if ($(item).text().indexOf('Наб.') != -1) {
+							$(item).text($(item).text().replace('Наб.', 'Набережные'));
+						}
+					});
+				}
+			}
+			resizeCallbacks.push(function() {
+				storesCheckTitles();
+			});
+			storesCheckTitles();
+		}
+		/** MODES 15.06.2021 */
+
 });

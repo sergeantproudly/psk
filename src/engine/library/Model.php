@@ -61,6 +61,11 @@ abstract class Model {
 
     'catalog_cert' => 'data_items_certs',
     'catalog_cert_file' => 'data_items_certs_files',
+
+    'stores'  => 'data_stores',
+    'stores_attributes' => 'data_stores_attributes',
+    'stores_vehicles' => 'data_stores_vehicles',
+    'stores_photos' => 'data_stores_photos',
     
     'register-record' => '`data_register_record`',
     'register-company' => 'data_register_company',

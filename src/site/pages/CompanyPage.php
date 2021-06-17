@@ -21,6 +21,7 @@ class CompanyPage extends Page {
       'partners' => ['template' => 'company__partners'],
       'direction' => ['template' => 'company__direction'],
       'clients' => ['template' => 'company__clients'],
+      'stores' => ['template' => 'company__stores'],
       'default' => ['template' => 'company__default']
     ]);
 
@@ -164,6 +165,69 @@ class CompanyPage extends Page {
           'Breadcrumbs' => $breadcrumbsRendered,
           'Title' => strip_tags($content['PageStaffHeading']),
           'List' => $staffsRendered,
+        ] + $content);
+
+      // STORES PAGE
+      } elseif ($current['Code'] == 'stores') {
+        $storesModel = new \Site\Models\StoresModel($this->model->getDB());
+        $stores = $storesModel->getAllItems();
+
+        $attrTemplate = new Template('_stores-attributes-row.htm', 'stores');
+        $vehicleTemplate = new Template('_stores-vehicles-row.htm', 'stores');
+        $photoTemplate = new Template('_stores-photos-row.htm', 'stores');
+        $first = true;
+        foreach ($stores as $i => &$store) {
+          $store['AttrsHtml'] = '';
+          $store['VehiclesHtml'] = '';
+          $store['PhotosHtml'] = '';
+
+          if ($first) {
+            $store['NavClass'] = ' class="active"';
+            $first = false;
+          } else {
+            $store['NavClass'] = '';
+          }
+
+          if ($store['Attributes'] && count($store['Attributes']) > 4) {
+            $store['AttrsClass'] = ' many';
+          }
+
+          if ($store['Attributes']) {
+            foreach ($store['Attributes'] as $attr) {
+              $store['AttrsHtml'] .= $attrTemplate->parse($attr);
+            }
+          }
+          if ($store['Vehicles']) {
+            foreach ($store['Vehicles'] as $vehicle) {
+              $store['VehiclesHtml'] .= $vehicleTemplate->parse($vehicle);
+            }
+          }
+          if ($store['Photos']) {
+            $counter = 0;
+            foreach ($store['Photos'] as $photo) {
+              $counter++;
+              if ($counter <= 4) {
+                $photo['Class'] = $counter == 4 ? ' more-photos' : '';
+                $photo['MoreText'] = $counter == 4 ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
+                $store['PhotosHtml'] .= $photoTemplate->parse($photo);
+              } else {
+                $store['PhotosHtml'] .= '<a href="' . $photo['ImageFull'] . '" style="display:none;" class="js-lightbox"  data-gallery="store' . $photo['StoreId'] . '-photos" title="' . $photo['Alt'] . '"></a>';
+              }
+            }
+          }
+        }
+
+        $storesItemTemplate = new ListTemplate('_stores-row', 'stores');
+        $storesRendered  = $storesItemTemplate->parse($stores);
+
+        $storesNavigationTemplate = new ListTemplate('_stores-navigation-row', 'stores');
+        $navigationRendered  = $storesNavigationTemplate->parse($stores);
+
+        $rendered = $this->page($current['Code'])->parse([
+          'Breadcrumbs' => $breadcrumbsRendered,
+          'Title' => strip_tags($content['PageStoresHeading']),
+          'Navigation' => $navigationRendered,
+          'List' => $storesRendered,
         ] + $content);
 
       // DEFAULT PAGE

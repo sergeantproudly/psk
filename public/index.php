@@ -73,6 +73,8 @@
 
   $Router->add('POST', '/certificates/get-data/', 'AjaxHandler@getCertificates');
 
+  $Router->add('GET', '/stores/', 'StoresPage@index');
+
   $Router->add('GET', '/staff/', 'StaffPage@index');
   $Router->add('GET', '/shipping/', 'ShippingPage@index');
 
