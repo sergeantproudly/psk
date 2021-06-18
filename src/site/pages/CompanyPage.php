@@ -53,12 +53,22 @@ class CompanyPage extends Page {
       })); 
 
       $advantages = $this->model->getAdvantages();
-      $advantages = Common::setLinks($advantages, 'production');
+      //$advantages = Common::setLinks($advantages, 'production');
       $advantagesTemplate = new Template('bl-advantages', 'company');
-      $advantagesItemTemplate = new ListTemplate('bl-advantages__item', 'company/partial');
-      $advantagesItemTemplate  = $advantagesItemTemplate->parse($advantages);
+      $advantagesItemTemplate = new Template('bl-advantages__item', 'company/partial');
+      $advantagesItemLinkedTemplate = new Template('bl-advantages-linked__item', 'company/partial');
+      //$advantagesItemTemplate  = $advantagesItemTemplate->parse($advantages);
+      $attrHtml = '';
+      foreach ($advantages as $advantage) {
+        if ($advantage['Link']) {
+          $attrHtml .= $advantagesItemLinkedTemplate->parse($advantage);
+        } else {
+          $attrHtml .= $advantagesItemTemplate->parse($advantage);
+        }
+      }
+
       $advantagesRendered = $advantagesTemplate->parse([
-            'List' => $advantagesItemTemplate
+            'List' => $attrHtml
       ]);
 
       $content['BlockProductionHeading'] = strip_tags($content['BlockProductionHeading']);
