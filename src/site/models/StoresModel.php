@@ -55,7 +55,7 @@ class StoresModel extends Model {
   }
 
   protected function getAllPhotos() {
-    $items = $this->db->getAll("SELECT Id, Title, StoreId, Image3840 AS ImageFull, Image626_506 AS Image FROM {$this->tables['stores_photos']} ORDER BY IF(`Order`,-1000/`Order`,0)");
+    $items = $this->db->getAll("SELECT Id, Title, StoreId, Image3840 AS ImageFull, Image626_506 AS Image FROM {$this->tables['stores_photos']} WHERE Image <> '' ORDER BY IF(`Order`,-1000/`Order`,0)");
     foreach ($items as &$item) {
       $item['Alt'] = htmlspecialchars($item['Title'], ENT_QUOTES);
       $this->_photos[$item['StoreId']][] = $item;
