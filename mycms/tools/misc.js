@@ -728,7 +728,7 @@ function recAddCancel(document_id,params){
 	}
 }
 function recEdit(sender,document_id,params){
-	var form=gei('browser-form');
+	var form=$(sender).closest('form').get(0);
 	var cbs=new Array();
 	var fstCb=null;
 	for(var i=0;i<form.elements.length;i++){
