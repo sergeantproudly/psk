@@ -709,8 +709,10 @@ class records extends krn_abstract {
                     $uploadpath = $elementProperties[40] ? $elementProperties[40] : UPLOADS_DIR;
                     if (mb_substr($uploadpath, mb_strlen($uploadpath) - 1) != '/') $uploadpath .= '/';
                     $info = flGetInfo($sourcepath);
-                    flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
-                    $_POST[$name][$id] = $value = $uploadpath . $info['basename'];
+                    //flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
+                    //$_POST[$name][$id] = $value = $uploadpath . $info['basename'];
+                    $value = str_replace(ROOT_DIR, '', flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']));
+                    $_POST[$name][$id] = $value;
                   }
                 } else {
                   $resize['source'] = $elementProperties[43] ? $elementProperties[43] : 'Image';
@@ -844,8 +846,8 @@ class records extends krn_abstract {
                   $uploadpath = $elementProperties[40] ? $elementProperties[40] : UPLOADS_DIR;
                   if (mb_substr($uploadpath, mb_strlen($uploadpath) - 1) != '/') $uploadpath .= '/';
                   $info = flGetInfo($sourcepath);
-                  flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
-                  $_POST[$name] = $value = $uploadpath . $info['basename'];
+                  $value = str_replace(ROOT_DIR, '', flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']));
+                  $_POST[$name] = $value;
                 }
               } else {
                 $resize['source'] = $elementProperties[43] ? $elementProperties[43] : 'Image';
@@ -1243,8 +1245,10 @@ class records extends krn_abstract {
                     $uploadpath = $elementProperties[40] ? $elementProperties[40] : UPLOADS_DIR;
                     if (mb_substr($uploadpath, mb_strlen($uploadpath) - 1) != '/') $uploadpath .= '/';
                     $info = flGetInfo($sourcepath);
-                    flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
-                    $_POST[$name][$id] = $value = $uploadpath . $info['basename'];
+                    //flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
+                    //$_POST[$name][$id] = $value = $uploadpath . $info['basename'];
+                    $value = str_replace(ROOT_DIR, '', flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']));
+                    $_POST[$name][$id] = $value;
                   } else {
                     $untouched = true;
                   }
@@ -1401,8 +1405,10 @@ class records extends krn_abstract {
                   $uploadpath = $elementProperties[40] ? $elementProperties[40] : UPLOADS_DIR;
                   if (mb_substr($uploadpath, mb_strlen($uploadpath) - 1) != '/') $uploadpath .= '/';
                   $info = flGetInfo($sourcepath);
-                  flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
-                  $_POST[$name] = $value = $uploadpath . $info['basename'];
+                  //flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']);
+                  //$_POST[$name] = $value = $uploadpath . $info['basename'];
+                  $value = str_replace(ROOT_DIR, '', flMoveFile($sourcepath, ROOT_DIR . $uploadpath . $info['basename']));
+                  $_POST[$name] = $value;
                 } else {
                   $untouched = true;
                 }

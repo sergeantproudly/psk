@@ -46,6 +46,7 @@
 			$destpath=flUniqueName($info['basename'],$info['directory']);
 		}
 		rename($sourcepath,$destpath);
+		return $destpath;
 	}
 	
 	// delete file
@@ -93,6 +94,14 @@
 		while(file_exists($filepath)){
 			$counter++;
 			$filepath=$directory.$info['caption'].'('.$counter.').'.$info['extension'];
+		}
+		return $filepath;
+	}
+
+	function flCheckUniqueName($filepath) {
+		if (file_exists($filepath)) {
+			$info = flGetInfo($filepath);
+			return flUniqueName($info['basename'],$info['directory']);
 		}
 		return $filepath;
 	}
