@@ -558,6 +558,8 @@ header {
                     padding: 21px 22px;
                     color: #5d5d5d;
                     position: relative;
+                    font-weight: 500;
+                    color: #272727;
                     @extend .transition-color;
 
                     @media (max-width: $adaptive-width-desktop-small) {
@@ -585,8 +587,6 @@ header {
 
                 &.active {
                     a {
-                        font-weight: 500;
-                        color: #272727;
                         cursor: default;
                         @extend .transition-color;
 
@@ -806,7 +806,7 @@ header {
 
     #logo {
         position: absolute;
-        top: 33px;
+        top: 28px;
         @extend %edge-left;
 
         @media (max-width: $adaptive-width-tablet) {
@@ -814,6 +814,8 @@ header {
         }
 
         img {
+            width: 125px;
+
             @media (max-width: $adaptive-width-tablet) {
                 width: 76px;
             }
