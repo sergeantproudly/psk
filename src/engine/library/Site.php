@@ -44,6 +44,10 @@ class Site {
 		return $code === 'contacts';
 	}
 
+	function isCompany($code) {
+		return $code === 'company';
+	}
+
 	function getAction() {
 		return $this->action;
 	}
@@ -124,6 +128,17 @@ class Site {
 	    	'Email' => $contacts['Email'],
 	    ]);
 
+	    // modals
+	    $templateModal = new Template('modal_base', 'modals');
+	    if ($this->isHome($code) || $this->isCompany($code)) {
+	    	$templateModalVideo = new Template('modal_video', 'modals');
+	    	$modalsRendered[] = $templateModal->parse([
+		    	'Code' => 'video',
+		    	'Id' => 'video',
+		    	'Content' => $templateModalVideo->parse([]),
+		    ]);
+	    }
+
 	    // production links block
 	    $productionModel = new \Site\Models\ProductionModel();
 		$productionModel->setDB($this->db);
@@ -164,6 +179,7 @@ class Site {
 				'Year'=> DateHelper::getCurrentYear(),
 				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
 			],
+			'Modals' => isset($modalsRendered) ? implode('', $modalsRendered) : '',
 			'Version' => $settings->get('AssetsVersion') ? '?v2.' . $settings->get('AssetsVersion') : ''
 		]);
 	}		

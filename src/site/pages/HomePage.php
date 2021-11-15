@@ -4,6 +4,7 @@ use Engine\Library\Page;
 use Engine\Library\Template;
 use Engine\Library\ListTemplate;
 use Engine\Library\Common;
+use Engine\Library\Youtube;
 
 use Site\Components\SliderComponent;
 use Site\Components\ProjectsComponent;
@@ -27,6 +28,8 @@ class HomePage extends Page {
 	}
 
 	function index($params = []) {
+		global $Settings;
+
 		$database = $this->model->getDB();
 		$content = $this->model->getContent($this->code());
 
@@ -64,6 +67,13 @@ class HomePage extends Page {
 		}
 		$clientsComponent = new ClientsComponent;
 		$clientsRendered = $clientsComponent->render($clientList);
+
+		// VIDEO
+		$youtube = new Youtube();
+		$templateVideoBlock = new Template('bl-video-main', 'video');
+		$videoBlockRendered = $templateVideoBlock->parse([
+			'Code' => $youtube->GetCodeFromSource($Settings->get('YoutubeCode'))
+		]);
 
 		// NEWS/ARTICLES
 		$articleModel = new \Site\Models\ArticleModel();
@@ -128,6 +138,7 @@ class HomePage extends Page {
 			'Slider' => $sliderRendered,
 			'Projects' => $projectsRendered,
 			'Clients' => $clientsRendered,
+			'Video' => $videoBlockRendered,
 			'Articles' => $articlesRendered,
 			'Production' => $productionRendered,
 			'Company' => $blockTextRendered,

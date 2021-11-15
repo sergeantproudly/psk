@@ -4,6 +4,7 @@ use Engine\Library\ListTemplate;
 use Engine\Library\Common;
 use Engine\Library\Page;
 use Engine\Library\Template;
+use Engine\Library\Youtube;
 use Site\Components\BreadcrumbsComponent;
 use Site\Models\PageModel;
 
@@ -37,6 +38,8 @@ class CompanyPage extends Page {
   }
 
   function index($params) {
+    global $Settings;
+    
     $page = $params['code'];
 
     $content = $this->model->getContent($this->code());
@@ -51,6 +54,13 @@ class CompanyPage extends Page {
       $this->page('index')->addInclude($this->partial('nav')->setCallback(function($item) use ($current) {
         return $item['Code'] == $current['Code'];
       })); 
+
+      // VIDEO
+      $youtube = new Youtube();
+      $templateVideoBlock = new Template('bl-video', 'video');
+      $videoBlockRendered = $templateVideoBlock->parse([
+        'Code' => $youtube->GetCodeFromSource($Settings->get('YoutubeCode'))
+      ]);
 
       $advantages = $this->model->getAdvantages();
       //$advantages = Common::setLinks($advantages, 'production');
@@ -77,6 +87,7 @@ class CompanyPage extends Page {
         'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="block" id="bl-mission"><h2>Миссия</h2>' . $content['BlockMissionText'] . '</div>' : '',
         'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="block" id="bl-standarts"><h2>Стандарты</h2>' . $content['BlockStandartsText'] . '</div>' : '',
         'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="block" id="bl-guarantees"><h2>Гарантии</h2>' . $content['BlockGuaranteesText'] . '</div>' : '',
+        'Video' => $videoBlockRendered,
         'Advantages' => $advantagesRendered,
       ]);
 

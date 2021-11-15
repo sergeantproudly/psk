@@ -734,4 +734,28 @@ $(document).ready(function(){
 		}
 		/** MODES 15.06.2021 */
 
+		/** MODES 14.11.2021 */
+		if ($('#bl-video>a').length) {
+			$('#bl-video>a').click(function(e) {
+				var player = $('#js-youtube-video').data('player');
+				var code = $(this).attr('data-video-code');
+				console.log(player);
+				new YT.Player('js-youtube-video', {
+					height: '100%',
+			    width: '100%',
+				  videoId: code,
+				  playerVars: { 'autoplay': 1, 'controls': 0 }
+				});
+				player.loadVideoById(code);
+				player.playVideo();
+			});
+
+			$('#modal-video .modal-close').click(function() {
+				var player = $('#js-youtube-video').data('player');
+				player.pauseVideo();
+				player.stopVideo();
+			});
+		}
+		/** MODES 14.11.2021 */
+
 });

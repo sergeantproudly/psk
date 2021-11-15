@@ -2468,7 +2468,7 @@ section,
             }
 
             &.mission {
-                height: 400px;
+                /*height: 400px;*/
                 background-image: url('../images/mission_bg.jpg');
 
                 @media (max-width: $adaptive-width-tablet) {
@@ -6291,6 +6291,460 @@ section,
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+#bl-video {
+    & > a {
+        display: block;
+        position: relative;
+        background: #1A5492 url('../images/video_bg.jpg') no-repeat;
+        background-size: cover;
+        padding-top: 54.4578%;
+        text-decoration: none;
+        margin-bottom: 45px;
+        @include radius(6px);
+
+        @media (max-width: 1240px) {
+            padding-top: 70%;
+            text-align: center;
+        }
+
+        @media (max-width: $adaptive-width-tablet) {
+            background-image: url('../images/video_bg_main.jpg');
+            padding: 50px 60px;
+            text-align: left;
+        }
+
+        @media (max-width: $adaptive-width-tablet-small) {
+            padding: 50px 30px;
+        }
+
+        @media (max-width: $adaptive-width-mobile) {
+            padding: 38px 35px;
+        }
+
+        &:hover {
+            opacity: 1;
+
+            .title {
+                &:after {
+                    width: 119px;
+                    height: 119px;
+                    top: -27px;
+                    right: -2px;
+                    @extend .transition-all;
+
+                    @media (max-width: 1240px) {
+                        top: auto;
+                        right: 50%;
+                        bottom: -137px;
+                    }
+
+                    @media (max-width: $adaptive-width-desktop-small) {
+                        width: 82px;
+                        height: 82px;
+                        bottom: -101px;
+                    }
+
+                    @media (max-width: $adaptive-width-tablet) {
+                        width: 80px;
+                        height: 80px;
+                        top: -15px;
+                        left: 130px;
+                        bottom: auto;
+                    }
+
+                    @media (max-width: $adaptive-width-mobile) {
+                        width: 65px;
+                        height: 65px;
+                        top: -10px;
+                        left: 95px;
+                    }
+                }
+            }
+        }
+    }
+
+    .title {
+        width: 83%;
+        padding-right: 137px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 31px;
+        font-weight: 600;
+        line-height: 1.03;
+        color: #fff;
+        display: inline-block;
+        vertical-align: middle;
+
+        @media (max-width: 1240px) {
+            width: 100%;
+            top: 45px;
+            left: 0;
+            transform: none;
+            padding-right: 0;
+        }
+
+        @media (max-width: $adaptive-width-desktop-small) {
+            font-size: 25px;
+        }
+
+        @media (max-width: $adaptive-width-tablet) {
+            position: relative;
+            top: auto;
+            left: auto;
+        }
+
+        @media (max-width: $adaptive-width-mobile) {
+            font-size: 20px;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: -25px;
+            right: 0;
+            display: inline-block;
+            vertical-align: middle;
+            width: 115px;
+            height: 115px;
+            background: url('../images/ico_play.svg') no-repeat;
+            background-size: contain;
+            margin-left: 22px;
+            @extend .transition-all;
+
+            @media (max-width: 1240px) {
+                display: block;
+                top: auto;
+                bottom: -135px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            @media (max-width: $adaptive-width-desktop-small) {
+                width: 80px;
+                height: 80px;
+                bottom: -100px;
+            }
+
+            @media (max-width: $adaptive-width-tablet) {
+                top: -15px;
+                left: 130px;
+                bottom: auto;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                width: 65px;
+                height: 65px;
+                top: -10px;
+                left: 95px;
+            }
+        }
+
+        & > .play {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 24px;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                width: 32px;
+                height: 32px;
+                background: url('../images/ico_play.svg') no-repeat;
+                background-size: contain;
+                margin: -4px 14px 0 0;
+            }
+        }
+    }
+
+    &.main {
+        & > a {
+            background-image: url('../images/video_bg_main.jpg');
+            padding-top: 17.8093%;
+            margin-bottom: 68px;
+
+            @media (max-width: 1240px) {
+                text-align: left;
+            }
+
+            @media (max-width: $adaptive-width-tablet) {
+                padding: 50px 60px;
+                text-align: left;
+            }
+
+            @media (max-width: $adaptive-width-tablet-middle) {
+                padding: 50px 30px;
+            }
+
+            @media (max-width: $adaptive-width-tablet-small) {
+                padding: 50px 30px;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                padding: 38px 35px;
+            }
+
+            &:hover {
+                .title {
+                    &:after {
+                        width: 139px;
+                        height: 139px;
+                        top: -17px;
+                        right: -2px;
+
+                        @media (max-width: $adaptive-width-tablet) {
+                            width: 80px;
+                            height: 80px;
+                            top: -15px;
+                            left: 130px;
+                            bottom: auto;
+                        }
+
+                        @media (max-width: $adaptive-width-mobile) {
+                            width: 65px;
+                            height: 65px;
+                            top: -10px;
+                            left: 95px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .title {
+            width: 90.5%;
+            font-size: 39px;
+
+            @media (max-width: 1240px) {
+                width: 90.5%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            @media (max-width: $adaptive-width-tablet) {
+                font-size: 32px;
+                transform: none;
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+            }
+
+            @media (max-width: $adaptive-width-tablet-middle) {
+                padding-right: 140px;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                font-size: 20px;
+                padding-right: 0;
+            }
+
+            &:after {
+                position: absolute;
+                top: -15px;
+                right: 0;
+                width: 135px;
+                height: 135px;
+
+                @media (max-width: 1240px) {
+                    bottom: auto;
+                    top: -15px;
+                    transform: none;
+                }
+
+                @media (max-width: $adaptive-width-tablet) {
+                    width: 100px;
+                    height: 100px;
+                    top: 0px;
+                    left: auto;
+                    bottom: auto;
+                    right: 0;
+                }
+
+                @media (max-width: $adaptive-width-tablet-middle) {
+                    top: -15px;
+                }
+
+                @media (max-width: $adaptive-width-mobile) {
+                    width: 65px;
+                    height: 65px;
+                    top: -10px;
+                    right: 0;
+                }
+            }
+
+            br.tm {
+                display: none;
+
+                @media (max-width: $adaptive-width-tablet-middle) {
+                    display: inline;
+                }
+            }
+
+            & > .play {
+                margin-top: 23px;
+
+                @media (max-width: $adaptive-width-tablet) {
+                    font-size: 20px;
+                }
+
+                @media (max-width: $adaptive-width-tablet-middle) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.modal-fadeout {
+    background: #000;
+    opacity: 0.85;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: table;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+    display: none;
+
+    @media (max-width: $adaptive-width-tablet) {
+        min-height: 100%;
+    }
+
+    & > .modal {
+        display: table-cell;
+        vertical-align: middle;
+        overflow: hidden;
+        line-height: 0;
+
+        @media (max-width: $adaptive-width-tablet) {
+            display: table;
+            background-color: rgba(0,0,0,0.85);
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+.modal {
+    & > .contents {
+        background-color: #000;
+        width: 939px;
+        margin: 5% auto;
+        padding: 58px 50px 47px;
+        line-height: 1.43;
+        position: relative;
+
+        @media (max-width: $adaptive-width-tablet) {
+            width: auto;
+            margin: 0;
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            background: none;
+        }
+
+        @media (max-width: $adaptive-width-tablet-small) {
+            padding: 18px 20px 35px;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 32px;
+            right: 41px;
+            cursor: pointer;
+            background: url('../images/ico_modal_close.svg') no-repeat center;
+            width: 27px;
+            height: 27px;
+            @extend .rotate-180-start;
+
+            @media (max-width: $adaptive-width-tablet) {
+                top: 20px;
+                right: 20px;
+                z-index: 10;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                background-size: 26px 26px;
+                width: 26px; 
+                height: 26px;
+                top: 17px;
+                right: 17px;
+            }
+
+            &:hover {
+                @extend .rotate-180-end;
+            }
+        }
+
+        h1,
+        .h1 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+
+            @media (max-width: $adaptive-width-mobile) {
+                font-size: 20px;
+            }
+        }
+
+        .error {
+            display: block;
+            text-align: left;
+            color: #FC4D5A;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .wait {
+            display: block;
+            text-align: left;
+            color: #afafaf;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        #modal-video > & {
+            padding: 0;
+            width: 70%;
+            margin: 3% auto;
+
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%;
+                @include radius(5px);
+                overflow: hidden;
+
+                @media (max-width: $adaptive-width-tablet) {
+                    @include radius(0px);                    
+                    overflow: visible;
+                }
+
+                & > iframe {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                 }
             }
         }
