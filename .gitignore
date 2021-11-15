@@ -12,3 +12,4 @@ error.log
 robots.txt
 .htaccess
 settings.php
+config.php
