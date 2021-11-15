@@ -11,3 +11,4 @@ error.log
 *.gzip
 robots.txt
 .htaccess
+settings.php
