@@ -755,7 +755,7 @@ $(document).ready(function(){
 				player.playVideo();
 
 				if ($('#video-lang-swticher').length) {
-					$('#video-lang-swticher ul>li>a[data-lang="' + lang + '"]').addClass('curr');
+					$('#video-lang-swticher ul>li>a[data-lang="' + lang + '"]').addClass('curr').parent().siblings('li').children('a.curr').removeClass('curr');
 					$('#video-lang-swticher ul>li>a').click(function(e) {
 						e.preventDefault();
 
