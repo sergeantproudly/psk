@@ -8,7 +8,7 @@
 	} else {
 		$Config['Db']['Host'] 	= 'localhost';
 		$Config['Db']['Login'] 	= 'codeshow_psk';
-		$Config['Db']['Pswd'] 	= 'MayT|-|EfoRce_be_with_u';
+		$Config['Db']['Pswd'] 	= 'Sergeantr1';
 		$Config['Db']['DbName'] = 'codeshow_psk';
 	}
    	
