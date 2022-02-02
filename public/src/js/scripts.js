@@ -736,10 +736,15 @@ $(document).ready(function(){
 
 		/** MODES 14.11.2021 */
 		if ($('#bl-video>a').length) {
+			var lang = getLanguageGroup();
+
 			$('#bl-video>a').click(function(e) {
 				var player = $('#js-youtube-video').data('player');
-				var code = $(this).attr('data-video-code');
-				console.log(player);
+				if (lang == 'ru') {
+					var code = $(this).attr('data-video-code-rus');
+				} else {
+					var code = $(this).attr('data-video-code-eng');
+				}
 				new YT.Player('js-youtube-video', {
 					height: '100%',
 			    width: '100%',
@@ -748,6 +753,20 @@ $(document).ready(function(){
 				});
 				player.loadVideoById(code);
 				player.playVideo();
+
+				if ($('#video-lang-swticher').length) {
+					$('#video-lang-swticher ul>li>a[data-lang="' + lang + '"]').addClass('curr');
+					$('#video-lang-swticher ul>li>a').click(function(e) {
+						e.preventDefault();
+
+						if (!$(this).hasClass('curr')) {
+							var code = $(this).attr('href');
+							player.loadVideoById(code);
+							player.playVideo();
+							$(this).addClass('curr').parent().siblings('li').children('a.curr').removeClass('curr');
+						}
+					});
+				}
 			});
 
 			$('#modal-video .modal-close').click(function() {

@@ -504,3 +504,31 @@ function redirect(url) {
 function reload(forceGet) {
   window.location.reload(forceGet);
 } 
+
+function getBrowserLocale(resultFormat) {
+	var config = {
+	  	'language': 'en',
+	  	'country': 'US'
+	}
+	var client = window.navigator ? (window.navigator.language ||
+			window.navigator.systemLanguage ||
+		  	window.navigator.userLanguage) : (config.language + '-' + config.country);
+
+	var language = (client.search('-') > 0) ?
+			client.substring(0, client.search('-')).toLowerCase() :
+		  	client.toLowerCase();
+
+	var country = (client.search('-') > 0) ?
+		  	client.substring(client.search('-') + 1, client.length).toLowerCase() :
+		  	config.country;
+
+	if (resultFormat == 'language') return language;
+	else if (resultFormat == 'country') return country;
+	else return language + '-' + country;
+}
+
+function getLanguageGroup() {
+	var language = getBrowserLocale('language').slice(0, 2);
+	if (language == 'ru' || language == 'uk' || language == 'be') return 'ru';
+	else return 'en';
+}

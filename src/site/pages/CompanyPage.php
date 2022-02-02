@@ -59,7 +59,8 @@ class CompanyPage extends Page {
       $youtube = new Youtube();
       $templateVideoBlock = new Template('bl-video', 'video');
       $videoBlockRendered = $templateVideoBlock->parse([
-        'Code' => $youtube->GetCodeFromSource($Settings->get('YoutubeCode'))
+        'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+        'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
       ]);
 
       $advantages = $this->model->getAdvantages();

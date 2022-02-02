@@ -4,6 +4,7 @@ namespace Engine\Library;
 use Site\Components\HeaderComponent; 	
 use Site\Components\FooterComponent;
 use Site\Components\ServicesComponent;
+use Engine\Library\Youtube;
 use Engine\Helper\DateHelper;
 
 class Site {
@@ -76,6 +77,8 @@ class Site {
 
 	// получить страницу с замененными атрибутами
 	function buildPage($page, Settings $settings = null, $action = 'index', $params = []) {
+		global $Settings;
+
 		$code = $page->code();
 		$pageData = $this->db->getRow("SELECT * FROM `pages` WHERE `Code` = ?s", $code);
 
@@ -131,11 +134,15 @@ class Site {
 	    // modals
 	    $templateModal = new Template('modal_base', 'modals');
 	    if ($this->isHome($code) || $this->isCompany($code)) {
+	    	$youtube = new Youtube();
 	    	$templateModalVideo = new Template('modal_video', 'modals');
 	    	$modalsRendered[] = $templateModal->parse([
 		    	'Code' => 'video',
 		    	'Id' => 'video',
-		    	'Content' => $templateModalVideo->parse([]),
+		    	'Content' => $templateModalVideo->parse([
+		    		'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+        			'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+		    	]),
 		    ]);
 	    }
 

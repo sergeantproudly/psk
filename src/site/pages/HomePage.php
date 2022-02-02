@@ -72,7 +72,8 @@ class HomePage extends Page {
 		$youtube = new Youtube();
 		$templateVideoBlock = new Template('bl-video-main', 'video');
 		$videoBlockRendered = $templateVideoBlock->parse([
-			'Code' => $youtube->GetCodeFromSource($Settings->get('YoutubeCode'))
+			'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+        	'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
 		]);
 
 		// NEWS/ARTICLES
