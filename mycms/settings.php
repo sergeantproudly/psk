@@ -7,9 +7,9 @@
 		$Config['Db']['DbName'] = 'psk-si';   	
 	} else {
 		$Config['Db']['Host'] 	= 'localhost';
-		$Config['Db']['Login'] 	= 'codeshow_psk';
+		$Config['Db']['Login'] 	= 'codeshow_psk_new';
 		$Config['Db']['Pswd'] 	= 'Sergeantr1';
-		$Config['Db']['DbName'] = 'codeshow_psk';
+		$Config['Db']['DbName'] = 'codeshow_psk_new';
 	}
    	
 	$Config['Site']['Title']		= 'ПСК СтройИнвест';
