@@ -100,7 +100,7 @@ $(document).ready(function(){
 					$('body').removeClass('mobile-opened');
 					$('html').removeClass('html-mobile-long');
 					$('#layout').height('auto').removeClass('js-modal-overflow');
-					$('.modal-fadeout').stop().fadeOut(300);
+					//$('.modal-fadeout').stop().fadeOut(300);
 				}).data('inited', true);
 			}
 
@@ -115,7 +115,7 @@ $(document).ready(function(){
 
 			$('#layout').addClass('js-modal-overflow').height($('header').outerHeight());
 
-			$('.modal-fadeout').stop().fadeIn(300);
+			//$('.modal-fadeout').stop().fadeIn(300);
 		}
 	});
 	$('nav ul>li.has-child>a').click(function(e) {
