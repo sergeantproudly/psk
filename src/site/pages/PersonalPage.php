@@ -64,7 +64,7 @@ class PersonalPage extends Page {
     global $Settings;
 
     $code = $params['code'];
-    $data = $this->model->getDataByCode($code);
+    $data = $this->model->getDataByCodeEn($code);
 
     $templateLayout = new Template('layout', 'personal');
     $templateData = new Template('personal', 'personal');
