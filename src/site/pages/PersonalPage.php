@@ -26,6 +26,8 @@ class PersonalPage extends Page {
     $code = $params['code'];
     $data = $this->model->getDataByCode($code);
 
+    $this->model->incVisitCountByCode($code);
+
     $templateLayout = new Template('layout', 'personal');
     $templateData = new Template('personal', 'personal');
 
@@ -55,7 +57,6 @@ class PersonalPage extends Page {
       'Version' => $Settings->get('AssetsVersion') ? '?v2.' . $Settings->get('AssetsVersion') : ''
     ]);
 
-
     echo $layoutRendered;
     exit;
   } 
@@ -65,6 +66,8 @@ class PersonalPage extends Page {
 
     $code = $params['code'];
     $data = $this->model->getDataByCodeEn($code);
+
+    $this->model->incVisitCountByCodeEn($code);
 
     $templateLayout = new Template('layout', 'personal');
     $templateData = new Template('personal', 'personal');
