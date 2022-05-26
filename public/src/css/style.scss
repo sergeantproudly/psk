@@ -6951,11 +6951,13 @@ section,
                         text-align: left;
                         font-size: 14px;
                         color: #8B8CA5;
+                        min-height: 86px;
                         padding: 20px 30px 20px 100px;
                         border-top: 1px solid #E5E7EF;
 
                         @media (max-width: $adaptive-width-mobile) {
                             padding: 16px 20px 16px 80px;
+                            min-height: 78px;
                         }
 
                         &:first-child {

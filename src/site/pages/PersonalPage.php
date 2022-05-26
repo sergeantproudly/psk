@@ -82,7 +82,7 @@ class PersonalPage extends Page {
       'FileVcf' => $data['FileVcfEn'],
       'LangCall' => 'Call',
       'LangWrite' => 'Send an e-mail',
-      'LangTel' => 'Cell phone',
+      'LangTel' => 'Tel',
       'LangEmail' => 'E-mail',
       'LangWebsite' => 'Website',
       'LangButton' => 'Add contact'
