@@ -75,6 +75,9 @@
 
   $Router->add('GET', '/stores/', 'StoresPage@index');
 
+  $Router->add('GET', '/personal/{code}', 'PersonalPage@detail');
+  $Router->add('GET', '/personal/en/{code}', 'PersonalPage@detailEn');
+
   $Router->add('GET', '/staff/', 'StaffPage@index');
   $Router->add('GET', '/shipping/', 'ShippingPage@index');
 

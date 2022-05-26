@@ -17,7 +17,7 @@
 	$Config['Site']['Flush'] 		= 0;
 	$Config['Site']['Keywords']		= '';
 	$Config['Site']['Description']	= '';
-	$Config['Site']['Url']			= 'http://psk-si.ru';
+	$Config['Site']['Url']			= 'https://psk-si.ru';
 	
 	error_reporting (E_ALL & ~E_NOTICE);
 

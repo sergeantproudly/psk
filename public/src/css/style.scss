@@ -6808,3 +6808,269 @@ section,
         }
     }
 }
+
+#layout {
+    &.contact-data {
+        &:after {
+            display: none;
+        }
+
+        header {
+            height: 100px;
+
+            @media (max-width: $adaptive-width-tablet) {
+                height: 60px;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                #logo {
+                    display: none;
+                }
+            }
+        }
+
+        #personal-data {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            width: 390px;
+            margin: -137px auto 100px;
+
+            @media (max-width: $adaptive-width-tablet) {
+                margin-top: -70px;
+            }
+
+            @media (max-width: $adaptive-width-mobile) {
+                width: auto;
+                margin-bottom: 70px;
+            }
+
+            .photo {
+                font-size: 0;
+                background-color: #fff;
+                width: 145px;
+                height: 145px;
+                padding: 20px;
+                @include radius(145px);
+                box-shadow: 0 4px 6px 0 #CDD1E0;
+                margin: 0 auto 30px;
+
+                @media (max-width: $adaptive-width-tablet) {
+                    width: 120px;
+                    height: 120px;
+                    padding: 15px;
+                    margin-bottom: 24px;
+                }
+
+                img {
+                    width: 105px;
+                    height: 105px;
+                    @include radius(105px);
+
+                    @media (max-width: $adaptive-width-tablet) {
+                        width: 90px;
+                        height: 90px;
+                    }
+                }
+            }
+
+            h1,
+            .h1 {
+                font-size: 27px;
+                font-weight: 600;
+                margin-bottom: 8px;
+
+                @media (max-width: $adaptive-width-tablet) {
+                    font-size: 24px;
+                }
+
+                @media (max-width: $adaptive-width-mobile) {
+                    font-size: 21px;
+                }
+            }
+
+            .post {
+                font-size: 18px;
+                color: #777;
+                margin-bottom: 40px;
+
+                @media (max-width: $adaptive-width-tablet) {
+                    font-size: 16px; 
+                }
+
+                @media (max-width: $adaptive-width-mobile) {
+                    font-size: 14px;
+                }
+            }
+
+            .connection {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+
+                a {
+                    display: inline-block;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    margin-left: 20px;
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    span {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $color-text-black;
+                        padding: 10px;
+                        width: 50px;
+                        height: 50px;
+                        @include radius(5px);
+                        margin: 0 auto 5px;
+                    }
+                }
+            }
+
+            .info {
+                background-color: #fff;
+                border: 1px solid #E5E7EF;
+                box-shadow: 0 4px 6px 0 #CDD1E0;
+                @include radius(10px);
+                width: 100%;
+                margin-bottom: 40px;
+
+                ul {
+                    display: block;
+
+                    & > li {
+                        display: block;
+                        position: relative;
+                        text-align: left;
+                        font-size: 14px;
+                        color: #8B8CA5;
+                        padding: 20px 30px 20px 100px;
+                        border-top: 1px solid #E5E7EF;
+
+                        @media (max-width: $adaptive-width-mobile) {
+                            padding: 16px 20px 16px 80px;
+                        }
+
+                        &:first-child {
+                            border-top: 0;
+                        }
+
+                        &:before {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            top: 20px;
+                            left: 30px;
+                            width: 45px;
+                            height: 45px;
+                            background-color: #E5E7EF;
+                            @include radius(5px);
+
+                            @media (max-width: $adaptive-width-mobile) {
+                                left: 20px;
+                            }
+                        }
+
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            top: 20px;
+                            left: 30px;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+
+                            @media (max-width: $adaptive-width-mobile) {
+                                left: 20px;
+                            }
+                        }
+
+                        a {
+                            display: block;
+                            color: $color-text-black;
+                            text-decoration: none;
+                            margin-bottom: 3px;
+                        }
+
+                        span {
+                            display: block;
+                            color: $color-text-black;
+                            margin-bottom: 3px;
+                        }
+
+                        &.tel {
+                            &:after {
+                                transform: translate(11px, 11px);
+                                background-image: url('../images/ico_tel3.svg');
+                                width: 22px;
+                                height: 22px;
+                            }
+                        }
+
+                        &.email {
+                            &:after {
+                                transform: translate(11px, 14px);
+                                background-image: url('../images/ico_email2.svg');
+                                width: 23px;
+                                height: 19px;
+                            }
+                        }
+
+                        &.website {
+                            &:after {
+                                transform: translate(12px, 13px);
+                                background-image: url('../images/ico_website.svg');
+                                width: 21px;
+                                height: 21px;
+                            }
+                        }
+
+                        &.company {
+                            &:after {
+                                transform: translate(12px, 13px);
+                                background-image: url('../images/ico_briefcase.svg');
+                                width: 21px;
+                                height: 21px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btn {
+                background-color: $color-text-black;
+                text-decoration: none;
+                font-size: 16px;
+
+                @media (max-width: $adaptive-width-mobile) {
+                    font-size: 14px;
+                }
+
+                span {
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 22px;
+                        height: 22px;
+                        margin: -2px 10px 0 0;
+                        background: url('../images/ico_account.svg') no-repeat;
+                        background-size: contain;
+
+                        @media (max-width: $adaptive-width-mobile) {
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

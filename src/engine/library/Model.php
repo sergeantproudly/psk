@@ -75,7 +75,9 @@ abstract class Model {
     'review' => 'data_reviews',
     'project-equipment' => '`data_project-equipment`',
     'images' => 'data_images',
-    'category' => 'data_category'
+    'category' => 'data_category',
+
+    'personal' => 'personal_data',
   ];
 
   function __construct(SafeMySQL $db = null) {

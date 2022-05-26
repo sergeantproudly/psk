@@ -1,11 +1,19 @@
 <?php
 
 define('COMPANY_PAGE_ID', 3);
+define('PERSONAL_LINK_PATH', '/personal/');
+define('PERSONAL_LINK_EN_PATH', '/personal/en/');
 
 class actions extends krn_abstract{
+
+	private $protocol;
+	private $domain;
 	
 	function __construct(){
 		parent::__construct();
+
+		$this->protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,strpos( $_SERVER["SERVER_PROTOCOL"],'/'))).'://';
+		$this->domain = $_SERVER['SERVER_NAME'];
 	}
 	
 	function GetResult(){
@@ -101,6 +109,73 @@ class actions extends krn_abstract{
 			$textCode = 'Page' . ucfirst($oldRecord['Code']) . 'Text';
 			dbDoQuery('DELETE FROM `data_content` WHERE `Field` = "'.$textLabel.'" AND `Value` = "'.$textValue.'" AND `Code` ="'.$textCode.'" AND PageId = ' . COMPANY_PAGE_ID, __FILE__, __LINE__);
 		}
+	}
+
+	/** Personal data */
+	function OnAddPersonalData($newRecord){
+		if ($newRecord['Name']) {
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Name']));
+			$code=strtr($code,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+
+			$link = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $code;
+
+			krnLoadLib('vcf');
+			$filepath = '/public/uploads/personal/' . $code . '.vcf';
+			vcfCreateFile(ROOT_DIR . $filepath, $newRecord);
+
+			dbDoQuery('UPDATE `personal_data` SET `Code` = "' . $code . '", `FileVcf` = "'.$filepath.'", `Link` = "' . $link . '" WHERE Id=' . $newRecord['Id'], __FILE__, __LINE__);
+		}
+		if ($newRecord['NameEn']) {
+			krnLoadLib('chars');
+			$codeEn=mb_strtolower(chrTranslit($newRecord['NameEn']));
+			$codeEn=strtr($codeEn,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+
+			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $codeEn;
+
+			krnLoadLib('vcf');
+			$filepathEn = '/public/uploads/personal/' . $code . '_en.vcf';
+			vcfCreateFileEn(ROOT_DIR . $filepathEn, $newRecord);
+
+			dbDoQuery('UPDATE `personal_data` SET `CodeEn` = "' . $codeEn . '", `FileVcfEn` = "' . $filepathEn . '", `LinkEn` = "' . $linkEn . '" WHERE Id=' . $newRecord['Id'], __FILE__, __LINE__);
+		}
+	}
+	
+	function OnEditPersonalData($newRecord, $oldRecord){
+		flDeleteFile($oldRecord['FileVcf']);
+		flDeleteFile($oldRecord['FileVcfEn']);
+
+		if ($newRecord['Name']) {
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Name']));
+			$code=strtr($code,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+
+			$link = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $code;
+
+			krnLoadLib('vcf');
+			$filepath = '/public/uploads/personal/' . $code . '.vcf';
+			vcfCreateFile(ROOT_DIR . $filepath, $newRecord);
+
+			dbDoQuery('UPDATE `personal_data` SET `Code` = "' . $code . '", `FileVcf` = "'.$filepath.'", `Link` = "' . $link . '" WHERE Id=' . $newRecord['Id'], __FILE__, __LINE__);
+		}
+		if ($newRecord['NameEn']) {
+			krnLoadLib('chars');
+			$codeEn=mb_strtolower(chrTranslit($newRecord['NameEn']));
+			$codeEn=strtr($codeEn,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+
+			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $codeEn;
+
+			krnLoadLib('vcf');
+			$filepathEn = '/public/uploads/personal/' . $code . '_en.vcf';
+			vcfCreateFileEn(ROOT_DIR . $filepathEn, $newRecord);
+
+			dbDoQuery('UPDATE `personal_data` SET `CodeEn` = "' . $codeEn . '", `FileVcfEn` = "' . $filepathEn . '", `LinkEn` = "' . $linkEn . '" WHERE Id=' . $newRecord['Id'], __FILE__, __LINE__);
+		}
+	}
+
+	function OnDeletePersonalData($oldRecord){
+		flDeleteFile($oldRecord['FileVcf']);
+		flDeleteFile($oldRecord['FileVcfEn']);
 	}
 }
 
