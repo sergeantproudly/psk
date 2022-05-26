@@ -131,7 +131,7 @@ class actions extends krn_abstract{
 			$codeEn=mb_strtolower(chrTranslit($newRecord['NameEn']));
 			$codeEn=strtr($codeEn,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
 
-			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $codeEn;
+			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_EN_PATH . $codeEn;
 
 			krnLoadLib('vcf');
 			$filepathEn = '/public/uploads/personal/' . $code . '_en.vcf';
@@ -163,7 +163,7 @@ class actions extends krn_abstract{
 			$codeEn=mb_strtolower(chrTranslit($newRecord['NameEn']));
 			$codeEn=strtr($codeEn,array(','=>'',' '=>'-','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
 
-			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_PATH . $codeEn;
+			$linkEn = $this->protocol . $this->domain . PERSONAL_LINK_EN_PATH . $codeEn;
 
 			krnLoadLib('vcf');
 			$filepathEn = '/public/uploads/personal/' . $code . '_en.vcf';
