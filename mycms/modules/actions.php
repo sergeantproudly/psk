@@ -12,7 +12,7 @@ class actions extends krn_abstract{
 	function __construct(){
 		parent::__construct();
 
-		$this->protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,strpos( $_SERVER["SERVER_PROTOCOL"],'/'))).'://';
+		$this->protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 		$this->domain = $_SERVER['SERVER_NAME'];
 	}
 	
