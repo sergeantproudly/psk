@@ -82,9 +82,7 @@ function copy() {
 
 function watch() {
 	browserSync.init({
-        server: {
-            baseDir: "./"
-        }
+        proxy: "psk.local"
     });
 
 	gulp.watch('./src/css/**/*.scss', styles);

@@ -777,4 +777,16 @@ $(document).ready(function(){
 		}
 		/** MODES 14.11.2021 */
 
+		/** MODES 19.09.2022 */
+		if ($('#goody').length) {
+			$('#goody .description table').each(function(index, table) {
+				if ($(table).find('th').length) {
+					$(table).find('td').each(function(i, td) {
+						$(td).attr('aria-label', $(table).find('th').eq($(td).index()).text());
+					});
+				}
+			});
+		}
+		/** MODES 19.09.2022 */
+
 });

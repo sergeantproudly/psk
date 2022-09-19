@@ -177,6 +177,42 @@ class actions extends krn_abstract{
 		flDeleteFile($oldRecord['FileVcf']);
 		flDeleteFile($oldRecord['FileVcfEn']);
 	}
+
+	function OnAddProductSubcategory($newRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_subcategory SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}		
+	}
+	
+	function OnEditProductSubcategory($newRecord,$oldRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_subcategory SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}	
+	}
+
+	function OnAddProductSubcategoryGoody($newRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_goody SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}		
+	}
+	
+	function OnEditProductSubcategoryGoody($newRecord,$oldRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_goody SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}	
+	}
 }
 
 ?>

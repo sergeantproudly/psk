@@ -29,10 +29,17 @@
 	public static function setLinks($array, $page, $action = '', $field = 'Code') {
 		foreach ($array as $key => &$item) {
 	    	$item['Link'] = "/{$page}";
-	    if ($action)
-	        $item['Link'] .= "/{$action}/{$item[$field]}/";
-	    else
-	        $item['Link'] .= "/{$item[$field]}/";
+		    if ($action)
+		        $item['Link'] .= "/{$action}/{$item[$field]}/";
+		    else
+		        $item['Link'] .= "/{$item[$field]}/";
+		}
+		return $array;
+	}
+
+	public static function setNl2Br($array, $keylabel) {
+		foreach ($array as $key => &$item) {
+	    	$item[$keylabel] = nl2br($item[$keylabel]);
 		}
 		return $array;
 	}

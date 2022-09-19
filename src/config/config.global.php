@@ -2,12 +2,12 @@
 
 $Config = [];
 
-$Config['Site']['Title']		= 'Смарт Энерго';
-$Config['Site']['Email']		= 'info@smartenergo.ru';
+$Config['Site']['Title']		= 'ПСК СтройИнвест';
+$Config['Site']['Email']		= 'info@psk-si.ru';
 $Config['Site']['Flush'] 		= 0;
 $Config['Site']['Keywords']		= '';
 $Config['Site']['Description']	= '';
-$Config['Site']['Url']			= 'http://smartenergo.ru';
+$Config['Site']['Url']			= 'https://psk-si.ru';
 
 $Config['Smtp']['Server']	= '';
 $Config['Smtp']['Port']		= '';

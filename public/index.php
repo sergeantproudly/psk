@@ -23,6 +23,8 @@
 
   $Router->add('GET', '/production/', 'ProductionPage@index');
   $Router->add('GET', '/production/{product}', 'ProductionPage@detail');
+  $Router->add('GET', '/production/{product}/{subcategory}', 'ProductionPage@subcategory');
+  $Router->add('GET', '/production/{product}/{subcategory}/{goody}', 'ProductionPage@goody');
 
   $Router->add('GET', '/articles/', 'ArticlesPage@index');
   $Router->add('GET', '/articles/{article}', 'ArticlesPage@detail');

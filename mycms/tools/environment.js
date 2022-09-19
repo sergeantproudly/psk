@@ -757,8 +757,9 @@ function envInitWysiwyg(wysiwyg){
 		toolbar : [
 					['Source', '-', 'Bold', 'Italic', 'Underline'],
 					['Link', 'Unlink','-', 'Image','-','NumberedList','BulletedList','Table'],
-					['Font','FontSize','TextColor','RemoveFormat'],
-					['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock']
+					['Format','TextColor','RemoveFormat'],
+					['JustifyLeft','JustifyCenter','JustifyRight'],
+					['Maximize', 'ShowBlocks']
 				  ],
 		filebrowserBrowseUrl : 'ckeditor/images',
 	    filebrowserUploadUrl : 'ckeditor/images',
