@@ -4135,7 +4135,11 @@ section,
         }
 
         img {
-            max-width: 100%;
+            max-width: 650px;
+
+            @media (max-width: $adaptive-width-mobile) {
+                max-width: 100%;
+            }
         }
     }
 
@@ -4190,6 +4194,10 @@ section,
                     padding: 10px 15px;
                     border: 0;
                 }
+
+                p:last-child {
+                    margin-bottom: 0;
+                }
             }
 
             td {
@@ -4220,6 +4228,10 @@ section,
 
                 &:first-child {
                     color: #676767;                    
+                }
+
+                p:last-child {
+                    margin-bottom: 0;
                 }
             }
 

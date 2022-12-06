@@ -12,8 +12,9 @@ class ProductionModel extends Model {
     return $this->table('products')->getOneWhere('Id = ?', $id);
   }
 
-  function getProducts($count = 0, $offset = 0) {
-    $products = $this->table('products')->getAllSorted(false, false, $count, $offset);
+  function getProducts() {
+    //$products = $this->table('products')->getAllSorted(false, false, $count, $offset);
+    $products = $this->table('products')->getAllWhereSorted('Id <> ?i', 9);
 
     return $products;
   }
@@ -37,7 +38,7 @@ class ProductionModel extends Model {
   }
 
   function getSubCategoryGoods($subcategoryId) {
-    return $this->table('goods')->getAllWhere('SubcategoryId = ?i', $subcategoryId);
+    return $this->table('goods')->getAllWhereSorted('SubcategoryId = ?i', $subcategoryId);
   }
 
   function getGoodyByCode($code) {
@@ -45,7 +46,7 @@ class ProductionModel extends Model {
   }
 
   function getGoodyChars($goodyId) {
-    return $this->table('goods_chars')->getAllWhere('GoodyId = ?i', $goodyId);
+    return $this->table('goods_chars')->getAllWhereSorted('GoodyId = ?i', $goodyId);
   }
 
 }

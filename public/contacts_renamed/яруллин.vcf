@@ -1,0 +1,18 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Ленар Раисович Яруллин
+N:Яруллин;Ленар;Раисович;;
+item1.EMAIL;TYPE=INTERNET:yarullin@psk-si.ru
+item1.X-ABLabel:
+item2.TEL:+79172621640
+item2.X-ABLabel:Мобильные устройства
+item3.ORG:ООО \"ПСК СтройИнвест\"
+item3.X-ABLabel:
+item4.TITLE:Директор
+item4.X-ABLabel:
+item5.URL:www.psk-si.ru
+item5.X-ABLabel:
+PHOTO:https://lh3.googleusercontent.com/contacts/AKUYANT9nwwV2wZc6ILwz8joci
+ w4jGCibKcJSsiRchC7Tp2zFZL9UChB
+CATEGORIES:myContacts
+END:VCARD

@@ -3,6 +3,7 @@ var $cartPopup = $('#layout-cart');
 var $catalog = $('#catalogue');
 var $cartTable = $cartPopup.find('.js-cart-table');
 var hidingDelay = 4000;
+var __animationSpeed = 300;
 
 if ($cart.length) {
   // console.log($cart);

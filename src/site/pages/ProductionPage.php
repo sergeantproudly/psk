@@ -56,7 +56,7 @@ class ProductionPage extends Page {
     $content = $this->model->getContent($this->code());
     $contacts = $this->model->getContent('contacts');
 
-    $products = $this->model->getProducts($articlesPerPage, $offset);
+    $products = $this->model->getProducts();
     $products = Common::setLinks($products, 'production');
 
     $this->getPage('index')->addInclude($this->partial('list'));
