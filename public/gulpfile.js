@@ -9,9 +9,12 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps'); 
-const babel = require('gulp-babel');  
-const uglify = require('gulp-uglify');
+//const babel = require('gulp-babel');  
+//const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
+const clone = require('gulp-clone');
+const webp =  require('gulp-webp');
+
 
 const jsFiles = [
 	'./src/js/jquery-3.1.1.min.js',
@@ -95,10 +98,23 @@ function clean() {
 	return del(['assets/*']);
 }
 
+function uploadedImagesToWebp() {
+	var sink = clone.sink();
+
+	return gulp.src('./uploads/**/*')
+        .pipe(imagemin())
+        .pipe(sink)
+        .pipe(webp())
+        .pipe(sink.tap({quality: 80}))
+        .pipe(gulp.dest('./uploads'));
+}
+
+
 //gulp.task('styles', styles);
 //gulp.task('scripts', scripts);
 gulp.task('images', images);
 gulp.task('watch', watch);
+gulp.task('uploaded_images2webp', uploadedImagesToWebp);
 
 gulp.task('build', gulp.series(clean,
 						gulp.parallel(styles, scripts, images, fonts)
