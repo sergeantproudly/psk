@@ -60,6 +60,7 @@ class ArticlesPage extends Page {
     $articles = Common::setLinks($articles, 'articles');
 
     $firstArticle = array_shift($articles);
+    $firstArticle['TitleClass'] = mb_strlen($firstArticle['Title']) <= 70 ? 'title-lg' : 'title-md';
     $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
 
     foreach ($articles as &$article) {
@@ -87,6 +88,7 @@ class ArticlesPage extends Page {
       'FirstCard' => $firstArticleTemplate->parse($firstArticle),
       'list' => $articles,
       'Pagination' => [
+        'Class' => 'news__pagination',
         'Previous' => [
           'Status' => $prevPage ? '' : 'disabled',
           'Link' => $prevPage['link'] ?: '#'

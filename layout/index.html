@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221208231134">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221208231134">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221208231134">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221209234202">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221209234202">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221209234202">
 
 
 </head>
@@ -105,7 +105,7 @@
 				</div>
 				<canvas id="gradient-canvas" data-transition-in></canvas>
 			</section>
-			<div class="anim-content" id="anim-content">
+			<div class="anim-content" id="anim-content" >
 				<div class="page__products products">
 					<div class="products__container">
 						<div class="products__items">
@@ -200,7 +200,7 @@
 									Посмотрите, как устроены наши логистические комплексы и&nbsp;производства
 								</div>
 							</div>
-							<a href="" class="video__link icon-play">
+							<a href="#modal" data-modal data-video-code-rus="C0E1oD1BhTY" data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
 								<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="video image"></picture>
 							</a>
 						</div>
@@ -209,7 +209,7 @@
 			</div>
 			<section class="page__projects projects">
 				<div class="projects__container">
-					<div class="projects__header">
+					<div class="projects__header" data-animation>
 						<h2 class="projects__title title-xxl">
 							Наши проекты
 						</h2>
@@ -218,7 +218,7 @@
 							<button type="button" class="projects__controls-next swiper-button-next"></button>
 						</div>
 					</div>
-					<div class="projects__slider swiper-container projects-slider">
+					<div class="projects__slider swiper-container projects-slider" data-animation>
 
 						<div class="swiper-wrapper projects-slider__wrapper">
 
@@ -278,7 +278,7 @@
 			</section>
 			<section class="page__news news">
 				<div class="news__container">
-					<div class="news__header">
+					<div class="news__header" data-animation>
 						<h2 class="news__title title-xxl">
 							Новости
 						</h2>
@@ -287,7 +287,7 @@
 						</a>
 					</div>
 					<div class="news__items">
-						<div class="news__item">
+						<div class="news__item" data-animation>
 							<div class="news__item-body">
 								<h3 class="news__item-title title-md">
 									<a href="/article.html" class="news__item-link">
@@ -310,7 +310,7 @@
 								<picture><source srcset="img/news/01.webp"type="image/webp"><img src="img/news/01.jpg" class="cover-image" alt="news picture"></picture>
 							</a>
 						</div>
-						<div class="news__item">
+						<div class="news__item" data-animation>
 							<div class="news__item-body">
 								<h3 class="news__item-title title-md">
 									<a href="/article.html" class="news__item-link">
@@ -332,7 +332,7 @@
 								<picture><source srcset="img/news/02.webp"type="image/webp"><img src="img/news/02.jpg" class="cover-image" alt="news picture"></picture>
 							</a>
 						</div>
-						<div class="news__item">
+						<div class="news__item" data-animation>
 							<div class="news__item-body">
 								<h3 class="news__item-title title-md">
 									<a href="/article.html" class="news__item-link">
@@ -365,7 +365,7 @@
 			</section>
 			<section class="page__team team">
 				<div class="team__container">
-					<div class="team__header">
+					<div class="team__header" data-animation>
 						<h2 class="team__title title-xxl">
 							Главные лица
 						</h2>
@@ -373,7 +373,7 @@
 							Смотреть все
 						</a>
 					</div>
-					<div class="team__body">
+					<div class="team__body" data-animation>
 						<div class="team__item">
 							<div class="team__item-image">
 								<picture><source srcset="img/team/01.webp"type="image/webp"><img src="img/team/01.png" alt="team image"></picture>
@@ -432,7 +432,7 @@
 					</div>
 				</div>
 			</section>
-			<div class="page__companies companies">
+			<div class="page__companies companies" data-animation>
 				<div class="companies__container">
 					<div class="companies__columns">
 						<div class="companies__column companies-customers">
@@ -653,14 +653,35 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221208231134"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js?_v=20221208231134"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221208231134"></script>
+	<div id="modal" class="popup">
+    <div class="popup__content">
+        <div class="popup__body" id="player">
+            <button type="button" class="popup__close icon-close"></button>
+            <iframe id="js-youtube-video" frameborder="0" allowfullscreen="1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                title="YouTube video player" width="100%" height="100%"
+                src="https://www.youtube.com/embed/?enablejsapi=1&amp;origin=https%3A%2F%2Fpsk-si.ru&amp;widgetid=1"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+            <div id="video-lang-swticher">
+                <ul>
+                    <li><a href="C0E1oD1BhTY" data-lang="ru" class="curr">Ру</a></li>
+                    <li><a href="m_Dr1wyVwGI" data-lang="en">En</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221209234202"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221209234202"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221208231134"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221208231134"></script>
 
-<script src="js/app.min.js?_v=20221208231134"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js?_v=20221209234202"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221209234202"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221209234202"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221209234202"></script>
+<script src="https://www.youtube.com/iframe_api?_v=20221209234202"></script>
+
+<script src="js/app.min.js?_v=20221209234202"></script>
 
 </body>
 

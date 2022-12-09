@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221208231134">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221208231134">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221208231134">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221209234202">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221209234202">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221209234202">
 
 
 </head>
@@ -144,24 +144,22 @@
 							</div>
 						</div>
 					</div>
-					<div class="contacts__map">
-						<iframe
-							src="https://yandex.ru/map-widget/v1/?um=constructor%3A6fa55a0a7e236e7bda9d050524dc98cbc08a7ccdb15a6b6e47a9715c04dd7fac&amp;source=constructor&amp;scroll=false"></iframe>
-					</div>
+					<div class="contacts__map" id="map"></div>
 				</div>
 			</div>
 			<section class="page__feedback feedback">
 				<div class="feedback__container">
 					<div class="feedback__content">
-						<h2 class="feedback__title title-xl">
-							Написать нам
-						</h2>
+						
 						<form action="#" class="feedback__form form">
+							<h2 class="feedback__title title-xl">
+								Написать нам
+							</h2>
 							<div class="form__rows">
 								<div class="form__row">
-									<input type="text" name="name" class="form__input" placeholder="Имя">
-									<input type="tel" name="phone" class="form__input" placeholder="Телефон">
-									<input type="email" name="email" class="form__input" placeholder="Email">
+									<input type="text" name="name" data-required class="form__input" placeholder="Имя">
+									<input type="tel" name="phone" data-required class="form__input" placeholder="Телефон">
+									<input type="email" name="email" data-required class="form__input" placeholder="Email">
 								</div>
 								<div class="form__row">
 									<textarea name="message" class="form__textarea" placeholder="Сообщение"></textarea>
@@ -352,14 +350,17 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221208231134"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js?_v=20221208231134"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221208231134"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221209234202"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221209234202"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221208231134"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221208231134"></script>
 
-<script src="js/app.min.js?_v=20221208231134"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js?_v=20221209234202"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221209234202"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221209234202"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221209234202"></script>
+<script src="https://www.youtube.com/iframe_api?_v=20221209234202"></script>
+
+<script src="js/app.min.js?_v=20221209234202"></script>
 
 </body>
 

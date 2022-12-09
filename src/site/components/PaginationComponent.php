@@ -32,7 +32,7 @@ class PaginationComponent extends Component {
   function pages($entriesPerPage, $entriesCount, $parentCode,
                  $current = 1, $addPageCode = true) {
     $pages = [];
-    $viewableRange = 6;
+    $viewableRange = 5;
     $halfRange = $viewableRange / 2;
 
     $pagesCount = ceil($entriesCount / $entriesPerPage);
@@ -49,7 +49,7 @@ class PaginationComponent extends Component {
       $link .= "/{$counter}/";
       $pages[$i] = [
         'class' => '',
-        'number' => $counter,
+        'number' => $counter < 10 ? '0' . $counter : $counter,
         'link' => $link,
       ];
       if ($current == $counter) {
@@ -74,17 +74,20 @@ class PaginationComponent extends Component {
 
       if ($leftLimit > 0)
         array_unshift($viewablePages, $pages[0]);
+      if ($rightLimit < $pagesCount - 1) {
+        array_push($viewablePages, ['number' => '...']);
+      }
       if ($rightLimit < $pagesCount)
         array_push($viewablePages, $pages[$pagesCount - 1]);
 
 
       if ($leftLimit > 1) {
-        $viewablePages[1]['class'] = 'dotts';
+        //$viewablePages[1]['class'] = 'dotts';
       }
 
 
       if ($rightLimit < $pagesCount - 1) {
-        $viewablePages[count($viewablePages) - 1]['class']  = 'dotts';
+        //$viewablePages[count($viewablePages) - 1]['class']  = 'dotts';
       }
     }
 

@@ -1,18 +1,18 @@
 <section class="page__feedback feedback">
                 <div class="feedback__container">
                     <div class="feedback__content">
-                        <h2 class="feedback__title title-xl">
-                            {{TITLE}}
-                        </h2>
                         <form action="/form/add-question/" class="feedback__form form" method="post">
+                            <h2 class="feedback__title title-xl">
+                                {{TITLE}}
+                            </h2>
                             <div class="form__rows">
                                 <div class="form__row">
-                                    <input type="text" name="name" class="form__input" placeholder="Имя">
-                                    <input type="tel" name="phone" class="form__input" placeholder="Телефон">
-                                    <input type="email" name="email" class="form__input" placeholder="Email">
+                                    <input type="text" name="name" data-required class="form__input" placeholder="Имя">
+                                    <input type="tel" name="phone" data-required class="form__input" placeholder="Телефон">
+                                    <input type="email" name="email" data-required class="form__input" placeholder="Email">
                                 </div>
                                 <div class="form__row">
-                                    <textarea name="message" class="form__textarea" placeholder="Сообщение"></textarea>
+                                    <textarea name="message" class="form__textarea" data-required placeholder="Сообщение"></textarea>
                                 </div>
                             </div>
                             <div class="form__footer">
