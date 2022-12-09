@@ -1,60 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
+
 <head>
-	<meta charset="utf-8"/>
+	<title>{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="{{SETTINGS:SEO_KEYWORDS}}">
 	<meta name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
+
+	<!-- favicon -->
+	<link rel="icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff0000">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<!-- favicon -->
+
+	<!-- Open Graph  -->
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="{{SETTINGS:SITE_TITLE}}">
 	<meta property="og:title" content="{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}">
 	<meta property="og:description" name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
-	{{SETTINGS:SITE_META_VIEWPORT}}
-	<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png?v2">
-	<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png?v2">
-	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png?v2">
-	<link rel="manifest" href="/assets/images/site.webmanifest?v2">
-	<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg?v2" color="#5bbad5">
-	<link rel="shortcut icon" href="/favicon.ico?v2">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="/assets/images/browserconfig.xml?v2">
-	<meta name="theme-color" content="#ffffff">
-	<title>{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}</title>
-	<link rel="stylesheet" href="/assets/css/style.css{{VERSION}}"/>
+	<meta property="og:url" content="{{SETTINGS:SITE_URL}}">
+	<meta property="og:image" content="/img/OG.jpg">
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="627" />
+	<meta property="og:locale" content="ru_RU">
+	<!-- Open Graph  -->
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:site" content="{{SETTINGS:SITE_TITLE}}">
+	<meta name="twitter:description" content="{{SETTINGS:SEO_DESCRIPTION}}"/>
+	<meta property="twitter:creator" content="Proudly">
+	<meta property="twitter:image:src" content="/img/OG.jpg">
+	<meta name="twitter:domain" content="{{SETTINGS:SITE_URL}}"/>
+	<!-- Twitter -->
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css{{VERSION}}">
+	<link rel="stylesheet" href="/css/reset.min.css{{VERSION}}">
+	<link rel="stylesheet" href="/css/style.min.css{{VERSION}}">
+
+
 </head>
 
 <body>
+
 	{{SETTINGS:YANDEX_METRIKA}}
-	
-	<div id="layout">
+
+	<div class="wrapper">
 		{{INCLUDE:HEADER}}
+		
+		<main class="page">
+			{{CONTENT}}
+		</main>
 
-		{{CONTENT}}
-
-		{{CONTACTS}}
-
-        {{LINKS}}
+		{{INCLUDE:FOOTER}}
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js{{VERSION}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js{{VERSION}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js{{VERSION}}"></script>
 
-	{{INCLUDE:FOOTER}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js{{VERSION}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js{{VERSION}}"></script>
 
-	<div class="modal-fadeout"></div>
+	<script src="/js/app.min.js{{VERSION}}"></script>
 
-	{{MODALS}}
-
-    <script src="/assets/js/scripts.js{{VERSION}}"></script>
-  	<script src="/engine/js/cart.actions.js?v3"></script>
-  	<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  	<script type="text/javascript">
-  		if (document.getElementById('js-youtube-video')) {
-  			function onYouTubeIframeAPIReady() {
-				var player = new YT.Player('js-youtube-video', {
-				    height: '100%',
-				    width: '100%'
-				});
-				$('#js-youtube-video').data('player', player);
-			}
-  		}
-  	</script>
-  	<script src="//www.youtube.com/iframe_api"></script>
 </body>
+
 </html>

@@ -107,20 +107,20 @@ class Site {
 		$userSession = new UserSession();
 //		$user = [];
 
-	    $authPageList = $pageModel->getAuthPageList();
+	    // $authPageList = $pageModel->getAuthPageList();
 
-	    if ($userSession->isLoggedIn()) {
-	      $clientNavTemplate   = new Template('client-navigation', 'components/client-navigation');
-	      $clientItemTemplate  = new ListTemplate('_item.htm', 'components/client-navigation');
-	      $clientItemTemplate  = $clientItemTemplate->parse($pageModel->getAuthNavigationList());
-	      $clientNavTemplate   = $clientNavTemplate->parse([
-	        'List' => $clientItemTemplate
-	      ]);
-	      $login = $clientNavTemplate;
-	    } else {
-	      $authTemplate = new Template('login', 'layout');
-	      $login = $authTemplate->parse();
-	    }
+	    // if ($userSession->isLoggedIn()) {
+	    //   $clientNavTemplate   = new Template('client-navigation', 'components/client-navigation');
+	    //   $clientItemTemplate  = new ListTemplate('_item.htm', 'components/client-navigation');
+	    //   $clientItemTemplate  = $clientItemTemplate->parse($pageModel->getAuthNavigationList());
+	    //   $clientNavTemplate   = $clientNavTemplate->parse([
+	    //     'List' => $clientItemTemplate
+	    //   ]);
+	    //   $login = $clientNavTemplate;
+	    // } else {
+	    //   $authTemplate = new Template('login', 'layout');
+	    //   $login = $authTemplate->parse();
+	    // }
 
 	    // contacts block
 	    $templateContacts = new Template('bl-contacts', 'components/contacts');
@@ -166,7 +166,8 @@ class Site {
 				'seo_description' => $settings->get('SeoDescription'),
 				'site_protocol' => $settings->get('SiteProtocol'),
 				'site_domain' => $settings->get('SiteDomain'),
-				'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
+				'site_url' => $settings->get('SiteUrl'),
+				//'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
 				'yandex_metrika' => $settings->get('YandexMetrika'),
 			],
 			'Page' => [
@@ -175,8 +176,8 @@ class Site {
 			],
 			'Header' => $contacts + [
 				'Navigation' => Components::getNavigation($this->db, $code, $params['code']),
-				'Login' => $login,
-				'Logo' => '/assets/images/logo.svg',
+				//'Login' => $login,
+				'Logo' => '/img/logo-white.svg',
 				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
 			],
 			'Content' => $page->{$action}($params),
