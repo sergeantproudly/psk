@@ -1,5 +1,21 @@
-<li>
-                        <a href="{{LINK}}" class="photo"><img src="{{PREVIEW}}" alt="{{ALT}}" title="{{ALT}}"></a>
-                        <div class="date">{{DATE}}</div>
-                        <a href="{{LINK}}" class="title">{{TITLE}}</a>
-                    </li>
+<div class="news__item">
+                            <div class="news__item-body">
+                                <h3 class="news__item-title title-md">
+                                    <a href="{{LINK}}" class="news__item-link">
+                                        {{TITLE}}
+                                    </a>
+                                </h3>
+                                <time datetime="{{DATETIME}}" class="news__item-time">
+                                    {{DATE}}
+                                </time>
+                                <p class="news__item-text">
+                                    {{SHORTDESCRIPTION}}
+                                </p>
+                                <a href="{{LINK}}" class="news__item-link more-link">
+                                    Подробнее
+                                </a>
+                            </div>
+                            <a href="{{LINK}}" class="news__item-image">
+                                <picture><source srcset="{{PREVIEWWEBP}}" type="image/webp"><img src="{{PREVIEW}}" class="cover-image" alt="{{ALT}}" title="{{ALT}}"></picture>
+                            </a>
+                        </div>

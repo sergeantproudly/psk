@@ -1,18 +1,42 @@
-{{BREADCRUMBS}}
-
-<div class="holder">
-            <div id="new">
-                <img src="{{IMAGE}}" alt="{{ALT}}" title="{{ALT}}" class="photo">
-
-                <div class="date">{{DATE}}</div>
-                <h1>{{TITLE}}</h1>
-
-                <p class="anno">{{SHORTDESCRIPTION}}</p>
-
-                <div class="text">
-                    {{DESCRIPTION}}
+<div id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                    </div>
+                </div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
+            </div>
+            <div class="page__article article">
+                <div class="article__container">
+                    <div class="article__body">
+                        <figure class="article__image">
+                            <div class="article__image-wrapper">
+                                <picture><source srcset="{{IMAGEWEBP}}" type="image/webp"><img src="{{IMAGE}}" class="cover-image" alt="{{ALT}}"></picture>
+                            </div>
+                            <!-- <figcaption class="article__imaged-desc">
+                                {{FIGCAPTION}}
+                            </figcaption> -->
+                        </figure>
+                        <article class="article__content">
+                            <time datetime="{{DATETIME}}">{{DATE}}</time>
+                            <div>
+                                <h1>
+                                    {{TITLE}}
+                                </h1>
+                                <strong>
+                                    {{SHORTDESCRIPTION}}
+                                </strong>
+                                {{DESCRIPTION}}
+                            </div>
+                        </article>
+                        <div class="article__socials">
+                            <a href="https://t.me/share/url?url={{SHAREURL}}&text={{SHAREDESCRIPTION}}" target="_blank" class="article__social icon-telegram"></a>
+                            <a href="https://vk.com/share.php?url={{SHAREURL}}&title={{SHARETITLE}}&image={{SHAREIMAGE}}" target="_blank" class="article__social icon-vk"></a>
+                            <a href="https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl={{SHAREURL}}&st.comments={{SHAREDESCRIPTION}}" target="_blank" class="article__social icon-ok"></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {{SIMILAR}}
+            {{SIMILAR}}
+            

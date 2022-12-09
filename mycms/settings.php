@@ -29,7 +29,9 @@
 	define ('LIBRARY_DIR', 'library/');
 	define ('UPLOADS_DIR', 'uploads/');
 	define ('TEMP_DIR', 'uploads/temp/');
+	
 	define ('ABS_PATH', $_SERVER['DOCUMENT_ROOT'].'/mycms/');
-	define ('ROOT_DIR', $_SERVER['DOCUMENT_ROOT']);   	
+	define ('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
+	define ('ROOT_DIR', '../');  	
 
 ?>

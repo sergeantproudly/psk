@@ -183,7 +183,8 @@ class Site {
 			'Content' => $page->{$action}($params),
 			'Contacts' => !$this->isContacts($code) ? $contactsRendered : '',
 			'Links' => $linksRendered,
-			'Footer' => $contacts + [
+			'Footer' => [
+				'ContainerClass' => !$this->isHome($code) && !$this->isContacts($code) ? 'border-top' : '',
 				'Year'=> DateHelper::getCurrentYear(),
 				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
 			],

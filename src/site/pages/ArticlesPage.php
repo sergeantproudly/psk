@@ -61,11 +61,14 @@ class ArticlesPage extends Page {
 
     $firstArticle = array_shift($articles);
     $firstArticle['TitleClass'] = mb_strlen($firstArticle['Title']) <= 70 ? 'title-lg' : 'title-md';
+    $firstArticle['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['Preview']);
+    $firstArticle['Alt'] = htmlspecialchars($firstArticle['Title'], ENT_QUOTES);
     $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
 
     foreach ($articles as &$article) {
       $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
       $article['Date'] = Common::ModifiedDate($article['PublishDate']);
+      $article['PreviewWebp'] = Common::flGetWebpByImage($article['Preview']);
       $article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
     }
     
@@ -106,15 +109,22 @@ class ArticlesPage extends Page {
   }
 
   function detail($params = []) {
+    global $Settings;
 
     if (!isset($params['article']) || empty($params['article']))
       return $this->index();
 
     $code = $params['article'];
     $article = $this->model->getArticleByCode($code);
+    $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
     $article['Date'] = Common::ModifiedDate($article['PublishDate']);
+    $article['ImageWebp'] = Common::flGetWebpByImage($article['Image']);
     $article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
     $article['ShortDescription'] = nl2br($article['ShortDescription']);
+    $article['ShareUrl'] = urlencode($Settings->get('SiteUrl') . (substr($Settings->get('SiteUrl'), -1) != '' ? '/' : '') . self::CODE . '/' . $code . '/');
+    $article['ShareTitle'] = htmlspecialchars($article['Title'], ENT_QUOTES);
+    $article['ShareDescription'] = htmlspecialchars(strip_tags($article['ShortDescription']), ENT_QUOTES);
+    $article['ShareImage'] = urlencode($Settings->get('SiteUrl')) . htmlspecialchars($article['Image'], ENT_QUOTES);
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($code, [

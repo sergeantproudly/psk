@@ -402,6 +402,19 @@
 	public static function excess($string, $excess) {
 		return str_replace($excess, '', $string);
 	}
+
+	public static function flGetExtension($filepath) {
+	    return substr(strrchr($filepath,'.'),1);
+ 	}
+
+ 	public static function flSpace($filepath) {
+		return str_replace(' ', '%20', $filepath);
+	} 
+
+	public static function flGetWebpByImage($filepath) {
+		$extension = self::flGetExtension($filepath);
+		return preg_replace('/\.' . $extension .'$/', '.webp', self::flSpace($filepath));
+	}
 	
 	// четно - нечетно
 	function isEven($number){
