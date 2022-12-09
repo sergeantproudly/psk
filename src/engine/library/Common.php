@@ -398,6 +398,10 @@
 			$result=$regs[3].'-'.$regs[2].'-'.$regs[1];
 		return $result;
 	}
+
+	public static function excess($string, $excess) {
+		return str_replace($excess, '', $string);
+	}
 	
 	// четно - нечетно
 	function isEven($number){

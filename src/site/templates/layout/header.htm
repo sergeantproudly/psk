@@ -1,26 +1,31 @@
-<header>
-            <nav>
-                <div class="holder">
-                    {{NAVIGATION}}
-
-                    {{LOGIN}}
+<header class="header">
+    <div class="header__top header-top">
+        <div class="header-top__container">
+            <a href="/" class="header-top__logo">
+                <img src="{{LOGO}}" alt="{{ALT}}" title="{{ALT}}">
+            </a>
+            <div class="header-top__contacts" data-da=".menu__container, 767.98">
+                <div class="header-top__contact">
+                    <div class="header-top__contact-title">
+                        {{LABELCOMMON}}
+                    </div>
+                    <a href="tel:{{PHONECOMMON}}" class="header-top__contact-link">
+                        {{PHONECOMMON}}
+                    </a>
                 </div>
-            </nav>
-
-            <div class="holder">
-                <a href="/" id="logo"><img src="{{LOGO}}" alt="{{ALT}}" title="{{ALT}}"></a>
-
-                <ul class="contacts">
-                    <li>
-                        <span class="label">{{LABELCOMMON}}</span>
-                        <a href="tel:{{PHONECOMMON}}" class="phone">{{PHONECOMMON}}</a>
-                        <a href="mailto:{{EMAILCOMMON}}" class="email">{{EMAILCOMMON}}</a>
-                    </li>
-                    <li>
-                        <span class="label">{{LABEL}}</span>
-                        <a href="tel:{{PHONE}}" class="phone">{{PHONE}}</a>
-                        <a href="mailto:{{EMAIL}}" class="email">{{EMAIL}}</a>
-                    </li>                    
-                </ul>
+                <div class="header-top__contact">
+                    <div class="header-top__contact-title">
+                        {{LABEL}}
+                    </div>
+                    <a href="tel:{{PHONE}}" class="header-top__contact-link">
+                        {{PHONE}}
+                    </a>
+                </div>
             </div>
-        </header>
+            <button type="button" class="header-top__menu-btn icon-menu">
+                <span></span>
+            </button>
+        </div>
+    </div>
+    {{NAVIGATION}}
+</header>

@@ -1,24 +1,53 @@
-<div class="holder">
-            <div id="contacts-full">
-                <h1>{{TITLE}}</h1>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
 
-                <ul>
-                    <li class="address">
-                        <div class="label">Адрес:</div>
-                        <div class="value">{{LOCATION}}</div>
-                    </li>
-                    <li class="tel">
-                        <div class="label">Телефон:</div>
-                        <div class="value"><a href="tel:{{PHONE}}">{{PHONE}}</a><br><a href="tel:{{PHONECOMMON}}">{{PHONECOMMON}} ({{LABELCOMMON}})</a></div>
-                    </li>
-                    <li class="email">
-                        <div class="label">Почта:</div>
-                        <div class="value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a><br><a href="mailto:{{EMAILCOMMON}}">{{EMAILCOMMON}} ({{LABELCOMMON}})</a></div>
-                    </li>
-                </ul>
-
-                <div id="map"></div>
+                        <h1 class="main__title title-xl">
+                            {{TITLE}}
+                        </h1>
+                    </div>
+                    <canvas id="gradient-canvas" data-transition-in></canvas>
+                </div>
+            </section>
+            <div class="page__contacts contacts">
+                <div class="contacts__container">
+                    <div class="contacts__cards">
+                        <div class="contacts__card">
+                            <div class="contacts__card-caption">
+                                Телефон:
+                            </div>
+                            <div class="contacts__card-content">
+                                <a href="tel:{{PHONE}}" class="contacts__card-item">{{PHONE}}</a>
+                                <a href="tel:{{PHONECOMMON}}" class="contacts__card-item">{{PHONECOMMON}}</a>
+                            </div>
+                        </div>
+                        <div class="contacts__card">
+                            <div class="contacts__card-caption">
+                                Почта:
+                            </div>
+                            <div class="contacts__card-content">
+                                <a href="mailto:{{EMAIL}}" class="contacts__card-item">{{EMAIL}}</a>
+                                <a href="mailto:{{EMAILCOMMON}}" class="contacts__card-item">{{EMAILCOMMON}} <br>
+                                    ({{LABELCOMMON}})</a>
+                            </div>
+                        </div>
+                        <div class="contacts__card">
+                            <div class="contacts__card-caption">
+                                Адрес:
+                            </div>
+                            <div class="contacts__card-content">
+                                <p class="contacts__card-item">
+                                    {{LOCATION}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts__map">
+                        <iframe
+                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A6fa55a0a7e236e7bda9d050524dc98cbc08a7ccdb15a6b6e47a9715c04dd7fac&amp;source=constructor&amp;scroll=false"></iframe>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        {{FORM}}
+            {{FORM}}
+            

@@ -1,11 +1,22 @@
-<div class="holder">
-            <div id="news">
-                <h1>{{HEADING}}</h1>
-
-                <ul>
-                    {{INCLUDE:LIST}}
-                </ul>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                        <h1 class="main__title title-xl">
+                            {{HEADING}}
+                        </h1>
+                    </div>
+                    <canvas id="gradient-canvas" data-transition-in></canvas>
+                </div>
+            </section>
+            <div class="page__news news news-offset">
+                <div class="news__container">
+                    {{FIRSTCARD}}
+                    <div class="news__items">
+                        {{INCLUDE:LIST}}
+                    </div>
+                    <div class="news__more-btn">
+                        {{INCLUDE:PAGINATION}}
+                    </div>
+                </div>
             </div>
-
-			{{INCLUDE:PAGINATION}}
-        </div>

@@ -19,8 +19,7 @@ class BreadcrumbsComponent extends ImprovedComponent {
     }
 
     $this->setTemplates([
-      'default' => ['template' => 'breadcrumbs'],
-      'inversed' => ['template' => 'breadcrumbs--inversed']
+      'default' => ['template' => 'breadcrumbs']
     ]);
   }
 

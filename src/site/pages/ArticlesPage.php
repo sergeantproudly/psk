@@ -2,6 +2,7 @@
 namespace Site\Pages;
 use Engine\Library\Common;
 use Engine\Library\Page;
+use Engine\Library\Template;
 use Site\Components\PaginationComponent;
 use Site\Components\ArticlesComponent;
 use Site\Components\BreadcrumbsComponent;
@@ -57,7 +58,12 @@ class ArticlesPage extends Page {
 
     $articles = $this->model->getArticles($articlesPerPage, $offset);
     $articles = Common::setLinks($articles, 'articles');
+
+    $firstArticle = array_shift($articles);
+    $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
+
     foreach ($articles as &$article) {
+      $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
       $article['Date'] = Common::ModifiedDate($article['PublishDate']);
       $article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
     }
@@ -78,6 +84,7 @@ class ArticlesPage extends Page {
 
     return $this->getPage('index')->parse($this->page + [
       'Breadcrumbs' => $breadcrumbsRendered,
+      'FirstCard' => $firstArticleTemplate->parse($firstArticle),
       'list' => $articles,
       'Pagination' => [
         'Previous' => [

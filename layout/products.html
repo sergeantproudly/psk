@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 
 	<!-- favicon -->
-	<!-- <link rel="icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
+	<link rel="icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
 	<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -18,7 +18,7 @@
 	<link rel="manifest" href="/site.webmanifest">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff0000">
 	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="theme-color" content="#ffffff"> -->
+	<meta name="theme-color" content="#ffffff">
 	<!-- favicon -->
 
 	<!-- Open Graph  -->
@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221206230147">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221206230147">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221206230147">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221208231134">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221208231134">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221208231134">
 
 
 </head>
@@ -82,7 +82,7 @@
         <div class="menu__container">
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link ">ГЛАВНАЯ</a></li>
-                <li class="menu__item"><a href="" class="menu__link ">О КОМПАНИИ</a></li>
+                <li class="menu__item"><a href="/about.html" class="menu__link ">О КОМПАНИИ</a></li>
                 <li class="menu__item"><a href="/products.html" class="menu__link active">ПРОДУКЦИЯ И УСЛУГИ</a></li>
                 <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a></li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
@@ -108,8 +108,8 @@
 							Комплексные поставки гражданского строительства
 						</h1>
 					</div>
-					<canvas id="gradient-canvas" data-transition-in>
 				</div>
+				<canvas id="gradient-canvas" data-transition-in></canvas>
 			</section>
 			<div class="page__products products products-offset">
 				<div class="products__container">
@@ -184,7 +184,10 @@
 						</div>
 						<div class="products__body">
 							<form action="#" class="products__search search">
-								<input type="text" name="search" class="form__input" placeholder="Поиск">
+								<div class="form__wrapper">
+									<input type="text" name="search" class="form__input" placeholder="Поиск">
+									<button type="button" class="form__input-clear icon-close"></button>
+								</div>
 								<button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
 							</form>
 							<div class="products__content">
@@ -212,13 +215,13 @@
 								</div>
 								<div class="products__grid">
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Анкерно-поддерживающая группа СИП-1 и СИП-2
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -228,13 +231,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Наконечники изолиро-ванные CPTA R-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -244,13 +247,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Комплекты промежуточной подвески ES-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -261,13 +264,13 @@
 									</div>
 
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Наконечники изолиро-ванные CPTA R-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -277,13 +280,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Анкерно-поддерживающая группа СИП-1 и СИП-2
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -293,13 +296,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Комплекты промежуточной подвески ES-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -310,13 +313,13 @@
 									</div>
 
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Наконечники изолиро-ванные CPTA R-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -326,13 +329,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Комплекты промежуточной подвески ES-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -342,13 +345,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Анкерно-поддерживающая группа СИП-1 и СИП-2
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -359,13 +362,13 @@
 									</div>
 
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Анкерно-поддерживающая группа СИП-1 и СИП-2
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -375,13 +378,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Наконечники изолиро-ванные CPTA R-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -391,13 +394,13 @@
 										</div>
 									</div>
 									<div class="products__grid-item product">
-										<div class="product__image">
+										<a href="/product.html" class="product__image">
 											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
-										</div>
+										</a>
 										<div class="product__desc">
-											<div class="product__title">
+											<a href="/product.html" class="product__title">
 												Комплекты промежуточной подвески ES-ПСК
-											</div>
+											</a>
 											<div class="product__text">
 												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
 											</div>
@@ -478,7 +481,7 @@
 		</main>
 		<footer class="footer">
     <div class="footer__body footer-body">
-        <div class="footer-body__container">
+        <div class="footer-body__container border-top">
             <div class="footer-body__main">
                 <div class="footer-body__logo">
                     <img src="img/logo-black.svg" alt="logo">
@@ -495,7 +498,7 @@
                     О компании
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/about.html" class="footer-body__list-link">
                         Основная информация
                     </a>
                 </li>
@@ -505,17 +508,17 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/partners.html" class="footer-body__list-link">
                         Партнеры
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/team.html" class="footer-body__list-link">
                         Руководство
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/customers.html" class="footer-body__list-link">
                         Заказчики
                     </a>
                 </li>
@@ -642,14 +645,14 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221206230147"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js?_v=20221206230147"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221206230147"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221208231134"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js?_v=20221208231134"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221208231134"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221206230147"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221206230147"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221208231134"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221208231134"></script>
 
-<script src="js/app.min.js?_v=20221206230147"></script>
+<script src="js/app.min.js?_v=20221208231134"></script>
 
 </body>
 

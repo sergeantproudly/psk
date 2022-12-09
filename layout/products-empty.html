@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title> ПСК | Проекты </title>
+	<title> ПСК | Продукция и услуги </title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,8 +83,8 @@
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link ">ГЛАВНАЯ</a></li>
                 <li class="menu__item"><a href="/about.html" class="menu__link ">О КОМПАНИИ</a></li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ И УСЛУГИ</a></li>
-                <li class="menu__item"><a href="/projects.html" class="menu__link active">ПРОЕКТЫ</a></li>
+                <li class="menu__item"><a href="/products.html" class="menu__link active">ПРОДУКЦИЯ И УСЛУГИ</a></li>
+                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a></li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
                 <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a></li>
             </ul>
@@ -92,6 +92,7 @@
     </nav>
 </header>
 		<main class="page">
+
 			<section id="lottie" class="page__main main">
 				<div class="main__container">
 					<div class="main__body main__body-md">
@@ -100,46 +101,135 @@
 								<a href="/" class="navigation__link">Главная</a>
 							</li>
 							<li class="navigation__item">
-								<a class="navigation__link active">Проекты</a>
+								<a class="navigation__link active">Продукция и услуги</a>
 							</li>
 						</ul>
 						<h1 class="main__title title-xl">
-							Проекты
+							Комплексные поставки гражданского строительства
 						</h1>
 					</div>
 				</div>
 				<canvas id="gradient-canvas" data-transition-in></canvas>
 			</section>
-			<section class="page__projects projects projects-offset">
-				<div class="projects__container">
-					<div class="projects__grid">
-						<a href="/project.html" class="projects__grid-item project">
-							<span class="project__image">
-								<picture><source srcset="img/projects/01.webp"type="image/webp"><img src="img/projects/01.jpg" class="cover-image" alt="project image"></picture>
-							</span>
-							<span class="project__caption">
-								Укомплектован объект ВЛ 110 кВ «Снежная-КС-7»
-							</span>
-						</a>
-						<a href="/project.html" class="projects__grid-item project">
-							<span class="project__image">
-								<picture><source srcset="img/projects/02.webp"type="image/webp"><img src="img/projects/02.jpg" class="cover-image" alt="project image"></picture>
-							</span>
-							<span class="project__caption">
-								Реконструкция <br> подстанции Портовая
-							</span>
-						</a>
-						<a href="/project.html" class="projects__grid-item project">
-							<span class="project__image">
-								<picture><source srcset="img/projects/03.webp"type="image/webp"><img src="img/projects/03.jpg" class="cover-image" alt="project image"></picture>
-							</span>
-							<span class="project__caption">
-								Кабельная линия 10кВ Крыловка РТП-109
-							</span>
-						</a>
+			<div class="page__products products products-offset">
+				<div class="products__container">
+					<div class="products__wrapper">
+						<div class="products__filtres">
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Кабельно-<br>проводниковая продукция
+									</span>
+									<span class="products__filter-quantity">
+										(5)
+									</span>
+								</span>
+							</label>
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Кабельно-несущие системы
+									</span>
+									<span class="products__filter-quantity">
+										(24)
+									</span>
+								</span>
+							</label>
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Трансформаторы тока
+									</span>
+									<span class="products__filter-quantity">
+										(156)
+									</span>
+								</span>
+							</label>
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Муфты, кабельная арматура
+									</span>
+									<span class="products__filter-quantity">
+										(532)
+									</span>
+								</span>
+							</label>
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Светотехническая продукция
+									</span>
+									<span class="products__filter-quantity">
+										(5)
+									</span>
+								</span>
+							</label>
+							<label class="products__filter">
+								<input type="radio" name="type" class="products__filter-input hidden" hidden>
+								<span class="products__filter-content">
+									<span class="products__filter-title">
+										Приборы учёта
+									</span>
+									<span class="products__filter-quantity">
+										(2442)
+									</span>
+								</span>
+							</label>
+						</div>
+						<div class="products__body">
+							<form action="#" class="products__search search">
+								<div class="form__wrapper">
+									<input type="text" name="search" class="form__input" placeholder="Поиск">
+									<button type="button" class="form__input-clear icon-close"></button>
+								</div>
+								<button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
+							</form>
+							<div class="products__content">
+								<div class="products__empty">
+									К сожалению, по этому запросу ничего не найдено
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="products__offers">
+						<h2 class="products__offers-title title-xxl">
+							Другие предложения
+						</h2>
+						<div class="products__offers-items">
+							<figure class="products__item">
+								<picture><source srcset="img/products/01.webp"type="image/webp"><img src="img/products/01.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									СИП-арматура <br>
+									собственного производства
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+							<figure class="products__item">
+								<picture><source srcset="img/products/02.webp"type="image/webp"><img src="img/products/02.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									Комплектация <br>
+									щитового оборудования
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+							<figure class="products__item">
+								<picture><source srcset="img/products/03.webp"type="image/webp"><img src="img/products/03.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									Комплексные поставки <br>
+									гражданского строительства
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 		</main>
 		<footer class="footer">
     <div class="footer__body footer-body">

@@ -1,30 +1,35 @@
-<div id="bl-feedback">
-            <div class="holder">
-                <h2 class="h1">{{TITLE}}</h2>
-
-                <p class="form__status js-form-status"></p> 
-                
-                <form class="js-form-question" action="/form/add-question/" method="post" id="question" novalidate>
-                    <div class="line bite">
-                        <input type="text" name="name" placeholder="Имя" maxlength="255" autocomplete="off" aria-hidden="true">
-                        <input type="tel" name="phone" placeholder="Телефон" maxlength="255" autocomplete="off" aria-hidden="true">
-                        <input type="email" name="email" placeholder="Email" maxlength="255" autocomplete="off" aria-hidden="true">
+<section class="page__feedback feedback">
+                <div class="feedback__container">
+                    <div class="feedback__content">
+                        <h2 class="feedback__title title-xl">
+                            {{TITLE}}
+                        </h2>
+                        <form action="/form/add-question/" class="feedback__form form" method="post">
+                            <div class="form__rows">
+                                <div class="form__row">
+                                    <input type="text" name="name" class="form__input" placeholder="Имя">
+                                    <input type="tel" name="phone" class="form__input" placeholder="Телефон">
+                                    <input type="email" name="email" class="form__input" placeholder="Email">
+                                </div>
+                                <div class="form__row">
+                                    <textarea name="message" class="form__textarea" placeholder="Сообщение"></textarea>
+                                </div>
+                            </div>
+                            <div class="form__footer">
+                                <label class="form__checkbox">
+                                    <input type="checkbox" name="privacy" checked data-required class="form__checkbox-input hidden">
+                                    <span class="form__checkbox-content">
+                                        Нажимая на кнопку, вы даете согласие на обработку своих персональных данных
+                                    </span>
+                                </label>
+                                <button type="submit" class="form__btn btn btn-blue btn-mobile-mw btn-lg">
+                                    Отправить
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="line bite">
-                        <textarea name="text" placeholder="Сообщение" aria-hidden="true"></textarea>
+                    <div class="feedback__image">
+                        <img src="/img/feedback.svg" alt="icon message">
                     </div>
-
-                    <div class="line">
-                        <input class="js-form-input" type="text" name="{{NOISE}}name" maxlength="255" placeholder="Имя" data-form-input/>
-                        <input class="js-form-input" type="tel" name="{{NOISE}}phone" placeholder="Телефон" maxlength="255" data-form-input>
-                        <input class="js-form-input" type="email" name="{{NOISE}}email" placeholder="Email" maxlength="255" data-form-input>
-                    </div>
-                    <div class="line">
-                        <textarea name="{{NOISE}}text" placeholder="Сообщение" data-form-input></textarea>
-                    </div>
-
-                    <div class="cb-line"><input type="checkbox" name="{{NOISE}}agree" id="agree-question" checked="checked" class="js-form-input js-form-checkbox" data-form-input><label for="agree-question">Нажимая на кнопку, вы даете согласие на обработку своих персональных данных</label></div>
-                    <div class="btn-line"><input type="submit" class="btn js-form-submit" value="Отправить"/></div>
-                </form>
-            </div>
-        </div>
+                </div>
+            </section>

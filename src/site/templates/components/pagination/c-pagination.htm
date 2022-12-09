@@ -1,9 +1,9 @@
-<div class="pagination">
-	<div class="holder">			
-		<ul class="js-pagination">
-		  <li class="prev {{PREVIOUS:STATUS}}"><a href="{{PREVIOUS:LINK}}">Назад</a></li>
-		  {{LIST}}
-		  <li class="next {{NEXT:STATUS}}"><a href="{{NEXT:LINK}}">Вперед</a></li>
-		</ul>
-	</div>
-</div>
+<ul class="products__pagination pagination">
+									<li class="pagination__item pagination__item-left">
+										<a href="{{PREVIOUS:LINK}}" class="pagination__link icon-arrow {{PREVIOUS:STATUS}}"></a>
+									</li>
+									{{LIST}}
+									<li class="pagination__item pagination__item-right">
+										<a href="{{NEXT:LINK}}" class="pagination__link icon-arrow {{NEXT:STATUS}}"></a>
+									</li>
+								</ul>
