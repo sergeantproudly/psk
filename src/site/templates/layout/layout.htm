@@ -75,17 +75,39 @@
 	<script src="https://www.youtube.com/iframe_api{{VERSION}}"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			function getBrowserLocale(resultFormat) {
+				var config = {
+				  	'language': 'en',
+				  	'country': 'US'
+				}
+				var client = window.navigator ? (window.navigator.language ||
+						window.navigator.systemLanguage ||
+					  	window.navigator.userLanguage) : (config.language + '-' + config.country);
+
+				var language = (client.search('-') > 0) ?
+						client.substring(0, client.search('-')).toLowerCase() :
+					  	client.toLowerCase();
+
+				var country = (client.search('-') > 0) ?
+					  	client.substring(client.search('-') + 1, client.length).toLowerCase() :
+					  	config.country;
+
+				if (resultFormat == 'language') return language;
+				else if (resultFormat == 'country') return country;
+				else return language + '-' + country;
+			}
 			function getLanguageGroup() {
 				var language = getBrowserLocale('language').slice(0, 2);
 				if (language == 'ru' || language == 'uk' || language == 'be') return 'ru';
 				else return 'en';
 			}
 
-			if ($('#bl-video>.video__link').length) {
+			if ($('.video .video__link').length) {
 				var lang = getLanguageGroup();
 
-				$('#bl-video>.video__link').click(function(e) {
+				$('.video .video__link').click(function(e) {
 					var player = $('#js-youtube-video').data('player');
+					console.log(player);
 					if (lang == 'ru') {
 						var code = $(this).attr('data-video-code-rus');
 					} else {
@@ -99,6 +121,10 @@
 					});
 					player.loadVideoById(code);
 					player.playVideo();
+					$('#modal-video').stop().fadeIn(450).css({
+						'display': 'block',
+						'top': $(window).scrollTop()
+					});
 
 					if ($('#video-lang-swticher').length) {
 						$('#video-lang-swticher ul>li>a[data-lang="' + lang + '"]').addClass('curr').parent().siblings('li').children('a.curr').removeClass('curr');
