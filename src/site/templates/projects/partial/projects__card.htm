@@ -1,7 +1,9 @@
-<li>
-                            <a href="{{LINK}}" class="photo"><img src="{{IMAGE}}" alt="{{ALT}}" title="{{ALT}}"></a>
-                            <h3><a href="{{LINK}}">{{TITLE}}</a></h3>
-                            <p>{{SHORTDESCRIPTION}}</p>
-
-                            <a href="{{LINK}}" class="more">смотреть</a>
-                        </li>
+<a href="{{LINK}}" class="projects__grid-item project">
+                            <span class="project__image">
+                                <picture><source srcset="{{IMAGEWEBP}}" type="image/webp"><img src="{{IMAGE}}" class="cover-image" alt="{{ALT}}" title="{{ALT}}"></picture>
+                            </span>
+                            <span class="project__caption">
+                                {{TITLE}}
+                            </span>
+                        </a>
+                        

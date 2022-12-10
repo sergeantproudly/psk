@@ -168,11 +168,14 @@ class Site {
 				'site_domain' => $settings->get('SiteDomain'),
 				'site_url' => $settings->get('SiteUrl'),
 				//'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
+				'ogimage' => '/img/OG.jpg',
 				'yandex_metrika' => $settings->get('YandexMetrika'),
 			],
 			'Page' => [
-				'title' => $page->getTitle(),
+				'title' => $page->getSeoTitle() ?: $page->getTitle(),
 				'heading' => $page->getHeading(),
+				'seo_description' => $page->getSeoDescription() ?: $settings->get('SeoDescription'),
+				'seo_keywords' => $page->getSeoKeywords() ?: $settings->get('SeoKeywords'),
 			],
 			'Header' => $contacts + [
 				'Navigation' => Components::getNavigation($this->db, $code, $params['code']),

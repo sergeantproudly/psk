@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221209234202">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221209234202">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221209234202">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221210135948">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221210135948">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221210135948">
 
 
 </head>
@@ -82,7 +82,33 @@
         <div class="menu__container">
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link active">ГЛАВНАЯ</a></li>
-                <li class="menu__item"><a href="/about.html" class="menu__link ">О КОМПАНИИ</a></li>
+                <li class="menu__item">
+                    <a href="/about.html" class="menu__link ">О КОМПАНИИ</a>
+                    <div class="submenu">
+                        <ul class="submenu__list">
+                            <li class="submenu__item">
+                                <a href="#" class="submenu__link nav-item ">
+                                    Digital Trends
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/marketing.html" class="submenu__link nav-item">
+                                    Digital Marketing Communication
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/web.html" class="submenu__link nav-item">
+                                    Web Design & Web Development
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="#"  class="submenu__link nav-item">
+                                    GDPR – General Data Protection Regulation
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ И УСЛУГИ</a></li>
                 <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a></li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
@@ -200,9 +226,9 @@
 									Посмотрите, как устроены наши логистические комплексы и&nbsp;производства
 								</div>
 							</div>
-							<a href="#modal" data-modal data-video-code-rus="C0E1oD1BhTY" data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
+							<button type="button" data-modal="modal" data-video-code-rus="C0E1oD1BhTY" data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
 								<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="video image"></picture>
-							</a>
+							</button>
 						</div>
 					</div>
 				</section>
@@ -655,13 +681,10 @@
 	</div>
 	<div id="modal" class="popup">
     <div class="popup__content">
-        <div class="popup__body" id="player">
-            <button type="button" class="popup__close icon-close"></button>
-            <iframe id="js-youtube-video" frameborder="0" allowfullscreen="1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                title="YouTube video player" width="100%" height="100%"
-                src="https://www.youtube.com/embed/?enablejsapi=1&amp;origin=https%3A%2F%2Fpsk-si.ru&amp;widgetid=1"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+        <button type="button" class="popup__close icon-close"></button>
+        <div class="popup__body">
+         
+            <div class="video" id="player"></div>
             <div id="video-lang-swticher">
                 <ul>
                     <li><a href="C0E1oD1BhTY" data-lang="ru" class="curr">Ру</a></li>
@@ -671,18 +694,19 @@
         </div>
     </div>
 </div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221209234202"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221209234202"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221210135948"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221210135948"></script>
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js?_v=20221209234202"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221209234202"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221209234202"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221209234202"></script>
-<script src="https://www.youtube.com/iframe_api?_v=20221209234202"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js?_v=20221210135948"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221210135948"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221210135948"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221210135948"></script>
+<script src="https://www.youtube.com/iframe_api?_v=20221210135948"></script>
 
-<script src="js/app.min.js?_v=20221209234202"></script>
+<script src="js/app.min.js?_v=20221210135948"></script>
 
+	
 </body>
 
 </html>

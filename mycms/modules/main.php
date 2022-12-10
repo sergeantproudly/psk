@@ -22,7 +22,8 @@ class main extends krn_abstract{
 			$documents.='<div class="inner-wrapper">'.$records->BrowseDocuments().'</div>';
 		}
 		
-		return $this->GetStatistics();		
+		//return $this->GetStatistics();		
+		return '';
 	}
 	
 	function GetStatistics(){

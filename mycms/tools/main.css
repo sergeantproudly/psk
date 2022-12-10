@@ -251,7 +251,7 @@ table.styled th .sortby.curr.desc::after{
 	*/
 	display: block;
 	cursor: pointer;
-	background: #1D64B1;
+	background: #361787;
 	border: 0;
 	font-family: 'Open Sans';
 	font-size: 14px;
@@ -269,10 +269,10 @@ table.styled th .sortby.curr.desc::after{
 	cursor: default !important;
 }
 .btn input:hover{
-	background-color: #195FAA;
+	background-color: #452991;
 }
 .btn input:active{
-	background-color: #13569D;
+	background-color: #574095;
 }
 .btn.cancel input, .btn.cancel button{
 	background-color: #ebebeb;
@@ -884,7 +884,7 @@ img.arr{
 	margin: -1px 0 0 25px;
 }
 .col-left .mn-main ul li.curr{
-	background: #1D64B1;
+	background: #ff6859;
 }
 .col-left .mn-main ul li.curr a{
 	color: #fff;
@@ -1224,15 +1224,15 @@ img.arr{
 .mn-nav .curr{
 	font-weight: 600;
 	color: #fff;
-	/*dynamic*/background: #1D64B1;
+	/*dynamic*/background: #361787;
 	cursor: default;
 }
 .mn-nav a{
 	color: #fff;
-	/*dynamic*/background: #FE8318;
+	/*dynamic*/background: #ff6859;
 }
 .mn-nav a:hover{
-	/*dynamic*/background: #FE8318;
+	/*dynamic*/background: #ff6859;
 }
 .mn-nav .extend{
 	margin: 0 4px;

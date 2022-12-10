@@ -1,11 +1,20 @@
-<div class="holder">
-            <div id="projects">
-                <h1>{{TITLE}}</h1>
-
-                <ul>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                        <h1 class="main__title title-xl">
+                            {{TITLE}}
+                        </h1>
+                    </div>
+                </div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
+            </section>
+            <section class="page__projects projects projects-offset">
+                <div class="projects__container">
+                    <div class="projects__grid">
                         {{LIST}}
-                    </ul>
-            </div>
+                    </div>
 
-            {{INCLUDE:PAGINATION}}
-        </div>
+                    {{INCLUDE:PAGINATION}}
+                </div>
+            </section>

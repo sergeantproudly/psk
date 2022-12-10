@@ -89,6 +89,18 @@ abstract class Page {
     return $this->page['Description'];
   }
 
+  function getSeoTitle(): string {
+    return $this->page['SeoTitle'];
+  }
+
+  function getSeoDescription(): string {
+    return $this->page['SeoDescription'];
+  }
+
+  function getSeoKeywords(): string {
+    return $this->page['SeoKeywords'];
+  }
+
   /**
    * Возвращает массив, содержащий данные страницы:
    * - Code - Код страницы, используемый для получения страницы из БД
@@ -180,6 +192,9 @@ abstract class Page {
     $this->page['Title'] = $data['Title'] ?: '';
     $this->page['Heading'] = $data['Heading'] ?: '';    
     $this->page['Description'] = $data['Description'] ?: '';
+    $this->page['SeoTitle'] = $data['SeoTitle'] ?: '';
+    $this->page['SeoDescription'] = $data['SeoDescription'] ?: '';
+    $this->page['SeoKeywords'] = $data['SeoKeywords'] ?: '';
   }
 
   /**

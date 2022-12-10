@@ -268,90 +268,170 @@ class AjaxHandler {
     return Event::fail(Errors::FAIL, $params,
       'Не указано поле для сортировки и не установлено значение для select');
   }
-  
+
   public function addQuestion() {
-    $data = $_POST['data'];
-    $noise = $_POST['noise'];
-    $php_default_uniqid_length = 13;
+    $name = trim($_POST['name']);
+    $tel = trim($_POST['phone']);
+    $email = trim($_POST['email']);
+    $company = trim($_POST['company']);
+    $text = $_POST['message'];
+    $code = $_POST['code'];
+    $serviceId = $_POST['service_id'];
 
-    if (empty($noise) || strlen($noise) !== $php_default_uniqid_length) {
-      return Event::fail(Errors::FAIL, [
-        'data' => $data,
-        'noise' => $noise,
-      ], 'Бот не может отправлять сообщения');
-    }
+    $capcha = $_POST['capcha'];
 
-    $botData = array_filter($data, function ($pair) use ($noise) {
-      $fieldHasNoise = mb_strpos($pair['name'], $noise) !== false;
-      $valueIsEmpty = empty($pair['value']);
-      return ($fieldHasNoise && $valueIsEmpty) || (!$fieldHasNoise && !$valueIsEmpty);
-    });
-    $isBot = count($botData) !== 0;
+    // spambot check
+    // based on the collation of user agents
+    if ($capcha == $_SERVER['HTTP_USER_AGENT']) {
+    //if (true) {
+      if ($name && $email) {
+        $request = '';
+        if ($name) $request .= "Имя: $name\r\n";
+        if ($email) $request .= "E-mail: $email\r\n";
+        if ($tel) $request .= "Телефон: $tel\r\n";
+        if ($company) $request .= "Компания: $company\r\n";
+        if ($text) $request .= 'Сообщение:'."\r\n$text\r\n";
+        if ($serviceId) {
+          $service = $this->db->getRow('SELECT Title FROM services WHERE Id = ?i', $serviceId);
+          $request .= 'Услуга: ' . $service['Title'] . "\r\n";
+        }
+        // $this->db->query('INSERT INTO requests SET DateTime=NOW(), Form = ?s, Name = ?s, Tel = ?s, Email = ?s, Company = ?s, Text = ?s, RefererPage = ?s, IsSet = 0',
+        //   $form ? $form['Title'] : 'Написать нам',
+        //   $name,
+        //   $tel,
+        //   $email,
+        //   $company,
+        //   str_replace('"', '\"', $request),
+        //   $_SERVER['HTTP_REFERER']
+        // );
 
-    $realData = array_filter($data, function ($pair) use ($noise) {
-      $fieldHasNoise = mb_strpos($pair['name'], $noise) !== false;
-      return $fieldHasNoise;
-    });
+        // TABLES['CALLBACK']
+        $table = 'data_user-requests';
+        $name = $validated['name'];
+        $email = $validated['email'];
+        $description = $validated['text'];
 
-    $data = [];
-    
-    foreach ($realData as $key => $pair) {
-      $name = str_replace($noise, '', $pair['name']);
-      $value = $pair['value'];
-      $data[$name] = $value;
-    }
+        global $Database;
+        $request = $Database->query("INSERT INTO `{$table}` (`Form`, `Name`, `Tel`, `Email`, `Text`, `DateTime`, `Company`, `RefererPage`, `IsSet`) VALUES ('" . ($form ? $form['Title'] : 'Написать нам') . "', '{$name}', '{$tel}', '{$email}', '{$text}', NOW(), '{$company}', '" . $_SERVER['HTTP_REFERER'] . "', 0)");
+          
+        // global $Config;
+        // $siteTitle = strtr(stGetSetting('SiteEmailTitle', $Config['Site']['Title']), array('«'=>'"','»'=>'"','—'=>'-'));
+        // $siteEmail = stGetSetting('SiteEmail', $Config['Site']['Email']);
+        // $adminTitle = 'Administrator';
+        // $adminEmail = stGetSetting('RequestsEmail', $Config['Site']['Email']);
+          
+        // $letter['subject'] = $form['Title'].' form "'.$siteTitle.'" website';
+        // $letter['html'] = '<b>'.$form['Title'].'</b><br/><br/>';
+        // $letter['html'] .= str_replace("\r\n", '<br/>', $request);
+        // $mail = new Mail();
+        // $mail->SendMailFromSite($adminEmail, $letter['subject'], $letter['html']);
+        
+        $json = array(
+          'status' => true,
+          'header' => $form ? $form['SuccessHeader'] : 'Спасибо!',
+          'message' => $form ? $form['Success'] : 'Мы приняли ваше сообщение и свяжемся с вами!',
+        );
 
-    if ($isBot) {
-      return Event::fail(Errors::FAIL, [
-        'realData' => $data, 
-        'botData' => $botData,
-        'isBot' => $isBot,
-      ], 'Бот не может отправлять сообщения');
-    }
-
-    $validators = [
-      'email' => v::email(),
-      'phone' => v::phone(),
-      'name' => v::stringType(),
-      'text' => v::stringType(),
-    ];
-
-    $invalid = [];
-    $validated = [];
-
-    foreach ($data as $name => $value) {
-      $value = trim(strip_tags($value));
-
-      if (isset($validators[$name]) && !$validators[$name]->validate($value)) {
-        $invalid[] = $name;
-        continue;
+      } else {
+        $json = array(
+          'status' => false,
+          'message' => 'Произошла ошибка отправки. При ее повторении, пожалуйста, свяжитесь с нами по телефону',
+        );
       }
-
-      $validated[$name] = $value;
+    } else {
+      $json = array(
+        'status' => false,
+        'message' => 'Произошла ошибка отправки. При ее повторении, пожалуйста, свяжитесь с нами по телефону',
+      );
     }
 
-    if ($invalid) {
-      return Event::validationFail($invalid, 'Пожалуйста, перепроверьте правильность заполнения полей и повторите отправку.');
-    }
-
-    //$msg = Mail::prepareCallback($validated);
-    //$isSent = Mail::sendToAdmin($msg['Subject'], $msg['Html'], $msg['Text']);
-     $isSent = true;
-
-    // TABLES['CALLBACK']
-    $table = 'data_user-requests';
-    $name = $validated['name'];
-    $email = $validated['email'];
-    $description = $validated['text'];
-
-    global $Database;
-
-    $request = $Database->query("INSERT INTO `{$table}` (`Name`, `Email`, `Description`, `Date`) VALUES ('{$name}', '{$email}', '{$description}', NOW())");
-
-    if (!$isSent) {
-      return Event::sendingFail([], 'Невозможно отправить сообщение при помощи функции SendMail()');
-    }
-
-    return Event::success(null, ['validated' => $validated, 'data' => $data, 'isBot' => $isBot,]);
+    return json_encode($json);
   }
 }
+  
+//   public function addQuestion() {
+//     $data = $_POST['data'];
+//     $noise = $_POST['noise'];
+//     $php_default_uniqid_length = 13;
+
+//     if (empty($noise) || strlen($noise) !== $php_default_uniqid_length) {
+//       return Event::fail(Errors::FAIL, [
+//         'data' => $data,
+//         'noise' => $noise,
+//       ], 'Бот не может отправлять сообщения');
+//     }
+
+//     $botData = array_filter($data, function ($pair) use ($noise) {
+//       $fieldHasNoise = mb_strpos($pair['name'], $noise) !== false;
+//       $valueIsEmpty = empty($pair['value']);
+//       return ($fieldHasNoise && $valueIsEmpty) || (!$fieldHasNoise && !$valueIsEmpty);
+//     });
+//     $isBot = count($botData) !== 0;
+
+//     $realData = array_filter($data, function ($pair) use ($noise) {
+//       $fieldHasNoise = mb_strpos($pair['name'], $noise) !== false;
+//       return $fieldHasNoise;
+//     });
+
+//     $data = [];
+    
+//     foreach ($realData as $key => $pair) {
+//       $name = str_replace($noise, '', $pair['name']);
+//       $value = $pair['value'];
+//       $data[$name] = $value;
+//     }
+
+//     if ($isBot) {
+//       return Event::fail(Errors::FAIL, [
+//         'realData' => $data, 
+//         'botData' => $botData,
+//         'isBot' => $isBot,
+//       ], 'Бот не может отправлять сообщения');
+//     }
+
+//     $validators = [
+//       'email' => v::email(),
+//       'phone' => v::phone(),
+//       'name' => v::stringType(),
+//       'text' => v::stringType(),
+//     ];
+
+//     $invalid = [];
+//     $validated = [];
+
+//     foreach ($data as $name => $value) {
+//       $value = trim(strip_tags($value));
+
+//       if (isset($validators[$name]) && !$validators[$name]->validate($value)) {
+//         $invalid[] = $name;
+//         continue;
+//       }
+
+//       $validated[$name] = $value;
+//     }
+
+//     if ($invalid) {
+//       return Event::validationFail($invalid, 'Пожалуйста, перепроверьте правильность заполнения полей и повторите отправку.');
+//     }
+
+//     //$msg = Mail::prepareCallback($validated);
+//     //$isSent = Mail::sendToAdmin($msg['Subject'], $msg['Html'], $msg['Text']);
+//      $isSent = true;
+
+//     // TABLES['CALLBACK']
+//     $table = 'data_user-requests';
+//     $name = $validated['name'];
+//     $email = $validated['email'];
+//     $description = $validated['text'];
+
+//     global $Database;
+
+//     $request = $Database->query("INSERT INTO `{$table}` (`Name`, `Email`, `Description`, `Date`) VALUES ('{$name}', '{$email}', '{$description}', NOW())");
+
+//     if (!$isSent) {
+//       return Event::sendingFail([], 'Невозможно отправить сообщение при помощи функции SendMail()');
+//     }
+
+//     return Event::success(null, ['validated' => $validated, 'data' => $data, 'isBot' => $isBot,]);
+//   }
+// }

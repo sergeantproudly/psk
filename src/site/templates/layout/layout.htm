@@ -2,13 +2,13 @@
 <html lang="ru">
 
 <head>
-	<title>{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}</title>
+	<title>{{PAGE:TITLE}}</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="{{SETTINGS:SEO_KEYWORDS}}">
-	<meta name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
+	<meta name="keywords" content="{{PAGE:SEO_KEYWORDS}}">
+	<meta name="description" content="{{PAGE:SEO_DESCRIPTION}}">
 
 	<!-- favicon -->
 	<link rel="icon" type="image/png" sizes="256x256" href="/android-chrome-256x256.png">
@@ -28,7 +28,7 @@
 	<meta property="og:title" content="{{PAGE:TITLE}} | {{SETTINGS:SITE_TITLE}}">
 	<meta property="og:description" name="description" content="{{SETTINGS:SEO_DESCRIPTION}}">
 	<meta property="og:url" content="{{SETTINGS:SITE_URL}}">
-	<meta property="og:image" content="/img/OG.jpg">
+	<meta property="og:image" content="{{SETTINGS:OGIMAGE}}">
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="627" />
 	<meta property="og:locale" content="ru_RU">
@@ -39,7 +39,7 @@
 	<meta property="twitter:site" content="{{SETTINGS:SITE_TITLE}}">
 	<meta name="twitter:description" content="{{SETTINGS:SEO_DESCRIPTION}}"/>
 	<meta property="twitter:creator" content="Proudly">
-	<meta property="twitter:image:src" content="/img/OG.jpg">
+	<meta property="twitter:image:src" content="{{SETTINGS:OGIMAGE}}">
 	<meta name="twitter:domain" content="{{SETTINGS:SITE_URL}}"/>
 	<!-- Twitter -->
 
@@ -63,15 +63,77 @@
 
 		{{INCLUDE:FOOTER}}
 	</div>
+	{{MODALS}}
+
 	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js{{VERSION}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js{{VERSION}}"></script>
 
-	<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js{{VERSION}}"></script> -->
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js{{VERSION}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js{{VERSION}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js{{VERSION}}"></script>
 	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221209234202"></script>
 	<script src="https://www.youtube.com/iframe_api{{VERSION}}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			function getLanguageGroup() {
+				var language = getBrowserLocale('language').slice(0, 2);
+				if (language == 'ru' || language == 'uk' || language == 'be') return 'ru';
+				else return 'en';
+			}
 
+			if ($('#bl-video>.video__link').length) {
+				var lang = getLanguageGroup();
+
+				$('#bl-video>.video__link').click(function(e) {
+					var player = $('#js-youtube-video').data('player');
+					if (lang == 'ru') {
+						var code = $(this).attr('data-video-code-rus');
+					} else {
+						var code = $(this).attr('data-video-code-eng');
+					}
+					new YT.Player('js-youtube-video', {
+						height: '100%',
+				    width: '100%',
+					  videoId: code,
+					  playerVars: { 'autoplay': 1, 'controls': 0 }
+					});
+					player.loadVideoById(code);
+					player.playVideo();
+
+					if ($('#video-lang-swticher').length) {
+						$('#video-lang-swticher ul>li>a[data-lang="' + lang + '"]').addClass('curr').parent().siblings('li').children('a.curr').removeClass('curr');
+						$('#video-lang-swticher ul>li>a').click(function(e) {
+							e.preventDefault();
+
+							if (!$(this).hasClass('curr')) {
+								var code = $(this).attr('href');
+								player.loadVideoById(code);
+								player.playVideo();
+								$(this).addClass('curr').parent().siblings('li').children('a.curr').removeClass('curr');
+							}
+						});
+					}
+				});
+
+				$('#modal-video .modal-close').click(function() {
+					var player = $('#js-youtube-video').data('player');
+					player.pauseVideo();
+					player.stopVideo();
+				});
+			}
+		});
+	</script>
+	<script type="text/javascript">
+  		if (document.getElementById('js-youtube-video')) {
+  			function onYouTubeIframeAPIReady() {
+				var player = new YT.Player('js-youtube-video', {
+				    height: '100%',
+				    width: '100%'
+				});
+				$('#js-youtube-video').data('player', player);
+			}
+  		}
+  	</script>
 
 	<script src="/js/app.min.js{{VERSION}}"></script>
 

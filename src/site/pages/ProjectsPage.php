@@ -119,6 +119,10 @@ class ProjectsPage extends Page {
     $project = 
       $this->model->getProjectByCode($code);
 
+    $project['Date'] = strtotime($project['Date']) ? ('<time datetime="' . Common::excess($project['Date'], ' 00:00:00') . '">Дата реализации проекта: ' . Common::ModifiedDate($project['Date']) . '</time>') : '';
+    $project['ImageWebp'] = Common::flGetWebpByImage($project['Image']);
+    $project['Alt'] = htmlspecialchars($project['Title'], ENT_QUOTES);
+
       /*
     $gallery = 
       $this->model->getProjectImages($project['Id']);

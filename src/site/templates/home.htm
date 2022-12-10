@@ -1,44 +1,378 @@
-<section class="blue grad">
-            <div id="bl-welcome">
-                <div class="holder">
-                    <h1>{{MAINHEADING}}</h1>
-
-                    <div id="map-animated" data-speed="1">
-                        <div id="state0" class="state"></div>
-                        <div id="state1" class="state"></div>
-                        <div id="state2" class="state"></div>
-                        <div id="state3" class="state"></div>
-                        <div id="state4" class="state"></div>
-                        <div id="state-clear" class="state"></div>
-                        <div id="kazan"></div>
-
-                        <div class="contacts">
-                            <div class="title">Свяжитесь с нами:</div>
-                            <a href="tel:{{PHONECOMMON}}" class="phone">{{PHONECOMMON}}</a>
-                            <a href="mailto:{{EMAILCOMMON}}" class="email">{{EMAILCOMMON}}</a>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body">
+                        <h1 class="main__title title-xl">
+                            {{MAINHEADING}}
+                        </h1>
+                        <a href="#anim-content" class="main__btn btn btn-orange">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
+            </section>
+            <div class="anim-content" id="anim-content" >
+                <div class="page__products products">
+                    <div class="products__container">
+                        <div class="products__items">
+                            <figure class="products__item card-1">
+                                <picture><source srcset="img/products/01.webp"type="image/webp"><img src="img/products/01.png" alt="product desc"></picture>
+                                <figcaption class="products__item-desc">
+                                    СИП-арматура <br>
+                                    собственного производства
+                                </figcaption>
+                                <a href="" class="products__item-link"></a>
+                            </figure>
+                            <figure class="products__item card-2">
+                                <picture><source srcset="img/products/02.webp"type="image/webp"><img src="img/products/02.png" alt="product desc"></picture>
+                                <figcaption class="products__item-desc">
+                                    Комплектация <br>
+                                    щитового оборудования
+                                </figcaption>
+                                <a href="" class="products__item-link"></a>
+                            </figure>
+                            <figure class="products__item card-3">
+                                <picture><source srcset="img/products/03.webp"type="image/webp"><img src="img/products/03.png" alt="product desc"></picture>
+                                <figcaption class="products__item-desc">
+                                    Комплексные поставки <br>
+                                    гражданского строительства
+                                </figcaption>
+                                <a href="" class="products__item-link"></a>
+                            </figure>
+                            <figure class="products__item card-4">
+                                <picture><source srcset="img/products/04.webp"type="image/webp"><img src="img/products/04.png" alt="product desc"></picture>
+                                <figcaption class="products__item-desc">
+                                    Комплексные поставки <br>
+                                    для промышленности
+                                </figcaption>
+                                <a href="" class="products__item-link"></a>
+                            </figure>
                         </div>
                     </div>
-                    <a href="/company/" class="more">Подробнее</a>
+                </div>
+                <div class="page__benefits benefits">
+                    <div class="swiper-container benefits-slider">
+
+                        <div class="swiper-wrapper benefits-slider__wrapper">
+
+                            <div class="swiper-slide benefits-slider__slide">
+                                <div class="benefits-slider__slide-image">
+                                    <picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="benefits image"></picture>
+                                </div>
+                                <div class="benefits-slider__slide-num">
+                                    01
+                                </div>
+                                <div class="benefits-slider__slide-text">
+                                    Постоянное развитие умений <br>
+                                    и навыков сотрудников
+                                </div>
+                            </div>
+                            <div class="swiper-slide benefits-slider__slide">
+                                <div class="benefits-slider__slide-image">
+                                    <picture><source srcset="img/benefits/02.webp"type="image/webp"><img src="img/benefits/02.jpg" class="cover-image" alt="benefits image"></picture>
+                                </div>
+                                <div class="benefits-slider__slide-num">
+                                    02
+                                </div>
+                                <div class="benefits-slider__slide-text">
+                                    Гарантируем внимание <br>
+                                    к партнерам и заботу об их бизнесе
+                                </div>
+                            </div>
+                            <div class="swiper-slide benefits-slider__slide">
+                                <div class="benefits-slider__slide-image">
+                                    <picture><source srcset="img/benefits/03.webp"type="image/webp"><img src="img/benefits/03.jpg" class="cover-image" alt="benefits image"></picture>
+                                </div>
+                                <div class="benefits-slider__slide-num">
+                                    03
+                                </div>
+                                <div class="benefits-slider__slide-text">
+                                    Отвечаем не только за качество <br>
+                                    поставляемой и производимой продукции, <br>
+                                    но и за уровень обслуживания
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{VIDEO}}
+            </div>
+            <section class="page__projects projects">
+                <div class="projects__container">
+                    <div class="projects__header" data-animation>
+                        <h2 class="projects__title title-xxl">
+                            Наши проекты
+                        </h2>
+                        <div class="projects__controls">
+                            <button type="button" class="projects__controls-prev swiper-button-prev"></button>
+                            <button type="button" class="projects__controls-next swiper-button-next"></button>
+                        </div>
+                    </div>
+                    <div class="projects__slider swiper-container projects-slider" data-animation>
+
+                        <div class="swiper-wrapper projects-slider__wrapper">
+
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/01.webp"type="image/webp"><img src="img/projects/01.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Укомплектован объект ВЛ 110 кВ «Снежная-КС-7»
+                                </span>
+                            </a>
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/02.webp"type="image/webp"><img src="img/projects/02.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Реконструкция подстанции Портовая
+                                </span>
+                            </a>
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/03.webp"type="image/webp"><img src="img/projects/03.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Кабельная линия 10кВ Крыловка РТП-109
+                                </span>
+                            </a>
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/01.webp"type="image/webp"><img src="img/projects/01.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Укомплектован объект ВЛ 110 кВ «Снежная-КС-7»
+                                </span>
+                            </a>
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/02.webp"type="image/webp"><img src="img/projects/02.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Реконструкция подстанции Портовая
+                                </span>
+                            </a>
+                            <a href="" class="swiper-slide projects-slider__item project">
+                                <span class="project__image">
+                                    <picture><source srcset="img/projects/03.webp"type="image/webp"><img src="img/projects/03.jpg" class="cover-image" alt="project image"></picture>
+                                </span>
+                                <span class="project__caption">
+                                    Кабельная линия 10кВ Крыловка РТП-109
+                                </span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+            <section class="page__news news">
+                <div class="news__container">
+                    <div class="news__header" data-animation>
+                        <h2 class="news__title title-xxl">
+                            Новости
+                        </h2>
+                        <a href="/news.html" class="news__more more-link">
+                            Смотреть все
+                        </a>
+                    </div>
+                    <div class="news__items">
+                        <div class="news__item" data-animation>
+                            <div class="news__item-body">
+                                <h3 class="news__item-title title-md">
+                                    <a href="/article.html" class="news__item-link">
+                                        Постановка материалов для реконструкции
+                                    </a>
+                                </h3>
+                                <time datetime="2022-09-30" class="news__item-time">
+                                    30 сентября
+                                </time>
+                                <p class="news__item-text">
+                                    2022 год стал важным этапом в истории развития компании ПСК – из
+                                    компании-поставщика, имеющего положительную репутацию в энергетической отрасли, она
+                                    превратилась в производителя, который готов ставит.
+                                </p>
+                                <a href="/article.html" class="news__item-link more-link">
+                                    Подробнее
+                                </a>
+                            </div>
+                            <a href="/article.html" class="news__item-image">
+                                <picture><source srcset="img/news/01.webp"type="image/webp"><img src="img/news/01.jpg" class="cover-image" alt="news picture"></picture>
+                            </a>
+                        </div>
+                        <div class="news__item" data-animation>
+                            <div class="news__item-body">
+                                <h3 class="news__item-title title-md">
+                                    <a href="/article.html" class="news__item-link">
+                                        Награждение по итогам года
+                                    </a>
+                                </h3>
+                                <time datetime="2022-01-25" class="news__item-time">
+                                    25 января
+                                </time>
+                                <p class="news__item-text">
+                                    По итогам работы 2021 года ООО “ПСК СтройИнвест” наградила 18 сотрудников компании
+                                    Благодарственными письмами, вскоре мы создадим заводы лучше прежних.
+                                </p>
+                                <a href="/article.html" class="news__item-link more-link">
+                                    Подробнее
+                                </a>
+                            </div>
+                            <a href="/article.html" class="news__item-image">
+                                <picture><source srcset="img/news/02.webp"type="image/webp"><img src="img/news/02.jpg" class="cover-image" alt="news picture"></picture>
+                            </a>
+                        </div>
+                        <div class="news__item" data-animation>
+                            <div class="news__item-body">
+                                <h3 class="news__item-title title-md">
+                                    <a href="/article.html" class="news__item-link">
+                                        Поставка материалов для реконструкции <br>
+                                        ПС 110 кВ Учалы
+                                    </a>
+                                </h3>
+                                <time datetime="2021-11-19" class="news__item-time">
+                                    19 ноября 2021 г.
+                                </time>
+                                <p class="news__item-text">
+                                    ПСК СтройИнвест поставляет материалы для реконструкции ПС 110 кВ Учалы, для
+                                    электроснабжения объекта АО Учалинский ГОК в Республике Башкортостан.
+                                </p>
+                                <a href="/article.html" class="news__item-link more-link">
+                                    Подробнее
+                                </a>
+                            </div>
+                            <a href="/article.html" class="news__item-image">
+                                <picture><source srcset="img/news/03.webp"type="image/webp"><img src="img/news/03.jpg" class="cover-image" alt="news picture"></picture>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="news__btn">
+                        <a href="/news.html" class="btn btn-blue">
+                            Смотреть все
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <section class="page__team team">
+                <div class="team__container">
+                    <div class="team__header" data-animation>
+                        <h2 class="team__title title-xxl">
+                            Главные лица
+                        </h2>
+                        <a href="/team.html" class="team__more more-link">
+                            Смотреть все
+                        </a>
+                    </div>
+                    <div class="team__body" data-animation>
+                        <div class="team__item">
+                            <div class="team__item-image">
+                                <picture><source srcset="img/team/01.webp"type="image/webp"><img src="img/team/01.png" alt="team image"></picture>
+                            </div>
+                            <div class="team__item-desc">
+                                <div class="team__item-name">
+                                    Ярулин Ленар <br>
+                                    Раисович
+                                </div>
+                                <div class="team__item-position">
+                                    Директор
+                                </div>
+                                <a href="tel:+78432333923" class="team__item-phone icon-phone">
+                                    +7 (843) 233-39-23
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team__item">
+                            <div class="team__item-image">
+                                <picture><source srcset="img/team/02.webp"type="image/webp"><img src="img/team/02.png" alt="team image"></picture>
+                            </div>
+                            <div class="team__item-desc">
+                                <div class="team__item-name">
+                                    Гатауллин Радик <br>
+                                    Ахнафович
+                                </div>
+                                <div class="team__item-position">
+                                    Исполнительный директор
+                                </div>
+                                <a href="tel:+78432333923" class="team__item-phone icon-phone">
+                                    +7 (843) 233-39-23
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team__item">
+                            <div class="team__item-image">
+                                <picture><source srcset="img/team/03.webp"type="image/webp"><img src="img/team/03.png" alt="team image"></picture>
+                            </div>
+                            <div class="team__item-desc">
+                                <div class="team__item-name">
+                                    Николаев Станислав <br> Константинович
+                                </div>
+                                <div class="team__item-position">
+                                    Коммерческий директор
+                                </div>
+                                <a href="tel:+78432333923" class="team__item-phone icon-phone">
+                                    +7 (843) 233-39-23
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team__btn">
+                        <a href="/team.html" class="btn btn-blue">
+                            Смотреть все
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <div class="page__companies companies" data-animation>
+                <div class="companies__container">
+                    <div class="companies__columns">
+                        <div class="companies__column companies-customers">
+                            <div class="companies__column-header">
+                                <h3 class="companies__title title-lg">
+                                    Заказчики
+                                </h3>
+                                <a href="/customers.html" class="companies__more more-link">Смотреть все</a>
+                            </div>
+                            <div class="companies__column-body">
+                                <div class="companies__item">
+                                    <picture><source srcset="img/companies/customers/01.webp"type="image/webp"><img src="img/companies/customers/01.png" alt="customers picture"></picture>
+                                </div>
+                                <div class="companies__item">
+                                    <picture><source srcset="img/companies/customers/02.webp"type="image/webp"><img src="img/companies/customers/02.png" alt="customers picture"></picture>
+                                </div>
+                                <div class="companies__item">
+                                    <picture><source srcset="img/companies/customers/03.webp"type="image/webp"><img src="img/companies/customers/03.png" alt="customers picture"></picture>
+                                </div>
+                            </div>
+                            <div class="companies__column-btn">
+                                <a href="/customers.html" class="btn btn-blue">
+                                    Смотреть все
+                                </a>
+                            </div>
+                        </div>
+                        <div class="companies__column companies-partners">
+                            <div class="companies__column-header">
+                                <h3 class="companies__title title-lg">
+                                    Партнеры
+                                </h3>
+                                <a href="/partners.html" class="companies__more more-link">Смотреть все</a>
+                            </div>
+                            <div class="companies__column-body">
+                                <div class="companies__item">
+                                    <picture><source srcset="img/companies/partners/01.webp"type="image/webp"><img src="img/companies/partners/01.png" alt="partners picture"></picture>
+                                </div>
+                                <div class="companies__item">
+                                    <picture><source srcset="img/companies/partners/02.webp"type="image/webp"><img src="img/companies/partners/02.png" alt="partners picture"></picture>
+                                </div>
+                                <div class="companies__item">
+                                    <img src="img/companies/partners/03.svg" alt="partners picture">
+                                </div>
+                            </div>
+                            <div class="companies__column-btn">
+                                <a href="/partners.html" class="btn btn-orange">
+                                    Смотреть все
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            {{SLIDER}}
-
-            {{PROJECTS}}
-        </section>
-
-        {{CLIENTS}}
-
-        {{VIDEO}}
-
-        {{ARTICLES}}
-
-        {{PRODUCTION}}
-
-        {{COMPANY}}
-
-        {{ABOUT}}
-
-        {{STAFF}}
-
-        {{PARTNERS}}
