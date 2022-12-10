@@ -47,7 +47,7 @@ class HomePage extends Page {
 		$projectModel = new \Site\Models\ProjectModel();
 		$projectModel->setDB($this->model->getDB());
 
-		$projectList = $projectModel->getProjects(2);
+		$projectList = $projectModel->getProjects();
 		$projectList = Common::setLinks($projectList, 'projects');
 		foreach ($projectList as $i => &$project) {
 			$project['Image'] = $project['Image1164_508'];

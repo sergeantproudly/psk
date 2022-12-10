@@ -1,12 +1,22 @@
-<div id="bl-projects">
-                <div class="holder">
-                    <h2><a href="/projects/">Проекты</a></h2>
-                    <div class="tools-r">
-                        <a href="/projects/" class="more">Смотреть все</a>
+<section class="page__projects projects">
+                <div class="projects__container">
+                    <div class="projects__header" data-animation>
+                        <h2 class="projects__title title-xxl">
+                            Наши проекты
+                        </h2>
+                        <div class="projects__controls">
+                            <button type="button" class="projects__controls-prev swiper-button-prev"></button>
+                            <button type="button" class="projects__controls-next swiper-button-next"></button>
+                        </div>
                     </div>
+                    <div class="projects__slider swiper-container projects-slider" data-animation>
 
-                    <ul>
-                        {{LIST}}
-                    </ul>
+                        <div class="swiper-wrapper projects-slider__wrapper">
+
+                            {{LIST}}
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+
+            </section>
