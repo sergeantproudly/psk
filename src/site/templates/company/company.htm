@@ -1,57 +1,47 @@
-		<div class="holder">
-            <div id="company">
-                <main class="col-c">
-                    <h1>{{TITLE}}</h1>
-
-                    <div class="text">
-                        {{CONTENTTOP}}
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                        <h1 class="main__title title-xl">
+                            {{TITLE}}
+                        </h1>
                     </div>
+                </div>
+                <canvas id="gradient-canvas" data-transition-in>
+            </section>
+            <section class="page__about about">
+                <div class="about__container">
+                    <div class="about__image">
+                        <picture><source srcset="/img/about.webp" type="image/webp"><img src="/img/about.jpg" class="cover-image" alt="ПСК СтройИ нвест"></picture>
+                    </div>
+                    <div class="about__body">
+                        <div class="about__text article__content">
+                            <div>
+                                {{CONTENTTOP}}
+                            </div>
+                        </div>
+                        {{ADVANTAGES}}
 
-                    <ul class="nav">
-                    	{{INCLUDE:NAV}}
-                    </ul>
+                        <!--{{BLOCKMISSION}}-->
+                        {{BLOCKSTANDARTS}}
+                        {{BLOCKGUARANTEES}}
 
-                    {{BLOCKMISSION}}
-                    {{BLOCKSTANDARTS}}
-                    {{BLOCKGUARANTEES}}
-                </main><!--
-
-                --><aside class="col-r">
-                    {{VIDEO}}
-
-                    {{ADVANTAGES}}
-                </aside>
-            </div>
-        </div>
-
-        <div id="bl-products">
-            <section class="blue inverted limited">
-                <div class="holder">
-                    <h2 class="h1">{{BLOCKPRODUCTIONHEADING}}</h2>
-                    {{BLOCKPRODUCTIONANNO}}
+                        {{VIDEO}}                        
+                    </div>
                 </div>
             </section>
-    
-            <!--
-            <div class="bl-gallery">
-                <ul class="js-slider" data-adaptive="true" data-dots="false" data-arrows="false" data-autoplay="true">
-                    <li><a href="assets/images/_photo5.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo5.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo6.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo6.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo7.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo7.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo8.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo8.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo6.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo6.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo7.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo7.jpg" alt="#" title="#"></a></li>
-                    <li><a href="assets/images/_photo8.jpg" class="js-lightbox" data-gallery="products"><img src="assets/images/_photo8.jpg" alt="#" title="#"></a></li>
-                </ul>
-            </div>
-        -->
-
-            <div class="bl-gallery">
-                <ul class="js-slider" data-adaptive="true" data-dots="false" data-arrows="false" data-autoplay="true">
-                </ul>
-            </div>
-
-            <div class="content holder">
-                {{BLOCKPRODUCTIONTEXT}}
-            </div>
-        </div>
+            <section class="page__equipment equipment">
+                <div class="equipment__container">
+                    <div class="equipment__body">
+                        <h2 class="equipment__title title-lg">
+                            {{BLOCKPRODUCTIONHEADING}}
+                        </h2>
+                        <div class="equipment__subtitle">
+                            {{BLOCKPRODUCTIONANNO}}
+                        </div>
+                        <div class="equipment__items">
+                            {{BLOCKPRODUCTIONTEXT}}
+                        </div>
+                    </div>
+                </div>
+            </section>

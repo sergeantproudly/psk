@@ -1,6 +1,17 @@
-<li>
-                        <img src="{{PHOTOPREVIEW}}" alt="{{ALT}}" title="{{ALT}}" class="photo">
-                        <div class="name">{{NAME}}</div>
-                        <div class="post">{{RANK}}</div>
-                        <a href="tel:{{PHONE}}" class="tel">{{PHONE}}</a>
-                    </li>
+<div class="team__item">
+                            <div class="team__item-image">
+                                <picture><source srcset="{{PHOTOPREVIEWWEBP}}" type="image/webp"><img src="{{PHOTOPREVIEW}}" alt="{{ALT}}"></picture>
+                            </div>
+                            <div class="team__item-desc">
+                                <div class="team__item-name">
+                                    {{NAME}}
+                                </div>
+                                <div class="team__item-position">
+                                    {{RANK}}
+                                </div>
+                                <a href="tel:{{PHONE}}" class="team__item-phone icon-phone">
+                                    {{PHONE}}
+                                </a>
+                            </div>
+                        </div>
+                        

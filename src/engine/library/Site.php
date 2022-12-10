@@ -159,6 +159,15 @@ class Site {
           'List' => $templateLinksItem->parse($productionList)
         ]);
 
+		$companyModel = new \Site\Models\CompanyModel();
+		$companyModel->setDB($this->db);
+        $companyNavigation = $companyModel->getCompanyChildren();
+      	$companyNavigation = $companyNavigation ? Common::setLinks($companyNavigation, 'company') : [];
+      	$templateCompanyNavigationItem = new ListTemplate('footer-company-navigation__elem.htm', 'components/navigation');
+      // 	$this->page('index')->addInclude($this->partial('nav')->setCallback(function($item) use ($current) {
+      //   return $item['Code'] == $current['Code'];
+      // }));
+
 		return $baseTemplate->parse([
 			'Settings' => [
 				'site_title' => $settings->get('SiteTitle'),
@@ -187,6 +196,7 @@ class Site {
 			'Contacts' => !$this->isContacts($code) ? $contactsRendered : '',
 			'Links' => $linksRendered,
 			'Footer' => [
+				'CompanyNav' => $templateCompanyNavigationItem->parse($companyNavigation),
 				'ContainerClass' => !$this->isHome($code) && !$this->isContacts($code) ? 'border-top' : '',
 				'Year'=> DateHelper::getCurrentYear(),
 				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),

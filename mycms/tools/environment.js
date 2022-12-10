@@ -748,6 +748,15 @@ function ie6Belated(){
 
 //  ENVIRONMENT - WYSIWYG
 var editors={};
+document.addEventListener('DOMContentLoaded', function() {
+	CKEDITOR.stylesSet.add( 'my_styles', [
+		// Block-level styles
+		{ name: 'Секция Xl', element: 'div', attributes: {'class': 'text-xl' } },
+		{ name: 'Секция Lg', element: 'div', attributes: {'class': 'text-lg' } },
+		{ name: 'Текст Xl', element: 'p', attributes: {'class': 'text-xl' } },
+		{ name: 'Текст Lg', element: 'p', attributes: {'class': 'text-lg' } },
+	]);
+});
 function envInitWysiwyg(wysiwyg){
 	var inp=domFC(wysiwyg);
 	invis(inp);
@@ -755,10 +764,10 @@ function envInitWysiwyg(wysiwyg){
 	var id=wysiwyg.id?wysiwyg.id:inp.name;
 	var config={
 		toolbar : [
-					['Source', '-', 'Bold', 'Italic', 'Underline'],
-					['Link', 'Unlink','-', 'Image','-','NumberedList','BulletedList','Table'],
-					['Format','TextColor','RemoveFormat'],
-					['JustifyLeft','JustifyCenter','JustifyRight'],
+					['Source', '-', 'Bold', 'Italic', 'Underline', '-', 'Link', 'Unlink','-', 'Image'],
+					['NumberedList','BulletedList','Table'],
+					['RemoveFormat'],
+					['JustifyLeft','JustifyCenter','JustifyRight', 'Format', 'Styles'],
 					['Maximize', 'ShowBlocks']
 				  ],
 		filebrowserBrowseUrl : 'ckeditor/images',
@@ -767,7 +776,9 @@ function envInitWysiwyg(wysiwyg){
 		filebrowserImageUploadUrl : 'index.php?module=ajax&act=UploadImage',
 	    filebrowserWindowWidth  : 800,
 	    filebrowserWindowHeight : 500,
-	    language : 'ru'
+	    language : 'en',
+	    extraAllowedContent : 'div(equipment__item,equipment__caption); p(equipment__item,equipment__caption); ul(equipment__list); li(equipment__list-item)',
+	    stylesSet : 'my_styles'
 	};
 	editors[id]=CKEDITOR.appendTo(wysiwyg, config, inp.value);
 }

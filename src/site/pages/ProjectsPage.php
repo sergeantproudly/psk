@@ -88,6 +88,7 @@ class ProjectsPage extends Page {
       //'Breadcrumbs' => $breadcrumbsRendered,
       'List' => $projectListRendered,
       'Pagination' => [
+        'Class' => 'projects__pagination',
         'Previous' => [
           'Status' => $prevPage ? '' : 'disabled',
           'Link' => $prevPage['link'] ?: '#'

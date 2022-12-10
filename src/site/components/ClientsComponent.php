@@ -25,7 +25,7 @@ class ClientsComponent extends ImprovedComponent {
     $clientsTemplate = $clientsTemplate->parse($clients);
 
     return $this->parse([
-      'Title' => $name ?: 'Среди наших заказчиков',
+      'Title' => $name ?: 'Заказчики',
       'List' => $clientsTemplate,
     ]);
   }

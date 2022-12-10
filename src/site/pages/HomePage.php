@@ -51,6 +51,7 @@ class HomePage extends Page {
 		$projectList = Common::setLinks($projectList, 'projects');
 		foreach ($projectList as $i => &$project) {
 			$project['Image'] = $project['Image1164_508'];
+			$project['ImageWebp'] = Common::flGetWebpByImage($project['Image']);
 			$project['Alt'] = htmlspecialchars($project['Title'], ENT_QUOTES);
 		}
 		$projectsComponent = new ProjectsComponent;
@@ -60,9 +61,10 @@ class HomePage extends Page {
 		$clientModel = new \Site\Models\ClientModel();
 		$clientModel->setDB($this->model->getDB());
 
-		$clientList = $clientModel->getClients();
+		$clientList = $clientModel->getClients(3);
 		foreach ($clientList as $i => &$client) {
-			$client['Style'] = $client['Width'] ? 'style="width: ' . $client['Width'] . 'px"' : '';
+			//$client['Style'] = $client['Width'] ? 'style="width: ' . $client['Width'] . 'px"' : '';
+			$client['ImageWebp'] = Common::flGetWebpByImage($client['Image']);
 			$client['Alt'] = htmlspecialchars($client['Title'], ENT_QUOTES);
 		}
 		$clientsComponent = new ClientsComponent;
@@ -84,6 +86,7 @@ class HomePage extends Page {
 		$articleList = Common::setLinks($articleList, 'articles');
 		foreach ($articleList as $i => &$article) {
 			$article['Date'] = Common::ModifiedDate($article['PublishDate']);
+			$article['PreviewWebp'] = Common::flGetWebpByImage($article['Preview']);
 			$article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
 		}
 		$articlesComponent = new ArticlesComponent;
@@ -127,9 +130,10 @@ class HomePage extends Page {
 		$partnerModel = new \Site\Models\PartnerModel();
 		$partnerModel->setDB($this->model->getDB());
 
-		$partnerList = $partnerModel->getPartners();
+		$partnerList = $partnerModel->getPartners(3);
 		foreach ($partnerList as $i => &$partner) {
-			$partner['Style'] = $partner['Width'] ? 'style="width: ' . $partner['Width'] . 'px"' : '';
+			//$partner['Style'] = $partner['Width'] ? 'style="width: ' . $partner['Width'] . 'px"' : '';
+			$partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
 			$partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
 		}
 		$partnersComponent = new PartnersComponent;

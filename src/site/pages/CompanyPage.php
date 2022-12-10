@@ -71,6 +71,7 @@ class CompanyPage extends Page {
       //$advantagesItemTemplate  = $advantagesItemTemplate->parse($advantages);
       $attrHtml = '';
       foreach ($advantages as $advantage) {
+        $advantage['Value'] = preg_replace('/(\d+)/', '<span class="count-number' . ($advantage['NoSpaces'] ? ' no-spacing' : '') . '">$1</span>', $advantage['Value']);
         if ($advantage['Link']) {
           $attrHtml .= $advantagesItemLinkedTemplate->parse($advantage);
         } else {
@@ -85,9 +86,9 @@ class CompanyPage extends Page {
       $content['BlockProductionHeading'] = strip_tags($content['BlockProductionHeading']);
       $rendered = $this->page('index')->parse($content + [
         'Nav' => $navigation,
-        'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="block" id="bl-mission"><h2>Миссия</h2>' . $content['BlockMissionText'] . '</div>' : '',
-        'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="block" id="bl-standarts"><h2>Стандарты</h2>' . $content['BlockStandartsText'] . '</div>' : '',
-        'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="block" id="bl-guarantees"><h2>Гарантии</h2>' . $content['BlockGuaranteesText'] . '</div>' : '',
+        'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="about__text article__content"><div><h3>Миссия</h3>' . $content['BlockMissionText'] . '</div></div>' : '',
+        'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="about__text article__content"><div><h3>Стандарты</h3>' . $content['BlockStandartsText'] . '</div></div>' : '',
+        'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="about__text article__content"><div><h3>Гарантии</h3>' . $content['BlockGuaranteesText'] . '</div></div>' : '',
         'Video' => $videoBlockRendered,
         'Advantages' => $advantagesRendered,
       ]);
