@@ -121,8 +121,12 @@
 					});
 					player.loadVideoById(code);
 					player.playVideo();
+
+					// здесь как то открывается модал и позиционируется
 					$('#modal-video').stop().fadeIn(450).css({
 						'display': 'block',
+						'position': 'absolute',
+						'z-index': 99999,
 						'top': $(window).scrollTop()
 					});
 
