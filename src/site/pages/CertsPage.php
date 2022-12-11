@@ -126,6 +126,7 @@ class CertsPage extends Page {
       'Table' => $table,
       'SearchAction' => "/{$this->code()}/search/",
       'Pagination' => count($pages) > 1 ? $pagination->view('default')->parse([
+        'Class' => 'about__pagination',
         'Previous' => [
           'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'

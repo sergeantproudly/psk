@@ -1,65 +1,50 @@
-{{BREADCRUMBS}}
-<section>
-	<div class="holder">
-		<h1>{{TITLE}}</h1>
+<section class="page__main main">
+				<div class="main__container">
+					<div class="main__body main__body-md">
+						{{BREADCRUMBS}}
+						<h1 class="main__title title-xl">
+							{{TITLE}}
+						</h1>
+						<form action="{{SEARCHACTION}}" method="GET" accept="#" id="js-search" class="main__search search" onsubmit="function(e) {return true;}">
+							<div class="form__wrapper">
+								<input type="text" name="search" value="{{SEARCH}}" class="form__input search__input"
+									placeholder="Поиск по мнемокоду или наименованию">
+								<button type="button" class="form__input-clear icon-close"></button>
+							</div>
+							<button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
+						</form>
+					</div>
+				</div>
+				<canvas id="gradient-canvas" data-transition-in>
+			</section>
+			<section class="page__about about">
+				<div class="about__container">
+					<div class="about__body">
+						<div class="article__content about__sert">
+							<table>
+								<thead>
+									<tr>
+										<th>Мнемокод</th>
+										<th>Наименование</th>
+										<th>Файл сертификата</th>
+										<th>Срок действия</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{TABLE}}
+								</tbody>
+							</table>
+							
+						</div>
 
-		<div id="catalogue" class="certs">
-			<form accept="#" id="js-search" action="{{SEARCHACTION}}" method="GET">
-				<input class="search" type="text" name="search" value="{{SEARCH}}" placeholder="Поиск по мнемокоду или наименованию">
-			</form>
+						{{PAGINATION}}
+					</div>
+				</div>
+			</section>
 
-			<table class="private" cellpadding="0" cellspacing="0">
-				<thead>
-					<tr>
-						<th>Мнемокод</th>
-						<th>Наименование</th>
-						<th>Файл сертификата</th>
-						<th>Срок действия</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{TABLE}}
-				</tbody>
-			</table>
-		</div>
-
-		{{PAGINATION}}
-	</div>
-
-	<div id="bl-cart" class="js-cart" {{CARTEMPTY}}>
-		<div class="holder">
-			<span class="count">В корзине: <strong>{{CARTMESSAGE}}</strong></span>
-			<a href="#" class="edit" id="cart-edit">Редактировать</a>
-
-			<button class="js-cart-make-order-quick btn" id="cart-order-quick">Отправить заявку</button>
-		</div>
-	</div>
-
-	<div id="layout-cart">
-		<div class="holder js-cart-container">
-			<div class="h1">Корзина</div>
-
-			<table class="private" cellspacing="0" cellspacing="0">
-				<thead>
-					<tr>
-						<th>Мнемокод</th>
-						<th>Наименование</th>
-						<th>Редактирование</th>
-					</tr>
-				</thead>
-				<tbody class="js-cart-table">
-				{{CART}}
-				</tbody>
-			</table>
-
-			<div class="btn-line">
-        <!--<form action="/cart/make-order/" method="POST" >-->
-					<button class="js-cart-update btn cancel" id="cart-save-changes" type="button">Сохранить изменения</button>
-
-					<button class="js-cart-make-order btn" id="cart-order" type="submit" data-user-id="{{USER:ID}}">Отправить заявку</button>
-				<!--</form>-->
-			</div>
-		</div>
-		<div class="ico-close"></div>
-	</div>
-</section>
+			<script type="text/javascript">
+				document.getElementById('js-search').onsubmit = function(e) {
+					var keyword = this.search.value;
+					window.location = this.getAttribute('action') + (keyword ? keyword : '');
+				}
+			</script>

@@ -1613,6 +1613,11 @@ body._pc .anim-section {
   color: #060d2c;
 }
 
+.main__search {
+  margin: 1.5em 0em 0em 0em;
+  width: 100%;
+}
+
 .main__subtitle {
   margin: 0.7142857143em 0em 0em 0em;
   font-size: 14px;
@@ -2473,6 +2478,10 @@ body._pc .anim-section {
   line-height: 1.3055555556;
 }
 
+.article__content.about__sert {
+  margin: 0;
+}
+
 .article__content time {
   display: inline-block;
   font-size: 14px;
@@ -2615,6 +2624,16 @@ body._pc .anim-section {
   font-weight: 500;
   line-height: 1.4166666667;
   padding: 0.9583333333em 0.8333333333em;
+}
+
+.article__content table a {
+  color: #f7515c;
+}
+
+.article__content table .js-toggler {
+  font-size: 14px;
+  cursor: pointer;
+  color: #f7515c;
 }
 
 .article__socials {
@@ -3265,6 +3284,10 @@ body._pc .anim-section {
   padding: 1em;
   border: 1px solid #dfe0e1;
   border-top: 0;
+}
+
+.about__pagination {
+  margin: 2.5em 0em 0em 0em;
 }
 
 .about__text {
@@ -5464,6 +5487,16 @@ body._pc .anim-section {
 
   .contacts__card-item[href]:hover {
     color: #f7515c;
+  }
+
+  .article__content table a:hover {
+    text-decoration: underline;
+  }
+
+  .article__content table .js-toggler:hover {
+    text-decoration: underline;
+    -webkit-text-decoration-style: dashed;
+            text-decoration-style: dashed;
   }
 
   .article__social:hover {
