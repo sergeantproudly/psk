@@ -3,6 +3,7 @@
 namespace Site\Components;
 use Engine\Library\ImprovedComponent;
 use Engine\Library\ListTemplate;
+use Engine\Library\Common;
 
 class ProductionDirectionsComponent extends ImprovedComponent {
   const CODE = 'production'; 
@@ -21,6 +22,7 @@ class ProductionDirectionsComponent extends ImprovedComponent {
   function render($production, $name = '') {
     array_walk($production, function(&$direction, $counter) {
       $direction['Num'] = $counter + 1;
+      $direction['ImageWebp'] = Common::flGetWebpByImage($direction['Image']);
     });
 
     $productionTemplate = 
