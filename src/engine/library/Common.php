@@ -37,6 +37,20 @@
 		return $array;
 	}
 
+	public static function setLinksByFields($array, $page, $field1 = '', $field2 = '', $field3 = '') {
+		foreach ($array as $key => &$item) {
+	    	$item['Link'] = "/{$page}";
+	    	if ($field1)
+	    		$item['Link'] .= "/{$item[$field1]}";
+		    if ($field2)
+		        $item['Link'] .= "/{$item[$field2]}";
+		    if ($field3)
+		        $item['Link'] .= "/{$item[$field3]}";
+		    $item['Link'] .= '/';
+		}
+		return $array;
+	}
+
 	public static function setNl2Br($array, $keylabel) {
 		foreach ($array as $key => &$item) {
 	    	$item[$keylabel] = nl2br($item[$keylabel]);
@@ -422,7 +436,7 @@
 		return false;
 	}
 	
-	function Num125($n){
+	static function Num125($n){
 		$n100 = $n % 100;
 		$n10 = $n % 10;
 	  	if( ($n100 > 10) && ($n100 < 20) ) {
@@ -439,8 +453,8 @@
 	  	}
 	}
 	
-	function Word125($n,$ending1,$ending2,$ending5){
-		return ${'ending'.Num125($n)};
+	static function Word125($n,$ending1,$ending2,$ending5){
+		return ${'ending'.self::Num125($n)};
 	} 
 
 	function ParsePrice($price,$mode='triplet',$params=array()){

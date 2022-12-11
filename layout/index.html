@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221210135948">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221210135948">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221210135948">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221211133055">
 
 
 </head>
@@ -82,37 +82,54 @@
         <div class="menu__container">
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link active">ГЛАВНАЯ</a></li>
-                <li class="menu__item">
-                    <a href="/about.html" class="menu__link ">О КОМПАНИИ</a>
+                <li class="menu__item menu-parent">
+                    <a href="/about.html" class="menu__link icon-arrow ">О КОМПАНИИ</a>
                     <div class="submenu">
                         <ul class="submenu__list">
                             <li class="submenu__item">
-                                <a href="#" class="submenu__link nav-item ">
-                                    Digital Trends
+                                <a href="/about.html" class="submenu__link">
+                                    Основная информация
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="/marketing.html" class="submenu__link nav-item">
-                                    Digital Marketing Communication
+                                <a href="/sert.html" class="submenu__link">
+                                    Сертификаты
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="/web.html" class="submenu__link nav-item">
-                                    Web Design & Web Development
+                                <a href="/partners.html" class="submenu__link">
+                                    Партнеры
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="#"  class="submenu__link nav-item">
-                                    GDPR – General Data Protection Regulation
+                                <a href="/team.html" class="submenu__link">
+                                    Руководство
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/customers.html" class="submenu__link">
+                                    Заказчики
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/complex.html" class="submenu__link">
+                                    Логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/reviews.html" class="submenu__link">
+                                    Отзывы
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ И УСЛУГИ</a></li>
-                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a></li>
+                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ</a></li>
+                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a>
+                </li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
-                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a></li>
+                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -129,13 +146,13 @@
 						</a>
 					</div>
 				</div>
-				<canvas id="gradient-canvas" data-transition-in></canvas>
+				<canvas id="gradient-canvas" data-transition-in />
 			</section>
-			<div class="anim-content" id="anim-content" >
-				<div class="page__products products">
+			<div class="anim-content" id="anim-content">
+				<div class="page__products products anim-section">
 					<div class="products__container">
 						<div class="products__items">
-							<figure class="products__item card-1">
+							<figure class="products__item card card-1">
 								<picture><source srcset="img/products/01.webp"type="image/webp"><img src="img/products/01.png" alt="product desc"></picture>
 								<figcaption class="products__item-desc">
 									СИП-арматура <br>
@@ -143,7 +160,7 @@
 								</figcaption>
 								<a href="" class="products__item-link"></a>
 							</figure>
-							<figure class="products__item card-2">
+							<figure class="products__item card card-2">
 								<picture><source srcset="img/products/02.webp"type="image/webp"><img src="img/products/02.png" alt="product desc"></picture>
 								<figcaption class="products__item-desc">
 									Комплектация <br>
@@ -151,7 +168,7 @@
 								</figcaption>
 								<a href="" class="products__item-link"></a>
 							</figure>
-							<figure class="products__item card-3">
+							<figure class="products__item card card-3">
 								<picture><source srcset="img/products/03.webp"type="image/webp"><img src="img/products/03.png" alt="product desc"></picture>
 								<figcaption class="products__item-desc">
 									Комплексные поставки <br>
@@ -159,7 +176,7 @@
 								</figcaption>
 								<a href="" class="products__item-link"></a>
 							</figure>
-							<figure class="products__item card-4">
+							<figure class="products__item card card-4">
 								<picture><source srcset="img/products/04.webp"type="image/webp"><img src="img/products/04.png" alt="product desc"></picture>
 								<figcaption class="products__item-desc">
 									Комплексные поставки <br>
@@ -171,47 +188,41 @@
 					</div>
 				</div>
 				<div class="page__benefits benefits">
-					<div class="swiper-container benefits-slider">
-
-						<div class="swiper-wrapper benefits-slider__wrapper">
-
-							<div class="swiper-slide benefits-slider__slide">
-								<div class="benefits-slider__slide-image">
-									<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="benefits image"></picture>
-								</div>
-								<div class="benefits-slider__slide-num">
-									01
-								</div>
-								<div class="benefits-slider__slide-text">
-									Постоянное развитие умений <br>
-									и навыков сотрудников
-								</div>
-							</div>
-							<div class="swiper-slide benefits-slider__slide">
-								<div class="benefits-slider__slide-image">
-									<picture><source srcset="img/benefits/02.webp"type="image/webp"><img src="img/benefits/02.jpg" class="cover-image" alt="benefits image"></picture>
-								</div>
-								<div class="benefits-slider__slide-num">
-									02
-								</div>
-								<div class="benefits-slider__slide-text">
-									Гарантируем внимание <br>
-									к партнерам и заботу об их бизнесе
-								</div>
-							</div>
-							<div class="swiper-slide benefits-slider__slide">
-								<div class="benefits-slider__slide-image">
-									<picture><source srcset="img/benefits/03.webp"type="image/webp"><img src="img/benefits/03.jpg" class="cover-image" alt="benefits image"></picture>
-								</div>
-								<div class="benefits-slider__slide-num">
-									03
-								</div>
-								<div class="benefits-slider__slide-text">
-									Отвечаем не только за качество <br>
-									поставляемой и производимой продукции, <br>
-									но и за уровень обслуживания
-								</div>
-							</div>
+					<div class="benefits__slide benefits__slide-1 anim-section">
+						<div class="benefits__slide-image">
+							<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image benefits__slide-bg" alt="benefits image"></picture>
+						</div>
+						<div class="benefits__slide-num">
+							01
+						</div>
+						<div class="benefits__slide-text">
+							Постоянное развитие умений <br>
+							и навыков сотрудников
+						</div>
+					</div>
+					<div class="benefits__slide benefits__slide-2 anim-section">
+						<div class="benefits__slide-image">
+							<picture><source srcset="img/benefits/02.webp"type="image/webp"><img src="img/benefits/02.jpg" class="cover-image benefits__slide-bg" alt="benefits image"></picture>
+						</div>
+						<div class="benefits__slide-num">
+							02
+						</div>
+						<div class="benefits__slide-text">
+							Гарантируем внимание <br>
+							к партнерам и заботу об их бизнесе
+						</div>
+					</div>
+					<div class="benefits__slide benefits__slide-3 anim-section">
+						<div class="benefits__slide-image">
+							<picture><source srcset="img/benefits/03.webp"type="image/webp"><img src="img/benefits/03.jpg" class="cover-image benefits__slide-bg" alt="benefits image"></picture>
+						</div>
+						<div class="benefits__slide-num">
+							03
+						</div>
+						<div class="benefits__slide-text">
+							Отвечаем не только за качество <br>
+							поставляемой и производимой продукции, <br>
+							но и за уровень обслуживания
 						</div>
 					</div>
 				</div>
@@ -226,7 +237,8 @@
 									Посмотрите, как устроены наши логистические комплексы и&nbsp;производства
 								</div>
 							</div>
-							<button type="button" data-modal="modal" data-video-code-rus="C0E1oD1BhTY" data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
+							<button type="button" data-modal="modal" data-video data-video-code-rus="C0E1oD1BhTY"
+								data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
 								<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="video image"></picture>
 							</button>
 						</div>
@@ -582,7 +594,7 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/services.html" class="footer-body__list-link">
                         Комплексные поставки гражданского строительства
                     </a>
                 </li>
@@ -664,7 +676,7 @@
             <div class="footer-copy__text">
                 © 2022 ООО “ПСК СтройИнвест”
             </div>
-            <a href="" class="footer-copy__privacy">
+            <a href="/privacy.html" class="footer-copy__privacy">
                 Политика конфиденциальности
             </a>
             <div class="footer-copy__production">
@@ -683,8 +695,7 @@
     <div class="popup__content">
         <button type="button" class="popup__close icon-close"></button>
         <div class="popup__body">
-         
-            <div class="video" id="player"></div>
+
             <div id="video-lang-swticher">
                 <ul>
                     <li><a href="C0E1oD1BhTY" data-lang="ru" class="curr">Ру</a></li>
@@ -694,19 +705,20 @@
         </div>
     </div>
 </div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221210135948"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221210135948"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211133055"></script>
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js?_v=20221210135948"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221210135948"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221210135948"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221210135948"></script>
-<script src="https://www.youtube.com/iframe_api?_v=20221210135948"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211133055"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211133055"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211133055"></script>
 
-<script src="js/app.min.js?_v=20221210135948"></script>
+<script src="js/app.min.js?_v=20221211133055"></script>
 
-	
+
 </body>
 
 </html>

@@ -182,11 +182,11 @@ class CertificatesPage extends Page {
       ],
       'Pagination' => count($pages) > 1 ? $pagination->view('default')->parse([
         'Previous' => [
-          'Status' => $prevPage ? '' : 'disabled',
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'
         ],
         'Next' => [
-          'Status' => $nextPage ? '' : 'disabled',
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
           'Link' => $nextPage['link'] ?: '#'
         ],
         'List' => count($pages) > 1
@@ -314,11 +314,11 @@ class CertificatesPage extends Page {
       'Table' => $tableTemplate,
       'Pagination' => count($pages) > 1 ? $pagination->view('default')->parse([
         'Previous' => [
-          'Status' => $prevPage ? '' : 'disabled',
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'
         ],
         'Next' => [
-          'Status' => $nextPage ? '' : 'disabled',
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
           'Link' => $nextPage['link'] ?: '#'
         ],
         'List' => count($pages) > 1

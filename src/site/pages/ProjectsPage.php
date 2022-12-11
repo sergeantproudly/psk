@@ -90,11 +90,11 @@ class ProjectsPage extends Page {
       'Pagination' => [
         'Class' => 'projects__pagination',
         'Previous' => [
-          'Status' => $prevPage ? '' : 'disabled',
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'
         ],
         'Next' => [
-          'Status' => $nextPage ? '' : 'disabled',
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
           'Link' => $nextPage['link'] ?: '#'
         ],
         'List' => count($pages) > 1

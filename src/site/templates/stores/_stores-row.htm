@@ -1,22 +1,31 @@
-<li>
-                            <div class="info">
-                                <h2 id="store{{ID}}">{{TITLE}}</h2>
+<div class="tabs__content-item" data-tab-content>
+                                <div class="complex__item">
+                                    <div class="complex__section">
+                                        <div class="complex__title title-md">
+                                            {{TITLE}}
+                                        </div>
+                                        <div class="complex__place">
+                                            г. {{TITLESHORT}}
+                                        </div>
+                                        <ul class="complex__spectification">
+                                            {{ATTRSHTML}}
+                                        </ul>
+                                    </div>
+                                    <div class="complex__section">
+                                        <div class="complex__title title-md">
+                                            Погрузочная техника:
+                                        </div>
+                                        <ul class="complex__list">
+                                            {{VEHICLESHTML}}
+                                        </ul>
+                                        <div class="complex__delivery icon-transport">
+                                            {{DELIVERYTEXT}}
+                                        </div>
+                                        <div class="complex__gallery">
+                                            {{PHOTOSHTML}}
+                                        </div>
+                                    </div>
 
-                                <ul class="attributes{{ATTRSCLASS}}">
-                                    {{ATTRSHTML}}
-                                </ul>
-
-                                <h3>Погрузочная техника:</h3>
-                                <ul class="vehicles">
-                                    {{VEHICLESHTML}}
-                                </ul>
-
-                                <div class="delivery">{{DELIVERYTEXT}}</div>
+                                </div>
                             </div>
-
-                            <div class="photos">
-                                <ul>
-                                    {{PHOTOSHTML}}
-                                </ul>
-                            </div>
-                        </li>
+                            

@@ -1,19 +1,30 @@
-{{BREADCRUMBS}}
-
-<div class="holder">
-            <div id="stores">
-                <h1>{{TITLE}}</h1>
-
-                <div class="navigation">
-                    <ul class="js-fadeout" data-mobile-only="true">
-                        {{NAVIGATION}}
-                    </ul>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                        <h1 class="main__title title-xl">
+                            {{TITLE}}
+                        </h1>
+                    </div>
                 </div>
+                <canvas id="gradient-canvas" data-transition-in>
+            </section>
+            <section class="page__complex complex">
+                <div class="complex__container">
+                    <div data-tabs class="complex__tabs tabs">
+                        <div class="tabs__controls" data-spollers="767.98, max">
+                            <div class="tabs__caption" data-spoller></div>
+                            <div class="tabs__spoller">
+                                <div class="tabs__buttons">
+                                    {{NAVIGATION}}
+                                </div>
+                            </div>
+                        
+                        </div>
 
-                <div class="list">
-                    <ul>
-                        {{LIST}}
-                    </ul>
+                        <div class="tabs__content">
+                            {{LIST}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>

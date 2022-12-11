@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221210135108">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221210135108">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221210135108">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221211133055">
 
 
 </head>
@@ -82,37 +82,54 @@
         <div class="menu__container">
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link ">ГЛАВНАЯ</a></li>
-                <li class="menu__item">
-                    <a href="/about.html" class="menu__link active">О КОМПАНИИ</a>
+                <li class="menu__item menu-parent">
+                    <a href="/about.html" class="menu__link icon-arrow active">О КОМПАНИИ</a>
                     <div class="submenu">
                         <ul class="submenu__list">
                             <li class="submenu__item">
-                                <a href="#" class="submenu__link nav-item ">
-                                    Digital Trends
+                                <a href="/about.html" class="submenu__link">
+                                    Основная информация
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="/marketing.html" class="submenu__link nav-item">
-                                    Digital Marketing Communication
+                                <a href="/sert.html" class="submenu__link">
+                                    Сертификаты
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="/web.html" class="submenu__link nav-item">
-                                    Web Design & Web Development
+                                <a href="/partners.html" class="submenu__link">
+                                    Партнеры
                                 </a>
                             </li>
                             <li class="submenu__item">
-                                <a href="#"  class="submenu__link nav-item">
-                                    GDPR – General Data Protection Regulation
+                                <a href="/team.html" class="submenu__link">
+                                    Руководство
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/customers.html" class="submenu__link">
+                                    Заказчики
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/complex.html" class="submenu__link">
+                                    Логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="/reviews.html" class="submenu__link">
+                                    Отзывы
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ И УСЛУГИ</a></li>
-                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a></li>
+                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ</a></li>
+                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a>
+                </li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
-                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a></li>
+                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -136,10 +153,10 @@
 				</div>
 				<canvas id="gradient-canvas" data-transition-in>
 			</section>
-			<section class="page__about about">
+			<section class="page__about about" >
 				<div class="about__container">
 					<div class="about__image">
-						<picture><source srcset="img/about.webp"type="image/webp"><img src="img/about.jpg" class="cover-image" alt="about picture"></picture>
+						<picture><source srcset="img/about.webp"type="image/webp"><img src="img/about.jpg" height="350px" class="cover-image" alt="about picture"></picture>
 					</div>
 					<div class="about__body">
 						<div class="about__text article__content">
@@ -166,7 +183,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__numbers">
+						<div class="about__numbers"  data-animation>
 							<div class="about__numbers-item">
 								<div class="about__numbers-value">
 									с <span class="count-number no-spacing">2014</span>
@@ -232,7 +249,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="about__text article__content">
+						<div class="about__text article__content"  data-animation>
 							<div>
 								<h3>
 									Стандарты
@@ -243,7 +260,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__text article__content">
+						<div class="about__text article__content"  data-animation>
 							<div>
 								<h3>
 									Гарантии
@@ -254,7 +271,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__video video__body">
+						<div class="about__video video__body"  data-animation>
 							<div class="video__main">
 								<h2 class="video__title title-xl">
 									Видео о нас
@@ -273,15 +290,15 @@
 			<section class="page__equipment equipment">
 				<div class="equipment__container">
 					<div class="equipment__body">
-						<h2 class="equipment__title title-lg">
+						<h2 class="equipment__title title-lg"  data-animation>
 							Наше оборудование
 						</h2>
-						<div class="equipment__subtitle">
+						<div class="equipment__subtitle"  data-animation>
 							Компания «ПСК СтройИнвест» предлагает широкий спектр материалов и оборудования для
 							электрических подстанций и сетевого хозяйства любого напряжения.
 						</div>
 						<div class="equipment__items">
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Низковольтное оборудование
 								</div>
@@ -294,7 +311,7 @@
 									<li class="equipment__list-item">Коммутационные устройства</li>
 								</ul>
 							</div>
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Оборудование среднего напряжения
 								</div>
@@ -308,7 +325,7 @@
 										батареи</li>
 								</ul>
 							</div>
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Высоковольтное оборудование
 								</div>
@@ -318,7 +335,7 @@
 									<div class="equipment__list-item">Распределительные подстанции</div>
 								</ul>
 							</div>
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Кабельно-проводниковая продукция
 								</div>
@@ -328,7 +345,7 @@
 									<li class="equipment__list-item">Оборудование для монтажа кабельных линий</li>
 								</ul>
 							</div>
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Металлоконструкции
 								</div>
@@ -338,7 +355,7 @@
 									<li class="equipment__list-item">Металлоконструкции для быстровозводимых зданий</li>
 								</ul>
 							</div>
-							<div class="equipment__item">
+							<div class="equipment__item"  data-animation>
 								<div class="equipment__caption">
 									Опоры ЛЭП
 								</div>
@@ -421,7 +438,7 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/services.html" class="footer-body__list-link">
                         Комплексные поставки гражданского строительства
                     </a>
                 </li>
@@ -503,7 +520,7 @@
             <div class="footer-copy__text">
                 © 2022 ООО “ПСК СтройИнвест”
             </div>
-            <a href="" class="footer-copy__privacy">
+            <a href="/privacy.html" class="footer-copy__privacy">
                 Политика конфиденциальности
             </a>
             <div class="footer-copy__production">
@@ -518,12 +535,18 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221210135108"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221210135108"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221210135108"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221210135108"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221210135108"></script>
-<script src="js/app.min.js?_v=20221210135108"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211133055"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211133055"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211133055"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211133055"></script>
+
+<script src="js/app.min.js?_v=20221211133055"></script>
 
 </body>
 

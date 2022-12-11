@@ -132,11 +132,11 @@ class RegisterPage extends Page {
       $sortColumn => "act $sortClass",
       'Pagination' => count($pages) > 1 ? $pagination->view('default')->parse([
         'Previous' => [
-          'Status' => $prevPage ? '' : 'disabled',
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'
         ],
         'Next' => [
-          'Status' => $nextPage ? '' : 'disabled',
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
           'Link' => $nextPage['link'] ?: '#'
         ],
         'List' => count($pages) > 1
@@ -284,11 +284,11 @@ class RegisterPage extends Page {
       'Table' => $table,
       'Pagination' => count($pages) > 1 ? $pagination->view('default')->parse([
         'Previous' => [
-          'Status' => $prevPage ? '' : 'disabled',
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
           'Link' => $prevPage['link'] ?: '#'
         ],
         'Next' => [
-          'Status' => $nextPage ? '' : 'disabled',
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
           'Link' => $nextPage['link'] ?: '#'
         ],
         'List' => count($pages) > 1

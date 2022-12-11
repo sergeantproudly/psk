@@ -1,15 +1,67 @@
-{{BREADCRUMBS}}
-
-<div class="holder">
-            <div id="production">
-                <h1>{{TITLE}}</h1>
-
-                <ul class="goods">
-                    {{INCLUDE:GOODS}}
-                </ul>
+<section id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-md">
+                        {{BREADCRUMBS}}
+                        <h1 class="main__title title-xl">
+                            {{TITLE}}
+                        </h1>
+                        <div class="main__subtitle">
+                            {{TEXT}}
+                        </div>
+                    </div>
+                </div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
+            </section>
+            <div class="page__products products products-offset">
+                <div class="products__container">
+                    <div class="products__wrapper">
+                        <div class="products__menu products-menu">
+                            {{INCLUDE:SUBCATEGORIES}}
+                        </div>
+                        <div class="products__body">
+                            <form action="#" class="products__search search">
+                                <div class="form__wrapper">
+                                    <input type="text" name="search" class="form__input search__input" placeholder="Поиск">
+                                    <button type="button" class="form__input-clear icon-close"></button>
+                                </div>
+                                <button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
+                            </form>
+                            <div class="products__content">
+                                <div class="products__content-header">
+                                    <div class="products__quantity">
+                                        {{COUNT}}
+                                    </div>
+                                    <!-- <div class="products__sort dropdown">
+                                        <button class="dropdown__button" type="button">
+                                            По наименованию
+                                        </button>
+                                        <ul class="dropdown__list">
+                                            <li class="dropdown__list-item active" data-value="name">
+                                                По наименованию
+                                            </li>
+                                            <li class="dropdown__list-item" data-value="price">
+                                                По цене
+                                            </li>
+                                            <li class="dropdown__list-item" data-value="actual">
+                                                По популярности
+                                            </li>
+                                        </ul>
+                                        <input type="text" class="dropdown__input hidden" hidden name="sorting" value="name">
+                                    </div> -->
+                                </div>
+                                <div class="products__grid">
+                                    {{INCLUDE:GOODS}}
+                                </div>
+                                <!--
+                                <div class="products__more">
+                                    <a href="" class="btn btn-blue btn-mw">
+                                        Загрузить еще
+                                    </a>
+                                </div>
+                            -->
+                                {{INCLUDE:PAGINATION}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        {{PROMO}}
-
-        {{OTHER}}

@@ -86,9 +86,9 @@ class CompanyPage extends Page {
       $content['BlockProductionHeading'] = strip_tags($content['BlockProductionHeading']);
       $rendered = $this->page('index')->parse($content + [
         'Nav' => $navigation,
-        'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="about__text article__content"><div><h3>Миссия</h3>' . $content['BlockMissionText'] . '</div></div>' : '',
-        'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="about__text article__content"><div><h3>Стандарты</h3>' . $content['BlockStandartsText'] . '</div></div>' : '',
-        'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="about__text article__content"><div><h3>Гарантии</h3>' . $content['BlockGuaranteesText'] . '</div></div>' : '',
+        'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="about__text article__content" data-animation><div><h3>Миссия</h3>' . $content['BlockMissionText'] . '</div></div>' : '',
+        'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="about__text article__content" data-animation><div><h3>Стандарты</h3>' . $content['BlockStandartsText'] . '</div></div>' : '',
+        'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="about__text article__content" data-animation><div><h3>Гарантии</h3>' . $content['BlockGuaranteesText'] . '</div></div>' : '',
         'Video' => $videoBlockRendered,
         'Advantages' => $advantagesRendered,
       ]);
@@ -109,7 +109,8 @@ class CompanyPage extends Page {
         $licenses = $this->model->getLicenseImages();
         foreach ($licenses as &$license) {
           $license['Alt'] = htmlspecialchars($license['Title'], ENT_QUOTES);
-          if ($license['File']) $license['Upload'] = '<a href="' . $license['File'] . '" class="btn">Скачать</a>';
+          $license['PreviewWebp'] = Common::flGetWebpByImage($license['Preview']);
+          if ($license['File']) $license['Upload'] = '<a href="' . $license['File'] . '" download class="sert__download icon-share">Скачать</a>';
         }
         $licensesItemTemplate = new ListTemplate('company__licenses__item', 'company/partial');
         $licensesRendered  = $licensesItemTemplate->parse($licenses);
@@ -126,7 +127,8 @@ class CompanyPage extends Page {
         $reviews = $this->model->getReviewImages();
         foreach ($reviews as &$review) {
           $review['Alt'] = htmlspecialchars($review['Title'], ENT_QUOTES);
-          if ($review['File']) $review['Upload'] = '<a href="' . $review['File'] . '" class="btn">Скачать</a>';
+          $review['PreviewWebp'] = Common::flGetWebpByImage($review['Preview']);
+          if ($review['File']) $review['Upload'] = '<a href="' . $review['File'] . '" download class="sert__download icon-share">Скачать</a>';
         }
         $reviewsItemTemplate = new ListTemplate('company__reviews__item', 'company/partial');
         $reviewsRendered  = $reviewsItemTemplate->parse($reviews);
@@ -144,8 +146,9 @@ class CompanyPage extends Page {
         $partners = $partnerModel->getPartners();
         foreach ($partners as &$partner) {
           $partner['Style'] = $partner['WidthBig'] ? 'style="width: ' . $partner['WidthBig'] . 'px"' : '';
+          $partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
           $partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
-          if ($partner['Link']) $partner['Link'] = '<a href="' . $partner['Link'] .' " class="external" target="_blank" rel="nofollow">' . $partner['Link'] . '</a>';
+          if ($partner['Link']) $partner['Link'] = '<a href="' . $partner['Link'] .'" target="_blank" rel="nofollow" class="company__link icon-link">' . $partner['Link'] .'</a>';
         }
         $partnersItemTemplate = new ListTemplate('company__partners__item', 'company/partial');
         $partnersRendered  = $partnersItemTemplate->parse($partners);
@@ -162,8 +165,9 @@ class CompanyPage extends Page {
         $clients = $clientModel->getClients();
         foreach ($clients as &$client) {
           $client['Style'] = $client['WidthBig'] ? 'style="width: ' . $client['WidthBig'] . 'px"' : '';
+          $client['ImageWebp'] = Common::flGetWebpByImage($client['Image']);
           $client['Alt'] = htmlspecialchars($client['Title'], ENT_QUOTES);
-          if ($client['Link']) $client['Link'] = '<a href="' . $client['Link'] .' " class="external" target="_blank" rel="nofollow">' . $client['Link'] . '</a>';
+          if ($client['Link']) $client['Link'] = '<a href="' . $client['Link'] .'" target="_blank" rel="nofollow" class="company__link icon-link">' . $client['Link'] .'</a>';
         }
         $clientsItemTemplate = new ListTemplate('company__client__item', 'company/partial');
         $clientsRendered  = $clientsItemTemplate->parse($clients);
@@ -180,6 +184,7 @@ class CompanyPage extends Page {
         $staffs = $staffModel->getStaffDirection();
         foreach ($staffs as &$staff) {
           $staff['Alt'] = htmlspecialchars($staff['Name'], ENT_QUOTES);
+          $staff['PhotoPreviewWebp'] = Common::flGetWebpByImage($staff['PhotoPreview']);
         }
         $staffsItemTemplate = new ListTemplate('company__staff__item', 'company/partial');
         $staffsRendered  = $staffsItemTemplate->parse($staffs);
@@ -205,18 +210,20 @@ class CompanyPage extends Page {
           $store['PhotosHtml'] = '';
 
           if ($first) {
-            $store['NavClass'] = ' class="active"';
+            $store['NavClass'] = ' active';
             $first = false;
           } else {
             $store['NavClass'] = '';
           }
 
-          if ($store['Attributes'] && count($store['Attributes']) > 4) {
-            $store['AttrsClass'] = ' many';
-          }
+          // if ($store['Attributes'] && count($store['Attributes']) > 4) {
+          //   $store['AttrsClass'] = ' many';
+          // }
 
           if ($store['Attributes']) {
             foreach ($store['Attributes'] as $attr) {
+              $attr['Value'] = preg_replace('/(\d+)/', '<span class="count-number">$1</span>', $attr['Value']);
+              $attr['Title'] = 
               $store['AttrsHtml'] .= $attrTemplate->parse($attr);
             }
           }
@@ -229,13 +236,11 @@ class CompanyPage extends Page {
             $counter = 0;
             foreach ($store['Photos'] as $photo) {
               $counter++;
-              if ($counter <= 4) {
-                $photo['Class'] = ($counter == 4 && count($store['Photos']) > 4) ? ' more-photos' : '';
-                $photo['MoreText'] = ($counter == 4 && count($store['Photos']) > 4) ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
-                $store['PhotosHtml'] .= $photoTemplate->parse($photo);
-              } else {
-                $store['PhotosHtml'] .= '<a href="' . $photo['ImageFull'] . '" style="display:none;" class="js-lightbox"  data-gallery="store' . $photo['StoreId'] . '-photos" title="' . $photo['Alt'] . '"></a>';
-              }
+
+              $photo['ImageWebp'] = Common::flGetWebpByImage($photo['Image']);
+              $photo['Class'] = ($counter == 3 && count($store['Photos']) > 3) ? ' more-photos' : '';
+              $photo['MoreText'] = ($counter == 3 && count($store['Photos']) > 3) ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
+              $store['PhotosHtml'] .= $photoTemplate->parse($photo);
             }
           }
         }

@@ -20,15 +20,29 @@ class ProductionPage extends Page {
     parent::__construct(self::CODE, self::DIR);
 
     $this->setPages([
-      'index' => ['template' => 'production'], 
-      'detail' => ['template' => 'production__detail'],
+      'index' => ['template' => 'production_directions'], 
+      'direction' => ['template' => 'production_direction'], 
+      //'direction' => ['template' => 'production'], 
+      'product' => ['template' => 'production'],
       'subcategory' => ['template' => 'production__subcategory'],
       'goody' => ['template' => 'production__goody']
     ]);
 
     $this->setPartials([
+      'directions' => [
+        'template' => 'production-direction__card',
+        'type' => 'list'
+      ],
+      'direction_others' => [
+        'template' => 'production-direction-others__card',
+        'type' => 'list'
+      ],
       'list' => [
         'template' => 'production__card',
+        'type' => 'list'
+      ],
+      'categories' => [
+        'template' => 'production-category__card',
         'type' => 'list'
       ],
       'photos' => [
@@ -54,102 +68,185 @@ class ProductionPage extends Page {
     global $Database; 
 
     $content = $this->model->getContent($this->code());
-    $contacts = $this->model->getContent('contacts');
+    //$contacts = $this->model->getContent('contacts');
 
-    $products = $this->model->getProducts();
-    $products = Common::setLinks($products, 'production');
+    $directions = $this->model->getProductsDirections();
+    $directions = Common::setLinks($directions, 'production', 'direction');
 
-    $this->getPage('index')->addInclude($this->partial('list'));
-
-    $blockCertsTemplate = new Template('bl-catalog-certs', 'production');
-    $blockCertsRendered = $blockCertsTemplate->parse([
-      'Heading' => strip_tags($content['CertBlockHeading']),
-      'Text' => $content['CertBlockText'],
-    ]);
-
-    $staffModel = new \Site\Models\StaffModel($Database); 
-    $person = $staffModel->getPersonById(self::PERSON_ID);
-
-    $blockPromoTemplate = new Template('bl-promo', 'production');
-    $blockPromoRendered = $blockPromoTemplate->parse([
-      'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
-      'Name' => $person['Name'],
-      'Rank' => $person['Rank'],
-      'Heading' => strip_tags($content['PromoHeading']),
-      'Text' => $content['PromoText'],
-      'Phone' => $contacts['Phone'],
-      'PhoneCommon' => $contacts['PhoneCommon'],
-      'Email' => $contacts['Email'],
-      'EmailCommon' => $contacts['EmailCommon'],
-    ]);
+    $this->getPage('index')->addInclude($this->partial('directions'));
 
     return $this->getPage('index')->parse($this->page + [
-      'list' => $products,
-      'certs' => $blockCertsRendered,
-      'promo' => $blockPromoRendered,
+      'directions' => $directions,
     ]);
   }
 
-  function detail($params = []) {
+  function direction($params = []) {
+    if (!isset($params['direction']) || empty($params['direction']))
+      return $this->index();
+
+    global $Database;
+    global $Settings;
+
+    $this->model->init();
+
+    $pagination = new PaginationComponent($this->model->getDB());
+    $perPage = $Settings->get('GoodsCount') ?: 12;
+    $goodsCount = $this->model->getDirectionGoodsCount($params['direction']);
+    $currentPage = $params['page'] ?? 1;
+    $paginationData = $pagination->pages(
+      $perPage, 
+      $goodsCount, 
+      $this->code() . '/direction/' . $params['direction'],
+      $currentPage
+    );
+    $pages = $paginationData['pages'];
+    $nextPage = $paginationData['nextPage'];
+    $prevPage = $paginationData['previousPage'];
+    $pageNumber = $currentPage <= count($pages) ? $currentPage : 1;
+    $offset = ($pageNumber - 1) * $perPage;
+    $offset = $offset >= 0 ? $offset : 0;
+
+    $content = $this->model->getContent($this->code());
+    //$contacts = $this->model->getContent('contacts');
+
+    $direction = $this->model->getDirectionByCode($params['direction']);
+
+    $categories = $this->model->getProducts($params['direction']);
+    $categories = Common::setLinks($categories, 'production');
+
+    $this->getPage('direction')->addInclude($this->partial('categories'));
+    $this->getPage('direction')->addInclude($this->partial('goods'));
+    if (count($pages) > 1) {
+      $this->getPage('direction')->addInclude(
+        $pagination->view('default'), 'pagination'
+      );
+    } 
+    $this->getPage('direction')->addInclude($this->partial('direction_others'));
+    
+    $goods = $this->model->getDirectionGoods($params['direction'], $perPage, $offset);
+    $goods = Common::setLinksByFields($goods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
+    array_walk($goods, function(&$goody) {
+      $goody['ImageWebp'] = Common::flGetWebpByImage($goody['Image']);
+    });
+    $count = Common::Word125($goodsCount, 'Найден ', 'Найдено ', 'Найдено ') . $goodsCount . ' ' . Common::Word125($goodsCount, ' товар', ' товара', ' товаров');
+
+    $directionsOthers = $this->model->getProductsDirectionsOthers($params['direction']);
+    $directionsOthers = Common::setLinks($directionsOthers, 'production', 'direction');
+
+    // $blockCertsTemplate = new Template('bl-catalog-certs', 'production');
+    // $blockCertsRendered = $blockCertsTemplate->parse([
+    //   'Heading' => strip_tags($content['CertBlockHeading']),
+    //   'Text' => $content['CertBlockText'],
+    // ]);
+
+    //$staffModel = new \Site\Models\StaffModel($Database); 
+    //$person = $staffModel->getPersonById(self::PERSON_ID);
+
+    // $blockPromoTemplate = new Template('bl-promo', 'production');
+    // $blockPromoRendered = $blockPromoTemplate->parse([
+    //   'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
+    //   'Name' => $person['Name'],
+    //   'Rank' => $person['Rank'],
+    //   'Heading' => strip_tags($content['PromoHeading']),
+    //   'Text' => $content['PromoText'],
+    //   'Phone' => $contacts['Phone'],
+    //   'PhoneCommon' => $contacts['PhoneCommon'],
+    //   'Email' => $contacts['Email'],
+    //   'EmailCommon' => $contacts['EmailCommon'],
+    // ]);
+
+    return $this->getPage('direction')->parse($direction + [
+      'Categories' => $categories,
+      'Goods' => $goods,
+      'Count' => $count,
+      //'certs' => $blockCertsRendered,
+      //'promo' => $blockPromoRendered,
+      'Pagination' => [
+        'Class' => 'products__pagination',
+        'Previous' => [
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
+          'Link' => $prevPage['link'] ?: '#'
+        ],
+        'Next' => [
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
+          'Link' => $nextPage['link'] ?: '#'
+        ],
+        'List' => count($pages) > 1
+          ? $pagination->partial('pages')->setCallback(function ($item) {
+              return $item['active'] == true;  
+            })->parse($pages) : '',
+      ],
+      'direction_others' => $directionsOthers,
+    ]);
+  }
+
+  function product($params = []) {
     if (!isset($params['product']) || empty($params['product']))
       return $this->index();
 
     global $Database;
+    global $Settings;
+
+    $this->model->init();
+
+    $pagination = new PaginationComponent($this->model->getDB());
+    $perPage = $Settings->get('GoodsCount') ?: 12;
+    $goodsCount = $this->model->getCategoryGoodsCount($params['product']);
+    $currentPage = $params['page'] ?? 1;
+    $paginationData = $pagination->pages(
+      $perPage, 
+      $goodsCount, 
+      $this->code() . '/' . $params['product'],
+      $currentPage
+    );
+    $pages = $paginationData['pages'];
+    $nextPage = $paginationData['nextPage'];
+    $prevPage = $paginationData['previousPage'];
+    $pageNumber = $currentPage <= count($pages) ? $currentPage : 1;
+    $offset = ($pageNumber - 1) * $perPage;
+    $offset = $offset >= 0 ? $offset : 0;
 
     $content = $this->model->getContent($this->code());
-    $contacts = $this->model->getContent('contacts');
 
-    $code = $params['product'];
-    $product = $this->model->getProductByCode($code);
+    $product = $this->model->getProductByCode($params['product']);
+
+    $subcategories = $this->model->getProductSubcategories($params['product']);
+    $subcategories = Common::setLinks($subcategories, 'production', $product['Code']);
+
+    $this->getPage('product')->addInclude($this->partial('subcategories'));
+    $this->getPage('product')->addInclude($this->partial('goods'));
+    if (count($pages) > 1) {
+      $this->getPage('product')->addInclude(
+        $pagination->view('default'), 'pagination'
+      );
+    } 
     
-    $breadcrumbs = new BreadcrumbsComponent;
-    $breadcrumbsRendered = $breadcrumbs->render($code, [
-      ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
-      ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
-      ['Code' => $code, 'Title' => $product['Title']],
-    ]);
+    $goods = $this->model->getCategoryGoods($params['product'], $perPage, $offset);
+    $goods = Common::setLinksByFields($goods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
+    array_walk($goods, function(&$goody) {
+      $goody['ImageWebp'] = Common::flGetWebpByImage($goody['Image']);
+    });
+    $count = Common::Word125($goodsCount, 'Найден ', 'Найдено ', 'Найдено ') . $goodsCount . ' ' . Common::Word125($goodsCount, ' товар', ' товара', ' товаров');
 
-    $photos = $this->model->getProductImages($product['Id']);
-
-    $this->getPage('detail')->addInclude($this->partial('photos'));
-
-    $subcategories = $this->model->getSubCategories($product['Id']);
-    $subcategories = Common::setLinks($subcategories, 'production', $code);
-
-    $this->getPage('detail')->addInclude($this->partial('subcategories'));
-
-    $staffModel = new \Site\Models\StaffModel($Database);
-    $person = $staffModel->getPersonById(self::PERSON_ID);
-
-    $blockPromoTemplate = new Template('bl-promo', 'production');
-    $blockPromoRendered = $blockPromoTemplate->parse([
-      'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
-      'Name' => $person['Name'],
-      'Rank' => $person['Rank'],
-      'Heading' => strip_tags($content['PromoHeading']),
-      'Text' => $content['PromoText'],
-      'Phone' => $contacts['Phone'],
-      'PhoneCommon' => $contacts['PhoneCommon'],
-      'Email' => $contacts['Email'],
-      'EmailCommon' => $contacts['EmailCommon'],
-    ]);
-
-    $otherProducts = $this->model->getSimilarProduction($product);
-    $otherProducts = Common::setLinks($otherProducts, 'production');
-    $blockOtherTemplate = new Template('bl-other', 'production');
-    $blockOtherItemTemplate = new ListTemplate('bl-other__item', 'production/partial');
-    $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherProducts);
-    $blockOtherRendered = $blockOtherTemplate->parse([
-          'Title' => $content['BlockOtherTitle'],
-          'List' => $blockOtherItemTemplate
-    ]);
-
-    return $this->getPage('detail')->parse($product + $this->page + [
-      'breadcrumbs' => $breadcrumbsRendered,
-      'photos' => $photos,
-      'subcategories' => $subcategories,
-      'promo' => $blockPromoRendered,
-      'other' => $blockOtherRendered,
+    return $this->getPage('product')->parse($product + [
+      'Subcategories' => $subcategories,
+      'Goods' => $goods,
+      'Count' => $count,
+      'Pagination' => [
+        'Class' => 'products__pagination',
+        'Previous' => [
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
+          'Link' => $prevPage['link'] ?: '#'
+        ],
+        'Next' => [
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
+          'Link' => $nextPage['link'] ?: '#'
+        ],
+        'List' => count($pages) > 1
+          ? $pagination->partial('pages')->setCallback(function ($item) {
+              return $item['active'] == true;  
+            })->parse($pages) : '',
+      ],
     ]);
   }
 
@@ -158,9 +255,12 @@ class ProductionPage extends Page {
       return $this->index();
 
     global $Database;
+    global $Settings;
+
+    $this->model->init();
 
     $content = $this->model->getContent($this->code());
-    $contacts = $this->model->getContent('contacts');
+    // $contacts = $this->model->getContent('contacts');
 
     $codeProduct = $params['product'];
     $codeSubcategory = $params['subcategory'];
@@ -178,39 +278,44 @@ class ProductionPage extends Page {
     $goods = $this->model->getSubCategoryGoods($subcategory['Id']);
     $goods = Common::setLinks($goods, 'production/'.$codeProduct, $codeSubcategory);
 
+    $subcategories = $this->model->getProductSubcategories($params['product']);
+    $subcategories = Common::setLinks($subcategories, 'production', $product['Code']);
+
     $this->getPage('subcategory')->addInclude($this->partial('goods'));
+    $this->getPage('subcategory')->addInclude($this->partial('subcategories'));
 
-    $staffModel = new \Site\Models\StaffModel($Database);
-    $person = $staffModel->getPersonById(self::PERSON_ID);
+    // $staffModel = new \Site\Models\StaffModel($Database);
+    // $person = $staffModel->getPersonById(self::PERSON_ID);
 
-    $blockPromoTemplate = new Template('bl-promo', 'production');
-    $blockPromoRendered = $blockPromoTemplate->parse([
-      'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
-      'Name' => $person['Name'],
-      'Rank' => $person['Rank'],
-      'Heading' => strip_tags($content['PromoHeading']),
-      'Text' => $content['PromoText'],
-      'Phone' => $contacts['Phone'],
-      'PhoneCommon' => $contacts['PhoneCommon'],
-      'Email' => $contacts['Email'],
-      'EmailCommon' => $contacts['EmailCommon'],
-    ]);
+    // $blockPromoTemplate = new Template('bl-promo', 'production');
+    // $blockPromoRendered = $blockPromoTemplate->parse([
+    //   'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
+    //   'Name' => $person['Name'],
+    //   'Rank' => $person['Rank'],
+    //   'Heading' => strip_tags($content['PromoHeading']),
+    //   'Text' => $content['PromoText'],
+    //   'Phone' => $contacts['Phone'],
+    //   'PhoneCommon' => $contacts['PhoneCommon'],
+    //   'Email' => $contacts['Email'],
+    //   'EmailCommon' => $contacts['EmailCommon'],
+    // ]);
 
-    $otherProducts = $this->model->getSimilarProduction($product);
-    $otherProducts = Common::setLinks($otherProducts, 'production');
-    $blockOtherTemplate = new Template('bl-other', 'production');
-    $blockOtherItemTemplate = new ListTemplate('bl-other__item', 'production/partial');
-    $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherProducts);
-    $blockOtherRendered = $blockOtherTemplate->parse([
-          'Title' => $content['BlockOtherTitle'],
-          'List' => $blockOtherItemTemplate
-    ]);
+    // $otherProducts = $this->model->getSimilarProduction($product);
+    // $otherProducts = Common::setLinks($otherProducts, 'production');
+    // $blockOtherTemplate = new Template('bl-other', 'production');
+    // $blockOtherItemTemplate = new ListTemplate('bl-other__item', 'production/partial');
+    // $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherProducts);
+    // $blockOtherRendered = $blockOtherTemplate->parse([
+    //       'Title' => $content['BlockOtherTitle'],
+    //       'List' => $blockOtherItemTemplate
+    // ]);
 
     return $this->getPage('subcategory')->parse($subcategory + $this->page + [
+      'Subcategories' => $subcategories,
       'breadcrumbs' => $breadcrumbsRendered,
       'goods' => $goods,
-      'promo' => $blockPromoRendered,
-      'other' => $blockOtherRendered,
+      //'promo' => $blockPromoRendered,
+      //'other' => $blockOtherRendered,
     ]);
   }
 
@@ -219,6 +324,8 @@ class ProductionPage extends Page {
       return $this->index();
 
     global $Database;
+
+    $this->model->init();
 
     $content = $this->model->getContent($this->code());
     $contacts = $this->model->getContent('contacts');
@@ -229,6 +336,7 @@ class ProductionPage extends Page {
     $product = $this->model->getProductByCode($codeProduct);
     $subcategory = $this->model->getSubcategoryByCode($codeSubcategory);
     $goody = $this->model->getGoodyByCode($codeGoody);
+    $goody['PreviewFullWebp'] = Common::flGetWebpByImage($goody['PreviewFull']);
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeGoody, [
@@ -243,36 +351,36 @@ class ProductionPage extends Page {
     $chars = Common::setNl2Br($chars, 'Value');
     $this->getPage('goody')->addInclude($this->partial('chars'));
 
-    $staffModel = new \Site\Models\StaffModel($Database);
-    $person = $staffModel->getPersonById(self::PERSON_ID);
+    // $staffModel = new \Site\Models\StaffModel($Database);
+    // $person = $staffModel->getPersonById(self::PERSON_ID);
 
-    $blockPromoTemplate = new Template('bl-promo', 'production');
-    $blockPromoRendered = $blockPromoTemplate->parse([
-      'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
-      'Name' => $person['Name'],
-      'Rank' => $person['Rank'],
-      'Heading' => strip_tags($content['PromoHeading']),
-      'Text' => $content['PromoText'],
-      'Phone' => $contacts['Phone'],
-      'PhoneCommon' => $contacts['PhoneCommon'],
-      'Email' => $contacts['Email'],
-      'EmailCommon' => $contacts['EmailCommon'],
-    ]);
+    // $blockPromoTemplate = new Template('bl-promo', 'production');
+    // $blockPromoRendered = $blockPromoTemplate->parse([
+    //   'PhotoPreview' => $content['PromoAuthorPhoto'] ?: $person['PhotoPreview'],
+    //   'Name' => $person['Name'],
+    //   'Rank' => $person['Rank'],
+    //   'Heading' => strip_tags($content['PromoHeading']),
+    //   'Text' => $content['PromoText'],
+    //   'Phone' => $contacts['Phone'],
+    //   'PhoneCommon' => $contacts['PhoneCommon'],
+    //   'Email' => $contacts['Email'],
+    //   'EmailCommon' => $contacts['EmailCommon'],
+    // ]);
 
-    $otherProducts = $this->model->getSimilarProduction($product);
-    $otherProducts = Common::setLinks($otherProducts, 'production');
+    $otherGoods = $this->model->getOtherGoods($params['goody'], 4);
+    $otherGoods = Common::setLinks($otherGoods, 'production/'.$codeProduct, $codeSubcategory);
     $blockOtherTemplate = new Template('bl-other', 'production');
     $blockOtherItemTemplate = new ListTemplate('bl-other__item', 'production/partial');
-    $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherProducts);
+    $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherGoods);
     $blockOtherRendered = $blockOtherTemplate->parse([
           'Title' => $content['BlockOtherTitle'],
           'List' => $blockOtherItemTemplate
     ]);
 
-    return $this->getPage('goody')->parse($goody + $this->page + [
+    return $this->getPage('goody')->parse($goody + $contacts + $this->page + [
       'breadcrumbs' => $breadcrumbsRendered,
       'chars' => $chars,
-      'promo' => $blockPromoRendered,
+      // 'promo' => $blockPromoRendered,
       'other' => $blockOtherRendered,
     ]);
   }

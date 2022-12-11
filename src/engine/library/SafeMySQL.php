@@ -655,4 +655,21 @@ class SafeMySQL
 			unset($this->stats[$first]);
 		}
 	}
+
+	public function getAllByInd() {
+			$arglist = func_get_args();
+			$ind = array_shift($arglist);
+			if ($arglist[2]) {
+				$recs = $this->getAll($arglist[0], $arglist[1], $arglist[2]);
+			} elseif ($arglist[1]) {
+				$recs = $this->getAll($arglist[0], $arglist[1]);
+			} else {
+				$recs = $this->getAll($arglist[0]);
+			}
+			$resultRecs = array();
+			foreach ($recs as $rec) {
+				$resultRecs[$rec[$ind]][] = $rec;
+			}
+			return $resultRecs;
+		}
 }

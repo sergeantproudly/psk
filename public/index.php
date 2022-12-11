@@ -22,7 +22,10 @@
   //$Router->add('GET', '/services/{service}', 'ServicesPage@detail');
 
   $Router->add('GET', '/production/', 'ProductionPage@index');
-  $Router->add('GET', '/production/{product}', 'ProductionPage@detail');
+  $Router->add('GET', '/production/direction/{direction}', 'ProductionPage@direction');
+  $Router->add('GET', '/production/direction/{direction}/page/{page}', 'ProductionPage@direction');
+  $Router->add('GET', '/production/{product}', 'ProductionPage@product');
+  $Router->add('GET', '/production/{product}/page/{page}', 'ProductionPage@product');
   $Router->add('GET', '/production/{product}/{subcategory}', 'ProductionPage@subcategory');
   $Router->add('GET', '/production/{product}/{subcategory}/{goody}', 'ProductionPage@goody');
 

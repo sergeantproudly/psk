@@ -1,29 +1,68 @@
-{{BREADCRUMBS}}
+<div id="lottie" class="page__main main">
+                <div class="main__container">
+                    <div class="main__body main__body-min">
+                        {{BREADCRUMBS}}
+                        <div class="main__product">
+                            <div class="main__product-side">
+                                <div class="main__product-content">
+                                    <div class="main__product-image">
+                                        <picture><source srcset="{{PREVIEWFULLWEBP}}" type="image/webp"><img src="{{PREVIEWFULL}}" class="cover-image" alt="{{ALT}}"></picture>
+                                    </div>
+                                    <a href="tel:{{PHONE}}" class="main__product-label product-label icon-phone">
+                                        <span class="product-label__title">
+                                            Консультация по продукции
+                                        </span>
+                                        <span class="product-label__link">
+                                            {{PHONE}}
+                                        </span>
+                                    </a>
+                                </div>
 
-<div class="holder">
-            <div id="goody">
-                <h1>{{TITLE}}</h1>
-
-                <div class="photo">
-                    <img src="{{PREVIEWFULL}}" alt="{{ALT}}" title="{{ALT}}">
+                            </div>
+                            <h1 class="main__product-title title-xl">
+                                {{TITLE}}
+                            </h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="description">
-                    {{TEXT}}
-                </div>
-                <div class="clear"></div>
-
-                <table class="chars">
-                    <tbody>
-                        {{INCLUDE:CHARS}}
-                    </tbody>
-                </table>
-
-                <div class="description">
-                    {{TEXTBOTTOM}}
-                </div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
             </div>
-        </div>
+            <section class="page__current-product current-product">
+                <div class="current-product__container">
+                    <div class="current-product__body">
+                        <article class="current-product__content article__content">
+                            <div>
+                                <h3>
+                                    Описание
+                                </h3>
+                                <strong class="current-product__gost">
+                                    {{TEXTGOST}}
+                                </strong>
+                                {{TEXT}}
+                            </div>
+                            <div>
+                                <h3>
+                                    Характеристики
+                                </h3>
+                                <table>
+                                    <!-- <tr>
+                                        <th>
+                                            Корпус
+                                        </th>
+                                        <th>
+                                            Материал
+                                        </th>
+                                    </tr> -->
+                                    {{INCLUDE:CHARS}}
+                                </table>
+                            </div>
+                            <div>
+                                {{TEXTBOTTOM}}
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-        {{PROMO}}
-
-        {{OTHER}}
+            {{OTHER}}
+            

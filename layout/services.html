@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211003832">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221211003832">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221211003832">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221211133055">
 
 
 </head>
@@ -150,6 +150,9 @@
 						<h1 class="main__title title-xl">
 							Комплексные поставки гражданского строительства
 						</h1>
+						<div class="main__subtitle">
+							Поставляемые электроматериалы и электрооборудование сертифицированы в системе Госстандарта РФ на соответствие требованиям безопасности и соответствуют всем российским стандартам. Компания "ПСК СтройИнвест" несёт полную ответственность вместе с заводами-изготовителями за качество поставляемой продукции и оборудования.
+						</div>
 					</div>
 				</div>
 				<canvas id="gradient-canvas" data-transition-in></canvas>
@@ -157,90 +160,320 @@
 			<div class="page__products products products-offset">
 				<div class="products__container">
 					<div class="products__wrapper">
-						<div class="products__filtres">
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Кабельно-<br>проводниковая продукция
-									</span>
-									<span class="products__filter-quantity">
-										(5)
-									</span>
+						<div class="products__menu products-menu">
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Кабельно-<br>проводниковая продукция
 								</span>
-							</label>
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Кабельно-несущие системы
-									</span>
-									<span class="products__filter-quantity">
-										(24)
-									</span>
+								<span class="products-menu__quantity">
+									(5)
 								</span>
-							</label>
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Трансформаторы тока
-									</span>
-									<span class="products__filter-quantity">
-										(156)
-									</span>
+							</a>
+							<a href="" class="products-menu__item active">
+								<span class="products-menu__title">
+									Кабельно-несущие системы
 								</span>
-							</label>
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Муфты, кабельная арматура
-									</span>
-									<span class="products__filter-quantity">
-										(532)
-									</span>
+								<span class="products-menu__quantity">
+									(24)
 								</span>
-							</label>
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Светотехническая продукция
-									</span>
-									<span class="products__filter-quantity">
-										(5)
-									</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Трансформаторы тока
 								</span>
-							</label>
-							<label class="products__filter">
-								<input type="radio" name="type" class="products__filter-input hidden" hidden>
-								<span class="products__filter-content">
-									<span class="products__filter-title">
-										Приборы учёта
-									</span>
-									<span class="products__filter-quantity">
-										(2442)
-									</span>
+								<span class="products-menu__quantity">
+									(156)
 								</span>
-							</label>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Муфты, кабельная арматура
+								</span>
+								<span class="products-menu__quantity">
+									(532)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Светотехническая продукция
+								</span>
+								<span class="products-menu__quantity">
+									(5)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Светотехническая продукция
+								</span>
+								<span class="products-menu__quantity">
+									(5)
+								</span>
+							</a>
 						</div>
 						<div class="products__body">
 							<form action="#" class="products__search search">
 								<div class="form__wrapper">
-									<input type="text" name="search" class="form__input" placeholder="Поиск">
+									<input type="text" name="search" class="form__input search__input" placeholder="Поиск">
 									<button type="button" class="form__input-clear icon-close"></button>
 								</div>
 								<button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
 							</form>
 							<div class="products__content">
-								<div class="products__empty">
-									К сожалению, по этому запросу ничего&nbsp;не&nbsp;найдено
+								<div class="products__content-header">
+									<div class="products__quantity">
+										156 товаров
+									</div>
+									<div class="products__sort dropdown">
+										<button class="dropdown__button" type="button">
+											По наименованию
+										</button>
+										<ul class="dropdown__list">
+											<li class="dropdown__list-item active" data-value="name">
+												По наименованию
+											</li>
+											<li class="dropdown__list-item" data-value="price">
+												По цене
+											</li>
+											<li class="dropdown__list-item" data-value="actual">
+												По популярности
+											</li>
+										</ul>
+										<input type="text" class="dropdown__input hidden" hidden name="sorting" value="name">
+									</div>
 								</div>
+								<div class="products__grid">
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Анкерно-поддерживающая группа СИП-1 и СИП-2
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Наконечники изолиро-ванные CPTA R-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Комплекты промежуточной подвески ES-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Наконечники изолиро-ванные CPTA R-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Анкерно-поддерживающая группа СИП-1 и СИП-2
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Комплекты промежуточной подвески ES-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Наконечники изолиро-ванные CPTA R-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Комплекты промежуточной подвески ES-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Анкерно-поддерживающая группа СИП-1 и СИП-2
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-1.webp"type="image/webp"><img src="img/products/product-1.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Анкерно-поддерживающая группа СИП-1 и СИП-2
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-2.webp"type="image/webp"><img src="img/products/product-2.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Наконечники изолиро-ванные CPTA R-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+									<div class="products__grid-item product">
+										<a href="/product.html" class="product__image">
+											<picture><source srcset="img/products/product-3.webp"type="image/webp"><img src="img/products/product-3.png" alt="product"></picture>
+										</a>
+										<div class="product__desc">
+											<a href="/product.html" class="product__title">
+												Комплекты промежуточной подвески ES-ПСК
+											</a>
+											<div class="product__text">
+												Соответствует ГОСТ Р 51177; СТО 34.01-2.2-006-2015
+											</div>
+											<a href="/product.html" class="product__link more-link">
+												Подробнее
+											</a>
+										</div>
+									</div>
+
+								</div>
+								<div class="products__more">
+									<a href="" class="btn btn-blue btn-mw">
+										Загрузить еще
+									</a>
+								</div>
+								<ul class="products__pagination pagination">
+									<li class="pagination__item pagination__item-left">
+										<a href="" aria-disabled="true" class="pagination__link icon-arrow"></a>
+									</li>
+									<li class="pagination__item">
+										<a href="" class="pagination__link active">01</a>
+									</li>
+									<li class="pagination__item">
+										<a href="" class="pagination__link">02</a>
+									</li>
+									<li class="pagination__item">
+										<a href="" class="pagination__link">03</a>
+									</li>
+									<li class="pagination__item">
+										<a href="" class="pagination__link">04</a>
+									</li>
+									<li class="pagination__item">
+										...
+									</li>
+									<li class="pagination__item">
+										<a href="" class="pagination__link">24</a>
+									</li>
+									<li class="pagination__item pagination__item-right">
+										<a href="" class="pagination__link icon-arrow"></a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="products__offers">
+					<div class="products__offers" data-animation>
 						<h2 class="products__offers-title title-xxl">
 							Другие предложения
 						</h2>
@@ -343,7 +576,7 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
+                    <a href="/services.html" class="footer-body__list-link">
                         Комплексные поставки гражданского строительства
                     </a>
                 </li>
@@ -440,18 +673,18 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211003832"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211003832"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211133055"></script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211003832"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211003832"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211003832"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211003832"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211003832"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211003832"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211133055"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211133055"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211133055"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211133055"></script>
 
-<script src="js/app.min.js?_v=20221211003832"></script>
+<script src="js/app.min.js?_v=20221211133055"></script>
 
 </body>
 

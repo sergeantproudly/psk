@@ -59,9 +59,11 @@ class Components {
 
 			$item['List'] = '';
 			$class = [];
+			$classtwo = [];
 			if ($isCurrent) $class[] = 'active';
 			if (isset($subNavigationItems[$item['Id']])) {
-				$class[] = 'has-child';
+				$class[] = 'menu-parent';
+				$classtwo[] = 'icon-arrow';
 
 				foreach ($subNavigationItems[$item['Id']] as $subItem) {
 					$isCurrentSub = $currentSubPageCode == $subItem['Code'];	// Активная страница
@@ -74,7 +76,8 @@ class Components {
 					'CONTENT'	=> $subItems
 				]);
 			}
-			if (count($class)) $item['Class'] = ' class="' . implode(' ', $class) . '"';
+			if (count($class)) $item['Class'] = ' ' . implode(' ', $class);
+			if (count($classtwo)) $item['ClassTwo'] = ' ' . implode(' ', $classtwo);
 			
 			$content .= $element->Parse($item);
 		}

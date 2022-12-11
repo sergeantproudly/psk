@@ -1,7 +1,10 @@
-<li>
-                        <a href="{{IMAGE}}" class="js-lightbox" data-gallery="review">
-                            <span class="photo"><img src="{{PREVIEW}}" alt="{{ALT}}" title="{{ALT}}"></span>
-                            <span>{{TITLE}}</span>
+<div class="sert__item sert__item-sm">
+                        <a href="{{IMAGE}}" data-fslightbox="sert" class="sert__image">
+                            <picture><source srcset="{{PREVIEWWEBP}}" type="image/webp"><img src="{{PREVIEW}}" alt="{{ALT}}"></picture>
                         </a>
+                        <div class="sert__title">
+                            {{TITLE}}
+                        </div>
                         {{UPLOAD}}
-                    </li>
+                    </div>
+                    

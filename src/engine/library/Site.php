@@ -195,7 +195,7 @@ class Site {
 			'Content' => $page->{$action}($params),
 			'Contacts' => !$this->isContacts($code) ? $contactsRendered : '',
 			'Links' => $linksRendered,
-			'Footer' => [
+			'Footer' => $contacts + [
 				'CompanyNav' => $templateCompanyNavigationItem->parse($companyNavigation),
 				'ContainerClass' => !$this->isHome($code) && !$this->isContacts($code) ? 'border-top' : '',
 				'Year'=> DateHelper::getCurrentYear(),

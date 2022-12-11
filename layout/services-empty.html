@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title> ПСК | Контакты </title>
+	<title> ПСК | Продукция и услуги </title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -124,17 +124,18 @@
                         </ul>
                     </div>
                 </li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ</a></li>
+                <li class="menu__item"><a href="/products.html" class="menu__link active">ПРОДУКЦИЯ</a></li>
                 <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a>
                 </li>
                 <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
-                <li class="menu__item"><a href="/contacts.html" class="menu__link active">КОНТАКТЫ</a>
+                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a>
                 </li>
             </ul>
         </div>
     </nav>
 </header>
 		<main class="page">
+
 			<section id="lottie" class="page__main main">
 				<div class="main__container">
 					<div class="main__body main__body-md">
@@ -143,93 +144,121 @@
 								<a href="/" class="navigation__link">Главная</a>
 							</li>
 							<li class="navigation__item">
-								<a class="navigation__link active">Контакты</a>
+								<a class="navigation__link active">Продукция и услуги</a>
 							</li>
 						</ul>
 						<h1 class="main__title title-xl">
-							Контакты
+							Комплексные поставки гражданского строительства
 						</h1>
 					</div>
 				</div>
 				<canvas id="gradient-canvas" data-transition-in></canvas>
 			</section>
-			<div class="page__contacts contacts">
-				<div class="contacts__container">
-					<div class="contacts__cards">
-						<div class="contacts__card">
-							<div class="contacts__card-caption">
-								Телефон:
-							</div>
-							<div class="contacts__card-content">
-								<a href="tel:88432333923" class="contacts__card-item">8 (843) 233-39-23</a>
-								<a href="tel:88432333888" class="contacts__card-item">8 (843) 2-333-888</a>
-							</div>
+			<div class="page__products products products-offset">
+				<div class="products__container">
+					<div class="products__wrapper">
+						<div class="products__menu products-menu">
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Кабельно-<br>проводниковая продукция
+								</span>
+								<span class="products-menu__quantity">
+									(5)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Кабельно-несущие системы
+								</span>
+								<span class="products-menu__quantity">
+									(24)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Трансформаторы тока
+								</span>
+								<span class="products-menu__quantity">
+									(156)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Муфты, кабельная арматура
+								</span>
+								<span class="products-menu__quantity">
+									(532)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Светотехническая продукция
+								</span>
+								<span class="products-menu__quantity">
+									(5)
+								</span>
+							</a>
+							<a href="" class="products-menu__item">
+								<span class="products-menu__title">
+									Светотехническая продукция
+								</span>
+								<span class="products-menu__quantity">
+									(5)
+								</span>
+							</a>
 						</div>
-						<div class="contacts__card">
-							<div class="contacts__card-caption">
-								Почта:
-							</div>
-							<div class="contacts__card-content">
-								<a href="mailto:info@psk-si.ru" class="contacts__card-item">info@psk-si.ru</a>
-								<a href="mailto:sales@psk-si.ru" class="contacts__card-item">sales@psk-si.ru <br>
-									(Коммерческий&nbsp;отдел)</a>
-							</div>
-						</div>
-						<div class="contacts__card">
-							<div class="contacts__card-caption">
-								Адрес:
-							</div>
-							<div class="contacts__card-content">
-								<p class="contacts__card-item">
-									Татарстан, Лаишевский р-н,
-									с.&nbsp;Столбище, ул. Северная д.14
-								</p>
+						<div class="products__body">
+							<form action="#" class="products__search search">
+								<div class="form__wrapper">
+									<input type="text" name="search" class="form__input" placeholder="Поиск">
+									<button type="button" class="form__input-clear icon-close"></button>
+								</div>
+								<button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
+							</form>
+							<div class="products__content">
+								<div class="products__empty">
+									К сожалению, по этому запросу ничего&nbsp;не&nbsp;найдено
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="contacts__map" id="map"></div>
+					<div class="products__offers">
+						<h2 class="products__offers-title title-xxl">
+							Другие предложения
+						</h2>
+						<div class="products__offers-items">
+							<figure class="products__item">
+								<picture><source srcset="img/products/01.webp"type="image/webp"><img src="img/products/01.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									СИП-арматура <br>
+									собственного производства
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+							<figure class="products__item">
+								<picture><source srcset="img/products/02.webp"type="image/webp"><img src="img/products/02.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									Комплектация <br>
+									щитового оборудования
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+							<figure class="products__item">
+								<picture><source srcset="img/products/03.webp"type="image/webp"><img src="img/products/03.png" alt="product desc"></picture>
+								<figcaption class="products__item-desc">
+									Комплексные поставки <br>
+									гражданского строительства
+								</figcaption>
+								<a href="" class="products__item-link"></a>
+							</figure>
+						</div>
+					</div>
 				</div>
 			</div>
-			<section class="page__feedback feedback" data-animation>
-				<div class="feedback__container">
-					<div class="feedback__content">
-						
-						<form action="#" class="feedback__form form">
-							<h2 class="feedback__title title-xl">
-								Написать нам
-							</h2>
-							<div class="form__rows">
-								<div class="form__row">
-									<input type="text" name="name" data-required class="form__input" placeholder="Имя">
-									<input type="tel" name="phone" data-required class="form__input" placeholder="Телефон">
-									<input type="email" name="email" data-required class="form__input" placeholder="Email">
-								</div>
-								<div class="form__row">
-									<textarea name="message" class="form__textarea" placeholder="Сообщение"></textarea>
-								</div>
-							</div>
-							<div class="form__footer">
-								<label class="form__checkbox">
-									<input type="checkbox" name="privacy" checked data-required class="form__checkbox-input hidden">
-									<span class="form__checkbox-content">
-										Нажимая на кнопку, вы даете согласие на обработку своих персональных данных
-									</span>
-								</label>
-								<button type="submit" class="form__btn btn btn-blue btn-mobile-mw btn-lg">
-									Отправить
-								</button>
-							</div>
-						</form>
-					</div>
-					<div class="feedback__image">
-						<img src="img/feedback.svg" alt="icon message">
-					</div>
-				</div>
-			</section>
 		</main>
 		<footer class="footer">
     <div class="footer__body footer-body">
-        <div class="footer-body__container ">
+        <div class="footer-body__container border-top">
             <div class="footer-body__main">
                 <div class="footer-body__logo">
                     <img src="img/logo-black.svg" alt="logo">

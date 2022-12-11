@@ -213,6 +213,42 @@ class actions extends krn_abstract{
 			dbDoQuery('UPDATE data_goody SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
 		}	
 	}
+
+	function OnAddProductDirection($newRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_products_directions SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}		
+	}
+	
+	function OnEditProductDirection($newRecord,$oldRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_products_directions SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}	
+	}
+
+	function OnAddProductCategory($newRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_products SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}		
+	}
+	
+	function OnEditProductCategory($newRecord,$oldRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_products SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}	
+	}
 }
 
 ?>
