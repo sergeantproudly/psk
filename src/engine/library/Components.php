@@ -60,7 +60,7 @@ class Components {
 			$item['List'] = '';
 			$class = [];
 			$classtwo = [];
-			if ($isCurrent) $class[] = 'active';
+			if ($isCurrent) $classtwo[] = 'active';
 			if (isset($subNavigationItems[$item['Id']])) {
 				$class[] = 'menu-parent';
 				$classtwo[] = 'icon-arrow';
