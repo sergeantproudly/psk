@@ -74,6 +74,7 @@ class CertsPage extends Page {
           }
 
           if (!$file['Title']) $file['Title'] = 'Сертификат ' . ($counter > 1 ? $counter : '');
+          if ($file['File']) $file['File'] = 'https://psk-si.ru' . $file['File'];
           $certs[$i]['FilesHtml'] .= $fileTemplate->parse($file);
           $certs[$i]['TermsHtml'] .= $termTemplate->parse($file);
         }
