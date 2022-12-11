@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211133055">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221211133055">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211190845">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221211190845">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221211190845">
 
 
 </head>
@@ -135,21 +135,22 @@
     </nav>
 </header>
 		<main class="page">
-			<section id="lottie" class="page__main main">
-				<div class="main__container">
-					<div class="main__body">
-						<h1 class="main__title title-xl">
-							Осуществляем комплексные поставки оборудования и&nbsp;материалов
-						</h1>
-						<a href="" class="main__btn btn btn-orange">
-							Подробнее
-						</a>
-					</div>
-				</div>
-				<canvas id="gradient-canvas" data-transition-in />
-			</section>
+
 			<div class="anim-content" id="anim-content">
-				<div class="page__products products anim-section">
+				<section class="page__main main panel">
+					<div class="main__container">
+						<div class="main__body">
+							<h1 class="main__title title-xl">
+								Осуществляем комплексные поставки оборудования и&nbsp;материалов
+							</h1>
+							<a href="#products" data-goto class="main__btn btn btn-orange">
+								Подробнее
+							</a>
+						</div>
+					</div>
+					<canvas id="gradient-canvas" data-transition-in />
+				</section>
+				<div class="page__products products panel" id="products">
 					<div class="products__container">
 						<div class="products__items">
 							<figure class="products__item card card-1">
@@ -695,28 +696,36 @@
     <div class="popup__content">
         <button type="button" class="popup__close icon-close"></button>
         <div class="popup__body">
-
-            <div id="video-lang-swticher">
-                <ul>
-                    <li><a href="C0E1oD1BhTY" data-lang="ru" class="curr">Ру</a></li>
-                    <li><a href="m_Dr1wyVwGI" data-lang="en">En</a></li>
+            <div id="js-youtube-video"></div>
+            <div class="popup__switcher video__switcher">
+                <ul class="video__switcher-list">
+                    <li class="video__switcher-item">
+                        <a href="C0E1oD1BhTY" data-lang="ru" class="video__switcher-btn">
+                            Руc
+                        </a>
+                    </li>
+                    <li class="video__switcher-item">
+                        <a href="m_Dr1wyVwGI" data-lang="en" class="video__switcher-btn">
+                            Eng
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211133055"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211190845"></script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211133055"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211133055"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211133055"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211190845"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211190845"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211190845"></script>
+<script src="js/app.min.js?_v=20221211190845"></script>
 
-<script src="js/app.min.js?_v=20221211133055"></script>
 
 
 </body>

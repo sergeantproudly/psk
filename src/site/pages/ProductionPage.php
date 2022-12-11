@@ -113,8 +113,16 @@ class ProductionPage extends Page {
 
     $categories = $this->model->getProducts($params['direction']);
     $categories = Common::setLinks($categories, 'production');
+    if (count($categories) > 1) {
+      $this->getPage('direction')->addInclude($this->partial('categories'));
 
-    $this->getPage('direction')->addInclude($this->partial('categories'));
+      // если единственная категория, выводим сразу ее подкатегории
+    } else {    
+      $subcategories = $this->model->getProductSubcategories($categories[0]['Code']);
+      $subcategories = Common::setLinks($subcategories, 'production', $categories[0]['Code']);
+      $this->getPage('direction')->addInclude($this->partial('subcategories'));
+    }
+
     $this->getPage('direction')->addInclude($this->partial('goods'));
     if (count($pages) > 1) {
       $this->getPage('direction')->addInclude(
@@ -157,6 +165,7 @@ class ProductionPage extends Page {
 
     return $this->getPage('direction')->parse($direction + [
       'Categories' => $categories,
+      'Subcategories' => $subcategories,
       'Goods' => $goods,
       'Count' => $count,
       //'certs' => $blockCertsRendered,

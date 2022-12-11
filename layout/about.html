@@ -40,9 +40,9 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211133055">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20221211133055">
-	<link rel="stylesheet" href="css/style.min.css?_v=20221211133055">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20221211190845">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20221211190845">
+	<link rel="stylesheet" href="css/style.min.css?_v=20221211190845">
 
 
 </head>
@@ -135,7 +135,7 @@
     </nav>
 </header>
 		<main class="page">
-			<section id="lottie" class="page__main main">
+			<section class="page__main main">
 				<div class="main__container">
 					<div class="main__body main__body-md">
 						<ul class="main__navigation navigation">
@@ -153,7 +153,7 @@
 				</div>
 				<canvas id="gradient-canvas" data-transition-in>
 			</section>
-			<section class="page__about about" >
+			<section class="page__about about">
 				<div class="about__container">
 					<div class="about__image">
 						<picture><source srcset="img/about.webp"type="image/webp"><img src="img/about.jpg" height="350px" class="cover-image" alt="about picture"></picture>
@@ -183,7 +183,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__numbers"  data-animation>
+						<div class="about__numbers" data-animation>
 							<div class="about__numbers-item">
 								<div class="about__numbers-value">
 									с <span class="count-number no-spacing">2014</span>
@@ -249,7 +249,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="about__text article__content"  data-animation>
+						<div class="about__text article__content" data-animation>
 							<div>
 								<h3>
 									Стандарты
@@ -260,7 +260,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__text article__content"  data-animation>
+						<div class="about__text article__content" data-animation>
 							<div>
 								<h3>
 									Гарантии
@@ -271,7 +271,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="about__video video__body"  data-animation>
+						<div class="about__video video__body" data-animation>
 							<div class="video__main">
 								<h2 class="video__title title-xl">
 									Видео о нас
@@ -280,9 +280,10 @@
 									Посмотрите, как устроены наши логистические комплексы и&nbsp;производства
 								</div>
 							</div>
-							<a href="" class="video__link icon-play">
+							<button type="button" data-modal="modal" data-video data-video-code-rus="C0E1oD1BhTY"
+								data-video-code-eng="m_Dr1wyVwGI" class="video__link icon-play">
 								<picture><source srcset="img/benefits/01.webp"type="image/webp"><img src="img/benefits/01.jpg" class="cover-image" alt="video image"></picture>
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -290,15 +291,15 @@
 			<section class="page__equipment equipment">
 				<div class="equipment__container">
 					<div class="equipment__body">
-						<h2 class="equipment__title title-lg"  data-animation>
+						<h2 class="equipment__title title-lg" data-animation>
 							Наше оборудование
 						</h2>
-						<div class="equipment__subtitle"  data-animation>
+						<div class="equipment__subtitle" data-animation>
 							Компания «ПСК СтройИнвест» предлагает широкий спектр материалов и оборудования для
 							электрических подстанций и сетевого хозяйства любого напряжения.
 						</div>
 						<div class="equipment__items">
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Низковольтное оборудование
 								</div>
@@ -311,7 +312,7 @@
 									<li class="equipment__list-item">Коммутационные устройства</li>
 								</ul>
 							</div>
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Оборудование среднего напряжения
 								</div>
@@ -325,7 +326,7 @@
 										батареи</li>
 								</ul>
 							</div>
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Высоковольтное оборудование
 								</div>
@@ -335,7 +336,7 @@
 									<div class="equipment__list-item">Распределительные подстанции</div>
 								</ul>
 							</div>
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Кабельно-проводниковая продукция
 								</div>
@@ -345,7 +346,7 @@
 									<li class="equipment__list-item">Оборудование для монтажа кабельных линий</li>
 								</ul>
 							</div>
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Металлоконструкции
 								</div>
@@ -355,7 +356,7 @@
 									<li class="equipment__list-item">Металлоконструкции для быстровозводимых зданий</li>
 								</ul>
 							</div>
-							<div class="equipment__item"  data-animation>
+							<div class="equipment__item" data-animation>
 								<div class="equipment__caption">
 									Опоры ЛЭП
 								</div>
@@ -535,18 +536,39 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211133055"></script>
+	<div id="modal" class="popup">
+    <div class="popup__content">
+        <button type="button" class="popup__close icon-close"></button>
+        <div class="popup__body">
+            <div id="js-youtube-video"></div>
+            <div class="popup__switcher video__switcher">
+                <ul class="video__switcher-list">
+                    <li class="video__switcher-item">
+                        <a href="C0E1oD1BhTY" data-lang="ru" class="video__switcher-btn">
+                            Руc
+                        </a>
+                    </li>
+                    <li class="video__switcher-item">
+                        <a href="m_Dr1wyVwGI" data-lang="en" class="video__switcher-btn">
+                            Eng
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20221211190845"></script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211133055"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211133055"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211133055"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211133055"></script>
-
-<script src="js/app.min.js?_v=20221211133055"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20221211190845"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20221211190845"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20221211190845"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20221211190845"></script>
+<script src="js/app.min.js?_v=20221211190845"></script>
 
 </body>
 

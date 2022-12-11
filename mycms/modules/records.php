@@ -10,35 +10,37 @@ define('DOCUMENT_CATALOG_ID', 40);
 
 class records extends krn_abstract {
 
-  function __construct() {
+  function __construct(){
     parent::__construct();
-
-    $this->mode = $_GET['mode'] ? $_GET['mode'] : 'Browse';
-    if ($_GET['document_id']) {
-      $query = 'SELECT t1.Id, t1.Title, t1.TableId, t1.ParentId, t1.ParentField, t1.LeadElement, t1.ActionCode, t1.OrderElement, t1.OrderDirection, '
-        . 't2.Name AS `Table`, '
-        . 't3.Title AS `ParentTitle`, t3.LeadElement AS ParentLeadElement, t3.OrderElement AS ParentOrderElement, t3.OrderDirection AS ParentOrderDirection,'
-        . 't4.Name AS `ParentTable` '
-        . 'FROM mycms_documents AS t1 '
-        . 'LEFT JOIN mycms_tables AS t2 ON t1.TableId=t2.Id '
-        . 'LEFT JOIN mycms_documents AS t3 ON t1.ParentId=t3.Id '
-        . 'LEFT JOIN mycms_tables AS t4 ON t3.TableId=t4.Id '
-        . 'WHERE t1.Id=' . (int)$_GET['document_id'] . ' '
-        . 'ORDER BY IF(t1.`Order`,-1000/t1.`Order`,0) ASC';
-      $this->document = dbGetRecordFromDb($query, __FILE__, __LINE__);
+    
+    $this->mode=$_GET['mode']?$_GET['mode']:'Browse';
+    if($_GET['document_id']){
+      $query = 'SELECT t1.Id, t1.Title, t1.TableId, t1.ParentId, t1.ParentField, t1.LeadElement, t1.IdElement, t1.ActionCode, t1.OrderElement, t1.OrderDirection, t1.CanAdd, t1.CanEdit, t1.CanDelete, '
+          .'t2.Name AS `Table`, '
+          .'t3.Title AS `ParentTitle`, t3.LeadElement AS ParentLeadElement, t3.OrderElement AS ParentOrderElement, t3.OrderDirection AS ParentOrderDirection,'
+          .'t4.Name AS `ParentTable` '
+          .'FROM mycms_documents AS t1 '
+          .'LEFT JOIN mycms_tables AS t2 ON t1.TableId=t2.Id '
+          .'LEFT JOIN mycms_documents AS t3 ON t1.ParentId=t3.Id '
+          .'LEFT JOIN mycms_tables AS t4 ON t3.TableId=t4.Id '
+          .'WHERE t1.Id='.(int)$_GET['document_id'].' '
+          .'ORDER BY IF(t1.`Order`,-1000/t1.`Order`,0) ASC';
+      $this->document=dbGetRecordFromDb($query,__FILE__,__LINE__);
+      if(!$this->document['IdElement'])$this->document['IdElement']='Id';
     }
-    if (isset($_GET['filter_id'])) {
-      if ($_GET['filter_id']) {
-        $_SESSION['Filter'] = $_GET['filter_id'];
-        $_SESSION['FilterDocument'] = $this->document['Id'];
-      } else {
+    if(isset($_GET['filter_id'])){
+      if($_GET['filter_id']){
+        $_SESSION['Filter']=$_GET['filter_id'];
+        $_SESSION['FilterDocument']=$this->document['Id'];
+      }
+      else{
         unset($_SESSION['Filter']);
         unset($_SESSION['FilterDocument']);
-      }
+      } 
     }
-    if ($_GET['orderby']) {
-      $this->order['Field'] = $_GET['orderby'];
-      $this->order['Direction'] = $_GET['orderdir'];
+    if($_GET['orderby']){
+      $this->order['Field']=$_GET['orderby'];
+      $this->order['Direction']=$_GET['orderdir'];
     }
   }
 
@@ -85,361 +87,409 @@ class records extends krn_abstract {
     return $result;
   }
 
-  function Browse($document = array(), $params = array()) {
+  function Browse($document=array(),$params=array()){
     global $Settings;
-    if (!count($document)) $document = $this->document;
-    $fieldsTypes = Array();
-    $thItems = Array();
-    $fields = GetFieldsList($document, true);
-    $fieldsIds = GetSubArray($fields, 'Id');
-    $properties = $Settings->GetElementsSettings($fieldsIds);
-    foreach ($fields as $name => $info) {
-      $sortClass = ($name == $this->order['Field']
-        ? ' curr' . ($this->order['Direction'] ? ' desc' : '')
-        : '');
-      $recSortByParams = "'{$name}', {($name == $this->order['Field'] &&!$this->order['Direction']? '1': '0')}, {$document['Id']}";
-
-      $thItems[] = "
-			<div class='sortby${sortClass}' onclick='recSortBy({$recSortByParams});'>		{$info['Title']}
-			</div>";
+    if(!count($document))$document=$this->document;
+    $fieldsTypes=Array();
+    $thItems=Array();
+    $fields=GetFieldsList($document,true);
+    $fieldsIds=GetSubArray($fields,'Id');
+    $properties=$Settings->GetElementsSettings($fieldsIds);
+    foreach($fields as $name=>$info){
+      $thItems[]='<div class="sortby'.($name==$this->order['Field']?' curr'.($this->order['Direction']?' desc':''):'').'" onclick="recSortBy(\''.$name.'\','.($name==$this->order['Field']&&!$this->order['Direction']?'1':'0').','.$document['Id'].');">'.$info['Title'].'</div>';
+    } 
+    $table=new BrowserTable($thItems);
+    
+    $page=(int)$_GET['page']?(int)$_GET['page']:1;
+    $rowsOnPage=$_SESSION['Cms']['RowsOnPage']?$_SESSION['Cms']['RowsOnPage']:$_SESSION['Cms']['RowsOnPage']=$Settings->GetCmsSetting(3,15);
+    $pagesInGroup=$_SESSION['Cms']['PagesInGroup']?$_SESSION['Cms']['PagesInGroup']:$_SESSION['Cms']['PagesInGroup']=$Settings->GetCmsSetting(4,15);
+    
+    if($document['ParentId'] && $_SESSION['Filter']){
+      $countTotal=dbGetValueFromDb('SELECT COUNT('.$document['IdElement'].') FROM `'.$document['Table'].'` WHERE '.$document['ParentField'].'='.$_SESSION['Filter'] . ($document['HasLang'] ? ' AND Lang = '. $this->lang->GetId() . ' ' : ''),__FILE__,__LINE__);
     }
-    $table = new BrowserTable($thItems);
-
-    $page = (int)$_GET['page'] ? (int)$_GET['page'] : 1;
-    $rowsOnPage = $_SESSION['Cms']['RowsOnPage'] ? $_SESSION['Cms']['RowsOnPage'] : $_SESSION['Cms']['RowsOnPage'] = $Settings->GetCmsSetting(3, 15);
-    $pagesInGroup = $_SESSION['Cms']['PagesInGroup'] ? $_SESSION['Cms']['PagesInGroup'] : $_SESSION['Cms']['PagesInGroup'] = $Settings->GetCmsSetting(4, 15);
-
-    if ($document['ParentId'] && $_SESSION['Filter']) {
-      $countTotal = dbGetValueFromDb('SELECT COUNT(Id) FROM `' . $document['Table'] . '` WHERE ' . $document['ParentField'] . '=' . $_SESSION['Filter'], __FILE__, __LINE__);
-    } elseif ($params['parent_record_field'] && $params['parent_record_id']) {
-      $countTotal = dbGetValueFromDb('SELECT COUNT(Id) FROM `' . $document['Table'] . '` WHERE ' . $params['parent_record_field'] . '=' . $params['parent_record_id'], __FILE__, __LINE__);
-    } else {
-      $countTotal = dbGetValueFromDb('SELECT COUNT(Id) FROM `' . $document['Table'] . '`', __FILE__, __LINE__);
+    elseif($params['parent_record_field'] && ($params['parent_record_id'] || $params['subst_record_id'])){
+      $countTotal=dbGetValueFromDb('SELECT COUNT('.$document['IdElement'].') FROM `'.$document['Table'].'` WHERE '.$params['parent_record_field'].'='.($params['subst_record_id']?$params['subst_record_id']:$params['parent_record_id']) . ($document['HasLang'] ? ' AND Lang = '. $this->lang->GetId() . ' ' : ''),__FILE__,__LINE__);
     }
-    $navMn = GetNavigationMn($countTotal, $rowsOnPage, $pagesInGroup);
-
+    else{
+      $countTotal=dbGetValueFromDb('SELECT COUNT('.$document['IdElement'].') FROM `'.$document['Table'].'`' . ($document['HasLang'] ? ' WHERE Lang = '. $this->lang->GetId() . ' ' : ''),__FILE__,__LINE__);
+    }
+    $navMn=GetNavigationMn($countTotal,$rowsOnPage,$pagesInGroup);
+    
     /*
-		if($document['ParentId'] && $_SESSION['Filter']){
-			$query = 'SELECT Id, `'.implode('`, `',array_keys($fields)).'` '
-				.'FROM `'.$document['Table'].'` WHERE '.$document['ParentField'].'='.$_SESSION['Filter'].' '
-				.(($this->order['Field']||$this->order['Direction'])?(($this->order['Field']?'ORDER BY `'.$this->order['Field'].'`':'').($this->order['Field']?($this->order['Direction']?' DESC':' ASC'):'')):('ORDER BY '.$document['OrderElement'].' '.$document['OrderDirection']));
-
-		}else*/
-    if ($params['parent_record_field'] && $params['parent_record_id']) {
-      $query = 'SELECT Id, `' . implode('`, `', array_keys($fields)) . '` '
-        . 'FROM `' . $document['Table'] . '` WHERE ' . $params['parent_record_field'] . '=' . $params['parent_record_id'] . ' ';
-    } else {
-      $query = 'SELECT Id, `' . implode('`, `', array_keys($fields)) . '` '
-        . 'FROM `' . $document['Table'] . '` ';
+    if($document['ParentId'] && $_SESSION['Filter']){
+      $query = 'SELECT Id, `'.implode('`, `',array_keys($fields)).'` '
+        .'FROM `'.$document['Table'].'` WHERE '.$document['ParentField'].'='.$_SESSION['Filter'].' '
+        .(($this->order['Field']||$this->order['Direction'])?(($this->order['Field']?'ORDER BY `'.$this->order['Field'].'`':'').($this->order['Field']?($this->order['Direction']?' DESC':' ASC'):'')):('ORDER BY '.$document['OrderElement'].' '.$document['OrderDirection']));
+        
+    }else*/
+    if($params['parent_record_field'] && ($params['parent_record_id'] || $params['subst_record_id'])){
+      $query = 'SELECT '.$document['IdElement'].', `'.implode('`, `',array_keys($fields)).'` '
+        .'FROM `'.$document['Table'].'` WHERE '.$params['parent_record_field'].'='.($params['subst_record_id']?$params['subst_record_id']:$params['parent_record_id']).' ' . ($document['HasLang'] ? 'AND Lang = '. $this->lang->GetId() . ' ' : '')
+        .(($this->order['Field']||$this->order['Direction'])?(($this->order['Field']?'ORDER BY `'.$this->order['Field'].'`':'').($this->order['Field']?($this->order['Direction']?' DESC':' ASC'):'')):($document['OrderElement'] ? ('ORDER BY '.$document['OrderElement'].' '.$document['OrderDirection']) : ''));
+        
+    }else{
+      $query = 'SELECT '.$document['IdElement'].', `'.implode('`, `',array_keys($fields)).'` '
+        .'FROM `'.$document['Table'].'` ' . ($document['HasLang'] ? ' WHERE Lang = '. $this->lang->GetId() . ' ' : '')
+        .(($this->order['Field']||$this->order['Direction'])?(($this->order['Field']?'ORDER BY `'.$this->order['Field'].'`':'').($this->order['Field']?($this->order['Direction']?' DESC':' ASC'):'')):('ORDER BY '.$document['OrderElement'].' '.$document['OrderDirection']));
     }
-
-    if (isset($this->order['Field'])) {
-      $query .= 'ORDER BY ' . $this->order['Field'];
-      $query .= $this->order['Direction'] ? ' DESC' : ' ASC';
-    } elseif ((bool)$document['OrderElement']) {
-      $query .= "ORDER BY {$document['OrderElement']}";
-      $query .= $document['OrderDirection'] ? ' DESC' : ' ASC';
-    }
-
-    $res = dbDoQueryLimit($query, ($page - 1) * $rowsOnPage, $rowsOnPage, __FILE__, __LINE__);
-    while ($rec = dbGetRecord($res)) {
-      $tdItems = Array();
-      foreach ($fields as $name => $info) {
-        $elementProperties = $properties[$info['Id']];
-        switch ($info['Type']) {
+    
+    $res=dbDoQueryLimit($query,($page-1)*$rowsOnPage,$rowsOnPage,__FILE__,__LINE__);  
+    while($rec=dbGetRecord($res)){
+      $tdItems=Array();
+      foreach($fields as $name=>$info){
+        $elementProperties=$properties[$info['Id']];
+        switch($info['Type']){
           case 2:
-            if ($maxLength = $elementProperties[21]) {
-              $tdItems[] = nl2br(htmlspecialchars(TrimText($rec[$name], $maxLength), ENT_QUOTES));
-            } else {
-              $tdItems[] = nl2br(htmlspecialchars($rec[$name], ENT_QUOTES));
+            if($maxLength=$elementProperties[21]){
+              $tdItems[]=nl2br(htmlspecialchars(TrimText($rec[$name],$maxLength),ENT_QUOTES));
+            }else{
+              $tdItems[]=nl2br(htmlspecialchars($rec[$name],ENT_QUOTES));
             }
-
-            break;
+            
+          break;
           case 3:
-            $dateType = $elementProperties[30];
-            $tdItems[] = ModifiedDateTime($rec[$name], $dateType);
-            break;
+            $dateType=$elementProperties[30];
+            $tdItems[]=ModifiedDateTime($rec[$name],$dateType);
+          break;
           case 4:
-            if ($rec[$name]) {
-              $tdItems[] = '<a href="' . $rec[$name] . '" target="_blank"><img src="' . $rec[$name] . '" alt="" class="thumb"/></a>';
-            } else {
-              $tdItems[] = '';
+            if($rec[$name]){
+              $tdItems[]='<a href="'.ROOT_DIR.$rec[$name].'" target="_blank"><img src="'.ROOT_DIR.$rec[$name].'" alt="" class="thumb"/></a>';
+            }else{
+              $tdItems[]='';
             }
-            break;
+          break;
           case 5:
-            if ($rec[$name]) {
-              $fileInfo = flGetInfo($rec[$name]);
-              $tdItems[] = '<a href="' . $rec[$name] . '">' . $fileInfo['basename'] . '</a>';
-            } else {
-              $tdItems[] = '';
-            }
-            break;
+            if($rec[$name]){
+              $fileInfo=flGetInfo($rec[$name]);
+              $tdItems[]='<a href="'.ROOT_DIR.$rec[$name].'">'.$fileInfo['basename'].'</a>';
+            }else{
+              $tdItems[]='';
+            }       
+          break;
           case 6:
-            $tdItems[] = $rec[$name] ? 'да' : 'нет';
-            break;
+            $tdItems[]=$rec[$name]?'да':'нет';
+          break;
           case 8:
-            preg_match_all('/([A-z0-9]+)/', $elementProperties[81], $matchFields);
-            $titleArr = dbGetRecordFromDb('SELECT `' . implode('`, `', $matchFields[0]) . '` FROM `' . $elementProperties[80] . '` WHERE `' . $elementProperties[82] . '`="' . $rec[$name] . '"', __FILE__, __LINE__);
-
-            $value = is_array($titleArr) ? strtr($elementProperties[81], $titleArr) : '';
-
-            // NOTE: Updated by Vitaly Krenel (3 July, 3:15 MSK)
-
-            if ($document['LeadElement'] == $name
-              || $name == 'Title' || $name == 'Name') {
-              $tdItems[] = '<a href="index.php?module=records&mode=view&document_id=' . $document['Id'] . '&record_id=' . $rec['Id'] . '">' . htmlspecialchars($value, ENT_QUOTES) . '</a>';
-            } else {
-              $tdItems[] = htmlspecialchars($value, ENT_QUOTES);
-            }
-            break;
+            preg_match_all('/([A-z0-9]+)/',$elementProperties[81],$matchFields);
+            $titleArr=dbGetRecordFromDb('SELECT `'.implode('`, `',$matchFields[0]).'` FROM `'.$elementProperties[80].'` WHERE `'.$elementProperties[82].'`="'.$rec[$name].'"',__FILE__,__LINE__);
+            $tdItems[]=is_array($titleArr)?strtr($elementProperties[81],$titleArr):'';
+          break;
           default:
-            if ($document['LeadElement'] == $name || $name == 'Title' || $name == 'Name') {
-              $tdItems[] = '<a href="index.php?module=records&mode=view&document_id=' . $document['Id'] . '&record_id=' . $rec['Id'] . '">' . htmlspecialchars($rec[$name], ENT_QUOTES) . '</a>';
-            } else {
-              $tdItems[] = htmlspecialchars($rec[$name], ENT_QUOTES);
+            if($document['LeadElement']==$name || (!$document['LeadElement'] && ($name=='Title' || $name=='Name'))){
+              $ref_tail = '';
+              if (isset($params['parent_documents']) && count($params['parent_documents'])) {
+                foreach ($params['parent_documents'] as $index => $doc_id) {
+                  $ref_tail .= '&pdid' . $index . '=' . $doc_id;
+                }
+              }
+              if (isset($params['parent_records']) && count($params['parent_records'])) {
+                foreach ($params['parent_records'] as $index => $rec_id) {
+                  $ref_tail .= '&prid' . $index . '=' . $rec_id;
+                }
+              }
+              $ref = 'index.php?module=records&mode=view&document_id='.$document['Id'].'&record_id='.$rec[$document['IdElement']] . $ref_tail;
+              $tdItems[]='<a href="'.$ref.'">'.htmlspecialchars($rec[$name],ENT_QUOTES).'</a>';
+            }else{
+              $tdItems[]=htmlspecialchars($rec[$name],ENT_QUOTES);
             }
-            break;
-        }
+          break;
+        }     
       }
       /*
-			if($document['ParentId'] && $_SESSION['Filter']){
-				$actionEdit='Popup(\'record_edit\',600,{\'id\':'.$rec['Id'].',\'document_id\':'.$document['Id'].',\'filter_id\':'.$_SESSION['Filter'].'});';
-
-			}else*/
-      if ($params['parent_record_field'] && $params['parent_record_id']) {
-        $actionEdit = 'Popup(\'record_edit\',600,{id:' . $rec['Id'] . ', document_id:' . $document['Id'] . ', params:{parent_record_id: ' . $params['parent_record_id'] . ', parent_record_field: \'' . $params['parent_record_field'] . '\'}});';
-      } else {
-        $actionEdit = 'Popup(\'record_edit\',600,{id:' . $rec['Id'] . ', document_id:' . $document['Id'] . '});';
+      if($document['ParentId'] && $_SESSION['Filter']){
+        $actionEdit='Popup(\'record_edit\',600,{\'id\':'.$rec['Id'].',\'document_id\':'.$document['Id'].',\'filter_id\':'.$_SESSION['Filter'].'});';
+        
+      }else*/
+      if($document['CanEdit']){
+        if($params['parent_record_field'] && $params['parent_record_id']){
+          $actionEdit='Popup(\'record_edit\',600,{id:'.$rec[$document['IdElement']].', document_id:'.$document['Id'].', params:{parent_record_id: '.$params['parent_record_id'].','.($params['subst_record_id']?'subst_record_id: '.$params['subst_record_id'].',':'').' parent_record_field: \''.$params['parent_record_field'].'\'}});';
+        }else{
+          $actionEdit='Popup(\'record_edit\',600,{id:'.$rec[$document['IdElement']].', document_id:'.$document['Id'].'});';
+        }
       }
-      $actionDelete = 'recDeleteConfirm(this,' . $document['Id'] . ',' . $rec['Id'] . ');';
-
-      if ($this->document['Id'] == DOCUMENT_CATALOG_ID) {
-        $class = '';
-        if ($rec['FastShipping']) $class = 'fastshipping';
-        if ($rec['MinimumBalance']) $class .= ' minimumbalance';
-        $table->AddBodyRow($rec['Id'], $actionEdit, $actionDelete, $tdItems, ['Class' => $class]);
-      } else {
-        $table->AddBodyRow($rec['Id'], $actionEdit, $actionDelete, $tdItems);
+      if($document['CanDelete']){
+        $actionDelete='recDeleteConfirm(this,'.$document['Id'].','.$rec[$document['IdElement']].');';
       }
+      $table->AddBodyRow($rec[$document['IdElement']],$actionEdit,$actionDelete,$tdItems);
     }
-
-    $result = LoadTemplate('base_browser');
+        
+    $result=LoadTemplate('base_browser');
     /*
-		if($document['ParentId'] && $_SESSION['Filter']){
-			$toolAdd=strtr(LoadTemplate('tool_add'),array(
-				'<%ACTION%>'	=> 'recAdd(this,'.$document['Id'].', {parent_record_id: '.$_SESSION['Filter'].'});'
-			));
-
-		}else*/
-    if ($params['parent_record_field'] && $params['parent_record_id']) {
-      $toolAdd = strtr(LoadTemplate('tool_add'), array(
-        '<%ACTION%>' => 'recAdd(this,' . $document['Id'] . ', {parent_record_id: ' . $params['parent_record_id'] . ', parent_record_field: \'' . $params['parent_record_field'] . '\'});'
+    if($document['ParentId'] && $_SESSION['Filter']){
+      $toolAdd=strtr(LoadTemplate('tool_add'),array(
+        '<%ACTION%>'  => 'recAdd(this,'.$document['Id'].', {parent_record_id: '.$_SESSION['Filter'].'});'
       ));
-      $toolEdit = GetButton('Изменить', false, 'recEdit(this,' . $document['Id'] . ', {parent_record_id: ' . $params['parent_record_id'] . ', parent_record_field: \'' . $params['parent_record_field'] . '\'});');
+      
+    }else*/
+    if($params['parent_record_field'] && $params['parent_record_id']){
+      $parents = array();
+      $i = 1;
+      while (isset($_GET['pdid' . $i])) {
+        $parents[] = 'pdid' . $i . ': \'' . $_GET['pdid' . $i] . '\'';
+        if (isset($_GET['prid' . $i])) {
+          $parents[] = 'prid' . $i . ': \'' . $_GET['prid' . $i] . '\'';  
+        }
+        $i++;
+      }
 
-    } else {
-      $toolAdd = strtr(LoadTemplate('tool_add'), array(
-        '<%ACTION%>' => 'recAdd(this,' . $document['Id'] . ');'
+      $toolAdd=strtr(LoadTemplate('tool_add'),array(
+        '<%ACTION%>'  => 'recAdd(this,'.$document['Id'].', {parent_record_id: '.$params['parent_record_id'].','.($params['subst_record_id']?'subst_record_id: '.$params['subst_record_id'].',':'').' parent_record_field: \''.$params['parent_record_field'].'\'' . (count($parents) ?  ', ' . implode(', ', $parents) : '')  . '});'
       ));
-      $toolEdit = GetButton('Изменить', false, 'recEdit(this,' . $document['Id'] . ');');
+      $toolEdit=GetButton('Изменить',false,'recEdit(this,'.$document['Id'].', {parent_record_id: '.$params['parent_record_id'].','.($params['subst_record_id']?'subst_record_id: '.$params['subst_record_id'].',':'').' parent_record_field: \''.$params['parent_record_field'].'\'' . (count($parents) ?  ', ' . implode(', ', $parents) : '') . '});');
+      
+    }else{
+      $toolAdd=strtr(LoadTemplate('tool_add'),array(
+        '<%ACTION%>'  => 'recAdd(this,'.$document['Id'].');'
+      ));
+      $toolEdit=GetButton('Изменить',false,'recEdit(this,'.$document['Id'].');');
     }
-    $toolRop = strtr(LoadTemplate('tool_rop'), array(
-      '<%ROWS_ON_PAGE%>' => $rowsOnPage
+    $toolRop=strtr(LoadTemplate('tool_rop'),array(
+      '<%ROWS_ON_PAGE%>'  => $rowsOnPage
     ));
-
+    
     // filters
     /*
-		if($document['ParentId']){
-
-			$defaultTitle='';
-			$defaultValue='';
-			$options='<span class="item'.($_SESSION['Filter']?'':' current').'" value="0" onclick="redirect(\'index.php?module=records&document_id='.$document['Id'].'&filter_id=0\');">All</span>';
-			$res=dbDoQuery('SELECT Id, '.($document['ParentLeadElement']?$document['ParentLeadElement']:'Title').' AS Title FROM '.$document['ParentTable'].' ORDER BY '.($document['ParentLeadElement']?$document['ParentLeadElement']:'IF(`Order`,-1000/`Order`,0)').' ASC',__FILE__,__LINE__);
-
-
-			while($rec=dbGetRecord($res)){
-				if($rec['Id']==$_SESSION['Filter'] && $document['Id']==$_SESSION['FilterDocument']){
-					$defaultValue=$rec['Id'];
-					$defaultTitle=$rec['Title'];
-					$options.='<span class="item current" value="'.$rec['Id'].'">'.$rec['Title'].'</span>';
-				}else{
-					$options.='<span class="item" value="'.$rec['Id'].'" onclick="redirect(\'index.php?module=records&document_id='.$document['Id'].'&filter_id='.$rec['Id'].'\');">'.$rec['Title'].'</span>';
-				}
-			}
-			$inp=strtr(LoadTemplate('inp_select'),array(
-				'<%IDNUM%>'			=> ' id="'.$name.$i.'"',
-				'<%NAME%>'			=> $name.'['.$i.']',
-				'<%DEFAULT_TITLE%>'	=> $defaultTitle,
-				'<%DEFAULT_VALUE%>'	=> $defaultValue,
-				'<%OPTIONS%>'		=> $options,
-				'<%ATTRIBUTES%>'	=> $attributes
-			));
-
-			$filter='<div class="filter" style="padding: 10px 0 20px 10px;"><span class="lbl">Фильтр:</span> '.$inp.'</div>';
-		}
-		*/
-
+    if($document['ParentId']){
+      
+      $defaultTitle='';
+      $defaultValue='';
+      $options='<span class="item'.($_SESSION['Filter']?'':' current').'" value="0" onclick="redirect(\'index.php?module=records&document_id='.$document['Id'].'&filter_id=0\');">All</span>';
+      $res=dbDoQuery('SELECT Id, '.($document['ParentLeadElement']?$document['ParentLeadElement']:'Title').' AS Title FROM '.$document['ParentTable'].' ORDER BY '.($document['ParentLeadElement']?$document['ParentLeadElement']:'IF(`Order`,-1000/`Order`,0)').' ASC',__FILE__,__LINE__);
+      
+      
+      while($rec=dbGetRecord($res)){
+        if($rec['Id']==$_SESSION['Filter'] && $document['Id']==$_SESSION['FilterDocument']){
+          $defaultValue=$rec['Id'];
+          $defaultTitle=$rec['Title'];
+          $options.='<span class="item current" value="'.$rec['Id'].'">'.$rec['Title'].'</span>';
+        }else{
+          $options.='<span class="item" value="'.$rec['Id'].'" onclick="redirect(\'index.php?module=records&document_id='.$document['Id'].'&filter_id='.$rec['Id'].'\');">'.$rec['Title'].'</span>';
+        }
+      }
+      $inp=strtr(LoadTemplate('inp_select'),array(
+        '<%IDNUM%>'     => ' id="'.$name.$i.'"',
+        '<%NAME%>'      => $name.'['.$i.']',
+        '<%DEFAULT_TITLE%>' => $defaultTitle,
+        '<%DEFAULT_VALUE%>' => $defaultValue,
+        '<%OPTIONS%>'   => $options,
+        '<%ATTRIBUTES%>'  => $attributes
+      ));
+      
+      $filter='<div class="filter" style="padding: 10px 0 20px 10px;"><span class="lbl">Фильтр:</span> '.$inp.'</div>';
+    }
+    */
+    
     /*
-		if($document['ParentId'] && $_SESSION['Filter']){
-			$breadCrumbs='<a href="index.php?module=records">Управление сайтом</a> &rarr; <a href="index.php?module=records&document_id='.$document['ParentId'].'">'.$document['ParentTitle'].'</a> &rarr; ';
-
-		}else{
-			$breadCrumbs='<a href="index.php?module=records">Управление сайтом</a> &rarr; ';
-
-		}
-		*/
-
-    $breadCrumbs = '<a href="index.php?module=records">Управление сайтом</a> &rarr; ';
-
-    $result = strtr($result, array(
-      '<%DISPLAYTOP%>' => isset($params['hide_top']) ? ' style="display: none;"' : '',
-      '<%DOCUMENT_TITLE%>' => $document['Title'],
-      '<%BREAD_CRUMBS%>' => $breadCrumbs,
-      '<%TOOLS_RIGHT_TOP%>' => $toolRop,
-      '<%FILTER%>' => isset($params['hide_top']) ? '' : $filter,
-      '<%ACTION%>' => 'index.php#',
-      '<%TABLE%>' => $table->GetTable(),
-      '<%TOOLS_LEFT_BOTTOM%>' => $toolEdit . ' ' . GetButton('Удалить', false, 'recDeleteConfirm(this,' . $document['Id'] . ');'),
-      '<%TOOLS_RIGHT_BOTTOM%>' => $toolAdd
+    if($document['ParentId'] && $_SESSION['Filter']){
+      $breadCrumbs='<a href="index.php?module=records">Управление сайтом</a> &rarr; <a href="index.php?module=records&document_id='.$document['ParentId'].'">'.$document['ParentTitle'].'</a> &rarr; ';
+      
+    }else{
+      $breadCrumbs='<a href="index.php?module=records">Управление сайтом</a> &rarr; ';
+      
+    }
+    */
+    
+    $breadCrumbs='<a href="index.php?module=records">Управление сайтом</a> &rarr; ';
+    
+    $result=strtr($result,array(
+      '<%DISPLAYTOP%>'      => isset($params['hide_top'])?' style="display: none;"':'',
+      '<%DOCUMENT_TITLE%>'    => $document['Title'],
+      '<%BREAD_CRUMBS%>'      => $breadCrumbs,
+      '<%TOOLS_RIGHT_TOP%>'   => $toolRop,
+      '<%FILTER%>'        => isset($params['hide_top'])?'':$filter,
+      '<%ACTION%>'        => 'index.php#',
+      '<%TABLE%>'         => $table->GetTable(),
+      '<%TOOLS_LEFT_BOTTOM%>'   => ($document['CanEdit']?$toolEdit:'') .' '.($document['CanDelete']?GetButton('Удалить',false,'recDeleteConfirm(this,'.$document['Id'].');'):''),
+      '<%TOOLS_RIGHT_BOTTOM%>'  => $document['CanAdd']?$toolAdd:''
     ));
-    return $result . $navMn;
+    return $result.$navMn;
   }
 
-  function View() {
+  function View(){
     global $Settings;
-    $this->record['Id'] = (int)$_GET['record_id'];
-    $formElement = LoadTemplate('viewer_data_row');
-    $content = '';
-
-    $fields = GetFieldsList($this->document);
-    $fieldsIds = GetSubArray($fields, 'Id');
-    $properties = $Settings->GetElementsSettings($fieldsIds);
-
-    $record = dbGetRecordFromDb('SELECT * FROM `' . $this->document['Table'] . '` WHERE Id=' . $this->record['Id'], __FILE__, __LINE__);
-    if ($this->document['LeadElement'] && isset($record[$this->document['LeadElement']])) {
-      $this->record['Name'] = $record[$this->document['LeadElement']];
-    } elseif (isset($record['Title'])) {
-      $this->record['Name'] = $record['Title'];
-    } else {
-      $this->record['Name'] = '';
+    $this->record['Id']=(int)$_GET['record_id'];
+    $formElement=LoadTemplate('viewer_data_row');
+    $content='';
+    
+    $fields=GetFieldsList($this->document);
+    $fieldsIds=GetSubArray($fields,'Id');
+    $properties=$Settings->GetElementsSettings($fieldsIds);
+    
+    $record=dbGetRecordFromDb('SELECT * FROM `'.$this->document['Table'].'` WHERE Id='.$this->record['Id'],__FILE__,__LINE__);
+    $this->record=$record;
+    if($this->document['LeadElement'] && isset($record[$this->document['LeadElement']])){
+      $this->record['Name']=$record[$this->document['LeadElement']];
+    }elseif(isset($record['Title'])){
+      $this->record['Name']=$record['Title'];
+    }else{
+      $this->record['Name']='';
     }
-
-    $formRows = '';
-    $j = 0;
-    $total = count($fields);
-    foreach ($fields as $name => $info) {
+    
+    $formRows='';
+    $j=0;
+    $total=count($fields);
+    foreach($fields as $name=>$info){
       $j++;
-
-      $elementProperties = $properties[$info['Id']];
-      switch ($info['Type']) {
+      
+      $elementProperties=$properties[$info['Id']];
+      switch($info['Type']){
         case 2:
-          $maxLength = $elementProperties[21] ? $elementProperties[21] : 500;
-          if ($elementProperties[20] == 'wysiwyg') {
-            $data = SpoilerText(htmlentities($record[$name], ENT_QUOTES, 'UTF-8'), $maxLength);
-          } else {
-            $data = nl2br(SpoilerText($record[$name], $maxLength));
-          }
-          break;
+          $maxLength=$elementProperties[21]?$elementProperties[21]:500;
+          if($elementProperties[20]=='wysiwyg'){
+            $data=SpoilerText(htmlentities($record[$name],ENT_QUOTES,'UTF-8'),$maxLength);
+          }else{
+            $data=nl2br(SpoilerText($record[$name],$maxLength));
+          }         
+        break;
         case 3:
-          $dateType = $elementProperties[30];
-          $data = ModifiedDateTime($record[$name], $dateType);
-          break;
+          $dateType=$elementProperties[30];
+          $data=ModifiedDateTime($record[$name],$dateType);
+        break;
         case 4:
-          if ($resize = $elementProperties[42]) continue 2;
-          $data = '<a href="' . $record[$name] . '" target="_blank"><img src="' . $record[$name] . '" alt="" style="max-height: 300px; max-width: 300px;"/></a>';
-          break;
+          if($resize=$elementProperties[42])continue 2;
+          $data=$record[$name] ? '<a href="'.ROOT_DIR.$record[$name].'" target="_blank"><img src="'.ROOT_DIR.$record[$name].'" alt="" style="max-height: 300px; max-width: 300px;"/></a>' : '';
+        break;
         case 5:
-          $data = '<a href="' . $record[$name] . '">' . $record[$name] . '</a>';
-          break;
+          $data='<a href="'.$record[$name].'">'.$record[$name].'</a>';
+        break;
         case 6:
-          $data = $record[$name] ? 'да' : 'нет';
-          break;
+          $data=$record[$name]?'да':'нет';
+        break;
         case 7:
-          $data = $record[$name];
-          break;
+          $data=$record[$name];
+        break;
         case 8:
-          if ($record[$name]) {
-            preg_match_all('/([A-z0-9]+)/', $elementProperties[81], $matchFields);
-            $rec = dbGetRecordFromDb('SELECT `' . $elementProperties[82] . '`, `' . implode('`, `', $matchFields[0]) . '` FROM `' . $elementProperties[80] . '` WHERE Id=' . $record[$name], __FILE__, __LINE__);
-            $data = strtr($elementProperties[81], $rec);
-          } else {
-            $data = '';
+          if($record[$name]){
+            preg_match_all('/([A-z0-9]+)/',$elementProperties[81],$matchFields);
+            $rec=dbGetRecordFromDb('SELECT `'.$elementProperties[82].'`, `'.implode('`, `',$matchFields[0]).'` FROM `'.$elementProperties[80].'` WHERE Id='.$record[$name],__FILE__,__LINE__);
+            $data=strtr($elementProperties[81],$rec);
+          }else{
+            $data='';
           }
-
-          break;
+          
+        break;
         default:
-          $data = $record[$name];
-          break;
+          $data=$record[$name];
+        break;
       }
-      if ($elementProperties[6] || $info['OutputFunc']) {
+      if($elementProperties[6] || $info['OutputFunc']){
         krnLoadLib('browse');
-        $func = $info['OutputFunc'] ? $info['OutputFunc'] : ($elementProperties[6] ? $elementProperties[6] : false);
-        $data = $func($data, $record);
+        $func=$info['OutputFunc']?$info['OutputFunc']:($elementProperties[6]?$elementProperties[6]:false); 
+        $data=$func($data,$record);
       }
-      $formRows .= strtr($formElement, array(
-        '<%EVEN%>' => isEven($j) ? ' class="even"' : '',
-        '<%LABEL%>' => $info['Title'],
-        '<%VALUE%>' => $data
+      $formRows.=strtr($formElement,array(
+        '<%EVEN%>'      => isEven($j)?' class="even"':'',
+        '<%LABEL%>'     => $info['Title'],
+        '<%VALUE%>'     => $data
       ));
-      if ($elementProperties[4]) {
-        $formRows .= '<div class="comment">' . $elementProperties[4] . '</div>';
+      /*
+      if($elementProperties[4]){
+        $formRows.='<div class="comment">'.$elementProperties[4].'</div>';
       }
+      */
     }
+    
+    $actionEdit='Popup(\'record_edit\',600,{id:'.$this->record['Id'].', document_id:'.$this->document['Id'].'});';
+    $actionDelete='recDeleteConfirm(this,'.$this->document['Id'].','.$this->record['Id'].');';
 
-    $actionEdit = 'Popup(\'record_edit\',600,{id:' . $this->record['Id'] . ', document_id:' . $this->document['Id'] . '});';
-    $actionDelete = 'recDeleteConfirm(this,' . $this->document['Id'] . ',' . $this->record['Id'] . ');';
+    $breadCrumbs = '<a href="index.php?module=records">Управление сайтом</a> &rarr; ';
+    if (!isset($_GET['pdid1'])) {
+      $breadCrumbs .= '<a href="index.php?module=records&document_id=' . $this->document['Id'] . '">' . $this->document['Title'] . '</a> &rarr; ';
+    }
+    $i = 1;
+    $last = 1;
+    while (isset($_GET['pdid' . $i])) {
+      $last = $i;
+      $i++;
+    }
+    $i = $last;
+    if (isset($_GET['pdid' . $i])) {
+      $title = dbGetValueFromDb('SELECT Title FROM mycms_documents WHERE Id='.$_GET['pdid' . $i]);
+      $breadCrumbs .= '<a href="index.php?module=records&document_id='.$_GET['pdid' . $i].'">'.$title.'</a> &rarr; '; 
+    } 
+    while (isset($_GET['prid' . $i])) {
+      $parents_tail = '';
+      if ($i < $last) {
+        $j = 2;
+        while (isset($_GET['pdid' . $j])) {
+          $parents_tail .= '&pdid'.($j-1).'='.$_GET['pdid' . $j];
+          $parents_tail .= '&prid'.($j-1).'='.$_GET['prid' . $j];
+          $j++;
+        }
+      }
 
-    $result = LoadTemplate('base_viewer');
-    $result = strtr($result, array(
-      '<%DOCUMENT_TITLE%>' => $this->record['Name'],
-      '<%BREAD_CRUMBS%>' => '<a href="index.php?module=records">Управление сайтом</a> &rarr; <a href="index.php?module=records&document_id=' . $this->document['Id'] . '">' . $this->document['Title'] . '</a> &rarr; ',
+      $breadCrumbs .= '<a href="index.php?module=records&mode=view&document_id='.($_GET['pdid' . $i]).'&record_id='.($_GET['prid' . $i]). $parents_tail .'">'.dbGetValueFromDb('SELECT Title FROM '.$this->document['ParentTable'].' WHERE Id='.$_GET['prid' . $i]).'</a> &rarr; ';
+      $breadCrumbs .= '<a href="index.php?module=records&mode=view&document_id='.($_GET['pdid' . $i]).'&record_id='.($_GET['prid' . $i]). $parents_tail .'#tab-'.(isset($_GET['pdid' . ($i-1)]) ? $_GET['pdid' . ($i-1)] : $this->document['Id']).'">'.(isset($_GET['pdid' . ($i-1)]) ? dbGetValueFromDb('SELECT Title FROM mycms_documents WHERE Id='.$_GET['pdid' . ($i-1)]) : $this->document['Title']).'</a> &rarr; ';
+      $i--;
+    }
+    
+    $result=LoadTemplate('base_viewer');
+    $result=strtr($result,array(
+      '<%DOCUMENT_TITLE%>'  => $this->record['Name'],
+      '<%BREAD_CRUMBS%>'    => $breadCrumbs,
       '<%TOOLS_RIGHT_TOP%>' => '',
-      '<%TITLE%>' => $this->record['Name'],
-      '<%CONTENT%>' => $formRows,
-      '<%ACTION_EDIT%>' => $actionEdit,
-      '<%ACTION_DELETE%>' => $actionDelete,
-      '<%CHILDS%>' => $this->BrowseRecordChilds()
+      '<%TITLE%>'       => $this->record['Name'],
+      '<%CONTENT%>'     => $formRows,
+      '<%ACTION_EDIT%>'   => $actionEdit,
+      '<%ACTION_DELETE%>'   => $actionDelete,
+      '<%CHILDS%>'      => $this->BrowseRecordChilds()
     ));
     return $result;
   }
-
-  function BrowseRecordChilds() {
-    $query = 'SELECT t1.Id, t1.Title, t1.TableId, t1.ParentId, t1.ParentField, t1.LeadElement, t1.ActionCode, t1.OrderElement, t1.OrderDirection, '
-      . 't2.Name AS `Table`, '
-      . 't3.Title AS `ParentTitle`, t3.LeadElement AS ParentLeadElement, t3.OrderElement AS ParentOrderElement, t3.OrderDirection AS ParentOrderDirection,'
-      . 't4.Name AS `ParentTable` '
-      . 'FROM mycms_documents AS t1 '
-      . 'LEFT JOIN mycms_tables AS t2 ON t1.TableId=t2.Id '
-      . 'LEFT JOIN mycms_documents AS t3 ON t1.ParentId=t3.Id '
-      . 'LEFT JOIN mycms_tables AS t4 ON t3.TableId=t4.Id '
-      . 'WHERE t1.ParentId=' . $this->document['Id'] . ' '
-      . 'ORDER BY IF(t1.`Order`,-1000/t1.`Order`,0) ASC';
-    $res = dbDoQuery($query, __FILE__, __LINE__);
-    if (!dbGetNumRows($res)) return '';
-    $tabElement = LoadTemplate('viewer_tabs_el');
-    $tabContent = '';
-    $content = '';
-    $fst = true;
-    $params = array(
-      'hide_top' => true,
-      'parent_record_id' => $this->record['Id']
+  
+  function BrowseRecordChilds(){
+    $query = 'SELECT t1.Id, t1.Title, t1.TableId, t1.ParentId, t1.ParentField, t1.LeadElement, t1.IdElement, t1.ActionCode, t1.OrderElement, t1.OrderDirection, t1.CanAdd, t1.CanEdit, t1.CanDelete, '
+        .'t2.Name AS `Table`, '
+        .'t3.Title AS `ParentTitle`, t3.LeadElement AS ParentLeadElement, t3.OrderElement AS ParentOrderElement, t3.OrderDirection AS ParentOrderDirection,'
+        .'t4.Name AS `ParentTable` '
+        .'FROM mycms_documents AS t1 '
+        .'LEFT JOIN mycms_tables AS t2 ON t1.TableId=t2.Id '
+        .'LEFT JOIN mycms_documents AS t3 ON t1.ParentId=t3.Id '
+        .'LEFT JOIN mycms_tables AS t4 ON t3.TableId=t4.Id '
+        .'WHERE t1.ParentId='.$this->document['Id'].' '
+        .'ORDER BY IF(t1.`Order`,-1000/t1.`Order`,0) ASC';
+    $res=dbDoQuery($query,__FILE__,__LINE__);
+    if(!dbGetNumRows($res))return '';
+    $tabElement=LoadTemplate('viewer_tabs_el');
+    $tabContent='';
+    $content='';
+    $fst=true;
+    $params=array(
+      'hide_top'        => true,
+      'parent_record_id'    => $this->record['Id']
     );
-    while ($rec = dbGetRecord($res)) {
-
+    while($rec=dbGetRecord($res)){
+      
+      if(!$rec['IdElement'])$rec['IdElement']='Id';
+      
       // tabs
-      $tabContent .= strtr($tabElement, array(
-        '<%ID%>' => $rec['Id'],
-        '<%ACTIVE%>' => $fst ? ' active' : '',
-        '<%TITLE%>' => $rec['Title']
+      $tabContent.=strtr($tabElement,array(
+        '<%ID%>'    => $rec['Id'],
+        '<%ACTIVE%>'  => $fst?' active':'',
+        '<%TITLE%>'   => $rec['Title']
       ));
-
+      
       // contents
       $params['parent_record_field'] = $rec['ParentField'];
-      $content .= '<div style="display: ' . ($fst ? 'block' : 'none') . ';" id="tab-content-' . $rec['Id'] . '">' . $this->Browse($rec, $params) . '</div>';
 
-      $fst = false;
+      if (isset($_GET['document_id'])) $params['parent_documents'][1] = $_GET['document_id'];
+      $i = 1;
+      while (isset($_GET['pdid' . $i])) {
+        $params['parent_documents'][$i+1] = $_GET['pdid' . $i];
+        $i++;
+      }
+      if (isset($_GET['record_id'])) $params['parent_records'][1] = $_GET['record_id'];
+      $i = 1;
+      while (isset($_GET['prid' . $i])) {
+        $params['parent_records'][$i+1] = $_GET['prid' . $i];
+        $i++;
+      }
+
+      $content.='<div style="display: '.($fst?'block':'none').';" id="tab-content-'.$rec['Id'].'">'.$this->Browse($rec,$params).'</div>';
+      
+      $fst=false;
     }
-    return '<ul class="tabs">' . $tabContent . '</ul><div class="tabs-content">' . $content . '</div>';
+    return '<ul class="tabs">'.$tabContent.'</ul><div class="tabs-content">'.$content.'</div>';
   }
 
   function Add() {
