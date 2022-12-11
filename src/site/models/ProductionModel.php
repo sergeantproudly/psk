@@ -8,8 +8,15 @@ class ProductionModel extends Model {
   protected $categoriesTree = [];
 
   public function init() {
-    $categories = $this->db->getInd('Id', "SELECT p.*, d.Code AS DirectionCode FROM ?n p LEFT JOIN ?n p2d ON p.Id = p2d.CategoryId LEFT JOIN ?n d ON p2d.DirectionId = d.Id WHERE p.IsActive = 1 ORDER BY IF(p.`Order`, -100/p.`Order`, 0)", 
-        $this->tables['products'],
+    // $categories = $this->db->getInd('Id', "SELECT p.*, d.Code AS DirectionCode FROM ?n p LEFT JOIN ?n p2d ON p.Id = p2d.CategoryId LEFT JOIN ?n d ON p2d.DirectionId = d.Id WHERE p.IsActive = 1 ORDER BY IF(p.`Order`, -100/p.`Order`, 0)", 
+    //     $this->tables['products'],
+    //     $this->tables['rel_products_dirs'],
+    //     $this->tables['products_directions'] 
+    //   );
+    $categories = $this->db->getInd('Id', "SELECT p.* FROM ?n p WHERE p.IsActive = 1 ORDER BY IF(p.`Order`, -100/p.`Order`, 0)", 
+        $this->tables['products']
+      );
+    $relsDirections = $this->db->getAll("SELECT p2d.CategoryId, p2d.DirectionId, d.Code AS DirectionCode FROM ?n p2d LEFT JOIN ?n d ON p2d.DirectionId = d.Id", 
         $this->tables['rel_products_dirs'],
         $this->tables['products_directions'] 
       );
@@ -26,6 +33,12 @@ class ProductionModel extends Model {
         foreach ($subcategories[$categoryId] as $subcategory) {
           $this->categoriesTree[$categoryId]['GoodsCount'] += $subcategory['GoodsCount'];
         }
+      }
+    }
+
+    if ($relsDirections && count($relsDirections)) {
+      foreach ($relsDirections as $rel) {
+        $this->categoriesTree[$rel['CategoryId']]['Directions'][] = $rel;
       }
     }
   }
@@ -58,12 +71,19 @@ class ProductionModel extends Model {
     if ($directionCode) {
       $products = [];
       foreach ($this->categoriesTree as $category) {
-        if ($category['DirectionCode'] == $directionCode) $products[] = $category;
+        if ($category['Directions'] && count($category['Directions'])) {
+          foreach ($category['Directions'] as $direction) {
+            if ($direction['DirectionCode'] == $directionCode) {
+              $products[] = $category;
+            }
+          }
+        }
       }
 
     } else {
       $products = $this->categoriesTree;
     }
+
 
     return $products;
   }
