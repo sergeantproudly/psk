@@ -75,6 +75,12 @@ class ProductionModel extends Model {
 
     return false;
   }
+
+  function getAllProducts() {
+    $products = $this->table('products')->getAllWhere('IsActive = 1');
+
+    return $products;
+  }
   
 
   // function getProductImages($productId) {

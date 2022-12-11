@@ -168,6 +168,22 @@ class Site {
       //   return $item['Code'] == $current['Code'];
       // }));
 
+      	$productionModel = new \Site\Models\ProductionModel();
+		$productionModel->setDB($this->db);
+        $directionsNavigation = $productionModel->getProductsDirections();
+      	$directionsNavigation = $directionsNavigation ? Common::setLinks($directionsNavigation, 'production', 'direction') : [];
+      	array_walk($directionsNavigation, function(&$direction) {
+      		$direction['Title'] = strip_tags($direction['Title']);
+      	});
+      	$templateDirectionsNavigationItem = new ListTemplate('footer-directions-navigation__elem.htm', 'components/navigation');
+
+      	$categoriesNavigation = $productionModel->getAllProducts();
+      	$categoriesNavigation = $categoriesNavigation ? Common::setLinks($categoriesNavigation, 'production') : [];
+      	array_walk($categoriesNavigation, function(&$category) {
+      		$category['Title'] = strip_tags($category['Title']);
+      	});
+      	$templateCategoriesNavigationItem = new ListTemplate('footer-categories-navigation__elem.htm', 'components/navigation');
+
 		return $baseTemplate->parse([
 			'Settings' => [
 				'site_title' => $settings->get('SiteTitle'),
@@ -197,6 +213,8 @@ class Site {
 			'Links' => $linksRendered,
 			'Footer' => $contacts + [
 				'CompanyNav' => $templateCompanyNavigationItem->parse($companyNavigation),
+				'DirectionsNav' => $templateDirectionsNavigationItem->parse($directionsNavigation),
+				'CategoriesNav' => $templateCategoriesNavigationItem->parse($categoriesNavigation),
 				'ContainerClass' => !$this->isHome($code) && !$this->isContacts($code) ? 'border-top' : '',
 				'Year'=> DateHelper::getCurrentYear(),
 				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
