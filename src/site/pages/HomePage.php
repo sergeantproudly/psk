@@ -7,6 +7,7 @@ use Engine\Library\Common;
 use Engine\Library\Youtube;
 
 use Site\Components\SliderComponent;
+use Site\Components\ProductionDirectionsComponent;
 use Site\Components\ProjectsComponent;
 use Site\Components\ClientsComponent;
 use Site\Components\ArticlesComponent;
@@ -36,12 +37,21 @@ class HomePage extends Page {
 		$contacts = $this->model->getContent('contacts');
 
 		// SLIDER
-		$sliderModel = new \Site\Models\SliderModel();
-		$sliderModel->setDB($this->model->getDB());
+		// $sliderModel = new \Site\Models\SliderModel();
+		// $sliderModel->setDB($this->model->getDB());
 
-		$slidesList = $sliderModel->getSlides();
-		$sliderComponent = new SliderComponent;
-		$sliderRendered = $sliderComponent->render($slidesList);
+		// $slidesList = $sliderModel->getSlides();
+		// $sliderComponent = new SliderComponent;
+		// $sliderRendered = $sliderComponent->render($slidesList);
+
+		// PRODUCTION DIRECTIONS
+		$productionModel = new \Site\Models\ProductionModel();
+		$productionModel->setDB($this->model->getDB());
+		
+		$directionsList = $productionModel->getProductsDirections();
+		$directionsList = $directionsList ? Common::setLinks($directionsList, 'production', 'direction') : [];
+		$directionsComponent = new ProductionDirectionsComponent;
+		$directionsRendered = $directionsComponent->render($directionsList);
 		
 		// PROJECTS
 		$projectModel = new \Site\Models\ProjectModel();
@@ -93,30 +103,30 @@ class HomePage extends Page {
 		$articlesRendered = $articlesComponent->render($articleList);
 
 		// PRODUCTION
-		$productionModel = new \Site\Models\ProductionModel();
-		$productionModel->setDB($this->model->getDB());
+		// $productionModel = new \Site\Models\ProductionModel();
+		// $productionModel->setDB($this->model->getDB());
 		
-		$productionList = $productionModel->getProducts();
-		$productionList = Common::setLinks($productionList, 'production');
-		$productionComponent = new ProductionComponent;
-		$productionRendered = $productionComponent->render($productionList);
+		// $productionList = $productionModel->getProducts();
+		// $productionList = Common::setLinks($productionList, 'production');
+		// $productionComponent = new ProductionComponent;
+		// $productionRendered = $productionComponent->render($productionList);
 
 		// COMPANY
-		$blockTextTemplate = new Template('bl-company', 'company');
-		$blockTextRendered = $blockTextTemplate->parse([
-			'Heading' => strip_tags($content['BlockTextHeading']),
-			'Text' => $content['BlockTextText'],
-			'More' => strip_tags($content['BlockTextMore']),
-		]);
+		// $blockTextTemplate = new Template('bl-company', 'company');
+		// $blockTextRendered = $blockTextTemplate->parse([
+		// 	'Heading' => strip_tags($content['BlockTextHeading']),
+		// 	'Text' => $content['BlockTextText'],
+		// 	'More' => strip_tags($content['BlockTextMore']),
+		// ]);
 
 		// ABOUT
-		$company = $this->model->getContent('company');
-		$blockAboutTemplate = new Template('bl-about', 'company');
-		$blockAboutRendered = $blockAboutTemplate->parse([
-			'MissionText' => strip_tags($company['BlockMissionText']),
-			'StandartsText' => strip_tags($company['BlockStandartsText']),
-			'GuaranteesText' => strip_tags($company['BlockGuaranteesText']),
-		]);
+		// $company = $this->model->getContent('company');
+		// $blockAboutTemplate = new Template('bl-about', 'company');
+		// $blockAboutRendered = $blockAboutTemplate->parse([
+		// 	'MissionText' => strip_tags($company['BlockMissionText']),
+		// 	'StandartsText' => strip_tags($company['BlockStandartsText']),
+		// 	'GuaranteesText' => strip_tags($company['BlockGuaranteesText']),
+		// ]);
 
 		// STAFF
 		$staffModel = new \Site\Models\StaffModel();
@@ -140,14 +150,15 @@ class HomePage extends Page {
 		$partnersRendered = $partnersComponent->render($partnerList);
 
 		return $this->page('index')->parse($content + $contacts + [
-			'Slider' => $sliderRendered,
+			//'Slider' => $sliderRendered,
+			'Directions' => $directionsRendered,
 			'Projects' => $projectsRendered,
 			'Clients' => $clientsRendered,
 			'Video' => $videoBlockRendered,
 			'Articles' => $articlesRendered,
-			'Production' => $productionRendered,
-			'Company' => $blockTextRendered,
-			'About' => $blockAboutRendered,
+			//'Production' => $productionRendered,
+			//'Company' => $blockTextRendered,
+			//'About' => $blockAboutRendered,
 			'Staff' => $staffRendered,
 			'Partners' => $partnersRendered,
 		]);
