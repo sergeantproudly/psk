@@ -144,7 +144,6 @@ body._pc .anim-content .products.active .products__items {
 }
 
 body._pc .anim-content .products.active .products__item {
-  min-height: 50vh;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -160,7 +159,6 @@ body._pc .anim-content .projects {
 
 body._pc .anim-section {
   width: 100%;
-  min-height: 100vh !important;
 }
 
 .wrapper {
@@ -2448,7 +2446,7 @@ body._pc .anim-section {
   margin: 0em 0em 4.0625rem 0rem;
 }
 
-.article__content.current-product__content p {
+.article__content.current-product__content > p {
   line-height: 1.5625;
   color: #060D2C;
 }
@@ -2463,7 +2461,7 @@ body._pc .anim-section {
   margin: 0;
 }
 
-.article__content.about__privacy p {
+.article__content.about__privacy > p {
   color: #3b3e4b;
 }
 
@@ -2487,28 +2485,6 @@ body._pc .anim-section {
   margin: 0em 0em 1.6666666667em 0em;
   font-weight: 500;
   line-height: 1.2916666667;
-}
-
-.article__content > p {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3888888889;
-  color: #7b7e89;
-}
-
-.article__content > p:not(:last-child) {
-  margin: 0em 0em 1.3333333333em 0rem;
-}
-
-.article__content > p mark {
-  background: none;
-  display: block;
-  padding: 0em 0em 0em 1em;
-  border-left: 4px solid #361787;
-  color: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.625;
 }
 
 .article__content h1 {
@@ -2561,6 +2537,28 @@ body._pc .anim-section {
 
 .article__content div > ul li:not(:last-child) {
   margin: 0em 0em 0.8888888889em 0rem;
+}
+
+.article__content div > p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3888888889;
+  color: #7b7e89;
+}
+
+.article__content div > p:not(:last-child) {
+  margin: 0em 0em 1.3333333333em 0rem;
+}
+
+.article__content div > p mark {
+  background: none;
+  display: block;
+  padding: 0em 0em 0em 1em;
+  border-left: 4px solid #361787;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.625;
 }
 
 .article__content > *:not(:last-child, time) {
@@ -4177,16 +4175,16 @@ body._pc .anim-section {
     font-size: 24px;
   }
 
-  .article__content > p {
-    font-size: 18px;
-  }
-
-  .article__content > p mark {
-    font-size: 16px;
-  }
-
   .article__content div > ul li {
     font-size: 18px;
+  }
+
+  .article__content div > p {
+    font-size: 18px;
+  }
+
+  .article__content div > p mark {
+    font-size: 16px;
   }
 
   .article__content > *:not(:last-child, time) {
@@ -4567,7 +4565,7 @@ body._pc .anim-section {
     margin: 0em 0em 0.5em 0rem;
   }
 
-  .article__content.current-product__content p {
+  .article__content.current-product__content > p {
     line-height: 1.3888888889;
     font-size: 18px;
   }
@@ -5016,7 +5014,7 @@ body._pc .anim-section {
     font-size: 56px;
   }
 
-  .article__content.current-product__content p {
+  .article__content.current-product__content > p {
     line-height: 1.6111111111;
   }
 
