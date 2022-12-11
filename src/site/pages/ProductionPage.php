@@ -117,7 +117,7 @@ class ProductionPage extends Page {
       $this->getPage('direction')->addInclude($this->partial('categories'));
 
       // если единственная категория, выводим сразу ее подкатегории
-    } else {    
+    } elseif (count($categories) === 1) {    
       $subcategories = $this->model->getProductSubcategories($categories[0]['Code']);
       $subcategories = Common::setLinks($subcategories, 'production', $categories[0]['Code']);
       $this->getPage('direction')->addInclude($this->partial('subcategories'));
