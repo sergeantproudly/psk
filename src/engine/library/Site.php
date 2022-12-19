@@ -97,6 +97,8 @@ class Site {
 		 
 		// Contacts data for header and footer 
 		$contacts = $header->model->getContent('contacts');
+		$contacts['PhoneLink'] = Common::GetTelLink($contacts['Phone']);
+    	$contacts['PhoneCommonLink'] = Common::GetTelLink($contacts['PhoneCommon']);
 		
 		// Header data
 		$headerData = $header->model->getContent('home');

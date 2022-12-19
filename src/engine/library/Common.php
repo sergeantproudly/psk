@@ -483,6 +483,11 @@
         }
         return $uploadpath.$caption.$postfix.'.'.$extension;
     }
+
+    public static function GetTelLink($tel) {
+    	return preg_replace('/[^\d\+]/', '', $tel);
+    }
+
 	}
 
 class RecordList{

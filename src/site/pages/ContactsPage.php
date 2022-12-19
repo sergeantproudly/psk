@@ -2,6 +2,7 @@
 namespace Site\Pages;
 use Engine\Library\Page;
 use Engine\Library\Template;
+use Engine\Library\Common;
 use Site\Components\BreadcrumbsComponent;
 use Site\Models\PageModel;
 
@@ -28,6 +29,8 @@ class ContactsPage extends Page {
 
     $pageModel = new PageModel($Database);
     $content = $pageModel->getContent($this->code());
+    $content['PhoneLink'] = Common::GetTelLink($content['Phone']);
+    $content['PhoneCommonLink'] = Common::GetTelLink($content['PhoneCommon']);
     
     $formTemplate = new Template('bl-feedback', $this->code());
     $formTemplate = $formTemplate->parse([

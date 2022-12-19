@@ -338,6 +338,8 @@ class ProductionPage extends Page {
 
     $content = $this->model->getContent($this->code());
     $contacts = $this->model->getContent('contacts');
+    $contacts['PhoneLink'] = Common::GetTelLink($contacts['Phone']);
+    $contacts['PhoneCommonLink'] = Common::GetTelLink($contacts['PhoneCommon']);
 
     $codeProduct = $params['product'];
     $codeSubcategory = $params['subcategory'];
