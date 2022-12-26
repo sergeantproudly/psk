@@ -10,7 +10,7 @@ class SliderModel extends Model {
    * @return array
    */
   function getSlides() {
-    return $this->table('slider')->getAll();
+    return $this->table('slider')->getAllSorted();
   }
 
 }

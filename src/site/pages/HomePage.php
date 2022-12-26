@@ -37,12 +37,17 @@ class HomePage extends Page {
 		$contacts = $this->model->getContent('contacts');
 
 		// SLIDER
-		// $sliderModel = new \Site\Models\SliderModel();
-		// $sliderModel->setDB($this->model->getDB());
+		$sliderModel = new \Site\Models\SliderModel();
+		$sliderModel->setDB($this->model->getDB());
 
-		// $slidesList = $sliderModel->getSlides();
-		// $sliderComponent = new SliderComponent;
-		// $sliderRendered = $sliderComponent->render($slidesList);
+		$slides = $sliderModel->getSlides();
+		array_walk($slides, function(&$slide, $key) {
+		  $slide['Num'] = $key + 1;
+	      $slide['ImageWebp'] = Common::flGetWebpByImage($slide['Image']);
+	      $slide['Text'] = nl2br($slide['Text']);
+	    });
+		$sliderComponent = new SliderComponent;
+		$sliderRendered = $sliderComponent->render($slides);
 
 		// PRODUCTION DIRECTIONS
 		$productionModel = new \Site\Models\ProductionModel();
@@ -150,7 +155,7 @@ class HomePage extends Page {
 		$partnersRendered = $partnersComponent->render($partnerList);
 
 		return $this->page('index')->parse($content + $contacts + [
-			//'Slider' => $sliderRendered,
+			'Slider' => $sliderRendered,
 			'Directions' => $directionsRendered,
 			'Projects' => $projectsRendered,
 			'Clients' => $clientsRendered,
