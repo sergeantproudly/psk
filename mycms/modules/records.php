@@ -172,7 +172,24 @@ class records extends krn_abstract {
           case 8:
             preg_match_all('/([A-z0-9]+)/',$elementProperties[81],$matchFields);
             $titleArr=dbGetRecordFromDb('SELECT `'.implode('`, `',$matchFields[0]).'` FROM `'.$elementProperties[80].'` WHERE `'.$elementProperties[82].'`="'.$rec[$name].'"',__FILE__,__LINE__);
-            $tdItems[]=is_array($titleArr)?strtr($elementProperties[81],$titleArr):'';
+
+            if($document['LeadElement']==$name || (!$document['LeadElement'] && ($name=='Title' || $name=='Name'))){
+              $ref_tail = '';
+              if (isset($params['parent_documents']) && count($params['parent_documents'])) {
+                foreach ($params['parent_documents'] as $index => $doc_id) {
+                  $ref_tail .= '&pdid' . $index . '=' . $doc_id;
+                }
+              }
+              if (isset($params['parent_records']) && count($params['parent_records'])) {
+                foreach ($params['parent_records'] as $index => $rec_id) {
+                  $ref_tail .= '&prid' . $index . '=' . $rec_id;
+                }
+              }
+              $ref = 'index.php?module=records&mode=view&document_id='.$document['Id'].'&record_id='.$rec[$document['IdElement']] . $ref_tail;
+              $tdItems[]='<a href="'.$ref.'">' . (is_array($titleArr)?strtr($elementProperties[81],$titleArr):'') . '</a>';
+            }else{
+              $tdItems[]=is_array($titleArr)?strtr($elementProperties[81],$titleArr):'';
+            }
           break;
           default:
             if($document['LeadElement']==$name || (!$document['LeadElement'] && ($name=='Title' || $name=='Name'))){

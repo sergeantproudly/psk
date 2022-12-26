@@ -129,6 +129,30 @@ class ProductionModel extends Model {
     return $goods;
   }
 
+  function getDirectionGoodsSearched($directionCode, $keyword, $count = 0, $offset = 0) {
+    $categories = $this->getProducts($directionCode);
+    $subcategoriesIds = [];
+    foreach ($categories as $category) {
+      if ($category['Subcategories'] && count($category['Subcategories'])) {
+        foreach ($category['Subcategories'] as $subcategory) {
+          $subcategoriesIds[] = $subcategory['Id'];  
+        }
+      }
+    }
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
+        $this->tables['goods'],
+        $this->tables['subcategories'],
+        $this->tables['products'],
+        $subcategoriesIds,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%',
+        $count,
+        $offset
+      );
+
+    return $goods;
+  }
+
   function getDirectionGoodsCount($directionCode) {
     $categories = $this->getProducts($directionCode);
     $subcategoriesIds = [];
@@ -142,6 +166,26 @@ class ProductionModel extends Model {
     $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
         $this->tables['goods'],
         $subcategoriesIds
+      ) : 0;
+
+    return $count;
+  }
+
+  function getDirectionGoodsCountSearched($directionCode, $keyword) {
+    $categories = $this->getProducts($directionCode);
+    $subcategoriesIds = [];
+    foreach ($categories as $category) {
+      if ($category['Subcategories'] && count($category['Subcategories'])) {
+        foreach ($category['Subcategories'] as $subcategory) {
+          $subcategoriesIds[] = $subcategory['Id'];  
+        }
+      }
+    }
+    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+        $this->tables['goods'],
+        $subcategoriesIds,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%'
       ) : 0;
 
     return $count;
@@ -167,6 +211,28 @@ class ProductionModel extends Model {
     return $goods;
   }
 
+  function getCategoryGoodsSearched($categoryCode, $keyword, $count = 0, $offset = 0) {
+    $category = $this->getProductByCode($categoryCode);
+    $subcategoriesIds = [];
+    if ($this->categoriesTree[$category['Id']]['Subcategories'] && count($this->categoriesTree[$category['Id']]['Subcategories'])) {
+      foreach ($this->categoriesTree[$category['Id']]['Subcategories'] as $subcategory) {
+        $subcategoriesIds[] = $subcategory['Id'];  
+      }
+    }
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
+        $this->tables['goods'],
+        $this->tables['subcategories'],
+        $this->tables['products'],
+        $subcategoriesIds,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%',
+        $count,
+        $offset
+      );
+
+    return $goods;
+  }
+
   function getCategoryGoodsCount($categoryCode) {
     $category = $this->getProductByCode($categoryCode);
     $subcategoriesIds = [];
@@ -178,6 +244,24 @@ class ProductionModel extends Model {
     $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
         $this->tables['goods'],
         $subcategoriesIds
+      ) : 0;
+
+    return $count;
+  }
+
+  function getCategoryGoodsCountSearched($categoryCode, $keyword) {
+    $category = $this->getProductByCode($categoryCode);
+    $subcategoriesIds = [];
+    if ($this->categoriesTree[$category['Id']]['Subcategories'] && count($this->categoriesTree[$category['Id']]['Subcategories'])) {
+      foreach ($this->categoriesTree[$category['Id']]['Subcategories'] as $subcategory) {
+        $subcategoriesIds[] = $subcategory['Id'];  
+      }
+    }
+    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+        $this->tables['goods'],
+        $subcategoriesIds,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%'
       ) : 0;
 
     return $count;
@@ -208,6 +292,16 @@ class ProductionModel extends Model {
 
   function getSubCategoryGoods($subcategoryId) {
     return $this->table('goods')->getAllWhereSorted('SubcategoryId = ?i', $subcategoryId);
+  }
+
+  function getSubCategoryGoodsSearched($subcategoryId, $keyword) {
+    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+        $this->tables['goods'],
+        $subcategoryId,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%'
+      );
+    return $goods;
   }
 
   function getGoodyByCode($code) {

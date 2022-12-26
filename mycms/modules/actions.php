@@ -196,6 +196,18 @@ class actions extends krn_abstract{
 		}	
 	}
 
+	function OnDeleteProductSubcategory($oldRecord) {
+		if ($oldRecord['Id']) {
+			$res = dbDoQuery('SELECT Id FROM data_goody WHERE SubcategoryId = ' . $oldRecord['Id']);
+			while($rec = dbGetRecord($res)) {
+				flDeleteFile(ABS_PATH.ROOT_DIR.$rec['Preview']);
+				flDeleteFile(ABS_PATH.ROOT_DIR.$rec['PreviewFull']);
+				dbDoQuery('DELETE FROM data_goody WHERE Id = ' . $rec['Id']);
+				dbDoQuery('DELETE FROM data_goody_char WHERE GoodyId = ' . $rec['Id']);
+			}
+		}
+	}
+
 	function OnAddProductSubcategoryGoody($newRecord){
 		if(!$newRecord['Code']){
 			krnLoadLib('chars');
@@ -212,6 +224,12 @@ class actions extends krn_abstract{
 			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
 			dbDoQuery('UPDATE data_goody SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
 		}	
+	}
+
+	function OnDeleteProductSubcategoryGoody($oldRecord) {
+		if ($oldRecord['Id']) {
+			dbDoQuery('DELETE FROM data_goody_char WHERE GoodyId = ' . $oldRecord['Id']);
+		}
 	}
 
 	function OnAddProductDirection($newRecord){
@@ -248,6 +266,26 @@ class actions extends krn_abstract{
 			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
 			dbDoQuery('UPDATE data_products SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
 		}	
+	}
+
+	function OnDeleteProductCategory($oldRecord) {
+		if ($oldRecord['Id']) {
+			$res = dbDoQuery('SELECT Id FROM data_subcategory WHERE ProductId = ' . $oldRecord['Id']);
+			while ($rec = dbGetRecord($res)) {
+
+				$res2 = dbDoQuery('SELECT Id FROM data_goody WHERE SubcategoryId = ' . $rec['Id']);
+				while($rec2 = dbGetRecord($res2)) {
+					flDeleteFile(ABS_PATH.ROOT_DIR.$rec2['Preview']);
+					flDeleteFile(ABS_PATH.ROOT_DIR.$rec2['PreviewFull']);
+					dbDoQuery('DELETE FROM data_goody WHERE Id = ' . $rec2['Id']);
+					dbDoQuery('DELETE FROM data_goody_char WHERE GoodyId = ' . $rec2['Id']);
+				}
+
+				flDeleteFile(ABS_PATH.ROOT_DIR.$rec['Image']);
+				flDeleteFile(ABS_PATH.ROOT_DIR.$rec['Preview']);
+				dbDoQuery('DELETE FROM data_subcategory WHERE Id = ' . $rec['Id']);
+			}
+		}
 	}
 }
 

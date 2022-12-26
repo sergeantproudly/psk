@@ -124,18 +124,17 @@
 	  $userSession = new \Engine\Library\UserSession();
 //	  var_dump($userSession->isLoggedIn());
 
-	  if (!$userSession->isLoggedIn()) {
-	    switch ($route->controller()):
-        case 'CatalogPage':
-        //case 'StaffPage':
-        case 'RegisterPage':
-        case 'CertificatesPage':
-        case 'ShippingPage':
-          header("Location: /" );
-          exit;
-      endswitch;
-    }
-
+	  // if (!$userSession->isLoggedIn()) {
+	  //   switch ($route->controller()):
+    //     case 'CatalogPage':
+    //     //case 'StaffPage':
+    //     case 'RegisterPage':
+    //     case 'CertificatesPage':
+    //     case 'ShippingPage':
+    //       header("Location: /" );
+    //       exit;
+    //   endswitch;
+    // }
 
     $page = "\\Site\\Pages\\{$route->controller()}";
     $page = new $page();

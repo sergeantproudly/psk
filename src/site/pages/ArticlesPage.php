@@ -116,6 +116,11 @@ class ArticlesPage extends Page {
 
     $code = $params['article'];
     $article = $this->model->getArticleByCode($code);
+
+    if (!$article) {
+      Common::Get404Page();
+    }
+
     $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
     $article['Date'] = Common::ModifiedDate($article['PublishDate']);
     $article['ImageWebp'] = Common::flGetWebpByImage($article['Image']);
@@ -139,7 +144,9 @@ class ArticlesPage extends Page {
     $articlesRendered = $articlesComponent->render($similarArticles, 'Другие новости', 'bl-news-similar');
     $article['Similar'] = $articlesRendered;
 
-    return $this->getPage('detail')->parse($article);
+    return $this->getPage('detail')->parse($article + [
+      'Breadcrumbs' => $breadcrumbsRendered,
+    ]);
   }
 
   function page($number) {

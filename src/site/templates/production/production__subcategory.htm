@@ -6,7 +6,7 @@
                             {{TITLE}}
                         </h1>
                         <div class="main__subtitle">
-                            {{TEXT}}
+                            {{SHORTDESCRIPTION}}
                         </div>
                     </div>
                 </div>
@@ -15,13 +15,21 @@
             <div class="page__products products products-offset">
                 <div class="products__container">
                     <div class="products__wrapper">
-                        <div class="products__menu products-menu">
-                            {{INCLUDE:SUBCATEGORIES}}
+                        <div class="products__menu" id="catalogue" data-da=".main__body, 767.98" data-spollers="767.98, max">
+                            <div class="products__menu-title">
+                                Категория
+                            </div>
+                            <button class="products__menu-btn spoller-caption" data-spoller>
+                                {{TITLECLEARED}}
+                            </button>
+                            <div class="products__menu-content products-menu">
+                                {{INCLUDE:SUBCATEGORIES}}
+                            </div>
                         </div>
                         <div class="products__body">
-                            <form action="#" class="products__search search">
+                            <form action="{{ACTION}}" class="products__search search">
                                 <div class="form__wrapper">
-                                    <input type="text" name="search" class="form__input search__input" placeholder="Поиск">
+                                    <input type="text" name="search" class="form__input search__input" placeholder="Поиск" value="{{KEYWORD}}">
                                     <button type="button" class="form__input-clear icon-close"></button>
                                 </div>
                                 <button type="submit" class="search__btn btn btn-orange btn-sm icon-search"></button>
@@ -63,5 +71,7 @@
                             </div>
                         </div>
                     </div>
+
+                    <div style="padding-top: 80px;line-height:1.4;">{{TEXT}}</div>
                 </div>
             </div>

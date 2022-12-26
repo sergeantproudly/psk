@@ -188,27 +188,27 @@ class Site {
 
 		return $baseTemplate->parse([
 			'Settings' => [
-				'site_title' => $settings->get('SiteTitle'),
-				'seo_keywords' => $settings->get('SeoKeywords'),
-				'seo_description' => $settings->get('SeoDescription'),
-				'site_protocol' => $settings->get('SiteProtocol'),
-				'site_domain' => $settings->get('SiteDomain'),
-				'site_url' => $settings->get('SiteUrl'),
+				'site_title' => $Settings->get('SiteTitle'),
+				'seo_keywords' => $Settings->get('SeoKeywords'),
+				'seo_description' => $Settings->get('SeoDescription'),
+				'site_protocol' => $Settings->get('SiteProtocol'),
+				'site_domain' => $Settings->get('SiteDomain'),
+				'site_url' => $Settings->get('SiteUrl'),
 				//'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
 				'ogimage' => '/img/OG.jpg',
-				'yandex_metrika' => $settings->get('YandexMetrika'),
+				'yandex_metrika' => $Settings->get('YandexMetrika'),
 			],
 			'Page' => [
 				'title' => $page->getSeoTitle() ?: $page->getTitle(),
 				'heading' => $page->getHeading(),
-				'seo_description' => $page->getSeoDescription() ?: $settings->get('SeoDescription'),
-				'seo_keywords' => $page->getSeoKeywords() ?: $settings->get('SeoKeywords'),
+				'seo_description' => $page->getSeoDescription() ?: $Settings->get('SeoDescription'),
+				'seo_keywords' => $page->getSeoKeywords() ?: $Settings->get('SeoKeywords'),
 			],
 			'Header' => $contacts + [
 				'Navigation' => Components::getNavigation($this->db, $code, $params['code']),
 				//'Login' => $login,
 				'Logo' => '/img/logo-white.svg',
-				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
+				'Alt' => htmlspecialchars($Settings->get('SiteTitle'), ENT_QUOTES),
 			],
 			'Content' => $page->{$action}($params),
 			'Contacts' => !$this->isContacts($code) ? $contactsRendered : '',
@@ -219,10 +219,10 @@ class Site {
 				'CategoriesNav' => $templateCategoriesNavigationItem->parse($categoriesNavigation),
 				'ContainerClass' => !$this->isHome($code) && !$this->isContacts($code) ? 'border-top' : '',
 				'Year'=> DateHelper::getCurrentYear(),
-				'Alt' => htmlspecialchars($settings->get('SiteTitle'), ENT_QUOTES),
+				'Alt' => htmlspecialchars($Settings->get('SiteTitle'), ENT_QUOTES),
 			],
 			'Modals' => isset($modalsRendered) ? implode('', $modalsRendered) : '',
-			'Version' => $settings->get('AssetsVersion') ? '?v2.' . $settings->get('AssetsVersion') : ''
+			'Version' => $Settings->get('AssetsVersion') ? '?v2.' . $Settings->get('AssetsVersion') : ''
 		]);
 	}		
 }

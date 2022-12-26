@@ -44,6 +44,8 @@
 
 			<script type="text/javascript">
 				document.getElementById('js-search').onsubmit = function(e) {
+					e.preventDefault();
+					
 					var keyword = this.search.value;
 					window.location = this.getAttribute('action') + (keyword ? keyword : '');
 				}

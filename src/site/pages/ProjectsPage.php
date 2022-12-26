@@ -29,14 +29,13 @@ class ProjectsPage extends Page {
   }
 
   function index ($params = []):string {
-    /*
+    
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbs->setTemplate('inversed');
     $breadcrumbsRendered = $breadcrumbs->render($this->code(), [
       ['Code' => 'main', 'Link' => '/', 'Title' => 'Главная'],
       ['Code' => $this->code(), 'Link' => '/'.$this->code().'/',  'Title' => $this->page['Title']],
     ]);
-    */
 
     global $Settings;    
     $count = $Settings->get('ProjectsCount') ?: 3;
@@ -85,7 +84,7 @@ class ProjectsPage extends Page {
     }
 
     return $this->getPage('index')->parse($this->page + [
-      //'Breadcrumbs' => $breadcrumbsRendered,
+      'Breadcrumbs' => $breadcrumbsRendered,
       'List' => $projectListRendered,
       'Pagination' => [
         'Class' => 'projects__pagination',
@@ -119,6 +118,10 @@ class ProjectsPage extends Page {
 
     $project = 
       $this->model->getProjectByCode($code);
+
+    if (!$project) {
+      Common::Get404Page();
+    }
 
     $project['Date'] = strtotime($project['Date']) ? ('<time datetime="' . Common::excess($project['Date'], ' 00:00:00') . '">Дата реализации проекта: ' . Common::ModifiedDate($project['Date']) . '</time>') : '';
     $project['ImageWebp'] = Common::flGetWebpByImage($project['Image']);

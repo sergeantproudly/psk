@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Пользователь
- * Date: 22-Jun-18
- * Time: 2:06 PM
- */
 
 namespace Site\Pages;
 
@@ -13,6 +7,7 @@ use Engine\Library\ListTemplate;
 use Engine\Library\Page;
 use Engine\Library\Template;
 use Engine\Library\Request;
+use Engine\Library\Common;
 use Site\Components\BreadcrumbsComponent;
 use Site\Components\PaginationComponent;
 use Site\Models\PageModel;
@@ -39,6 +34,10 @@ class StaticPage extends Page {
 
     $staticModel = new StaticModel($Database);
     $page = $staticModel->getPage($code);
+    
+    if (!$page) {
+      Common::Get404Page();
+    }
 
     $breadcrumbs = new BreadcrumbsComponent();
     $breadcrumbsRendered = $breadcrumbs->render($code, [

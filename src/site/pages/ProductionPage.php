@@ -14,7 +14,7 @@ class ProductionPage extends Page {
   const DIR = self::CODE;
   public $modelName = 'ProductionModel';
 
-  const PERSON_ID = 21;
+  //const PERSON_ID = 21;
 
   function __construct () {
     parent::__construct(self::CODE, self::DIR);
@@ -75,8 +75,15 @@ class ProductionPage extends Page {
 
     $this->getPage('index')->addInclude($this->partial('directions'));
 
+    $breadcrumbs = new BreadcrumbsComponent;
+    $breadcrumbsRendered = $breadcrumbs->render($this->code(), [
+      ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
+      ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
+    ]);
+
     return $this->getPage('index')->parse($this->page + [
       'directions' => $directions,
+      'breadcrumbs' => $breadcrumbsRendered,
     ]);
   }
 
@@ -89,9 +96,11 @@ class ProductionPage extends Page {
 
     $this->model->init();
 
+    $searchKeyword = (string) $_GET['search'];
+
     $pagination = new PaginationComponent($this->model->getDB());
     $perPage = $Settings->get('GoodsCount') ?: 12;
-    $goodsCount = $this->model->getDirectionGoodsCount($params['direction']);
+    $goodsCount = !empty($searchKeyword) ? $this->model->getDirectionGoodsCountSearched($params['direction'], $searchKeyword) : $this->model->getDirectionGoodsCount($params['direction']);
     $currentPage = $params['page'] ?? 1;
     $paginationData = $pagination->pages(
       $perPage, 
@@ -110,17 +119,29 @@ class ProductionPage extends Page {
     //$contacts = $this->model->getContent('contacts');
 
     $direction = $this->model->getDirectionByCode($params['direction']);
+    if (!$direction) {
+      Common::Get404Page();
+    }
+
+    $breadcrumbs = new BreadcrumbsComponent;
+    $breadcrumbsRendered = $breadcrumbs->render($params['direction'], [
+      ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
+      ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
+      ['Code' => $params['direction'], 'Title' => strip_tags($direction['Title'])],
+    ]);
 
     $categories = $this->model->getProducts($params['direction']);
     $categories = Common::setLinks($categories, 'production');
     if (count($categories) > 1) {
       $this->getPage('direction')->addInclude($this->partial('categories'));
+      $mobileSelectedOption = strip_tags($categories[0]['Title']);
 
       // если единственная категория, выводим сразу ее подкатегории
     } elseif (count($categories) === 1) {    
       $subcategories = $this->model->getProductSubcategories($categories[0]['Code']);
       $subcategories = Common::setLinks($subcategories, 'production', $categories[0]['Code']);
       $this->getPage('direction')->addInclude($this->partial('subcategories'));
+      $mobileSelectedOption = strip_tags($subcategories[0]['Title']);
     }
 
     $this->getPage('direction')->addInclude($this->partial('goods'));
@@ -131,7 +152,7 @@ class ProductionPage extends Page {
     } 
     $this->getPage('direction')->addInclude($this->partial('direction_others'));
     
-    $goods = $this->model->getDirectionGoods($params['direction'], $perPage, $offset);
+    $goods = !empty($searchKeyword) ? $this->model->getDirectionGoodsSearched($params['direction'], $searchKeyword, $perPage, $offset) : $this->model->getDirectionGoods($params['direction'], $perPage, $offset);
     $goods = Common::setLinksByFields($goods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
     array_walk($goods, function(&$goody) {
       $goody['ImageWebp'] = Common::flGetWebpByImage($goody['Image']);
@@ -163,9 +184,15 @@ class ProductionPage extends Page {
     //   'EmailCommon' => $contacts['EmailCommon'],
     // ]);
 
+    $action = '/' . $this->code() . '/direction/' . $params['direction'] . '/#catalogue';
+
     return $this->getPage('direction')->parse($direction + [
       'Categories' => $categories,
       'Subcategories' => $subcategories,
+      'breadcrumbs' => $breadcrumbsRendered,
+      'Action' => $action,
+      'Keyword' => $searchKeyword ?: '',
+      'MobileSelectedOption' => $mobileSelectedOption,
       'Goods' => $goods,
       'Count' => $count,
       //'certs' => $blockCertsRendered,
@@ -198,9 +225,11 @@ class ProductionPage extends Page {
 
     $this->model->init();
 
+    $searchKeyword = (string) $_GET['search'];
+
     $pagination = new PaginationComponent($this->model->getDB());
     $perPage = $Settings->get('GoodsCount') ?: 12;
-    $goodsCount = $this->model->getCategoryGoodsCount($params['product']);
+    $goodsCount = !empty($searchKeyword) ? $this->model->getCategoryGoodsCountSearched($params['product'], $searchKeyword) : $this->model->getCategoryGoodsCount($params['product']);
     $currentPage = $params['page'] ?? 1;
     $paginationData = $pagination->pages(
       $perPage, 
@@ -218,6 +247,16 @@ class ProductionPage extends Page {
     $content = $this->model->getContent($this->code());
 
     $product = $this->model->getProductByCode($params['product']);
+    if (!$product) {
+      Common::Get404Page();
+    }
+
+    $breadcrumbs = new BreadcrumbsComponent;
+    $breadcrumbsRendered = $breadcrumbs->render($codeProduct, [
+      ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
+      ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
+      ['Code' => $codeProduct, 'Title' => strip_tags($product['Title'])],
+    ]);
 
     $subcategories = $this->model->getProductSubcategories($params['product']);
     $subcategories = Common::setLinks($subcategories, 'production', $product['Code']);
@@ -228,17 +267,23 @@ class ProductionPage extends Page {
       $this->getPage('product')->addInclude(
         $pagination->view('default'), 'pagination'
       );
-    } 
+    }
     
-    $goods = $this->model->getCategoryGoods($params['product'], $perPage, $offset);
+    $goods = !empty($searchKeyword) ? $this->model->getCategoryGoodsSearched($params['product'], $searchKeyword, $perPage, $offset) : $this->model->getCategoryGoods($params['product'], $perPage, $offset);
     $goods = Common::setLinksByFields($goods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
     array_walk($goods, function(&$goody) {
       $goody['ImageWebp'] = Common::flGetWebpByImage($goody['Image']);
     });
     $count = Common::Word125($goodsCount, 'Найден ', 'Найдено ', 'Найдено ') . $goodsCount . ' ' . Common::Word125($goodsCount, ' товар', ' товара', ' товаров');
 
+    $action = '/' . $this->code() . '/' . $params['product'] . '/#catalogue';
+
     return $this->getPage('product')->parse($product + [
       'Subcategories' => $subcategories,
+      'breadcrumbs' => $breadcrumbsRendered,
+      'Action' => $action,
+      'Keyword' => $searchKeyword ?: '',
+      'MobileSelectedOption' => strip_tags($subcategories[0]['Title']),
       'Goods' => $goods,
       'Count' => $count,
       'Pagination' => [
@@ -275,20 +320,29 @@ class ProductionPage extends Page {
     $codeSubcategory = $params['subcategory'];
     $product = $this->model->getProductByCode($codeProduct);
     $subcategory = $this->model->getSubcategoryByCode($codeSubcategory);
+    if (!$subcategory) {
+      Common::Get404Page();
+    }
+    $subcategory['TitleCleared'] = strip_tags($subcategory['Title']);
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeSubcategory, [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
       ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
-      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => $product['Title']],
-      ['Code' => $codeSubcategory, 'Title' => $subcategory['Title']],
+      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
+      ['Code' => $codeSubcategory, 'Title' => strip_tags($subcategory['Title'])],
     ]);
 
-    $goods = $this->model->getSubCategoryGoods($subcategory['Id']);
+    $searchKeyword = (string) $_GET['search'];
+
+    $goods = !empty($searchKeyword) ? $this->model->getSubCategoryGoodsSearched($subcategory['Id'], $searchKeyword) : $this->model->getSubCategoryGoods($subcategory['Id']);
     $goods = Common::setLinks($goods, 'production/'.$codeProduct, $codeSubcategory);
 
     $subcategories = $this->model->getProductSubcategories($params['product']);
     $subcategories = Common::setLinks($subcategories, 'production', $product['Code']);
+    array_walk($subcategories, function(&$subcategory, $key, $codeSubcategory) {
+      if ($subcategory['Code'] === $codeSubcategory) $subcategory['Class'] = ' active';
+    }, $codeSubcategory);
 
     $this->getPage('subcategory')->addInclude($this->partial('goods'));
     $this->getPage('subcategory')->addInclude($this->partial('subcategories'));
@@ -319,10 +373,14 @@ class ProductionPage extends Page {
     //       'List' => $blockOtherItemTemplate
     // ]);
 
+    $action = '/' . $this->code() . '/' . $codeProduct . '/' . $codeSubcategory . '/#catalogue';
+
     return $this->getPage('subcategory')->parse($subcategory + $this->page + [
       'Subcategories' => $subcategories,
       'breadcrumbs' => $breadcrumbsRendered,
       'goods' => $goods,
+      'Action' => $action,
+      'Keyword' => $searchKeyword ?: '',
       //'promo' => $blockPromoRendered,
       //'other' => $blockOtherRendered,
     ]);
@@ -347,15 +405,19 @@ class ProductionPage extends Page {
     $product = $this->model->getProductByCode($codeProduct);
     $subcategory = $this->model->getSubcategoryByCode($codeSubcategory);
     $goody = $this->model->getGoodyByCode($codeGoody);
+    if (!$goody) {
+      Common::Get404Page();
+    }
+
     $goody['PreviewFullWebp'] = Common::flGetWebpByImage($goody['PreviewFull']);
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeGoody, [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
       ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
-      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => $product['Title']],
-      ['Code' => $codeSubcategory, 'Link' => '/'.$this->code().'/'.$codeProduct.'/'.$codeSubcategory.'/' ,'Title' => $subcategory['Title']],
-      ['Code' => $codeGoody, 'Title' => $goody['Title']],
+      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
+      ['Code' => $codeSubcategory, 'Link' => '/'.$this->code().'/'.$codeProduct.'/'.$codeSubcategory.'/' ,'Title' => strip_tags($subcategory['Title'])],
+      ['Code' => $codeGoody, 'Title' => strip_tags($goody['Title'])],
     ]);
 
     $chars = $this->model->getGoodyChars($goody['Id']);

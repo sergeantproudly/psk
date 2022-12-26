@@ -488,7 +488,18 @@
     	return preg_replace('/[^\d\+]/', '', $tel);
     }
 
-	}
+    public static function Get404Page() {
+    	header('HTTP/1.1 404 Not Found');
+		header('Status: 404 Not Found');
+
+		global $Site;
+		$page = "\\Site\\Pages\\NotFoundPage";
+    	$page = new $page();
+		echo $Site->buildPage($page);
+		die();
+    }
+
+}
 
 class RecordList{
 	private $list=array();

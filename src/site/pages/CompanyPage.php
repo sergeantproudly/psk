@@ -55,6 +55,12 @@ class CompanyPage extends Page {
         return $item['Code'] == $current['Code'];
       })); 
 
+      $breadcrumbs = new BreadcrumbsComponent;
+      $breadcrumbsRendered = $breadcrumbs->render($this->code(), [
+        ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
+        ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
+      ]);
+
       // VIDEO
       $youtube = new Youtube();
       $templateVideoBlock = new Template('bl-video', 'video');
@@ -83,14 +89,23 @@ class CompanyPage extends Page {
             'List' => $attrHtml
       ]);
 
+      $templateCertificatesBlock = new Template('bl-certificates', 'company');
+      $certificatesRendered = $templateCertificatesBlock->parse([
+        'Title' => trim(strip_tags($content['BlockCertificatesTitle'])),
+        'Alt' => htmlspecialchars(trim(strip_tags($content['BlockCertificatesTitle'])), ENT_QUOTES),
+        'Text' => trim(strip_tags($content['BlockCertificatesText'])),
+      ]);
+
       $content['BlockProductionHeading'] = strip_tags($content['BlockProductionHeading']);
       $rendered = $this->page('index')->parse($content + [
+        'Breadcrumbs' => $breadcrumbsRendered,
         'Nav' => $navigation,
         'BlockMission' => trim(strip_tags($content['BlockMissionText'])) ? '<div class="about__text article__content" data-animation><div><h3>Миссия</h3>' . $content['BlockMissionText'] . '</div></div>' : '',
         'BlockStandarts' => trim(strip_tags($content['BlockStandartsText'])) ? '<div class="about__text article__content" data-animation><div><h3>Стандарты</h3>' . $content['BlockStandartsText'] . '</div></div>' : '',
         'BlockGuarantees' => trim(strip_tags($content['BlockGuaranteesText'])) ? '<div class="about__text article__content" data-animation><div><h3>Гарантии</h3>' . $content['BlockGuaranteesText'] . '</div></div>' : '',
         'Video' => $videoBlockRendered,
         'Advantages' => $advantagesRendered,
+        'Certificates' => $certificatesRendered,
       ]);
 
     // INNER PAGES

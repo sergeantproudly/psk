@@ -1,9 +1,0 @@
-<!-- Novalidate attribute because of the custom validation -->
-<form class="js-form-question" action="/form/add-question/" method="post" id="question" novalidate>
-  <div class="fld-bite"><input type="text" name="name" maxlength="255" placeholder="Имя" autocomplete="off" aria-hidden="true"/></div>
-  <div class="fld-bite"><input type="email" name="email" maxlength="255" placeholder="E-mail" autocomplete="off" aria-hidden="true"/></div>
-  <div class="fld-bite"><textarea name="text" placeholder="Вопрос" autocomplete="off" aria-hidden="true"></textarea></div>
-  <div class="fld-half"><input class="js-form-input" type="text" name="{{NOISE}}name" maxlength="255" placeholder="Имя" data-form-input/></div><div class="fld-half"><input class="js-form-input" type="email" name="{{NOISE}}email" maxlength="255" placeholder="E-mail" data-form-input/></div>
-  <div class="fld"><textarea class="js-form-input" name="{{NOISE}}text" placeholder="Вопрос" data-form-input></textarea></div><div class="agree"><input class="js-form-input js-form-checkbox" type="checkbox" name="{{NOISE}}agree" id="agree-question" data-form-input><label for="agree-question">Я согласен на обработку своих персональных данных</label></div>
-  <div class="btn-line"><input class="js-form-submit btn" type="submit" value="Отправить"></div>
-</form>
