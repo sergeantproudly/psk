@@ -290,18 +290,44 @@ class ProductionModel extends Model {
     return $this->table('subcategories')->getOneWhere('Code = ?s', $code);
   }
 
-  function getSubCategoryGoods($subcategoryId) {
-    return $this->table('goods')->getAllWhereSorted('SubcategoryId = ?i', $subcategoryId);
+  function getSubCategoryGoods($subcategoryId, $count = 0, $offset = 0) {
+    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i ORDER BY IF(`Order`, -1000/`Order`, 0) LIMIT ?i OFFSET ?i", 
+        $this->tables['goods'],
+        $subcategoryId,
+        $count,
+        $offset
+      );
+    return $goods;
   }
 
-  function getSubCategoryGoodsSearched($subcategoryId, $keyword) {
-    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+  function getSubCategoryGoodsSearched($subcategoryId, $keyword, $count = 0, $offset = 0) {
+    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0) LIMIT ?i OFFSET ?i", 
+        $this->tables['goods'],
+        $subcategoryId,
+        '%' . $keyword . '%',
+        '%' . $keyword . '%',
+        $count,
+        $offset
+      );
+    return $goods;
+  }
+
+  function getSubCategoryGoodsCount($subcategoryId) {
+    $count = $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId = ?i", 
+        $this->tables['goods'],
+        $subcategoryId
+      );
+    return $count;
+  }
+
+  function getSubCategoryGoodsCountSearched($subcategoryId, $keyword) {
+    $count = $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s)", 
         $this->tables['goods'],
         $subcategoryId,
         '%' . $keyword . '%',
         '%' . $keyword . '%'
       );
-    return $goods;
+    return $count;
   }
 
   function getGoodyByCode($code) {

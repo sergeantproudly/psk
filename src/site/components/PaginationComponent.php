@@ -30,7 +30,7 @@ class PaginationComponent extends Component {
   }
 
   function pages($entriesPerPage, $entriesCount, $parentCode,
-                 $current = 1, $addPageCode = true) {
+                 $current = 1, $addPageCode = true, $getParams = true) {
     $pages = [];
     $viewableRange = 5;
     $halfRange = $viewableRange / 2;
@@ -47,6 +47,7 @@ class PaginationComponent extends Component {
       $link = "/{$parentCode}";
       $link .= $addPageCode ? "/page" : '';
       $link .= "/{$counter}/";
+      if ($getParams && count($_GET)) $link .= '?' . $_SERVER['QUERY_STRING'];
       $pages[$i] = [
         'class' => '',
         'number' => $counter < 10 ? '0' . $counter : $counter,

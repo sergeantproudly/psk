@@ -106,7 +106,9 @@ class ProductionPage extends Page {
       $perPage, 
       $goodsCount, 
       $this->code() . '/direction/' . $params['direction'],
-      $currentPage
+      $currentPage,
+      true,
+      $searchKeyword ? '?search=' . $searchKeyword : ''
     );
     $pages = $paginationData['pages'];
     $nextPage = $paginationData['nextPage'];
@@ -335,8 +337,26 @@ class ProductionPage extends Page {
 
     $searchKeyword = (string) $_GET['search'];
 
-    $goods = !empty($searchKeyword) ? $this->model->getSubCategoryGoodsSearched($subcategory['Id'], $searchKeyword) : $this->model->getSubCategoryGoods($subcategory['Id']);
+    $pagination = new PaginationComponent($this->model->getDB());
+    $perPage = $Settings->get('GoodsCount') ?: 12;
+    $goodsCount = !empty($searchKeyword) ? $this->model->getSubCategoryGoodsCountSearched($subcategory['Id'], $searchKeyword) : $this->model->getSubCategoryGoodsCount($subcategory['Id']);
+    $currentPage = $params['page'] ?? 1;
+    $paginationData = $pagination->pages(
+      $perPage, 
+      $goodsCount, 
+      $this->code() . '/' . $params['product'] . '/' . $codeSubcategory,
+      $currentPage
+    );
+    $pages = $paginationData['pages'];
+    $nextPage = $paginationData['nextPage'];
+    $prevPage = $paginationData['previousPage'];
+    $pageNumber = $currentPage <= count($pages) ? $currentPage : 1;
+    $offset = ($pageNumber - 1) * $perPage;
+    $offset = $offset >= 0 ? $offset : 0;
+
+    $goods = !empty($searchKeyword) ? $this->model->getSubCategoryGoodsSearched($subcategory['Id'], $searchKeyword, $perPage, $offset) : $this->model->getSubCategoryGoods($subcategory['Id'], $perPage, $offset);
     $goods = Common::setLinks($goods, 'production/'.$codeProduct, $codeSubcategory);
+    $count = Common::Word125($goodsCount, 'Найден ', 'Найдено ', 'Найдено ') . $goodsCount . ' ' . Common::Word125($goodsCount, ' товар', ' товара', ' товаров');
 
     $subcategories = $this->model->getProductSubcategories($params['product']);
     $subcategories = Common::setLinks($subcategories, 'production', $product['Code']);
@@ -346,6 +366,11 @@ class ProductionPage extends Page {
 
     $this->getPage('subcategory')->addInclude($this->partial('goods'));
     $this->getPage('subcategory')->addInclude($this->partial('subcategories'));
+    if (count($pages) > 1) {
+      $this->getPage('subcategory')->addInclude(
+        $pagination->view('default'), 'pagination'
+      );
+    }
 
     // $staffModel = new \Site\Models\StaffModel($Database);
     // $person = $staffModel->getPersonById(self::PERSON_ID);
@@ -381,8 +406,24 @@ class ProductionPage extends Page {
       'goods' => $goods,
       'Action' => $action,
       'Keyword' => $searchKeyword ?: '',
+      'Count' => $count,
       //'promo' => $blockPromoRendered,
       //'other' => $blockOtherRendered,
+      'Pagination' => [
+        'Class' => 'products__pagination',
+        'Previous' => [
+          'Status' => $prevPage ? '' : 'aria-disabled="true"',
+          'Link' => $prevPage['link'] ?: '#'
+        ],
+        'Next' => [
+          'Status' => $nextPage ? '' : 'aria-disabled="true"',
+          'Link' => $nextPage['link'] ?: '#'
+        ],
+        'List' => count($pages) > 1
+          ? $pagination->partial('pages')->setCallback(function ($item) {
+              return $item['active'] == true;  
+            })->parse($pages) : '',
+      ],
     ]);
   }
 
