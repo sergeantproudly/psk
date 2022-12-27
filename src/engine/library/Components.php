@@ -30,7 +30,10 @@ class Components {
 	 * 
 	 * @return string
 	 */
-	static function getNavigation($db, $currentPageCode, $currentSubPageCode) {		
+	static function getNavigation($db, $currentPageCode, $currentSubPageCode) {
+		$urlData = parse_url($_SERVER['REQUEST_URI']);
+		$lastPathNode = array_pop(array_filter(explode('/', $urlData['path'])));
+
 		$navigationPath = 'components/navigation';
 	
 		$navigation = new Template('navigation.htm', $navigationPath);
@@ -78,6 +81,7 @@ class Components {
 			}
 			if (count($class)) $item['Class'] = ' ' . implode(' ', $class);
 			if (count($classtwo)) $item['ClassTwo'] = ' ' . implode(' ', $classtwo);
+			if ($lastPathNode != $item['Code']) $item['Style'] = ' style="pointer-events:auto;"';
 			
 			$content .= $element->Parse($item);
 		}
