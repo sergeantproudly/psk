@@ -1,0 +1,310 @@
+@charset "UTF-8";
+.ico {
+  vertical-align: middle;
+  margin-right: 10px; }
+
+.holder {
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1000px;
+  box-sizing: border-box; }
+  @media (max-width: 1000px) {
+    .holder {
+      padding: 0 3.125%; } }
+  @media (max-width: 600px) {
+    .holder {
+      padding: 0 6.25%; } }
+
+.al-left {
+  text-align: right; }
+
+.al-right {
+  text-align: right; }
+
+.al-center {
+  text-align: center; }
+
+.al-top {
+  vertical-align: top !important; }
+
+.al-middle {
+  vertical-align: middle !important; }
+
+.al-bottom {
+  vertical-align: bottom !important; }
+
+.radius {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px; }
+
+.radius-lt, .radius-t, .radius-l {
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px; }
+
+.radius-rt, .radius-t, .radius-r {
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.radius-lb, .radius-l, .radius-b {
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+.radius-rb, .radius-r, .radius-b {
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+.radius-sm {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px; }
+
+.wrap {
+  position: relative; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none; }
+
+b, strong {
+  font-weight: 700; }
+
+.btn {
+  display: inline-block;
+  background-color: #307CE0;
+  color: #FFF;
+  padding: 17px 40px 16px 40px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  font-family: "MuseoSans", "Arial";
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -khtml-border-radius: 50px;
+  border-radius: 50px; }
+  .btn:hover {
+    background-color: #276FCC;
+    color: #FFF; }
+  .btn:active {
+    background-color: #2262B7;
+    color: #FFF; }
+  .btn[disabled] {
+    background-color: #2262B7;
+    color: #999; }
+    .btn[disabled]:hover {
+      background-color: #2262B7;
+      color: #999; }
+    .btn[disabled]:active {
+      background-color: #2262B7;
+      color: #999; }
+  .btn.arr {
+    padding-right: 55px;
+    position: relative; }
+    .btn.arr:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 33px;
+      width: 16px;
+      height: 10px;
+      margin-top: -5px;
+      background-image: url("../../images/ico_arr_right.svg"); }
+  .btn.type2 {
+    background-color: #FFC13E;
+    color: #FFF; }
+    .btn.type2:hover {
+      background-color: #F6B632;
+      color: #FFF; }
+    .btn.type2:active {
+      background-color: #EBAC28;
+      color: #FFF; }
+    .btn.type2[disabled] {
+      background-color: #EBAC28;
+      color: #999; }
+      .btn.type2[disabled]:hover {
+        background-color: #EBAC28;
+        color: #999; }
+      .btn.type2[disabled]:active {
+        background-color: #EBAC28;
+        color: #999; }
+
+.dashed {
+  cursor: pointer;
+  border-bottom: 1px dashed; }
+
+.dotted {
+  cursor: pointer;
+  border-bottom: 1px dotted; }
+
+a.dashed {
+  text-decoration: none;
+  border-bottom: 1px dashed; }
+
+a.dotted {
+  text-decoration: none;
+  border-bottom: 1px dotted; }
+
+.clear-l {
+  clear: left;
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  display: block; }
+
+.clear-r {
+  clear: right;
+  font-size: 0;
+  height: 1px;
+  overflow: hidden; }
+
+.clear-a {
+  clear: both;
+  font-size: 0;
+  height: 1px;
+  overflow: hidden; }
+
+.hidden {
+  display: none; }
+
+@media (max-width: 760px) {
+  .tablet-hidden {
+    display: none; } }
+
+@media (max-width: 540px) {
+  .mobile-hidden {
+    display: none; } }
+
+.transition-all, .btn, .btn:hover, .btn:active, .btn[disabled], .rotate-180-start, .rotate-180-end, .box-shadow, .box-shadow:hover {
+  -webkit-transition: all 0.35s ease;
+  -moz-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  transition: all 0.35s ease; }
+
+.transition-color {
+  -webkit-transition: color 0.35s ease;
+  -moz-transition: color 0.35s ease;
+  -o-transition: color 0.35s ease;
+  transition: color 0.35s ease; }
+
+.transition-bg {
+  -webkit-transition: background-color 0.35s ease;
+  -moz-transition: background-color 0.35s ease;
+  -o-transition: background-color 0.35s ease;
+  transition: background-color 0.35s ease; }
+
+.transition-border {
+  -webkit-transition: border-color 0.35s ease;
+  -moz-transition: border-color 0.35s ease;
+  -o-transition: border-color 0.35s ease;
+  transition: border-color 0.35s ease; }
+
+.transition-opacity {
+  -webkit-transition: opacity 0.35s ease;
+  -moz-transition: opacity 0.35s ease;
+  -o-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease; }
+
+.rotate-180-start {
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+.rotate-180-end {
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+.nowrap {
+  white-space: nowrap; }
+
+.box-shadow {
+  box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.064); }
+  .box-shadow:hover {
+    box-shadow: 0px 12px 23px rgba(0, 0, 0, 0.07); }
+
+.box-shadow-none {
+  box-shadow: 0px 0px 0px transparent; }
+
+.gradient-bg {
+  background: #2888df;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1FAFFF', endColorstr='#4380FF');
+  /* для IE6-9 */
+  background: -webkit-linear-gradient(top, bottom, #1FAFFF, #4380FF);
+  /* для webkit-браузеров */
+  background: -moz-linear-gradient(top, #1FAFFF, #4380FF);
+  /* для firefox 3.6+ */
+  background: -o-linear-gradient(top, #1FAFFF, #4380FF);
+  /* для Opera 11.10+ */
+  background: -ms-linear-gradient(top, #1FAFFF, #4380FF);
+  /* для IE10+ */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12432), rgba(0, 0, 0, 0.12432)), linear-gradient(258.5deg, #1FAFFF 36.38%, #4380FF 135.48%); }
+
+.fadeout-holder {
+  position: relative; }
+
+.fadeout,
+.fadeout-r {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden; }
+  .fadeout:after,
+  .fadeout-r:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.0001) 0%, #FFFFFF 100%); }
+  .fadeout.scrolled-full:after,
+  .fadeout-r.scrolled-full:after {
+    display: none; }
+
+.rotation360 {
+  -webkit-animation: rotation360 1.5s infinite linear;
+  -moz-animation: rotation360 1.5s infinite linear;
+  -ms-animation: rotation360 1.5s infinite linear;
+  -o-animation: rotation360 1.5s infinite linear;
+  animation: rotation360 1.5s infinite linear;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0); }
+
+@-webkit-keyframes rotation360 {
+  to {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes rotation360 {
+  to {
+    -moz-transform: rotate(360deg); } }
+@-ms-keyframes rotation360 {
+  to {
+    -ms-transform: rotate(360deg); } }
+@-o-keyframes rotation360 {
+  to {
+    -o-transform: rotate(360deg); } }
+@keyframes rotation360 {
+  to {
+    transform: rotate(360deg); } }
+
+/*# sourceMappingURL=settings.css.map */
