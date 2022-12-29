@@ -123,9 +123,7 @@ class ProjectsPage extends Page {
       Common::Get404Page();
     }
 
-    var_dump(strtotime($project['Date']));
-    $project['Date'] = strtotime($project['Date']) ? ('<time datetime="' . Common::excess($project['Date'], ' 00:00:00') . '">Дата реализации проекта: ' . Common::ModifiedDate($project['Date']) . '</time>') : '';
-    var_dump(strtotime($project['Date']));
+    $project['Date'] = strtotime($project['Date']) && strtotime($project['Date']) > 0 ? ('<time datetime="' . Common::excess($project['Date'], ' 00:00:00') . '">Дата реализации проекта: ' . Common::ModifiedDate($project['Date']) . '</time>') : '';
     $project['ImageWebp'] = Common::flGetWebpByImage($project['Image']);
     $project['Alt'] = htmlspecialchars($project['Title'], ENT_QUOTES);
 
