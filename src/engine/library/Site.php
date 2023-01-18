@@ -197,6 +197,7 @@ class Site {
 				//'site_meta_viewport' => in_array($page->code(), $authPageList) ? '' : '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>',
 				'ogimage' => '/img/OG.jpg',
 				'yandex_metrika' => $Settings->get('YandexMetrika'),
+				'meta_verification' => $Settings->get('MetaVerification'),
 			],
 			'Page' => [
 				'title' => $page->getSeoTitle() ?: $page->getTitle(),
