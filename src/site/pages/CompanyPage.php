@@ -23,6 +23,8 @@ class CompanyPage extends Page {
       'direction' => ['template' => 'company__direction'],
       'clients' => ['template' => 'company__clients'],
       'stores' => ['template' => 'company__stores'],
+      'media' => ['template' => 'company__media'],
+      'media-gallery' => ['template' => 'company__media__gallery'],
       'default' => ['template' => 'company__default']
     ]);
 
@@ -272,6 +274,82 @@ class CompanyPage extends Page {
           'Navigation' => $navigationRendered,
           'List' => $storesRendered,
         ] + $content);
+
+      // MEDIA PAGE
+      } elseif ($current['Code'] == 'media') {
+
+        $mediaModel = new \Site\Models\MediaModel($this->model->getDB());
+
+        if ($galleryCode = $params['subcode']) {
+            $gallery = $mediaModel->getGalleryByCode($galleryCode);
+
+            $breadcrumbsRendered = $breadcrumbs->render($galleryCode, [
+              ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
+              ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
+              ['Code' => $current['Code'], 'Link' => '/'.$this->code().'/'.$current['Code'].'/' ,'Title' => strip_tags($content['PageMediaHeading'])],
+              ['Code' => $galleryCode, 'Link' => '/'.$this->code().'/'.$galleryCode.'/' ,'Title' => $gallery['Title']],
+            ]);
+
+            $photos = $mediaModel->getGalleryPhotos($galleryCode);
+            foreach ($photos as &$photo) {
+              $photo['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
+              $photo['ImageWebp'] = Common::flGetWebpByImage($photo['Image']);
+            }
+            $galleryPhotoTemplate = new ListTemplate('company__media__gallery__photo', 'company/partial');
+            $photosRendered = $galleryPhotoTemplate->parse($photos);
+
+            $videos = $mediaModel->getGalleryVideos($galleryCode);
+            foreach ($videos as &$video) {
+              $video['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
+              $video['CoverWebp'] = Common::flGetWebpByImage($video['Cover']);
+            }
+            $galleryVideoTemplate = new ListTemplate('company__media__gallery__video', 'company/partial');
+            $videosRendered = $galleryVideoTemplate->parse($videos);
+
+            $rendered = $this->page('media-gallery')->parse([
+              'Breadcrumbs' => $breadcrumbsRendered,
+              'Title' => $gallery['Title'],
+              'Class' => !count($videos) ? 'media__body-lg' : '',
+              'List' => $photosRendered . $videosRendered,
+            ] + $content);
+
+        } else {
+            
+            $galleries = $mediaModel->getGalleries();
+            $galleries = $galleries ? Common::setLinks($galleries, $this->code().'/'.$current['Code']) : [];
+            $videos = [];
+            $photos = [];
+            foreach ($galleries as &$gallery) {
+              $gallery['Alt'] = htmlspecialchars($gallery['Title'], ENT_QUOTES);
+              $gallery['ImageWebp'] = Common::flGetWebpByImage($gallery['Image']);
+              $gallery['Quantity'] = $gallery['FilesQuantity'] ? $gallery['FilesQuantity'] . ' ' . Common::Word125($gallery['FilesQuantity'], 'файл', 'файла', 'файлов') : '';
+
+              if ($gallery['IsVideo']) $videos[] = $gallery;
+              else $photos[] = $gallery;
+            }
+            $galleriesItemTemplate = new ListTemplate('company__media__item', 'company/partial');
+            $galleriesRendered = '';
+            $sectionTemplate = new Template('company__media__section', 'company');
+
+            if (count($videos)) {
+              $galleriesRendered .= $sectionTemplate->parse([
+                'Title' => 'Видео',
+                'List' => $galleriesItemTemplate->parse($videos)
+              ]);
+            }
+            if (count($photos)) {
+              $galleriesRendered .= $sectionTemplate->parse([
+                'Title' => 'Фото',
+                'List' => $galleriesItemTemplate->parse($photos)
+              ]);
+            }
+
+            $rendered = $this->page($current['Code'])->parse([
+              'Breadcrumbs' => $breadcrumbsRendered,
+              'Title' => strip_tags($content['PageMediaHeading']),
+              'List' => $galleriesRendered,
+            ] + $content);
+        }
 
       // DEFAULT PAGE
       } else {

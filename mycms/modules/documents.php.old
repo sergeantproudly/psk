@@ -97,13 +97,9 @@ class documents extends krn_abstract{
 		$lead_element=is_array($_POST['lead_element'])?$_POST['lead_element']:trim($_POST['lead_element']);
 		$order_element=is_array($_POST['order_element'])?$_POST['order_element']:trim($_POST['order_element']);
 		$order_direction=is_array($_POST['order_direction'])?$_POST['order_direction']:trim($_POST['order_direction']);
-		$id_element=is_array($_POST['id_element'])?$_POST['id_element']:trim($_POST['id_element']);
 		$parent_id=is_array($_POST['parent_id'])?$_POST['parent_id']:(int)$_POST['parent_id'];
 		$parent_field=is_array($_POST['parent_field'])?$_POST['parent_field']:trim($_POST['parent_field']);
 		$order=is_array($_POST['order'])?$_POST['order']:(int)$_POST['order'];
-		$can_add=(int)isset($_POST['can_add']);
-		$can_edit=(int)isset($_POST['can_edit']);
-		$can_delete=(int)isset($_POST['can_delete']);
 		$ids=$_POST['id'];
 		$javascript='';
 		$error=false;
@@ -112,14 +108,14 @@ class documents extends krn_abstract{
 		if(is_array($ids)){
 			foreach($ids as $id){
 				if($title[$id]){
-					//if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Title="'.$title[$id].'"',__FILE__,__LINE__)){
-						dbDoQuery('INSERT INTO mycms_documents SET Title="'.$title[$id].'", LeadElement="'.$lead_element[$i].'", OrderElement="'.$order_element[$i].'", OrderDirection="'.$order_direction[$i].'", IdElement="'.$id_element[$i].'", TableId='.$table[$id].', ParentId='.(int)$parent_id[$id].', ParentField="'.$parent_field[$id].'", `ActionCode`="'.$actionCode[$id].'", `Order`='.(int)$order[$id].', CanAdd='.((int)isset($can_add[$id])).', CanEdit='.((int)isset($can_edit[$id])).', CanDelete='.((int)isset($can_delete[$id])),__FILE__,__LINE__);
+					if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Title="'.$title[$id].'"',__FILE__,__LINE__)){
+						dbDoQuery('INSERT INTO mycms_documents SET Title="'.$title[$id].'", LeadElement="'.$lead_element[$i].'", OrderElement="'.$order_element[$i].'", OrderDirection="'.$order_direction[$i].'", TableId='.$table[$id].', ParentId='.(int)$parent_id[$id].', ParentField="'.$parent_field[$id].'", `ActionCode`="'.$actionCode[$id].'", `Order`='.(int)$order[$id],__FILE__,__LINE__);
 						$javascript.='domD(gei(\'form'.$id.'\'));';
 						
-					//}else{
-					//	$error=true;
-					//	$javascript.='stxAddErrorStatus(gei(\'title'.$id.'\'),\'Уже есть документ с таким названием\');';
-					//}
+					}else{
+						$error=true;
+						$javascript.='stxAddErrorStatus(gei(\'title'.$id.'\'),\'Уже есть документ с таким названием\');';
+					}
 					
 				}else{
 					$error=true;
@@ -131,13 +127,13 @@ class documents extends krn_abstract{
 		// одна запись
 		}else{
 			if($title){
-				//if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Title="'.$title.'"',__FILE__,__LINE__)){
-					dbDoQuery('INSERT INTO mycms_documents SET Title="'.$title.'", LeadElement="'.$lead_element.'", OrderElement="'.$order_element.'", OrderDirection="'.$order_direction.'", IdElement="'.$id_element.'", TableId='.$table.', ParentId='.$parent_id.', ParentField="'.$parent_field.'", `ActionCode`="'.$actionCode.'", `Order`='.$order.', CanAdd='.$can_add.', CanEdit='.$can_edit.', CanDelete='.$can_delete,__FILE__,__LINE__);
+				if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Title="'.$title.'"',__FILE__,__LINE__)){
+					dbDoQuery('INSERT INTO mycms_documents SET Title="'.$title.'", LeadElement="'.$lead_element.'", OrderElement="'.$order_element.'", OrderDirection="'.$order_direction.'", TableId='.$table.', ParentId='.$parent_id.', ParentField="'.$parent_field.'", `ActionCode`="'.$actionCode.'", `Order`='.$order,__FILE__,__LINE__);
 					$javascript.='reload(true);';
 					
-				//}else{
-				//	$javascript.='stxAddErrorStatus(domP(form.title),\'Уже есть документ с таким названием\');';
-				//}
+				}else{
+					$javascript.='stxAddErrorStatus(domP(form.title),\'Уже есть документ с таким названием\');';
+				}
 				
 			}else{
 				$javascript.='msgSetError(form,\'Заполнены не все необходимые поля\');';			
@@ -206,12 +202,8 @@ class documents extends krn_abstract{
 		$lead_element=is_array($_POST['lead_element'])?$_POST['lead_element']:trim($_POST['lead_element']);
 		$order_element=is_array($_POST['order_element'])?$_POST['order_element']:trim($_POST['order_element']);
 		$order_direction=is_array($_POST['order_direction'])?$_POST['order_direction']:trim($_POST['order_direction']);
-		$id_element=is_array($_POST['id_element'])?$_POST['id_element']:trim($_POST['id_element']);
 		$actionCode=is_array($_POST['action_code'])?$_POST['action_code']:trim($_POST['action_code']);
 		$order=is_array($_POST['order'])?$_POST['order']:(int)$_POST['order'];
-		$can_add=is_array($_POST['can_add'])?$_POST['can_add']:(int)isset($_POST['can_add']);
-		$can_edit=is_array($_POST['can_edit'])?$_POST['can_edit']:(int)isset($_POST['can_edit']);
-		$can_delete=is_array($_POST['can_delete'])?$_POST['can_delete']:(int)isset($_POST['can_delete']);
 		$ids=$_POST['id'];
 		$javascript='';
 		$error=false;
@@ -220,14 +212,14 @@ class documents extends krn_abstract{
 		if(is_array($ids)){
 			foreach($ids as $id){
 				if($title[$id]){
-					//if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Id<>'.$id.' AND Title="'.$title[$id].'"',__FILE__,__LINE__)){
-						dbDoQuery('UPDATE mycms_documents SET Title="'.$title[$id].'", LeadElement="'.$lead_element[$id].'", OrderElement="'.$order_element[$id].'", OrderDirection="'.$order_direction[$id].'", IdElement="'.$id_element[$id].'", TableId='.(int)$table[$id].', ParentId='.(int)$parent_id[$id].', ParentField="'.$parent_field[$id].'", `ActionCode`="'.$actionCode[$id].'", `Order`='.(int)$order[$id].', CanAdd='.((int)isset($can_add[$id])).', CanEdit='.((int)isset($can_edit[$id])).', CanDelete='.((int)isset($can_delete[$id])).' WHERE Id='.$id,__FILE__,__LINE__);
+					if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Id<>'.$id.' AND Title="'.$title[$id].'"',__FILE__,__LINE__)){
+						dbDoQuery('UPDATE mycms_documents SET Title="'.$title[$id].'", LeadElement="'.$lead_element[$id].'", OrderElement="'.$order_element[$id].'", OrderDirection="'.$order_direction[$id].'", TableId='.(int)$table[$id].', ParentId='.(int)$parent_id[$id].', ParentField="'.$parent_field[$id].'", `ActionCode`="'.$actionCode[$id].'", `Order`='.(int)$order[$id].' WHERE Id='.$id,__FILE__,__LINE__);
 						$javascript.='domD(gei(\'form'.$id.'\'));';
 						
-					//}else{
-					//	$error=true;
-					//	$javascript.='stxAddErrorStatus(gei(\'title'.$id.'\'),\'Уже есть документ с таким названием\');';
-					//}
+					}else{
+						$error=true;
+						$javascript.='stxAddErrorStatus(gei(\'title'.$id.'\'),\'Уже есть документ с таким названием\');';
+					}
 					
 				}else{
 					$error=true;
@@ -240,13 +232,13 @@ class documents extends krn_abstract{
 		}else{
 			$id=$ids;
 			if($title){
-				//if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Id<>'.$id.' AND Title="'.$title.'"',__FILE__,__LINE__)){
-					dbDoQuery('UPDATE mycms_documents SET Title="'.$title.'", LeadElement="'.$lead_element.'", OrderElement="'.$order_element.'", OrderDirection="'.$order_direction.'", IdElement="'.$id_element.'", TableId='.$table.', ParentId='.$parent_id.', ParentField="'.$parent_field.'", `ActionCode`="'.$actionCode.'", `Order`='.$order.', CanAdd='.$can_add.', CanEdit='.$can_edit.', CanDelete='.$can_delete.' WHERE Id='.$id,__FILE__,__LINE__);
+				if(!dbGetValueFromDb('SELECT COUNT(Id) FROM mycms_documents WHERE Id<>'.$id.' AND Title="'.$title.'"',__FILE__,__LINE__)){
+					dbDoQuery('UPDATE mycms_documents SET Title="'.$title.'", LeadElement="'.$lead_element.'", OrderElement="'.$order_element.'", OrderDirection="'.$order_direction.'", TableId='.$table.', ParentId='.$parent_id.', ParentField="'.$parent_field.'", `ActionCode`="'.$actionCode.'", `Order`='.$order.' WHERE Id='.$id,__FILE__,__LINE__);
 					$javascript.='reload(true);';
 					
-				//}else{
-				//	$javascript.='stxAddErrorStatus(domP(form.title),\'Уже есть документ с таким названием\');';
-				//}
+				}else{
+					$javascript.='stxAddErrorStatus(domP(form.title),\'Уже есть документ с таким названием\');';
+				}
 				
 			}else{
 				$javascript.='msgSetError(form,\'Заполнены не все необходимые поля\');';			

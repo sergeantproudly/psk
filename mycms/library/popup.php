@@ -51,7 +51,7 @@ function PopupDocumentAdd($template){
 function PopupDocumentEdit($template){
 	$id=(int)$_POST['id'];
 	
-	$rec=dbGetRecordFromDb('SELECT Title, LeadElement, OrderElement, OrderDirection, TableId, ParentId, ParentField, `ActionCode`, `Order` FROM mycms_documents WHERE Id='.$id,__FILE__,__LINE__);
+	$rec=dbGetRecordFromDb('SELECT Title, LeadElement, OrderElement, OrderDirection, IdElement, TableId, ParentId, ParentField, `ActionCode`, `Order`, CanAdd, CanEdit, CanDelete FROM mycms_documents WHERE Id='.$id,__FILE__,__LINE__);
 	
 	$res=dbDoQuery('SELECT Id, Name FROM mycms_tables ORDER BY IF(`Order`,-1000/`Order`,0) ASC',__FILE__,__LINE__);
 	while($tables[]=dbGetRecord($res));	
@@ -89,6 +89,7 @@ function PopupDocumentEdit($template){
 		'<%LEADELEMENT%>'	=> $rec['LeadElement'],
 		'<%ORDERELEMENT%>'	=> $rec['OrderElement'],
 		'<%ORDERDIRECTION%>'=> $rec['OrderDirection'],
+		'<%IDELEMENT%>'		=> $rec['IdElement'],
 		'<%ACTIONCODE%>'	=> $rec['ActionCode'],
 		'<%ORDER%>'			=> $rec['Order'],
 		'<%DEFAULT_TITLE%>'	=> $defaultTitle,
@@ -97,7 +98,13 @@ function PopupDocumentEdit($template){
 		'<%DEFAULT_TITLE_PARENT%>'	=> $defaultTitleParent,
 		'<%DEFAULT_VALUE_PARENT%>'	=> $defaultValueParent,
 		'<%OPTIONS_PARENT%>'	=> $optionsParent,
-		'<%PARENTFIELD%>'	=> $rec['ParentField']
+		'<%PARENTFIELD%>'	=> $rec['ParentField'],
+		'<%CANADD%>'		=> $rec['CanAdd']?' cb-checked':'',
+		'<%CANADD2%>'		=> $rec['CanAdd']?' checked="checked"':'',
+		'<%CANEDIT%>'		=> $rec['CanEdit']?' cb-checked':'',
+		'<%CANEDIT2%>'		=> $rec['CanEdit']?' checked="checked"':'',
+		'<%CANDELETE%>'		=> $rec['CanDelete']?' cb-checked':'',
+		'<%CANDELETE2%>'	=> $rec['CanDelete']?' checked="checked"':''
 	));
 }
 

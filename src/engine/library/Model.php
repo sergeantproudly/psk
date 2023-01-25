@@ -83,6 +83,10 @@ abstract class Model {
     'category' => 'data_category',
 
     'personal' => 'personal_data',
+
+    'media' => 'data_media',
+    'media-photo' => 'data_media_photos',
+    'media-video' => 'data_media_videos',
   ];
 
   function __construct(SafeMySQL $db = null) {

@@ -17,6 +17,10 @@
 			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order_direction" value="" maxlength="255"/><span class="r"></span></span></div>
 			<div class="reset"></div>
 			
+			<div class="label">Id element:</div>
+			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="id_element" value="" maxlength="255"/><span class="r"></span></span></div>
+			<div class="reset"></div>
+			
 			<div class="label">Table:</div>
 			<div class="fld"><span class="inp-select"><span class="l"></span><input type="text" name="table_title" value="<%DEFAULT_TITLE%>" maxlength="255" readonly="readonly" autocomplete="off"/><input type="hidden" name="table" value="<%DEFAULT_VALUE%>"/><span class="r"></span><span class="dropdown"><span class="placeholder"></span><%OPTIONS_TYPE%></span></span></div>
 			<div class="reset"></div>
@@ -36,6 +40,19 @@
 			<div class="label">Order:</div>
 			<div class="fld"><span class="inp-text"><span class="l"></span><input type="text" name="order" value="" maxlength="255"/><span class="r"></span></span></div>		
 			<div class="reset"><input type="hidden" name="id" value="1"/></div>
+			
+			
+			<div class="label">Can add:</div>
+			<div class="fld"><span class="inp-checkbox cb-checked"><input type="checkbox" name="can_add" checked="checked"/></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Can edit:</div>
+			<div class="fld"><span class="inp-checkbox cb-checked"><input type="checkbox" name="can_edit" checked="checked"/></span></div>
+			<div class="reset"></div>
+			
+			<div class="label">Can delete:</div>
+			<div class="fld"><span class="inp-checkbox cb-checked"><input type="checkbox" name="can_delete" checked="checked"/></span></div>
+			<div class="reset"></div>
 			
 			<div class="btn-common"><span class="btn" onclick="domD(currPopup);hideCover();currPopup=null;"><span class="l"></span><input type="button" value="Cancel"/><span class="r"></span></span> <span class="btn lead"><span class="l"></span><input type="submit" value="Save"/><span class="r"></span></span></div>
 		</div>

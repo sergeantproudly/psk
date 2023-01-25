@@ -17,6 +17,7 @@
   $Router->add('GET', '/', 'HomePage@index');
   $Router->add('GET', '/contacts/', 'ContactsPage@index');
   $Router->add('GET', '/company/{code?}/', 'CompanyPage@index');
+  $Router->add('GET', '/company/{code?}/{subcode?}', 'CompanyPage@index');
 
   //$Router->add('GET', '/services/', 'ServicesPage@index');
   //$Router->add('GET', '/services/{service}', 'ServicesPage@detail');

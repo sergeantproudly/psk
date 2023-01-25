@@ -287,6 +287,24 @@ class actions extends krn_abstract{
 			}
 		}
 	}
+
+	function OnAddMedia($newRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_media SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}		
+	}
+	
+	function OnEditMedia($newRecord,$oldRecord){
+		if(!$newRecord['Code']){
+			krnLoadLib('chars');
+			$code=mb_strtolower(chrTranslit($newRecord['Title']));
+			$code=strtr($code,array(','=>'',' '=>'_','*'=>'','!'=>'','?'=>'','@'=>'','#'=>'','$'=>'','%'=>'','^'=>'','('=>'',')'=>'','+'=>'','-'=>'_','«'=>'','»'=>'','—'=>'',':'=>'',';'=>'','ь'=>''));
+			dbDoQuery('UPDATE data_media SET `Code`="'.$code.'" WHERE Id='.$newRecord['Id'],__FILE__,__LINE__);
+		}	
+	}
 }
 
 ?>
