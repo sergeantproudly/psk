@@ -46,7 +46,18 @@ class Site {
 	}
 
 	function isCompany($code) {
-		return $code === 'company';
+		$urlData = $this->parseURL();
+		return $code === 'company' && isset($urlData[1]) && $urlData[1] !== 'media';
+	}
+
+	function isCompanyMedia($code) {
+		$urlData = $this->parseURL();
+		return $code === 'company' && isset($urlData[1]) && $urlData[1] === 'media';
+	}
+
+	function isArticle($code) {
+		$urlData = $this->parseURL();
+		return $code === 'articles' && isset($urlData[1]) && $urlData[1];
 	}
 
 	function getAction() {
@@ -145,6 +156,15 @@ class Site {
 		    		'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
         			'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
 		    	]),
+		    ]);
+
+	    } elseif ($this->isCompanyMedia($code) || $this->isArticle($code)) {
+	    	$youtube = new Youtube();
+	    	$templateModalVideo = new Template('modal_video2', 'modals');
+	    	$modalsRendered[] = $templateModal->parse([
+		    	'Code' => 'video',
+		    	'Id' => 'video',
+		    	'Content' => $templateModalVideo->parse(),
 		    ]);
 	    }
 

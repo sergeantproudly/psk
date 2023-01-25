@@ -57,6 +57,10 @@ class ArticleModel extends Model {
     return $this->db->getOne('SELECT COUNT(Id) AS ArticlesCount FROM ?n', $this->tables['articles']);
   }
 
+  function getArticlePhotos($code) {    
+    return $this->db->getAll('SELECT p.Title, p.Image AS ImageFull, p.Image1040_760 AS Image FROM ?n p LEFT JOIN ?n a ON a.Id = p.ArticleId WHERE a.Code = ?s', $this->tables['articles_photos'], $this->tables['articles'], $code);
+  }
+
 
   
 }

@@ -19,6 +19,7 @@ abstract class Model {
     'projects' => 'page_projects',
     'services' => 'page_services',
     'articles' => 'page_articles',
+    'articles_photos' => 'page_articles_photos',
     'partners' => 'page_partners',
     'clients' => 'page_clients',
     'products_directions' => 'data_products_directions',

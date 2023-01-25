@@ -299,9 +299,11 @@ class CompanyPage extends Page {
             $photosRendered = $galleryPhotoTemplate->parse($photos);
 
             $videos = $mediaModel->getGalleryVideos($galleryCode);
+            $youtube = new Youtube();
             foreach ($videos as &$video) {
               $video['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
               $video['CoverWebp'] = Common::flGetWebpByImage($video['Cover']);
+              $video['Code'] = $youtube->GetCodeFromSource($video['Code']);
             }
             $galleryVideoTemplate = new ListTemplate('company__media__gallery__video', 'company/partial');
             $videosRendered = $galleryVideoTemplate->parse($videos);

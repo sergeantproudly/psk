@@ -3,9 +3,11 @@ namespace Site\Pages;
 use Engine\Library\Common;
 use Engine\Library\Page;
 use Engine\Library\Template;
+use Engine\Library\ListTemplate;
 use Site\Components\PaginationComponent;
 use Site\Components\ArticlesComponent;
 use Site\Components\BreadcrumbsComponent;
+use Engine\Library\Youtube;
 
 
 class ArticlesPage extends Page {
@@ -130,6 +132,27 @@ class ArticlesPage extends Page {
     $article['ShareTitle'] = htmlspecialchars($article['Title'], ENT_QUOTES);
     $article['ShareDescription'] = htmlspecialchars(strip_tags($article['ShortDescription']), ENT_QUOTES);
     $article['ShareImage'] = urlencode($Settings->get('SiteUrl')) . htmlspecialchars($article['Image'], ENT_QUOTES);
+
+    if ($article['CodeVideo']) {
+      $youtube = new Youtube();
+      $article['CoverVideoWebp'] = Common::flGetWebpByImage($article['CoverVideo']);
+      $article['CodeVideo'] = $youtube->GetCodeFromSource($article['CodeVideo']);
+      $videoTemplate = new Template('articles__detail__video', 'articles');
+      $videoRendered = $videoTemplate->parse($article);
+    }
+
+    $photos = $this->model->getArticlePhotos($code);
+    if (count($photos)) {
+      foreach ($photos as &$photo) {
+        $photo['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
+        $photo['ImageWebp'] = Common::flGetWebpByImage($photo['Image']);
+      }
+      $photosTemplate = new Template('articles__detail__photos', 'articles');
+      $photosListTemplate = new ListTemplate('articles__detail__photos__card', 'articles/partial');
+      $photosRendered = $photosTemplate->parse([
+        'List' => $photosListTemplate->parse($photos),
+      ]);
+    }
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($code, [
@@ -146,6 +169,8 @@ class ArticlesPage extends Page {
 
     return $this->getPage('detail')->parse($article + [
       'Breadcrumbs' => $breadcrumbsRendered,
+      'Video' => isset($videoRendered) ? $videoRendered : '',
+      'Photos' => isset($photosRendered) ? $photosRendered : '',
     ]);
   }
 
