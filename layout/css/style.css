@@ -547,6 +547,7 @@ body._pc .anim-content .products.active .products__item {
 
 [class*=-balloon__content] > * {
   width: 276px !important;
+  height: auto !important;
 }
 
 [class*=-balloon__close-button] {
@@ -582,6 +583,10 @@ body._pc .anim-content .products.active .products__item {
 
 .balloon__list {
   margin: 1em 0em 0em 0em;
+}
+
+.balloon__list-item:not(:last-child) {
+  margin: 0em 0em 1em 0rem;
 }
 
 .balloon__list-caption {
