@@ -34,7 +34,7 @@ class PersonalPage extends Page {
     $templateRendered = $templateData->parse([
       'Name' => $data['Name'],
       'Alt' => htmlspecialchars($data['Name'], ENT_QUOTES),
-      'Photo' => $data['Photo105_105'] ?: '/assets/images/_team_person.jpg',
+      'Photo' => $data['Photo105_105'] ? '<div class="photo"><img src="'.$data['Photo105_105'].'" alt="'.htmlspecialchars($data['Name'], ENT_QUOTES).'" title="'.htmlspecialchars($data['Name'], ENT_QUOTES).'"></div>' : '<div style="height:10vw; max-height:80px;"></div>',
       'Post' => $data['Post'],
       'Tel' => $data['Tel'],
       'TelCode' => preg_replace('/[^\d\+]/', '', $data['Tel']),
