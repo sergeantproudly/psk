@@ -16,7 +16,7 @@ class StoresModel extends Model {
 
     $this->getAllAttributes();
     $this->getAllVehicles();
-    $this->getAllPhotos();
+    //$this->getAllPhotos();
   }
 
   public function getAllItems() {
@@ -54,16 +54,23 @@ class StoresModel extends Model {
     return $list;
   }
 
-  protected function getAllPhotos() {
-    $items = $this->db->getAll("SELECT Id, Title, StoreId, Image3840 AS ImageFull, Image626_506 AS Image FROM {$this->tables['stores_photos']} WHERE Image <> '' ORDER BY IF(`Order`,-1000/`Order`,0)");
-    foreach ($items as &$item) {
-      $item['Alt'] = htmlspecialchars($item['Title'], ENT_QUOTES);
-      $this->_photos[$item['StoreId']][] = $item;
+  public function getPhotosByItem($item) {
+    if ($item['GalleryId']) {
+      $list = $this->db->getAll('SELECT Title, Image AS ImageFull, Image656_400 AS Image, GalleryId FROM ?n WHERE GalleryId = ?i AND Image <> "" ORDER BY IF(`Order`, -1000/`Order`, 0)', $this->tables['media-photo'], $item['GalleryId']);  
     }
+    return $list ? $list : [];
   }
 
-  public function getPhotosByItem($item) {
-    $list = $this->_photos[$item['Id']];
-    return $list;
-  }
+  // protected function getAllPhotos() {
+  //   $items = $this->db->getAll("SELECT Id, Title, StoreId, Image3840 AS ImageFull, Image626_506 AS Image FROM {$this->tables['stores_photos']} WHERE Image <> '' ORDER BY IF(`Order`,-1000/`Order`,0)");
+  //   foreach ($items as &$item) {
+  //     $item['Alt'] = htmlspecialchars($item['Title'], ENT_QUOTES);
+  //     $this->_photos[$item['StoreId']][] = $item;
+  //   }
+  // }
+
+  // public function getPhotosByItem($item) {
+  //   $list = $this->_photos[$item['Id']];
+  //   return $list;
+  // }
 }

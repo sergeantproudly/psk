@@ -12,7 +12,7 @@ class MediaModel extends Model {
   }
 
   public function getGalleries() {
-    $items = $this->db->getAll("SELECT g.Title, g.Date, g.Image656_400 AS Image, g.Code, g.IsVideo, (SELECT COUNT(p.Id) FROM {$this->tables['media-photo']} p WHERE p.GalleryId = g.Id) + (SELECT COUNT(v.Id) FROM {$this->tables['media-video']} v WHERE v.GalleryId = g.Id) AS FilesQuantity FROM {$this->tables['media']} g ORDER BY IF(g.`Order`,-1000/g.`Order`,0) ASC, g.Date DESC");
+    $items = $this->db->getAll("SELECT g.Title, g.Date, g.Image656_400 AS Image, g.Code, g.IsVideo, (SELECT COUNT(p.Id) FROM {$this->tables['media-photo']} p WHERE p.GalleryId = g.Id) + (SELECT COUNT(v.Id) FROM {$this->tables['media-video']} v WHERE v.GalleryId = g.Id) AS FilesQuantity FROM {$this->tables['media']} g WHERE IsActive = 1 ORDER BY IF(g.`Order`,-1000/g.`Order`,0) ASC, g.Date DESC");
 
     return $items;
   }
