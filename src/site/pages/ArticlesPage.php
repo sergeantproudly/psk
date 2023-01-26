@@ -58,14 +58,20 @@ class ArticlesPage extends Page {
     $offset = ($pageNumber - 1) * $articlesPerPage;
     $offset = $offset >= 0 ? $offset : 0;
 
-    $articles = $this->model->getArticles($articlesPerPage, $offset);
+    if ($currentPage == 1) {
+      $articles = $this->model->getArticles($articlesPerPage + 1, $offset);
+    } else {
+      $articles = $this->model->getArticles($articlesPerPage, $offset + 1);
+    }
     $articles = Common::setLinks($articles, 'articles');
 
-    $firstArticle = array_shift($articles);
-    $firstArticle['TitleClass'] = mb_strlen($firstArticle['Title']) <= 70 ? 'title-lg' : 'title-md';
-    $firstArticle['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['Preview']);
-    $firstArticle['Alt'] = htmlspecialchars($firstArticle['Title'], ENT_QUOTES);
-    $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
+    if ($currentPage == 1) {
+      $firstArticle = array_shift($articles);
+      $firstArticle['TitleClass'] = mb_strlen($firstArticle['Title']) <= 70 ? 'title-lg' : 'title-md';
+      $firstArticle['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['Preview']);
+      $firstArticle['Alt'] = htmlspecialchars($firstArticle['Title'], ENT_QUOTES);
+      $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
+    }
 
     foreach ($articles as &$article) {
       $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
@@ -90,7 +96,8 @@ class ArticlesPage extends Page {
 
     return $this->getPage('index')->parse($this->page + [
       'Breadcrumbs' => $breadcrumbsRendered,
-      'FirstCard' => $firstArticleTemplate->parse($firstArticle),
+      'Class' => $currentPage == 1 ? 'news-offset' : '',
+      'FirstCard' => $currentPage == 1 ? $firstArticleTemplate->parse($firstArticle) : '',
       'list' => $articles,
       'Pagination' => [
         'Class' => 'news__pagination',

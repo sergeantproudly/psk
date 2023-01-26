@@ -97,7 +97,7 @@ class HomePage extends Page {
 		$articleModel = new \Site\Models\ArticleModel();
 		$articleModel->setDB($this->model->getDB());
 		
-		$articleList = $articleModel->getArticles(3);
+		$articleList = $articleModel->getArticles(4);
 		$articleList = Common::setLinks($articleList, 'articles');
 		foreach ($articleList as $i => &$article) {
 			$article['Date'] = Common::ModifiedDate($article['PublishDate']);
