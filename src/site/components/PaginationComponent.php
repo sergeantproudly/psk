@@ -24,6 +24,7 @@ class PaginationComponent extends Component {
         'template' => [
           'default' => 'c-pagination__item', 
           'active' => 'c-pagination__item--active', 
+          'empty' => 'c-pagination__item--empty', 
         ]
       ]
     ]);
@@ -50,6 +51,7 @@ class PaginationComponent extends Component {
       if ($getParams && count($_GET)) $link .= '?' . $_SERVER['QUERY_STRING'];
       $pages[$i] = [
         'class' => '',
+        'html' => '<a href="' . $link . '" class="pagination__link">' . ($counter < 10 ? '0' . $counter : $counter) . '</a>',
         'number' => $counter < 10 ? '0' . $counter : $counter,
         'link' => $link,
       ];
@@ -73,10 +75,18 @@ class PaginationComponent extends Component {
 
       $viewablePages = array_slice($pages, $leftLimit, $length);
 
+
+      if ($leftLimit >= $halfRange) {
+        array_unshift($viewablePages, [
+          'html' => '...'
+        ]);
+      }
       if ($leftLimit > 0)
         array_unshift($viewablePages, $pages[0]);
       if ($rightLimit < $pagesCount - 1) {
-        array_push($viewablePages, ['number' => '...']);
+        array_push($viewablePages, [
+          'html' => '...'
+        ]);
       }
       if ($rightLimit < $pagesCount)
         array_push($viewablePages, $pages[$pagesCount - 1]);
@@ -84,11 +94,6 @@ class PaginationComponent extends Component {
 
       if ($leftLimit > 1) {
         //$viewablePages[1]['class'] = 'dotts';
-      }
-
-
-      if ($rightLimit < $pagesCount - 1) {
-        //$viewablePages[count($viewablePages) - 1]['class']  = 'dotts';
       }
     }
 
