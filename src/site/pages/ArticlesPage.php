@@ -96,7 +96,7 @@ class ArticlesPage extends Page {
 
     return $this->getPage('index')->parse($this->page + [
       'Breadcrumbs' => $breadcrumbsRendered,
-      'Class' => $currentPage == 1 ? 'news-offset' : '',
+      'Class' => $currentPage == 1 ? 'news-offset' : 'news-internal',
       'FirstCard' => $currentPage == 1 ? $firstArticleTemplate->parse($firstArticle) : '',
       'list' => $articles,
       'Pagination' => [
