@@ -3946,12 +3946,6 @@ body._pc .anim-content .products.active .products__item {
   margin: 1em 0em 0em 0em;
   line-height: 1.2916666667;
   max-width: 300px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
 }
 
 .media__item-quantity {
