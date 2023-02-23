@@ -47,7 +47,8 @@ class Site {
 
 	function isCompany($code) {
 		$urlData = $this->parseURL();
-		return $code === 'company' && isset($urlData[1]) && $urlData[1] !== 'media';
+		return $code === 'company' && !isset($urlData[1]);
+		//return $code === 'company' && isset($urlData[1]) && $urlData[1] !== 'media';
 	}
 
 	function isCompanyMedia($code) {
