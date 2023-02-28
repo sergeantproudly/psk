@@ -76,7 +76,7 @@ class HomePage extends Page {
 		$clientModel = new \Site\Models\ClientModel();
 		$clientModel->setDB($this->model->getDB());
 
-		$clientList = $clientModel->getClients(3);
+		$clientList = $clientModel->getClientsForHomePage(3);
 		foreach ($clientList as $i => &$client) {
 			//$client['Style'] = $client['Width'] ? 'style="width: ' . $client['Width'] . 'px"' : '';
 			$client['ImageWebp'] = Common::flGetWebpByImage($client['Image']);
@@ -84,6 +84,19 @@ class HomePage extends Page {
 		}
 		$clientsComponent = new ClientsComponent;
 		$clientsRendered = $clientsComponent->render($clientList);
+
+		// PARTNERS
+		$partnerModel = new \Site\Models\PartnerModel();
+		$partnerModel->setDB($this->model->getDB());
+
+		$partnerList = $partnerModel->getPartnersForHomePage(3);
+		foreach ($partnerList as $i => &$partner) {
+			//$partner['Style'] = $partner['Width'] ? 'style="width: ' . $partner['Width'] . 'px"' : '';
+			$partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
+			$partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
+		}
+		$partnersComponent = new PartnersComponent;
+		$partnersRendered = $partnersComponent->render($partnerList);
 
 		// VIDEO
 		$youtube = new Youtube();
@@ -140,19 +153,6 @@ class HomePage extends Page {
 		$staffList = $staffModel->getStaffDirection(true);
 		$staffComponent = new StaffComponent;
 		$staffRendered = $staffComponent->render($staffList, 'Руководство');
-
-		// PARTNERS
-		$partnerModel = new \Site\Models\PartnerModel();
-		$partnerModel->setDB($this->model->getDB());
-
-		$partnerList = $partnerModel->getPartners(3);
-		foreach ($partnerList as $i => &$partner) {
-			//$partner['Style'] = $partner['Width'] ? 'style="width: ' . $partner['Width'] . 'px"' : '';
-			$partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
-			$partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
-		}
-		$partnersComponent = new PartnersComponent;
-		$partnersRendered = $partnersComponent->render($partnerList);
 
 		return $this->page('index')->parse($content + $contacts + [
 			'Slider' => $sliderRendered,
