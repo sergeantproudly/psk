@@ -168,7 +168,7 @@ class ArticlesPage extends Page {
       ['Code' => $code, 'Title' => $article['Title']],
     ]);
 
-    $similarArticles = $this->model->getSimilarArticles($article, 3, 0);
+    $similarArticles = $this->model->getSimilarArticles($article, 4, 0);
     $similarArticles = Common::setLinks($similarArticles, 'articles');
     $articlesComponent = new ArticlesComponent($this->model->getDB());
     $articlesRendered = $articlesComponent->render($similarArticles, 'Другие новости', 'bl-news-similar');
