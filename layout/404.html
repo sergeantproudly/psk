@@ -40,22 +40,22 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20230224112651">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20230224112651">
-	<link rel="stylesheet" href="css/style.min.css?_v=20230224112651">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css?_v=20230907000446">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20230907000446">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230907000446">
 
 
 </head>
 
 <body>
 	<div class="wrapper">
-		<header class="header">
+		<header class="header header-white">
     <div class="header__top header-top">
         <div class="header-top__container">
             <a href="/" class="header-top__logo">
-                <img src="img/logo-white.svg" alt="logo">
+                <img src="img/logo-scaling.svg" alt="logo">
             </a>
-            <div class="header-top__contacts" data-da=".menu__container, 767.98">
+            <div class="header-top__contacts" data-da=".menu__container, 991.98">
                 <div class="header-top__contact">
                     <div class="header-top__contact-title">
                         Коммерческий отдел
@@ -63,13 +63,19 @@
                     <a href="tel:884323338888" class="header-top__contact-link">
                         8 (843) 2-333-8888
                     </a>
+                    <a href="mailto:sales@psk-si.ru" class="header-top__contact-link">
+                        sales@psk-si.ru
+                    </a>
                 </div>
                 <div class="header-top__contact">
                     <div class="header-top__contact-title">
                         Приемная
                     </div>
-                    <a href="tel:884323338888" class="header-top__contact-link">
-                        8 (843) 2-333-8888
+                    <a href="tel:88432333923" class="header-top__contact-link">
+                        8 (843) 2-333-923
+                    </a>
+                    <a href="mailto:info@psk-si.ru" class="header-top__contact-link">
+                        info@psk-si.ru
                     </a>
                 </div>
             </div>
@@ -83,7 +89,7 @@
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link ">ГЛАВНАЯ</a></li>
                 <li class="menu__item menu-parent">
-                    <a href="/about.html" class="menu__link icon-arrow ">О КОМПАНИИ</a>
+                    <a href="/about.html" class="menu__link icon-arrow  ">О КОМПАНИИ</a>
                     <div class="submenu">
                         <ul class="submenu__list">
                             <li class="submenu__item">
@@ -129,12 +135,72 @@
                         </ul>
                     </div>
                 </li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ</a></li>
-                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a>
+                <li class="menu__item menu-parent">
+                    <a href="" class="menu__link icon-arrow">АРМАТУРА ДЛЯ СИП</a>
+                    <div class="submenu">
+                        <ul class="submenu__list">
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Анкерно-поддерживающая арматура СИП-1 и СИП-2
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Анкерно-поддерживающая группа СИП-4
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Вспомогательная арматура
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Ответвительно-прокалывающая арматура
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Соединительная арматура
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
-                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a>
+                <li class="menu__item menu-parent">
+                    <a href="/complex.html" class="menu__link icon-arrow">КОМПЛЕКСНЫЕ ПОСТАВКИ</a>
+                    <div class="submenu">
+                        <ul class="submenu__list">
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Изделия
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    сертификаты
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    доставка и оплата
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+                <li class="menu__item"><a href="/news.html" class="menu__link">НОВОСТИ</a></li>
+                <li class="menu__item"><a href="/contacts.html" class="menu__link">КОНТАКТЫ</a></li>
             </ul>
         </div>
     </nav>
@@ -158,17 +224,16 @@
 			</section>
 		</main>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20230224112651"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20230907000446"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20230224112651"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20230224112651"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20230224112651"></script>
-<script src="js/app.min.js?_v=20230224112651"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20230907000446"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20230907000446"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20230907000446"></script>
+<script src="js/app.min.js?_v=20230907000446"></script>
 </body>
 
 </html>

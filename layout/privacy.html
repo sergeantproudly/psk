@@ -40,22 +40,22 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css?_v=20230224112651">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20230224112651">
-	<link rel="stylesheet" href="css/style.min.css?_v=20230224112651">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css?_v=20230907000446">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20230907000446">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230907000446">
 
 
 </head>
 
 <body>
 	<div class="wrapper">
-		<header class="header">
+		<header class="header header-white">
     <div class="header__top header-top">
         <div class="header-top__container">
             <a href="/" class="header-top__logo">
-                <img src="img/logo-white.svg" alt="logo">
+                <img src="img/logo-scaling.svg" alt="logo">
             </a>
-            <div class="header-top__contacts" data-da=".menu__container, 767.98">
+            <div class="header-top__contacts" data-da=".menu__container, 991.98">
                 <div class="header-top__contact">
                     <div class="header-top__contact-title">
                         Коммерческий отдел
@@ -63,13 +63,19 @@
                     <a href="tel:884323338888" class="header-top__contact-link">
                         8 (843) 2-333-8888
                     </a>
+                    <a href="mailto:sales@psk-si.ru" class="header-top__contact-link">
+                        sales@psk-si.ru
+                    </a>
                 </div>
                 <div class="header-top__contact">
                     <div class="header-top__contact-title">
                         Приемная
                     </div>
-                    <a href="tel:884323338888" class="header-top__contact-link">
-                        8 (843) 2-333-8888
+                    <a href="tel:88432333923" class="header-top__contact-link">
+                        8 (843) 2-333-923
+                    </a>
+                    <a href="mailto:info@psk-si.ru" class="header-top__contact-link">
+                        info@psk-si.ru
                     </a>
                 </div>
             </div>
@@ -83,7 +89,7 @@
             <ul class="menu__list">
                 <li class="menu__item"><a href="/" class="menu__link ">ГЛАВНАЯ</a></li>
                 <li class="menu__item menu-parent">
-                    <a href="/about.html" class="menu__link icon-arrow ">О КОМПАНИИ</a>
+                    <a href="/about.html" class="menu__link icon-arrow  ">О КОМПАНИИ</a>
                     <div class="submenu">
                         <ul class="submenu__list">
                             <li class="submenu__item">
@@ -129,12 +135,72 @@
                         </ul>
                     </div>
                 </li>
-                <li class="menu__item"><a href="/products.html" class="menu__link ">ПРОДУКЦИЯ</a></li>
-                <li class="menu__item"><a href="/projects.html" class="menu__link ">ПРОЕКТЫ</a>
+                <li class="menu__item menu-parent">
+                    <a href="" class="menu__link icon-arrow">АРМАТУРА ДЛЯ СИП</a>
+                    <div class="submenu">
+                        <ul class="submenu__list">
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Анкерно-поддерживающая арматура СИП-1 и СИП-2
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Анкерно-поддерживающая группа СИП-4
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Вспомогательная арматура
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Ответвительно-прокалывающая арматура
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Соединительная арматура
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li class="menu__item"><a href="/news.html" class="menu__link ">НОВОСТИ</a></li>
-                <li class="menu__item"><a href="/contacts.html" class="menu__link ">КОНТАКТЫ</a>
+                <li class="menu__item menu-parent">
+                    <a href="/complex.html" class="menu__link icon-arrow">КОМПЛЕКСНЫЕ ПОСТАВКИ</a>
+                    <div class="submenu">
+                        <ul class="submenu__list">
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    Изделия
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    логистический комплекс
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    сертификаты
+                                </a>
+                            </li>
+                            <li class="submenu__item">
+                                <a href="" class="submenu__link">
+                                    доставка и оплата
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+                <li class="menu__item"><a href="/news.html" class="menu__link">НОВОСТИ</a></li>
+                <li class="menu__item"><a href="/contacts.html" class="menu__link">КОНТАКТЫ</a></li>
             </ul>
         </div>
     </nav>
@@ -389,19 +455,33 @@
 		</main>
 		<footer class="footer">
     <div class="footer__body footer-body">
-        <div class="footer-body__container border-top">
+        <div class="footer-body__container">
             <div class="footer-body__main">
                 <div class="footer-body__logo">
                     <img src="img/logo-black.svg" alt="logo">
                 </div>
-                <a href="tel:88432333923" class="footer-body__phone">
-                    8 (843) 233-39-23
-                </a>
-                <a href="tel:88432333888" class="footer-body__phone">
-                    8 (843) 2-333-888
+                <div class="footer-body__item">
+                    <span>
+                        Коммерческий отдел:
+                    </span>
+                    <a href="tel:884323338888" class="footer-body__phone">
+                        8 (843) 2-333-8888
+                    </a>
+                </div>
+                <div class="footer-body__item">
+                    <span>
+                        Приемная:
+                    </span>
+                    <a href="tel:88432333923" class="footer-body__phone">
+                        8 (843) 2-333-923
+                    </a>
+                </div>
+                <a href="https://www.youtube.com/@PSK_StroyInvest" target="_blank" class="footer-body__channel">
+                    <img src="img/youtube.svg" alt="icon youtube">
+                    Мы на YouTube
                 </a>
             </div>
-            <ul class="footer-body__list footer-body__list-company">
+            <ul class="footer-body__list footer-body__list-lg">
                 <li class="footer-body__list-item footer-body__list-caption">
                     О компании
                 </li>
@@ -411,13 +491,8 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="/sert.html" class="footer-body__list-link">
-                        Сертификаты
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="/partners.html" class="footer-body__list-link">
-                        Партнеры
+                    <a href="" class="footer-body__list-link">
+                        Достижения
                     </a>
                 </li>
                 <li class="footer-body__list-item">
@@ -426,108 +501,63 @@
                     </a>
                 </li>
                 <li class="footer-body__list-item">
+                    <a href="/media.html" class="footer-body__list-link">
+                        Медиатека
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
                     <a href="/customers.html" class="footer-body__list-link">
                         Заказчики
                     </a>
                 </li>
                 <li class="footer-body__list-item">
-                    <a href="/complex.html" class="footer-body__list-link">
+                    <a href="" class="footer-body__list-link">
+                        Материалы для скачивания
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="/projects.html" class="footer-body__list-link">
+                        Проекты
+                    </a>
+                </li>
+            </ul>
+            <ul class="footer-body__list">
+                <li class="footer-body__list-item footer-body__list-caption">
+                    Арматура для СИП
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
+                        Каталог
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
+                        Сертификация
+                    </a>
+                </li>
+            </ul>
+            <ul class="footer-body__list">
+                <li class="footer-body__list-item footer-body__list-caption">
+                    Комплексные поставки
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
+                        Изделия
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
+                        Доставка и оплата
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
+                        Сертификаты
+                    </a>
+                </li>
+                <li class="footer-body__list-item">
+                    <a href="" class="footer-body__list-link">
                         Логистический комплекс
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="/reviews.html" class="footer-body__list-link">
-                        Отзывы
-                    </a>
-                </li>
-            </ul>
-            <ul class="footer-body__list footer-body__list-offers">
-                <li class="footer-body__list-item footer-body__list-caption">
-                    Комплексные предложения
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        СИП-арматура собственного производства
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Комплектация щитового оборудования
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="/services.html" class="footer-body__list-link">
-                        Комплексные поставки гражданского строительства
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Комплексные поставки для промышленности
-                    </a>
-                </li>
-            </ul>
-            <ul class="footer-body__list footer-body__list-lg">
-                <li class="footer-body__list-item footer-body__list-caption">
-                    Каталог
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        СИП-арматура
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Светотехническая продукция
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Автоматические выключатели
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Приборы учёта
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Трансформаторы тока
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Трансформаторы ТМГ
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Кабельно-проводниковая продукция
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Подстанции
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Кабельно-несущие системы
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        ДГУ
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Муфты, кабельная арматура
-                    </a>
-                </li>
-                <li class="footer-body__list-item">
-                    <a href="" class="footer-body__list-link">
-                        Щитовое оборудование
                     </a>
                 </li>
             </ul>
@@ -542,9 +572,6 @@
                 <a href="/privacy.html" class="footer-copy__privacy-link">
                     Политика конфиденциальности
                 </a>
-                <a href="/privacy.html" class="footer-copy__privacy-link">
-                    Антикоррупционное законодательство
-                </a>
             </div>
             <div class="footer-copy__production">
                 <div class="footer-copy__production-title">
@@ -558,17 +585,16 @@
     </div>
 </footer>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20230224112651"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20230907000446"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20230224112651"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20230224112651"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20230224112651"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20230224112651"></script>
-<script src="js/app.min.js?_v=20230224112651"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20230907000446"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20230907000446"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20230907000446"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20230907000446"></script>
+<script src="js/app.min.js?_v=20230907000446"></script>
 </body>
 
 </html>
