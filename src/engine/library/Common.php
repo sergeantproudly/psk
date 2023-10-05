@@ -429,6 +429,19 @@
 		$extension = self::flGetExtension($filepath);
 		return preg_replace('/\.' . $extension .'$/', '.webp', self::flSpace($filepath));
 	}
+
+	public static function flGetSizeFormat($filepath){
+		$filesize = @filesize($_SERVER['DOCUMENT_ROOT'] . $filepath); 
+	    $formats = array('b','Kb','Mb','Gb','Tb');
+	    $format = 0;
+	    
+	    while ($filesize > 1024 && count($formats) != ++$format){
+	        $filesize = round($filesize / 1024, 1);
+	    }
+	    $formats[] = 'Tb';
+	    
+	    return $filesize.' '.$formats[$format];
+	} 
 	
 	// четно - нечетно
 	function isEven($number){

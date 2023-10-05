@@ -48,7 +48,7 @@ class Components {
 	    $pages = 'pages';
 	    $nav = 'component_navigation';
 	    $subNav = 'component_sub-navigation';
-		$navigationItems = $db->getAll("SELECT nav.Id, pages.Title, pages.Code, nav.Link FROM `{$nav}` as nav LEFT JOIN {$pages} AS pages ON nav.PageId = pages.Id ORDER BY IF(`Order`,-1000/`Order`,0) ASC");
+		$navigationItems = $db->getAll("SELECT nav.Id, nav.Title, pages.Code, nav.Link FROM `{$nav}` as nav LEFT JOIN {$pages} AS pages ON nav.PageId = pages.Id ORDER BY IF(`Order`,-1000/`Order`,0) ASC");
 
 		$res = $db->getAll("SELECT Title, Code, Link, ItemId FROM `{$subNav}` ORDER BY IF(`Order`,-1000/`Order`,0) ASC");
 		foreach ($res as $subNavigationItem) {

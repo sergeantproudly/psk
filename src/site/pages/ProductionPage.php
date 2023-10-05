@@ -67,6 +67,7 @@ class ProductionPage extends Page {
   function index($params = []) {
     global $Database; 
 
+    /*
     $content = $this->model->getContent($this->code());
     //$contacts = $this->model->getContent('contacts');
 
@@ -85,6 +86,8 @@ class ProductionPage extends Page {
       'directions' => $directions,
       'breadcrumbs' => $breadcrumbsRendered,
     ]);
+    */
+    return $this->direction(['direction' => 'sip-armatura']);
   }
 
   function direction($params = []) {
@@ -331,7 +334,7 @@ class ProductionPage extends Page {
     $breadcrumbsRendered = $breadcrumbs->render($codeSubcategory, [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
       ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
-      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
+      //['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
       ['Code' => $codeSubcategory, 'Title' => strip_tags($subcategory['Title'])],
     ]);
 
@@ -456,7 +459,7 @@ class ProductionPage extends Page {
     $breadcrumbsRendered = $breadcrumbs->render($codeGoody, [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
       ['Code' => $this->code(), 'Link' => '/'.$this->code().'/' ,'Title' => $this->page['Title']],
-      ['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
+      //['Code' => $codeProduct, 'Link' => '/'.$this->code().'/'.$codeProduct.'/' ,'Title' => strip_tags($product['Title'])],
       ['Code' => $codeSubcategory, 'Link' => '/'.$this->code().'/'.$codeProduct.'/'.$codeSubcategory.'/' ,'Title' => strip_tags($subcategory['Title'])],
       ['Code' => $codeGoody, 'Title' => strip_tags($goody['Title'])],
     ]);

@@ -1,61 +1,89 @@
-<section class="page__main main">
-                <div class="main__container">
-                    <div class="main__body main__body-md">
-                        {{BREADCRUMBS}}
-
-                        <h1 class="main__title title-xl">
-                            {{TITLE}}
-                        </h1>
-                    </div>
-                </div>
-                <canvas id="gradient-canvas" data-transition-in></canvas>
-            </section>
-            <div class="page__contacts contacts">
-                <div class="contacts__container">
-                    <div class="contacts__cards">
-                        <div class="contacts__card">
-                            <div class="contacts__card-caption">
-                                Телефон:
-                            </div>
-                            <div class="contacts__card-content">
-                                <a href="tel:{{PHONELINK}}" class="contacts__card-item">{{PHONE}}</a>
-                                <a href="tel:{{PHONECOMMONLINK}}" class="contacts__card-item">{{PHONECOMMON}}</a>
-                            </div>
+<section class="main main-offset">
+                    <div class="main__container">
+                        <div class="main__body main__body-md">
+                            {{BREADCRUMBS}}
+                            <h1 class="main__title title-xl">
+                                {{HEADING}}
+                            </h1>
                         </div>
-                        <div class="contacts__card">
-                            <div class="contacts__card-caption">
-                                Почта:
+                    </div>
+                </section>
+                <div class="contacts">
+                    <div class="contacts__container">
+                        <div class="contacts__cards">
+                            <div class="contacts__card">
+                                <div class="contacts__card-caption">
+                                    Телефон:
+                                </div>
+                                <div class="contacts__card-content">
+                                    <a href="tel:{{PHONELINK}}" class="contacts__card-item">{{PHONE}}</a>
+                                <a href="tel:{{PHONECOMMONLINK}}" class="contacts__card-item">{{PHONECOMMON}}</a>
+                                </div>
                             </div>
-                            <div class="contacts__card-content">
-                                <a href="mailto:{{EMAIL}}" class="contacts__card-item">{{EMAIL}}</a>
+                            <div class="contacts__card">
+                                <div class="contacts__card-caption">
+                                    Почта:
+                                </div>
+                                <div class="contacts__card-content">
+                                    <a href="mailto:{{EMAIL}}" class="contacts__card-item">{{EMAIL}}</a>
                                 <a href="mailto:{{EMAILCOMMON}}" class="contacts__card-item">{{EMAILCOMMON}} <br>
                                     ({{LABELCOMMON}})</a>
+                                </div>
+                            </div>
+                            <div class="contacts__card">
+                                <div class="contacts__card-caption">
+                                    Адрес:
+                                </div>
+                                <div class="contacts__card-content">
+                                    <p class="contacts__card-item">
+                                        {{LOCATION}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="contacts__card">
-                            <div class="contacts__card-caption">
-                                Адрес:
+                        <div class="contacts__map" id="map"></div>
+                    </div>
+                </div>
+                <section class="logistics">
+                    <div class="logistics__container">
+                        <div class="logistics__sections">
+                            <div class="logistics__section">
+                                <h2 class="logistics__title title-xxl" data-animation>
+                                    Логистическая сеть
+                                </h2>
+                                <div class="logistics__items">
+                                    {{LIST}}
+                                </div>
                             </div>
-                            <div class="contacts__card-content">
-                                <p class="contacts__card-item">
-                                    {{LOCATION}}
-                                </p>
+                            <div class="logistics__section">
+                                <h2 class="logistics__title title-xxl" data-animation>
+                                    Производство
+                                </h2>
+                                <div class="logistics__items">
+                                    <div class="logistics__item" data-animation>
+                                        <picture><source srcset="/img/logistic-01.webp"type="image/webp"><img src="/img/logistic-01.png" hidden class="logistics__item-image hidden" alt="hidden img"></picture>
+                                        <div class="logistics__item-title">
+                                            Производственный центр
+                                        </div>
+                                        <div class="logistics__item-place">
+                                            г. Набережные Челны
+                                        </div>
+                                        <ul class="logistics__item-list">
+                                            <li class="logistics__item-block">
+                                                <div class="logistics__item-caption">
+                                                    Адрес:
+                                                </div>
+                                                <div class="logistics__item-content">
+                                                    Татарстан, Набережные Челны,
+                                                    индустриальный пр-д 43
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="logistics__map" id="logistics-map" data-animation></div>
                     </div>
-                    <div class="contacts__map" id="map"></div>
-                </div>
-            </div>
-            <section class="page__logistics logistics">
-                <div class="logistics__container">
-                    <h2 class="logistics__title title-xxl" data-animation>
-                        Логистическая сеть
-                    </h2>
-                    <div class="logistics__items">
-                        {{LIST}}
-                    </div>
-                    <div class="logistics__map" id="logistics-map" data-animation></div>
-                </div>
-            </section>
-            {{FORM}}
-            
+                </section>
+                {{FORM}}

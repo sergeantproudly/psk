@@ -37,32 +37,32 @@ class HomePage extends Page {
 		$contacts = $this->model->getContent('contacts');
 
 		// SLIDER
-		$sliderModel = new \Site\Models\SliderModel();
-		$sliderModel->setDB($this->model->getDB());
+		// $sliderModel = new \Site\Models\SliderModel();
+		// $sliderModel->setDB($this->model->getDB());
 
-		$slides = $sliderModel->getSlides();
-		array_walk($slides, function(&$slide, $key) {
-		  $slide['Num'] = $key + 1;
-	      $slide['ImageWebp'] = Common::flGetWebpByImage($slide['Image']);
-	      $slide['Text'] = nl2br($slide['Text']);
-	    });
-		$sliderComponent = new SliderComponent;
-		$sliderRendered = $sliderComponent->render($slides);
+		// $slides = $sliderModel->getSlides();
+		// array_walk($slides, function(&$slide, $key) {
+		//   $slide['Num'] = $key + 1;
+	    //   $slide['ImageWebp'] = Common::flGetWebpByImage($slide['Image']);
+	    //   $slide['Text'] = nl2br($slide['Text']);
+	    // });
+		// $sliderComponent = new SliderComponent;
+		// $sliderRendered = $sliderComponent->render($slides);
 
 		// PRODUCTION DIRECTIONS
-		$productionModel = new \Site\Models\ProductionModel();
-		$productionModel->setDB($this->model->getDB());
+		// $productionModel = new \Site\Models\ProductionModel();
+		// $productionModel->setDB($this->model->getDB());
 		
-		$directionsList = $productionModel->getProductsDirections();
-		$directionsList = $directionsList ? Common::setLinks($directionsList, 'production', 'direction') : [];
-		$directionsComponent = new ProductionDirectionsComponent;
-		$directionsRendered = $directionsComponent->render($directionsList);
+		// $directionsList = $productionModel->getProductsDirections();
+		// $directionsList = $directionsList ? Common::setLinks($directionsList, 'production', 'direction') : [];
+		// $directionsComponent = new ProductionDirectionsComponent;
+		// $directionsRendered = $directionsComponent->render($directionsList);
 		
 		// PROJECTS
 		$projectModel = new \Site\Models\ProjectModel();
 		$projectModel->setDB($this->model->getDB());
 
-		$projectList = $projectModel->getProjects();
+		$projectList = $projectModel->getProjects(3);
 		$projectList = Common::setLinks($projectList, 'projects');
 		foreach ($projectList as $i => &$project) {
 			$project['Image'] = $project['Image1164_508'];
@@ -155,8 +155,8 @@ class HomePage extends Page {
 		$staffRendered = $staffComponent->render($staffList, 'Руководство');
 
 		return $this->page('index')->parse($content + $contacts + [
-			'Slider' => $sliderRendered,
-			'Directions' => $directionsRendered,
+			//'Slider' => $sliderRendered,
+			//'Directions' => $directionsRendered,
 			'Projects' => $projectsRendered,
 			'Clients' => $clientsRendered,
 			'Video' => $videoBlockRendered,

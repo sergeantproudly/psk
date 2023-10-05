@@ -31,6 +31,7 @@ abstract class Model {
     'company' => 'page_company',
     'register' => 'page_register',
     'staff' => 'page_staff',
+    'materials' => 'materials',
     'slider' => 'slider',
 
 

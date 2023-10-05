@@ -1,30 +1,184 @@
-<section id="lottie" class="page__main main">
-                <div class="main__container">
-                    <div class="main__body main__body-md">
-                        {{BREADCRUMBS}}
-                        <h1 class="main__title title-xl">
-                            {{TITLE}}
-                        </h1>
+<section class="main">
+                    <div class="main__container">
+                        <div class="main__body">
+                            {{BREADCRUMBS}}
+                            <h1 class="main__title title-xl main__title-offset">
+                                {{TITLE}}
+                            </h1>
+                            <div class="main__image">
+                                <picture><source srcset="/img/complex.webp"type="image/webp"><img src="/img/complex.jpg" class="cover-image" alt="complex"></picture>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <canvas id="gradient-canvas" data-transition-in>
-            </section>
-            <section class="page__complex complex">
-                <div class="complex__container">
-                    <div data-tabs class="complex__tabs tabs">
-                        <div class="tabs__controls" data-spollers="767.98, max">
-                            <div class="tabs__caption spoller-caption" data-spoller></div>
-                            <div class="tabs__spoller">
-                                <div class="tabs__buttons">
-                                    {{NAVIGATION}}
+                </section>
+                <section class="equipment" id="equipment">
+                    <div class="equipment__container">
+                        <div class="equipment__body">
+                            <h2 class="equipment__title title-xl" data-animation>
+                                На нашем складе всегда в&nbsp;наличии
+                            </h2>
+                            <div class="equipment__items">
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Низковольтное оборудование
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <li class="equipment__list-item">Стабилизаторы напряжения</li>
+                                        <li class="equipment__list-item">Автоматические выключатели</li>
+                                        <li class="equipment__list-item">Электросчетчики</li>
+                                        <li class="equipment__list-item">Устройства защиты от дифференциального тока</li>
+                                        <li class="equipment__list-item">Преобразователи напряжения</li>
+                                        <li class="equipment__list-item">Коммутационные устройства</li>
+                                    </ul>
+                                </div>
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Оборудование среднего напряжения
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <li class="equipment__list-item">Щитовое оборудование 10 кВ</li>
+                                        <li class="equipment__list-item">ЩСН, ВРУ, УКРМ</li>
+                                        <li class="equipment__list-item">Шкафы РЗА</li>
+                                        <li class="equipment__list-item">Трансформаторы: силовые сухие (ТСЗ, ТСЗЛ);
+                                            разделительные (ТРТ); измерительные</li>
+                                        <li class="equipment__list-item">Источники бесперебойного питания, аккумуляторные
+                                            батареи</li>
+                                    </ul>
+                                </div>
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Высоковольтное оборудование
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <div class="equipment__list-item">Источники электроэнергии высокого напряжения</div>
+                                        <div class="equipment__list-item">Трансформаторы</div>
+                                        <div class="equipment__list-item">Распределительные подстанции</div>
+                                    </ul>
+                                </div>
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Кабельно-проводниковая продукция
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <li class="equipment__list-item">Кабели на напряжение 0,66 – 330кВ</li>
+                                        <li class="equipment__list-item">Кабельная арматура</li>
+                                        <li class="equipment__list-item">Оборудование для монтажа кабельных линий</li>
+                                    </ul>
+                                </div>
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Металлоконструкции
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <li class="equipment__list-item">Металлопрокат</li>
+                                        <li class="equipment__list-item">Балки, фермы</li>
+                                        <li class="equipment__list-item">Металлоконструкции для быстровозводимых зданий</li>
+                                    </ul>
+                                </div>
+                                <div class="equipment__item" data-animation>
+                                    <div class="equipment__caption">
+                                        Опоры ЛЭП
+                                    </div>
+                                    <ul class="equipment__list">
+                                        <li class="equipment__list-item">Деревянные опоры ЛЭП</li>
+                                        <li class="equipment__list-item">Опоры ЛЭП железобетонные</li>
+                                    </ul>
                                 </div>
                             </div>
-                        
-                        </div>
-
-                        <div class="tabs__content">
-                            {{LIST}}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                <section class="complex" id="complex">
+                    <div class="complex__container">
+                        <h2 class="complex__heading title-xl">
+                            Логистический комплекс
+                        </h2>
+                        <div data-tabs class="complex__tabs tabs">
+                            <div class="tabs__controls" data-spollers="767.98, max">
+                                <div class="tabs__caption spoller-caption" data-spoller></div>
+                                <div class="tabs__spoller">
+                                    <div class="tabs__buttons">
+                                        {{NAVIGATION}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tabs__content">
+                                {{LIST}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="serts" id="serts">
+                    <div class="serts__container">
+                        <h2 class="serts__title title-xl">
+                            Сертификаты
+                        </h2>
+                        <div class="serts__content">
+                            <button type="button" class="swiper-button-prev serts__prev"></button>
+                            <button type="button" class="swiper-button-next serts__next"></button>
+                            <div class="serts__slider swiper">
+                                <div class="swiper-wrapper">
+                                    {{CERTS}}
+                                </div>
+                            </div>
+                            <div class="serts__more">
+                                <a href="" class="more-link">Загрузить еще</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="delivery" id="delivery">
+                    <div class="delivery__container">
+                        <h2 class="delivery__title title-xl">
+                            Доставка и&nbsp;оплата
+                        </h2>
+                        <div class="delivery__items">
+                            <div class="delivery__item">
+                                <div class="delivery__item-header">
+                                    <div class="delivery__item-icon">
+                                        <img src="/img/transport.svg" alt="transport">
+                                    </div>
+                                    <div class="delivery__item-title">
+                                        Способы доставки
+                                    </div>
+                                </div>
+                                <div class="delivery__item-subtitle">
+                                    Вы можете выбрать любой удобный для вас способ доставки товара:
+                                </div>
+                                <ul class="delivery__item-list list">
+                                    <li>
+                                        <strong>Самовывоз</strong> — Вы можете самостоятельно забрать приобретенный товар со складов Компании
+                                    </li>
+                                    <li>
+                                        <strong>Доставка экспедитором</strong> — Мы предлагаем услуги доставки Вашего товара собственными силами в пределах городов, где расположены склады компании.
+                                    </li>
+                                    <li>
+                                        <strong>Доставка до офиса транспортной компании</strong> — Наша компания в кратчайшие сроки организует доставку Вашего товара до терминала любой транспортной компании по Вашему запросу
+                                    </li>
+                                    <li>
+                                        <strong>Доставка транспортной компанией</strong> — Мы организуем доставку Ваших товаров любой сложности "от двери до двери
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="delivery__item">
+                                <div class="delivery__item-header">
+                                    <div class="delivery__item-icon">
+                                        <img src="/img/CreditCard.svg" alt="CreditCard">
+                                    </div>
+                                    <div class="delivery__item-title">
+                                        Оплата
+                                    </div>
+                                </div>
+                                <div class="delivery__item-subtitle">
+                                    У нас на сайте предусмотрены различные удобные способы оплаты, чтобы вы могли выбрать наиболее подходящий для себя: Предусмотрены различные удобные способы оплаты, чтобы вы могли выбрать наиболее подходящий для себя:
+                                </div>
+                                <ul class="delivery__item-list list">
+                                    <li>Банковский перевод</li>
+                                    <li>Оплата при получении</li>
+                                    <li>Электронный платеж</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>

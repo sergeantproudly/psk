@@ -5,7 +5,7 @@ use Engine\Library\Model;
 class CompanyModel extends Model {
 
   function getCompanyChildren() {
-    return $this->table('company')->getAll();
+    return $this->table('company')->getAllSorted();
   }
 
   function getCurrentChild($code) {

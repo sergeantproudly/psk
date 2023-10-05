@@ -1,48 +1,107 @@
-<section class="page__main main">
-                <div class="main__container">
-                    <div class="main__body main__body-md">
-                        {{BREADCRUMBS}}
-                        <h1 class="main__title title-xl">
-                            {{TITLE}}
-                        </h1>
-                    </div>
-                </div>
-                <canvas id="gradient-canvas" data-transition-in></canvas>
-            </section>
-            <section class="page__about about">
-                <div class="about__container">
-                    <div class="about__image">
-                        <picture><source srcset="/img/about.webp" type="image/webp"><img src="/img/about.jpg" class="cover-image" alt="ПСК СтройИнвест"></picture>
-                    </div>
-                    <div class="about__body">
-                        <div class="about__text article__content">
-                            <div>
-                                {{CONTENTTOP}}
+            <section class="main">
+                    <div class="main__container">
+                        <div class="main__body">
+                            {{BREADCRUMBS}}
+                            <h1 class="main__title title-xl">
+                                {{TITLE}}
+                            </h1>
+                            <div class="main__image">
+                                <picture><source srcset="/img/about.webp" type="image/webp"><img src="/img/about.jpg" class="cover-image" alt="ПСК СтройИнвест"></picture>
                             </div>
                         </div>
-                        {{ADVANTAGES}}
-
-                        {{BLOCKMISSION}}
-                        {{BLOCKSTANDARTS}}
-                        {{BLOCKGUARANTEES}}
-
-                        {{VIDEO}}                        
+                    </div>
+                </section>
+            <section class="about">
+                <div class="about__container">
+                    <div class="about__body">
+                        {{CONTENTTOP}}                        
+                    </div>
+                    <div class="about__image">
+                        <picture><source srcset="/img/production.webp"type="image/webp"><img src="/img/production.jpg" class="cover-image" alt="production"></picture>
                     </div>
                 </div>
             </section>
-            <section class="page__equipment equipment">
-                <div class="equipment__container">
-                    <div class="equipment__body">
-                        <h2 class="equipment__title title-lg" data-animation>
+            <section class="deliveries">
+                    <div class="deliveries__container">
+                        <h2 class="deliveries__title title-xl">
                             {{BLOCKPRODUCTIONHEADING}}
                         </h2>
-                        <div class="equipment__subtitle" data-animation>
+                        <p class="deliveries__subtitle">
                             {{BLOCKPRODUCTIONANNO}}
+                        </p>
+                        <div class="deliveries__caption">
+                            {{BLOCKPRODUCTIONSUBHEADER}}
                         </div>
-                        <div class="equipment__items">
-                            {{BLOCKPRODUCTIONTEXT}}
-                        </div>
+                        {{BLOCKPRODUCTIONTEXT}}
                     </div>
-                </div>
-            </section>
-            {{CERTIFICATES}}
+                </section>
+
+            {{VIDEO}}
+
+            <section class="benefits">
+                    <div class="benefits__container">
+                        <h2 class="benefits__title title-xl">
+                            {{BLOCKADVANTAGESHEADING}}
+                        </h2>
+                        <ul class="benefits__list">
+                            <li class="benefits__item">
+                                <div class="benefits__item-header">
+                                    <div class="benefits__item-caption">
+                                        Ценовая политика
+                                    </div>
+                                    <div class="benefits__item-icon">
+                                        <img src="/img/benefits/CurrencyRub.svg" alt="rubble">
+                                    </div>
+                                </div>
+                                <div class="benefits__item-body">
+                                    Стоимость ниже конкурентных аналогов, ведь в&nbsp;производстве используется исключительно российское сырье и&nbsp;отсутствуют дополнительные затраты на&nbsp;логистику
+                                </div>
+                            </li>
+                            <li class="benefits__item">
+                                <div class="benefits__item-header">
+                                    <div class="benefits__item-caption">
+                                        Минимальные сроки
+                                    </div>
+                                    <div class="benefits__item-icon">
+                                        <img src="/img/benefits/Timer.svg" alt="Timer">
+                                    </div>
+                                </div>
+                                <div class="benefits__item-body">
+                                    Наличие собственного производства и&nbsp;5 распределительных складов позволяет в&nbsp;кротчайшие сроки отгружать заказы
+                                </div>
+                            </li>
+                            <li class="benefits__item">
+                                <div class="benefits__item-header">
+                                    <div class="benefits__item-caption">
+                                        Прямые контракты
+                                    </div>
+                                    <div class="benefits__item-icon">
+                                        <img src="/img/benefits/NoteBlank.svg" alt="NoteBlank">
+                                    </div>
+                                </div>
+                                <div class="benefits__item-body">
+                                    Мы работаем по&nbsp;дистрибьюторским договорам, что позволяет нам&nbsp;получать максимальные скидки
+                                </div>
+                            </li>
+                            <li class="benefits__item">
+                                <div class="benefits__item-header">
+                                    <div class="benefits__item-caption">
+                                        Отсрочка платежа
+                                    </div>
+                                    <div class="benefits__item-icon">
+                                        <img src="/img/benefits/ShoppingCartSimple.svg" alt="ShoppingCartSimple">
+                                    </div>
+                                </div>
+                                <div class="benefits__item-body">
+                                    Возможность отгрузки с&nbsp;отсрочкой платежа
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        {{ADVANTAGES}}
+                    </div>
+                </section>
+            
+            <!--{{CERTIFICATES}}-->
+
+

@@ -25,6 +25,7 @@ class CompanyPage extends Page {
       'stores' => ['template' => 'company__stores'],
       'media' => ['template' => 'company__media'],
       'media-gallery' => ['template' => 'company__media__gallery'],
+      'materials' => ['template' => 'company__materials'],
       'default' => ['template' => 'company__default']
     ]);
 
@@ -46,7 +47,7 @@ class CompanyPage extends Page {
 
     $content = $this->model->getContent($this->code());
 
-    $current = $this->model->getCurrentChild($page); 
+    $current = $this->model->getCurrentChild($page);
 
     // COMPANY PAGE
     if (!$current['Code']) {
@@ -78,7 +79,8 @@ class CompanyPage extends Page {
       $advantagesItemLinkedTemplate = new Template('bl-advantages-linked__item', 'company/partial');
       //$advantagesItemTemplate  = $advantagesItemTemplate->parse($advantages);
       $attrHtml = '';
-      foreach ($advantages as $advantage) {
+      foreach ($advantages as $i => $advantage) {
+        $advantage['Separator'] = ($i % 4 != 0) ? '<li class="benefits__numbers-separator"></li>' : '';
         $advantage['Value'] = preg_replace('/(\d+)/', '<span class="count-number' . ($advantage['NoSpaces'] ? ' no-spacing' : '') . '">$1</span>', $advantage['Value']);
         if ($advantage['Link']) {
           $attrHtml .= $advantagesItemLinkedTemplate->parse($advantage);
@@ -99,6 +101,11 @@ class CompanyPage extends Page {
       ]);
 
       $content['BlockProductionHeading'] = strip_tags($content['BlockProductionHeading']);
+      $content['BlockProductionAnno'] = strip_tags($content['BlockProductionAnno']);
+      $content['BlockProductionSubheading'] = strip_tags($content['BlockProductionSubheading']);
+      $content['BlockProductionText'] = str_replace('<ol>', '<ol class="deliveries__list">', $content['BlockProductionText']);
+      $content['BlockAdvantagesHeading'] = strip_tags($content['BlockAdvantagesHeading']);
+
       $rendered = $this->page('index')->parse($content + [
         'Breadcrumbs' => $breadcrumbsRendered,
         'Nav' => $navigation,
@@ -165,6 +172,8 @@ class CompanyPage extends Page {
           $partner['Style'] = $partner['WidthBig'] ? 'style="width: ' . $partner['WidthBig'] . 'px"' : '';
           $partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
           $partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
+          $partner['Title'] = mb_strtoupper($partner['Title']);
+          $partner['Class'] = $partner['IsSmallLogo'] ? ' company__logo-sm' : '';
           if ($partner['Link']) $partner['Link'] = '<a href="' . $partner['Link'] .'" target="_blank" rel="nofollow" class="company__link icon-link">' . $partner['Link'] .'</a>';
         }
         $partnersItemTemplate = new ListTemplate('company__partners__item', 'company/partial');
@@ -240,7 +249,6 @@ class CompanyPage extends Page {
           if ($store['Attributes']) {
             foreach ($store['Attributes'] as $attr) {
               $attr['Value'] = preg_replace('/(\d+)/', '<span class="count-number">$1</span>', $attr['Value']);
-              $attr['Title'] = 
               $store['AttrsHtml'] .= $attrTemplate->parse($attr);
             }
           }
@@ -250,13 +258,15 @@ class CompanyPage extends Page {
             }
           }
           if ($store['Photos']) {
+            $limit = 4;
             $counter = 0;
             foreach ($store['Photos'] as $photo) {
               $counter++;
 
               $photo['ImageWebp'] = Common::flGetWebpByImage($photo['Image']);
-              $photo['Class'] = ($counter == 3 && count($store['Photos']) > 3) ? ' more-photos' : '';
-              $photo['MoreText'] = ($counter == 3 && count($store['Photos']) > 3) ? ('<span>Смотреть еще ' . (count($store['Photos']) - 3) . '</span>') : '';
+              //$photo['Class'] = ($counter == $limit && count($store['Photos']) > $limit) ? ' more-photos' : '';
+              $photo['Display'] = ($counter > $limit) ? ' style="display:none"' : '';
+              $photo['MoreText'] = ($counter == $limit && count($store['Photos']) > $limit) ? ('<span>Смотреть еще ' . (count($store['Photos']) - $limit) . '</span>') : '';
               $store['PhotosHtml'] .= $photoTemplate->parse($photo);
             }
           }
@@ -268,11 +278,21 @@ class CompanyPage extends Page {
         $storesNavigationTemplate = new ListTemplate('_stores-navigation-row', 'stores');
         $navigationRendered  = $storesNavigationTemplate->parse($stores);
 
+        $licenses = $this->model->getLicenseImages();
+        foreach ($licenses as &$license) {
+          $license['Alt'] = htmlspecialchars($license['Title'], ENT_QUOTES);
+          $license['PreviewWebp'] = Common::flGetWebpByImage($license['Preview']);
+          if ($license['File']) $license['Upload'] = '<a href="' . $license['File'] . '" download class="serts__slide-download"><img src="/img/share.svg" alt="icon share">Скачать</a>';
+        }
+        $licensesItemTemplate = new ListTemplate('company__licenses__item__swiper', 'company/partial');
+        $licensesRendered  = $licensesItemTemplate->parse($licenses);
+
         $rendered = $this->page($current['Code'])->parse([
           'Breadcrumbs' => $breadcrumbsRendered,
           'Title' => strip_tags($content['PageStoresHeading']),
           'Navigation' => $navigationRendered,
           'List' => $storesRendered,
+          'Certs' => $licensesRendered,
         ] + $content);
 
       // MEDIA PAGE
@@ -352,6 +372,23 @@ class CompanyPage extends Page {
               'List' => $galleriesRendered,
             ] + $content);
         }
+
+      // MATERIALS PAGE
+      } elseif ($current['Code'] == 'materials') {
+        $materialsModel = new \Site\Models\MaterialsModel($this->model->getDB());
+        $materials = $materialsModel->getMaterials();
+        foreach ($materials as &$material) {
+          $material['Link'] = $material['File'];
+          $material['Info'] = strtoupper(Common::flGetExtension($material['File'])) . ', ' . Common::flGetSizeFormat($material['File']);
+        }
+        $materialsItemTemplate = new ListTemplate('company__materials__item', 'company/partial');
+        $materialsRendered  = $materialsItemTemplate->parse($materials);
+
+        $rendered = $this->page($current['Code'])->parse([
+          'Breadcrumbs' => $breadcrumbsRendered,
+          'Title' => strip_tags($content['PageStaffHeading']),
+          'List' => $materialsRendered,
+        ] + $content);
 
       // DEFAULT PAGE
       } else {
