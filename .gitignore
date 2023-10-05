@@ -12,4 +12,5 @@ error.log
 robots.txt
 .htaccess
 settings.php
+config.prod.php
 config.php
