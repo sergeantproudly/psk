@@ -2326,9 +2326,10 @@ body._pc .anim-content .products.active .products__item {
 
 .company__logo {
   margin: 0em 0em 0em 0.5rem;
-  height: 64px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  height: min(100%, 64px);
+  max-width: 120px;
 }
 
 .company__logo img {
@@ -6655,7 +6656,7 @@ body._pc .anim-content .products.active .products__item {
   }
 
   .company__logo {
-    height: 96px;
+    height: min(100%, 96px);
   }
 
   .contacts__card {
