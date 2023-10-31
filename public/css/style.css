@@ -2315,6 +2315,7 @@ body._pc .anim-content .products.active .products__item {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  min-height: 93px;
 }
 
 .company__title {
@@ -2322,6 +2323,9 @@ body._pc .anim-content .products.active .products__item {
   font-weight: 500;
   line-height: 130%;
   font-size: 24px;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
 }
 
 .company__logo {
