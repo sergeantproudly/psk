@@ -2326,6 +2326,7 @@ body._pc .anim-content .products.active .products__item {
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
+  word-break: break-word;
 }
 
 .company__logo {
@@ -2338,6 +2339,7 @@ body._pc .anim-content .products.active .products__item {
 .company__logo img {
   height: 100%;
   width: auto;
+  max-height: 93px;
 }
 
 .company__logo.company__logo-sm {
