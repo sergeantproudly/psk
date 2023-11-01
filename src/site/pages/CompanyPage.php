@@ -169,11 +169,16 @@ class CompanyPage extends Page {
         $partnerModel = new \Site\Models\PartnerModel($this->model->getDB());
         $partners = $partnerModel->getPartners();
         foreach ($partners as &$partner) {
+          $tl = mb_strlen($partner['Title']);
           $partner['Style'] = $partner['WidthBig'] ? 'style="width: ' . $partner['WidthBig'] . 'px"' : '';
           $partner['ImageWebp'] = Common::flGetWebpByImage($partner['Image']);
           $partner['Alt'] = htmlspecialchars($partner['Title'], ENT_QUOTES);
           $partner['Title'] = mb_strtoupper($partner['Title']);
-          $partner['Class'] = $partner['IsSmallLogo'] ? ' company__logo-sm' : '';
+          if ($tl > 40 || mb_strlen(Common::GetLongestWord($partner['Title'])) > 18) $partner['Class'] = 'company__title-xs';
+          elseif ($tl > 30 || mb_strlen(Common::GetLongestWord($partner['Title'])) > 15) $partner['Class'] = 'company__title-sm';
+          elseif ($tl > 20) $partner['Class'] = 'company__title-md';
+          else $partner['Class'] = '';
+          //$partner['Class'] = $partner['IsSmallLogo'] ? ' company__logo-sm' : '';
           if ($partner['Link']) $partner['Link'] = '<a href="' . $partner['Link'] .'" target="_blank" rel="nofollow" class="company__link icon-link">' . $partner['Link'] .'</a>';
         }
         $partnersItemTemplate = new ListTemplate('company__partners__item', 'company/partial');
@@ -190,9 +195,14 @@ class CompanyPage extends Page {
         $clientModel = new \Site\Models\ClientModel($this->model->getDB());
         $clients = $clientModel->getClients();
         foreach ($clients as &$client) {
+          $tl = mb_strlen($client['Title']);
           $client['Style'] = $client['WidthBig'] ? 'style="width: ' . $client['WidthBig'] . 'px"' : '';
           $client['ImageWebp'] = Common::flGetWebpByImage($client['Image']);
           $client['Alt'] = htmlspecialchars($client['Title'], ENT_QUOTES);
+          if ($tl > 40 || mb_strlen(Common::GetLongestWord($client['Title'])) > 18) $client['Class'] = 'company__title-xs';
+          elseif ($tl > 30 || mb_strlen(Common::GetLongestWord($client['Title'])) > 15) $client['Class'] = 'company__title-sm';
+          elseif ($tl > 20) $client['Class'] = 'company__title-md';
+          else $client['Class'] = '';
           if ($client['Link']) $client['Link'] = '<a href="' . $client['Link'] .'" target="_blank" rel="nofollow" class="company__link icon-link">' . $client['Link'] .'</a>';
         }
         $clientsItemTemplate = new ListTemplate('company__client__item', 'company/partial');

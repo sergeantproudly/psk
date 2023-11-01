@@ -2329,6 +2329,18 @@ body._pc .anim-content .products.active .products__item {
   word-break: break-word;
 }
 
+.company__title.company__title-md {
+  font-size: 18px;
+}
+
+.company__title.company__title-sm {
+  font-size: 16px;
+}
+
+.company__title.company__title-xs {
+  font-size: 14px;
+}
+
 .company__logo {
   margin: 0em 0em 0em 0.5rem;
   -ms-flex-negative: 0;
@@ -5707,6 +5719,18 @@ body._pc .anim-content .products.active .products__item {
     font-size: 20px;
   }
 
+  .company__title.company__title-md {
+    font-size: 18px;
+  }
+
+  .company__title.company__title-sm {
+    font-size: 16px;
+  }
+
+  .company__title.company__title-xs {
+    font-size: 16px;
+  }
+
   .company__link {
     margin: 1.5em 0em 0em 0em;
   }
@@ -6661,6 +6685,18 @@ body._pc .anim-content .products.active .products__item {
     font-size: 24px;
   }
 
+  .company__title.company__title-md {
+    font-size: 22px;
+  }
+
+  .company__title.company__title-sm {
+    font-size: 20px;
+  }
+
+  .company__title.company__title-xs {
+    font-size: 18px;
+  }
+
   .contacts__card {
     padding: 2em 0.9375em 2em 2em;
   }
@@ -6884,10 +6920,6 @@ body._pc .anim-content .products.active .products__item {
 
   .team__more {
     display: none;
-  }
-
-  .company__title.company__title-sm {
-    font-size: 18px;
   }
 
   .logistics__title {

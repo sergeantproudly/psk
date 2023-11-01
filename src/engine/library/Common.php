@@ -512,6 +512,20 @@
 		die();
     }
 
+    public static function GetLongestWord($string) {
+    	$words = explode(' ', $string);
+		$longestWordLength = 0;
+		$longestWord = '';
+
+		foreach ($words as $word) {
+		   if (strlen($word) > $longestWordLength) {
+		      $longestWordLength = strlen($word);
+		      $longestWord = $word;
+		   }
+		}
+		return $longestWord;
+    }
+
 }
 
 class RecordList{
