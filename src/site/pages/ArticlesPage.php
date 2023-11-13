@@ -68,7 +68,8 @@ class ArticlesPage extends Page {
     if ($currentPage == 1) {
       $firstArticle = array_shift($articles);
       $firstArticle['TitleClass'] = mb_strlen($firstArticle['Title']) <= 70 ? 'title-lg' : 'title-md';
-      $firstArticle['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['Preview']);
+      $firstArticle['PreviewImage'] = $firstArticle['Preview'];
+      $firstArticle['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['PreviewImage']);
       $firstArticle['Alt'] = htmlspecialchars($firstArticle['Title'], ENT_QUOTES);
       $firstArticleTemplate = new Template('partial/articles__first__card.htm', 'articles');
     }
@@ -76,7 +77,8 @@ class ArticlesPage extends Page {
     foreach ($articles as &$article) {
       $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
       $article['Date'] = Common::ModifiedDate($article['PublishDate']);
-      $article['PreviewWebp'] = Common::flGetWebpByImage($article['Preview']);
+      $article['PreviewImage'] = $article['Preview2'] ?: $article['Preview'];
+      $article['PreviewWebp'] = Common::flGetWebpByImage($article['PreviewImage']);
       $article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
     }
     

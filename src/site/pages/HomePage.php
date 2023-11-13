@@ -37,17 +37,20 @@ class HomePage extends Page {
 		$contacts = $this->model->getContent('contacts');
 
 		// SLIDER
-		// $sliderModel = new \Site\Models\SliderModel();
-		// $sliderModel->setDB($this->model->getDB());
+		$sliderModel = new \Site\Models\SliderModel();
+		$sliderModel->setDB($this->model->getDB());
 
-		// $slides = $sliderModel->getSlides();
-		// array_walk($slides, function(&$slide, $key) {
-		//   $slide['Num'] = $key + 1;
-	    //   $slide['ImageWebp'] = Common::flGetWebpByImage($slide['Image']);
-	    //   $slide['Text'] = nl2br($slide['Text']);
-	    // });
-		// $sliderComponent = new SliderComponent;
-		// $sliderRendered = $sliderComponent->render($slides);
+		$slides = $sliderModel->getSlides();
+		array_walk($slides, function(&$slide, $key) {
+		  $slide['Num'] = $key + 1;
+	      $slide['ImageWebp'] = Common::flGetWebpByImage($slide['Image']);
+	      $slide['HTag'] = ($key === 0) ? 'h1' : 'h2';
+	      $slide['Alt'] = htmlspecialchars($slide['Title'], ENT_QUOTES);
+	      if (!$slide['Button']) $slide['Button'] = 'Подробнее';
+	      $slide['Text'] = nl2br($slide['Text']);
+	    });
+		$sliderComponent = new SliderComponent;
+		$sliderRendered = $sliderComponent->render($slides);
 
 		// PRODUCTION DIRECTIONS
 		// $productionModel = new \Site\Models\ProductionModel();
@@ -114,7 +117,8 @@ class HomePage extends Page {
 		$articleList = Common::setLinks($articleList, 'articles');
 		foreach ($articleList as $i => &$article) {
 			$article['Date'] = Common::ModifiedDate($article['PublishDate']);
-			$article['PreviewWebp'] = Common::flGetWebpByImage($article['Preview']);
+			$article['PreviewImage'] = $article['Preview2'] ?: $article['Preview'];
+			$article['PreviewWebp'] = Common::flGetWebpByImage($article['PreviewImage']);
 			$article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
 		}
 		$articlesComponent = new ArticlesComponent;
@@ -155,7 +159,7 @@ class HomePage extends Page {
 		$staffRendered = $staffComponent->render($staffList, 'Руководство');
 
 		return $this->page('index')->parse($content + $contacts + [
-			//'Slider' => $sliderRendered,
+			'Slider' => $sliderRendered,
 			//'Directions' => $directionsRendered,
 			'Projects' => $projectsRendered,
 			'Clients' => $clientsRendered,

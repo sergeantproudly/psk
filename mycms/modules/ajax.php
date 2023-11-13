@@ -64,9 +64,9 @@ class ajax extends krn_abstract{
 	
 	function UploadImage(){
 		krnLoadLib('files');
-		$uploadpath=UPLOADS_DIR;
+		$uploadpath = UPLOADS_DIR;
 		if(mb_substr($uploadpath,mb_strlen($uploadpath)-1)!='/')$uploadpath.='/';
-		$filepath=flUpload($_FILES['upload']['name'],$_FILES['upload']['tmp_name'],UPLOADS_DIR);
+		$filepath=flUpload($_FILES['upload']['name'], $_FILES['upload']['tmp_name'], UPLOADS_DIR);
 		$fileinfo=flGetInfo($filepath);
 
 		$webpFilePath = imgToWebp(ABS_PATH.$filepath);
