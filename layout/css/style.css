@@ -4503,10 +4503,6 @@ body._pc .anim-content .products.active .products__item {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .main.main-lg {
-    padding-bottom: 5rem;
-  }
-
   .projects__grid {
     gap: 24px;
     -ms-grid-columns: (1fr)[2];
