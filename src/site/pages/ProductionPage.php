@@ -128,6 +128,8 @@ class ProductionPage extends Page {
       Common::Get404Page();
     }
 
+    if ($direction['Text']) $direction['Text'] = '<div class="main__subtitle">' . $direction['Text'] . '</div>';
+
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($params['direction'], [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
@@ -256,6 +258,8 @@ class ProductionPage extends Page {
       Common::Get404Page();
     }
 
+    if ($product['ShortDescription']) $product['ShortDescription'] = '<div class="main__subtitle">' . $product['ShortDescription'] . '</div>';
+
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeProduct, [
       ['Code' => '/', 'Link' => '/' ,'Title' => 'Главная'],
@@ -328,6 +332,7 @@ class ProductionPage extends Page {
     if (!$subcategory) {
       Common::Get404Page();
     }
+    if ($subcategory['ShortDescription']) $subcategory['ShortDescription'] = '<div class="main__subtitle">' . $subcategory['ShortDescription'] . '</div>';
     $subcategory['TitleCleared'] = strip_tags($subcategory['Title']);
     
     $breadcrumbs = new BreadcrumbsComponent;

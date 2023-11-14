@@ -65,8 +65,10 @@ class Components {
 			if ($isCurrent) $classtwo[] = 'active';
 			if (isset($subNavigationItems[$item['Id']])) {
 				$class[] = 'menu-parent';
-				$classtwo[] = 'icon-arrow';
+				//$classtwo[] = 'icon-arrow';
 				$subItems = '';
+
+				$item['Arrow'] = '<button class="menu__arrow icon-arrow"></button>';
 
 				foreach ($subNavigationItems[$item['Id']] as $subItem) {
 					$isCurrentSub = $currentSubPageCode == $subItem['Code'];	// Активная страница
