@@ -73,7 +73,7 @@ class Components {
 				foreach ($subNavigationItems[$item['Id']] as $subItem) {
 					$isCurrentSub = $currentSubPageCode == $subItem['Code'];	// Активная страница
 
-					$subItem['Class'] =  $isCurrentSub ? ' class="active"' : '';
+					$subItem['Class'] =  $isCurrentSub ? ' active' : '';
 					$subItems .= $subElement->Parse($subItem);
 				}
 
