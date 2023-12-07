@@ -3,6 +3,7 @@
 namespace Site\Components;
 use Engine\Library\ImprovedComponent;
 use Engine\Library\ListTemplate;
+use Engine\Library\Common;
 
 
 class ArticlesComponent extends ImprovedComponent {
@@ -20,6 +21,14 @@ class ArticlesComponent extends ImprovedComponent {
   }
 
   function render($articles, $name = '', $template = '') {
+    foreach ($articles as &$article) {
+      $article['DateTime'] = Common::excess($article['PublishDate'], ' 00:00:00');
+      $article['Date'] = Common::ModifiedDate($article['PublishDate']);
+      $article['PreviewImage'] = $article['Preview2'] ?: $article['Preview'];
+      $article['PreviewWebp'] = Common::flGetWebpByImage($article['PreviewImage']);
+      $article['Alt'] = htmlspecialchars($article['Title'], ENT_QUOTES);
+    }
+
     if ($template) {
       $this->setTemplates([
         'default' => ['template' => $template ?: 'bl-news'],
