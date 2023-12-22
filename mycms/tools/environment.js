@@ -764,7 +764,7 @@ function envInitWysiwyg(wysiwyg){
 	var id=wysiwyg.id?wysiwyg.id:inp.name;
 	var config={
 		toolbar : [
-					['Source', '-', 'Bold', 'Italic', 'Underline', '-', 'Link', 'Unlink','-', 'Image'],
+					['Source', '-', 'Bold', 'Italic', 'Underline', 'TextColor', '-', 'Link', 'Unlink','-', 'Image'],
 					['NumberedList','BulletedList','Table'],
 					['RemoveFormat'],
 					['JustifyLeft','JustifyCenter','JustifyRight', 'Format', 'Styles'],
