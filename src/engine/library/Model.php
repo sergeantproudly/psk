@@ -28,6 +28,7 @@ abstract class Model {
     'subcategories' => 'data_subcategory',
     'goods' => 'data_goody',
     'goods_chars' => 'data_goody_char',
+    'goods_photos' => 'data_goody_photo',
     'company' => 'page_company',
     'register' => 'page_register',
     'staff' => 'page_staff',

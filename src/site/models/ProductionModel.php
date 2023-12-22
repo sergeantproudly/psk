@@ -338,6 +338,10 @@ class ProductionModel extends Model {
     return $this->table('goods_chars')->getAllWhereSorted('GoodyId = ?i', $goodyId);
   }
 
+  function getGoodyPhotos($goodyId) {
+    return $this->table('goods_photos')->getAllWhereSorted('GoodyId = ?i', $goodyId);
+  }
+
   function getOtherGoods($goodyCode, $count) {
     $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.Code <> ?s ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i", 
         $this->tables['goods'],

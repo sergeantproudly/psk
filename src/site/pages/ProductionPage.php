@@ -475,7 +475,19 @@ class ProductionPage extends Page {
     $charsTemplate = new ListTemplate('goodychar__card', 'production/partial');
     $charsTemplate  = $charsTemplate->parse($chars);
 
-    $this->getPage('goody')->addInclude($this->partial('chars'));
+    $photos = $this->model->getGoodyPhotos($goody['Id']);
+    foreach ($photos as &$photo) {
+      $photo['PreviewWebp'] = Common::flGetWebpByImage($firstArticle['Preview']);
+      $photo['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
+    }
+    $photosTemplate = new Template('production__goody_extphotos', 'production');
+    $photosItemTemplate = new ListTemplate('goodyextphoto__card', 'production/partial');
+    $photosItemTemplate  = $photosItemTemplate->parse($photos);
+    $photosTemplateRendered = $photosTemplate->parse([
+          'List' => $photosItemTemplate
+    ]);
+
+    //$this->getPage('goody')->addInclude($this->partial('chars'));
 
     // $staffModel = new \Site\Models\StaffModel($Database);
     // $person = $staffModel->getPersonById(self::PERSON_ID);
@@ -507,6 +519,7 @@ class ProductionPage extends Page {
       'breadcrumbs' => $breadcrumbsRendered,
       //'chars' => $chars,
       'chars' => !empty($chars) ? '<div><h3>Характеристики</h3><table>' . $charsTemplate . '</table></div>' : '',
+      'extphotos' => $photosTemplateRendered,
       // 'promo' => $blockPromoRendered,
       'other' => $blockOtherRendered,
     ]);
