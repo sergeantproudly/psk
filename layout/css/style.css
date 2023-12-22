@@ -252,6 +252,10 @@ body._pc .anim-content .products.active .products__item {
   font-size: 28px;
 }
 
+.fslightbox-source {
+  background: #fff;
+}
+
 .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
