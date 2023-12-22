@@ -484,7 +484,8 @@ class ProductionPage extends Page {
     $photosItemTemplate = new ListTemplate('goodyextphoto__card', 'production/partial');
     $photosItemTemplate  = $photosItemTemplate->parse($photos);
     $photosTemplateRendered = $photosTemplate->parse([
-          'List' => $photosItemTemplate
+          'List' => $photosItemTemplate,
+          'Arrows' => count($photos) > 3 ? '<div class="main__product-next"></div><div class="main__product-prev"></div>' : '',
     ]);
 
     //$this->getPage('goody')->addInclude($this->partial('chars'));
