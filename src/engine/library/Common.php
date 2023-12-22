@@ -57,6 +57,13 @@
 		}
 		return $array;
 	}
+
+	public static function setDimCorrections($array, $corrections) {
+		foreach ($array as $key => &$item) {
+	    	$item[$keylabel] = strtr($item[$keylabel], $corrections);
+		}
+		return $array;
+	}
 	
     
    // заменяет атрибуты в темплейте

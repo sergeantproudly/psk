@@ -460,6 +460,9 @@ class ProductionPage extends Page {
 
     $goody['PreviewFullWebp'] = Common::flGetWebpByImage($goody['PreviewFull']);
     if ($goody['TextGost']) $goody['TextGost'] = '<strong class="current-product__gost">' . $goody['TextGost'] . '</strong>';
+    if ($goody['TextBottom']) $goody['TextBottom'] = strtr($goody['TextBottom'], array(
+      'мм2' => 'мм²',
+    ));
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeGoody, [
@@ -472,6 +475,9 @@ class ProductionPage extends Page {
 
     $chars = $this->model->getGoodyChars($goody['Id']);
     $chars = Common::setNl2Br($chars, 'Value');
+    $chars = Common::setDimCorrections($chars, array(
+      'мм2' => 'мм²',
+    ));
     $charsTemplate = new ListTemplate('goodychar__card', 'production/partial');
     $charsTemplate  = $charsTemplate->parse($chars);
 
