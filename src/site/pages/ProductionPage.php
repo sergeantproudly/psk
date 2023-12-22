@@ -519,7 +519,7 @@ class ProductionPage extends Page {
       'breadcrumbs' => $breadcrumbsRendered,
       //'chars' => $chars,
       'chars' => !empty($chars) ? '<div><h3>Характеристики</h3><table>' . $charsTemplate . '</table></div>' : '',
-      'extphotos' => $photosTemplateRendered,
+      'extphotos' => !empty($photos) ? $photosTemplateRendered : '',
       // 'promo' => $blockPromoRendered,
       'other' => $blockOtherRendered,
     ]);
