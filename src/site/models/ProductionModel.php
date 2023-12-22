@@ -343,10 +343,12 @@ class ProductionModel extends Model {
   }
 
   function getOtherGoods($goodyCode, $count) {
-    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.Code <> ?s ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i", 
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.Code <> ?s AND g.SubcategoryId = (SELECT SubcategoryId FROM ?n WHERE Code = ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i", 
         $this->tables['goods'],
         $this->tables['subcategories'],
         $this->tables['products'],
+        $goodyCode,
+        $this->tables['goods'],
         $goodyCode,
         $count
       );

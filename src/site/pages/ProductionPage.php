@@ -513,7 +513,7 @@ class ProductionPage extends Page {
     // ]);
 
     $otherGoods = $this->model->getOtherGoods($params['goody'], 4);
-    $otherGoods = Common::setLinks($otherGoods, 'production/'.$codeProduct, $codeSubcategory);
+    $otherGoods = Common::setLinksByFields($otherGoods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
     $blockOtherTemplate = new Template('bl-other', 'production');
     $blockOtherItemTemplate = new ListTemplate('bl-other__item', 'production/partial');
     $blockOtherItemTemplate  = $blockOtherItemTemplate->parse($otherGoods);
