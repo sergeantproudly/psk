@@ -5,9 +5,9 @@
                         <div class="main__product">
                             <div class="main__product-side">
                                 <div class="main__product-content">
-                                    <div class="main__product-image">
+                                    <a href="{{PREVIEWFULL}}" data-fslightbox class="main__product-image swiper-slide">
                                         <picture><source srcset="{{PREVIEWFULLWEBP}}" type="image/webp"><img src="{{PREVIEWFULL}}" class="cover-image" alt="{{ALT}}"></picture>
-                                    </div>
+                                    </a>
                                     <a href="tel:{{PHONELINK}}" class="main__product-label product-label icon-phone">
                                         <span class="product-label__title">
                                             Консультация по продукции
@@ -34,27 +34,10 @@
                                 <h3>
                                     Описание
                                 </h3>
-                                <strong class="current-product__gost">
-                                    {{TEXTGOST}}
-                                </strong>
+                                {{TEXTGOST}}
                                 {{TEXT}}
                             </div>
-                            <div>
-                                <h3>
-                                    Характеристики
-                                </h3>
-                                <table>
-                                    <!-- <tr>
-                                        <th>
-                                            Корпус
-                                        </th>
-                                        <th>
-                                            Материал
-                                        </th>
-                                    </tr> -->
-                                    {{INCLUDE:CHARS}}
-                                </table>
-                            </div>
+                            {{CHARS}}
                             <div>
                                 {{TEXTBOTTOM}}
                             </div>

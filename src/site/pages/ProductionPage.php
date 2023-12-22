@@ -459,6 +459,7 @@ class ProductionPage extends Page {
     }
 
     $goody['PreviewFullWebp'] = Common::flGetWebpByImage($goody['PreviewFull']);
+    if ($goody['TextGost']) $goody['TextGost'] = '<strong class="current-product__gost">' . $goody['TextGost'] . '</strong>';
     
     $breadcrumbs = new BreadcrumbsComponent;
     $breadcrumbsRendered = $breadcrumbs->render($codeGoody, [
@@ -471,6 +472,9 @@ class ProductionPage extends Page {
 
     $chars = $this->model->getGoodyChars($goody['Id']);
     $chars = Common::setNl2Br($chars, 'Value');
+    $charsTemplate = new ListTemplate('goodychar__card', 'production/partial');
+    $charsTemplate  = $charsTemplate->parse($chars);
+
     $this->getPage('goody')->addInclude($this->partial('chars'));
 
     // $staffModel = new \Site\Models\StaffModel($Database);
@@ -501,7 +505,8 @@ class ProductionPage extends Page {
 
     return $this->getPage('goody')->parse($goody + $contacts + $this->page + [
       'breadcrumbs' => $breadcrumbsRendered,
-      'chars' => $chars,
+      //'chars' => $chars,
+      'chars' => !empty($chars) ? '<div><h3>Характеристики</h3><table>' . $charsTemplate . '</table></div>' : '',
       // 'promo' => $blockPromoRendered,
       'other' => $blockOtherRendered,
     ]);

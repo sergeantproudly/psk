@@ -40,6 +40,8 @@
 }
 
 .production__product-name::before,
+.main__product-next::before,
+.main__product-prev::before,
 .form__checkbox-input:checked + .form__checkbox-content::before,
 .spoller-caption::before,
 .succes::before,
@@ -113,6 +115,8 @@
 
 .icon-arrow:before,
 .production__product-name:before,
+.main__product-next:before,
+.main__product-prev:before,
 .spoller-caption:before,
 .swiper-button-prev:before,
 .swiper-button-next:before,
@@ -1244,6 +1248,8 @@ body._pc .anim-content .products.active .products__item {
 
 .menu__link.icon-arrow,
 .menu__link.production__product-name::before,
+.menu__link.main__product-next::before,
+.menu__link.main__product-prev::before,
 .menu__link.navigation__item:not(:last-child)::before,
 .menu__link.dropdown__button::before,
 .menu__link.swiper-button-prev::before,
@@ -1259,6 +1265,8 @@ body._pc .anim-content .products.active .products__item {
 
 .menu__link.icon-arrow::before,
 .menu__link.production__product-name::before,
+.menu__link.main__product-next::before,
+.menu__link.main__product-prev::before,
 .menu__link.navigation__item:not(:last-child)::before,
 .menu__link.dropdown__button::before,
 .menu__link.swiper-button-prev::before,
@@ -1281,6 +1289,8 @@ body._pc .anim-content .products.active .products__item {
 
 .menu__link.icon-arrow.active,
 .menu__link.active.production__product-name::before,
+.menu__link.active.main__product-next::before,
+.menu__link.active.main__product-prev::before,
 .menu__link.active.navigation__item:not(:last-child)::before,
 .menu__link.active.dropdown__button::before,
 .menu__link.active.swiper-button-prev::before,
@@ -1670,17 +1680,90 @@ body._pc .anim-content .products.active .products__item {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, transparent), color-stop(25%, #fff));
   background: -o-linear-gradient(transparent 25%, #fff 25%);
   background: linear-gradient(transparent 25%, #fff 25%);
-  margin: 0 -1em;
-  padding: 0 1em;
+  margin: 0 -1em -2rem;
+  padding: 0 1em 2rem;
 }
 
 .main__product-side {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.main__product-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.main__product-footer {
   position: relative;
 }
 
 .main__product-image {
   border: 1px solid #dfe0e1;
   background: #fff;
+  padding: 0.3125em;
+  display: block;
+  height: auto;
+}
+
+.main__product-next,
+.main__product-prev {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: #ff6859;
+  border-color: #ff6859;
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 10;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.main__product-next:disabled,
+.main__product-next[aria-disabled=true],
+.main__product-prev:disabled,
+.main__product-prev[aria-disabled=true] {
+  color: #7b7e89;
+  background: #dfe0e1;
+  border-color: #dfe0e1;
+}
+
+.main__product-prev {
+  left: -0.75rem;
+}
+
+.main__product-prev::before {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.main__product-next {
+  right: -0.75rem;
+}
+
+.main__product-thumbs {
+  margin-top: 1.25rem;
+}
+
+.main__product-slide {
+  border: 1px solid #dfe0e1;
+  background: #fff;
+  cursor: pointer;
   padding: 0.3125em;
 }
 
@@ -2637,6 +2720,18 @@ body._pc .anim-content .products.active .products__item {
 .article__content.current-product__content > p {
   line-height: 1.5625;
   color: #060d2c;
+}
+
+.article__content.current-product__content > div {
+  overflow-x: auto;
+  margin-right: -1rem;
+  padding-right: 1rem;
+}
+
+.article__content.current-product__content > div::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 .article__content.current-product__content h3 {
@@ -5003,6 +5098,20 @@ body._pc .anim-content .products.active .products__item {
     grid-template-columns: 308px 1fr;
   }
 
+  .main__product-next,
+  .main__product-prev {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .main__product-prev {
+    left: -1.25rem;
+  }
+
+  .main__product-next {
+    right: -1.25rem;
+  }
+
   .main__product-title {
     margin: 0;
     color: #fff;
@@ -5537,6 +5646,8 @@ body._pc .anim-content .products.active .products__item {
 
   .menu__link.icon-arrow.active,
   .menu__link.active.production__product-name::before,
+  .menu__link.active.main__product-next::before,
+  .menu__link.active.main__product-prev::before,
   .menu__link.active.navigation__item:not(:last-child)::before,
   .menu__link.active.dropdown__button::before,
   .menu__link.active.swiper-button-prev::before,
@@ -5848,11 +5959,6 @@ body._pc .anim-content .products.active .products__item {
     gap: 24px;
     -ms-grid-columns: 310px 1fr;
     grid-template-columns: 310px 1fr;
-  }
-
-  .products__grid {
-    -ms-grid-columns: (1fr)[3];
-    grid-template-columns: repeat(3, 1fr);
   }
 
   .products__offers-items {
@@ -6487,6 +6593,11 @@ body._pc .anim-content .products.active .products__item {
     grid-template-columns: 395px 1fr;
   }
 
+  .products__grid {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .products__offers {
     margin: 8.75em 0em 0em 0em;
   }
@@ -6945,6 +7056,10 @@ body._pc .anim-content .products.active .products__item {
     width: 100%;
   }
 
+  .main__product-title {
+    font-size: 1.5rem;
+  }
+
   .team__more {
     display: none;
   }
@@ -6972,7 +7087,10 @@ body._pc .anim-content .products.active .products__item {
   }
 
   .product__link {
+    margin-top: 1rem;
     font-size: 12px;
+    padding: 0.5rem;
+    width: 100%;
   }
 }
 
@@ -7051,6 +7169,8 @@ body._pc .anim-content .products.active .products__item {
 
   .menu__link:hover.icon-arrow::before,
   .menu__link.production__product-name:hover::before,
+  .menu__link.main__product-next:hover::before,
+  .menu__link.main__product-prev:hover::before,
   .menu__link.navigation__item:hover:not(:last-child)::before,
   .menu__link.dropdown__button:hover::before,
   .menu__link.swiper-button-prev:hover::before,
