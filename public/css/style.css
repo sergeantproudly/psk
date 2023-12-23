@@ -1769,6 +1769,7 @@ body._pc .anim-content .products.active .products__item {
   background: #fff;
   cursor: pointer;
   padding: 0.3125em;
+  height: auto;
 }
 
 .main__product-title {
