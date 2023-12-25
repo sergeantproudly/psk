@@ -363,7 +363,7 @@ class ProductionModel extends Model {
   }
 
   function getRelatedGoods($goodyId, $count) {
-    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n gr LEFT JOIN ?n g ON gr.RelatedGoodyId = g.Id LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE gr.Id = ?i ORDER BY IF(gr.`Order`, -100/gr.`Order`, 0) LIMIT ?i", 
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n gr LEFT JOIN ?n g ON gr.RelatedGoodyId = g.Id LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE gr.GoodyId = ?i ORDER BY IF(gr.`Order`, -100/gr.`Order`, 0) LIMIT ?i", 
         $this->tables['goods_related'],
         $this->tables['goods'],
         $this->tables['subcategories'],
