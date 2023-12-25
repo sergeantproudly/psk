@@ -1710,7 +1710,7 @@ body._pc .anim-content .products.active .products__item {
 .main__product-image {
   border: 1px solid #dfe0e1;
   background: #fff;
-  padding: 0.3125em;
+  padding: 1.5em;
   display: block;
   text-align: center;
 }
@@ -1779,6 +1779,15 @@ body._pc .anim-content .products.active .products__item {
   cursor: pointer;
   padding: 0.3125em;
   height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main__product-title {
@@ -3829,7 +3838,7 @@ body._pc .anim-content .products.active .products__item {
 .product__image {
   border-bottom: 1px solid #dfe0e1;
   text-align: center;
-  height: 96px;
+  height: 116px;
 }
 
 .product__image img {
@@ -4854,7 +4863,7 @@ body._pc .anim-content .products.active .products__item {
   }
 
   .product__image {
-    height: 140px;
+    height: 160px;
   }
 
   .product__title {
