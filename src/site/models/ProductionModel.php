@@ -371,7 +371,6 @@ class ProductionModel extends Model {
         $goodyId,
         $count
       );
-    var_dump($goods);
 
     return $goods;
   }
