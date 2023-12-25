@@ -139,11 +139,12 @@ class ProductionModel extends Model {
         }
       }
     }
-    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s OR g.TextBottom LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
         $this->tables['goods'],
         $this->tables['subcategories'],
         $this->tables['products'],
         $subcategoriesIds,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%',
         $count,
@@ -181,9 +182,10 @@ class ProductionModel extends Model {
         }
       }
     }
-    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s OR TextBottom LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
         $this->tables['goods'],
         $subcategoriesIds,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%'
       ) : 0;
@@ -219,11 +221,12 @@ class ProductionModel extends Model {
         $subcategoriesIds[] = $subcategory['Id'];  
       }
     }
-    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
+    $goods = $this->db->getAll("SELECT g.*, sc.Code AS SubcategoryCode, p.Code AS ProductCode FROM ?n g LEFT JOIN ?n sc ON g.SubcategoryId = sc.Id LEFT JOIN ?n p ON sc.ProductId = p.Id WHERE g.SubcategoryId IN (?a) AND (g.Title LIKE ?s OR g.TextGost LIKE ?s OR g.TextBottom LIKE ?s) ORDER BY IF(g.`Order`, -1000/g.`Order`, 0) LIMIT ?i OFFSET ?i", 
         $this->tables['goods'],
         $this->tables['subcategories'],
         $this->tables['products'],
         $subcategoriesIds,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%',
         $count,
@@ -257,9 +260,10 @@ class ProductionModel extends Model {
         $subcategoriesIds[] = $subcategory['Id'];  
       }
     }
-    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
+    $count = count($subcategoriesIds) ? $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId IN (?a) AND (Title LIKE ?s OR TextGost LIKE ?s OR TextBottom LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0)", 
         $this->tables['goods'],
         $subcategoriesIds,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%'
       ) : 0;
@@ -301,9 +305,10 @@ class ProductionModel extends Model {
   }
 
   function getSubCategoryGoodsSearched($subcategoryId, $keyword, $count = 0, $offset = 0) {
-    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0) LIMIT ?i OFFSET ?i", 
+    $goods = $this->db->getAll("SELECT * FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s OR TextBottom LIKE ?s) ORDER BY IF(`Order`, -1000/`Order`, 0) LIMIT ?i OFFSET ?i", 
         $this->tables['goods'],
         $subcategoryId,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%',
         $count,
@@ -321,9 +326,10 @@ class ProductionModel extends Model {
   }
 
   function getSubCategoryGoodsCountSearched($subcategoryId, $keyword) {
-    $count = $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s)", 
+    $count = $this->db->getOne("SELECT COUNT(Id) FROM ?n WHERE SubcategoryId = ?i AND (Title LIKE ?s OR TextGost LIKE ?s OR TextBottom LIKE ?s)", 
         $this->tables['goods'],
         $subcategoryId,
+        '%' . $keyword . '%',
         '%' . $keyword . '%',
         '%' . $keyword . '%'
       );
