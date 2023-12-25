@@ -538,7 +538,7 @@ class ProductionPage extends Page {
       'chars' => !empty($chars) ? '<div><h3>Характеристики</h3><table>' . $charsTemplate . '</table></div>' : '',
       'extphotos' => !empty($photos) ? $photosTemplateRendered : '',
       // 'promo' => $blockPromoRendered,
-      'related' => $blockRelatedRendered,
+      'related' => isset($relatedGoods) && count($relatedGoods) ? $blockRelatedRendered : '',
       'other' => $blockOtherRendered,
     ]);
   }
