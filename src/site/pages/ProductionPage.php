@@ -512,6 +512,16 @@ class ProductionPage extends Page {
     //   'EmailCommon' => $contacts['EmailCommon'],
     // ]);
 
+    $relatedGoods = $this->model->getRelatedGoods($goody['Id'], 4);
+    $relatedGoods = Common::setLinksByFields($relatedGoods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
+    $blockRelatedTemplate = new Template('bl-related', 'production');
+    $blockRelatedItemTemplate = new ListTemplate('bl-related__item', 'production/partial');
+    $blockRelatedItemTemplate  = $blockRelatedItemTemplate->parse($relatedGoods);
+    $blockRelatedRendered = $blockRelatedTemplate->parse([
+          'Title' => $content['BlockRelatedTitle'],
+          'List' => $blockRelatedItemTemplate
+    ]);
+
     $otherGoods = $this->model->getOtherGoods($params['goody'], 4);
     $otherGoods = Common::setLinksByFields($otherGoods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
     $blockOtherTemplate = new Template('bl-other', 'production');
@@ -528,6 +538,7 @@ class ProductionPage extends Page {
       'chars' => !empty($chars) ? '<div><h3>Характеристики</h3><table>' . $charsTemplate . '</table></div>' : '',
       'extphotos' => !empty($photos) ? $photosTemplateRendered : '',
       // 'promo' => $blockPromoRendered,
+      'related' => $blockRelatedRendered,
       'other' => $blockOtherRendered,
     ]);
   }

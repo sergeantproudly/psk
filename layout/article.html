@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<head>
+	<head>
 	<title> ПСК | Новости | Страница новости </title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
@@ -40,16 +40,16 @@
 	<meta property="twitter:image:src" content="preview image">
 	<!-- Twitter -->
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css?_v=20231114234520">
-	<link rel="stylesheet" href="css/reset.min.css?_v=20231114234520">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231114234520">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css?_v=20231225203242">
+	<link rel="stylesheet" href="css/reset.min.css?_v=20231225203242">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231225203242">
 
 
 </head>
 
-<body>
-	<div class="wrapper">
-		<header class="header header-white">
+	<body>
+		<div class="wrapper">
+			<header class="header header-white">
     <div class="header__top header-top">
         <div class="header-top__container">
             <a href="/" class="header-top__logo">
@@ -139,7 +139,7 @@
                 <li class="menu__item menu-parent">
                     <a href="" class="menu__link">АРМАТУРА ДЛЯ СИП</a>
                     <button class="menu__arrow icon-arrow"></button>
-                    <div class="submenu">
+                    <div class="submenu submenu-lg">
                         <ul class="submenu__list">
                             <li class="submenu__item">
                                 <a href="" class="submenu__link">
@@ -208,236 +208,233 @@
         </div>
     </nav>
 </header>
-		<main class="page">
-			<div class="page__main main">
-				<div class="main__container">
-					<div class="main__body main__body-md">
-						<ul class="main__navigation navigation">
-							<li class="navigation__item">
-								<a href="/" class="navigation__link">Главная</a>
-							</li>
-							<li class="navigation__item">
-								<a href="/news.html" class="navigation__link">Новости</a>
-							</li>
-							<li class="navigation__item">
-								<a class="navigation__link active">ООО «ПСК СтройИнвест» поздравляет коллег и партнеров
-									с Днём строителя! </a>
-							</li>
-						</ul>
+			<main class="page">
+				<div class="page__main main">
+					<div class="main__container">
+						<div class="main__body main__body-md">
+							<ul class="main__navigation navigation">
+								<li class="navigation__item">
+									<a href="/" class="navigation__link">Главная</a>
+								</li>
+								<li class="navigation__item">
+									<a href="/news.html" class="navigation__link">Новости</a>
+								</li>
+								<li class="navigation__item">
+									<a class="navigation__link active">ООО «ПСК СтройИнвест» поздравляет коллег и партнеров
+										с Днём строителя! </a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<canvas id="gradient-canvas" data-transition-in></canvas>
+				</div>
+				<div class="page__article article">
+					<div class="article__container">
+						<div class="article__body">
+							<figure class="article__image">
+								<a href="img/news/01.jpg" data-fslightbox class="article__image-wrapper">
+									<picture><source srcset="img/news/01.webp"type="image/webp"><img src="img/news/01.jpg" class="cover-image" alt="news picture"></picture>
+								</a>
+								<figcaption class="article__imaged-desc">
+									2022 год стал важным этапом в истории развития компании ПСК
+								</figcaption>
+							</figure>
+							<article class="article__content">
+								<time datetime="2022-01-25">25 января</time>
+								<div>
+									<h1>
+										ООО «ПСК СтройИнвест» поздравляет коллег и партнеров с Днём строителя!
+									</h1>
+									<strong>
+										В профессиональный праздник желаем вам доброй и продуктивной работы, успешной сдачи
+										объектов, сил и энергии! С Днем строителя, успехов и позитива!
+									</strong>
+									<p>
+										Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
+										благодаря
+										сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
+									</p>
+									<p>
+										Мы рады, что с нашей помощью строительство объектов энергетического комплекса
+										движется
+										эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
+										идти
+										рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
+										лучших
+										условиях.
+									</p>
+								</div>
+
+								<div class="article__slider swiper-container article-slider" data-animation>
+
+									<div class="swiper-wrapper article-slider__wrapper">
+
+										<a href="img/news/slider/01.jpg" data-fslightbox class="swiper-slide article-slider__item">
+											<picture><source srcset="img/news/slider/01.webp"type="image/webp"><img src="img/news/slider/01.jpg" class="cover-image" alt="PSK"></picture>
+										</a>
+										<a href="img/news/slider/02.jpg" data-fslightbox class="swiper-slide article-slider__item">
+											<picture><source srcset="img/news/slider/02.webp"type="image/webp"><img src="img/news/slider/02.jpg" class="cover-image" alt="PSK"></picture>
+										</a>
+										<a href="img/news/slider/03.jpg" data-fslightbox class="swiper-slide article-slider__item">
+											<picture><source srcset="img/news/slider/03.webp"type="image/webp"><img src="img/news/slider/03.jpg" class="cover-image" alt="PSK"></picture>
+										</a>
+									</div>
+									<button type="button" class="article-slider__prev swiper-button-prev"></button>
+									<button type="button" class="article-slider__next swiper-button-next"></button>
+									<div class="article-slider__pagination swiper-pagination"></div>
+								</div>
+								<div class="article__video">
+									<picture><source srcset="img/news/slider/01.webp"type="image/webp"><img src="img/news/slider/01.jpg" class="cover-image" alt="PSK"></picture>
+									<button type="button" data-modal="modal" data-video data-video-code-rus="C0E1oD1BhTY" class="article__video-btn icon-play-alternate"></button>
+								</div>
+								<div>
+									<h2>
+										Партнеры
+									</h2>
+									<p>
+										Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
+										благодаря
+										сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
+									</p>
+									<p>
+										Мы рады, что с нашей помощью строительство объектов энергетического комплекса
+										движется
+										эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
+										идти
+										рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
+										лучших условиях.
+									</p>
+									<ul>
+										<li>Кран балки - 2 шт.</li>
+										<li>Кран балки - 2 шт.</li>
+										<li>Кран балки - 2 шт.</li>
+									</ul>
+								</div>
+								<div>
+									<p>
+										<mark>
+											Компания НИЛЕД, по объему выпускаемой линейной арматуры, занимает лидирующее
+											место в
+											РФ.
+											Производство оснащено новым высокотехнологичным автоматизированным
+											оборудованием.
+											НИЛЕД
+											осуществляет производство и сборку изделий из европейских и отечественных
+											комплектующих
+											на базе собственного производственно-складского комплекса. Долгосрочная
+											стратегия
+											развития компании НИЛЕД предполагает расширение ассортимента изделий.
+										</mark>
+									</p>
+								</div>
+								<div>
+									<h2>
+										Коллеги
+									</h2>
+									<p>
+										Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
+										благодаря
+										сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
+									</p>
+									<p>
+										Мы рады, что с нашей помощью строительство объектов энергетического комплекса
+										движется
+										эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
+										идти
+										рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
+										лучших условиях.
+									</p>
+								</div>
+							</article>
+							<div class="article__socials" data-animation>
+								<a href="" class="article__social icon-telegram"></a>
+								<a href="" class="article__social icon-vk"></a>
+								<a href="" class="article__social icon-ok"></a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<canvas id="gradient-canvas" data-transition-in></canvas>
-			</div>
-			<div class="page__article article">
-				<div class="article__container">
-					<div class="article__body">
-						<figure class="article__image">
-							<div class="article__image-wrapper">
-								<picture><source srcset="img/news/01.webp"type="image/webp"><img src="img/news/01.jpg" class="cover-image" alt="news picture"></picture>
-							</div>
-							<figcaption class="article__imaged-desc">
-								2022 год стал важным этапом в истории развития компании ПСК
-							</figcaption>
-						</figure>
-						<article class="article__content">
-							<time datetime="2022-01-25">25 января</time>
-							<div>
-								<h1>
-									ООО «ПСК СтройИнвест» поздравляет коллег и партнеров с Днём строителя!
-								</h1>
-								<strong>
-									В профессиональный праздник желаем вам доброй и продуктивной работы, успешной сдачи
-									объектов, сил и энергии! С Днем строителя, успехов и позитива!
-								</strong>
-								<p>
-									Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
-									благодаря
-									сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
-								</p>
-								<p>
-									Мы рады, что с нашей помощью строительство объектов энергетического комплекса
-									движется
-									эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
-									идти
-									рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
-									лучших
-									условиях.
-								</p>
-							</div>
-
-							<div class="article__slider swiper-container article-slider" data-animation>
-
-								<div class="swiper-wrapper article-slider__wrapper">
-
-									<a href="img/news/slider/01.jpg" data-fslightbox
-										class="swiper-slide article-slider__item">
-										<picture><source srcset="img/news/slider/01.webp"type="image/webp"><img src="img/news/slider/01.jpg" class="cover-image" alt="PSK"></picture>
-									</a>
-									<a href="img/news/slider/02.jpg" data-fslightbox
-										class="swiper-slide article-slider__item">
-										<picture><source srcset="img/news/slider/02.webp"type="image/webp"><img src="img/news/slider/02.jpg" class="cover-image" alt="PSK"></picture>
-									</a>
-									<a href="img/news/slider/03.jpg" data-fslightbox
-										class="swiper-slide article-slider__item">
-										<picture><source srcset="img/news/slider/03.webp"type="image/webp"><img src="img/news/slider/03.jpg" class="cover-image" alt="PSK"></picture>
+				<section class="page__news news">
+					<div class="news__container">
+						<div class="news__header" data-animation>
+							<h2 class="news__title title-xxl">
+								Другие новости
+							</h2>
+							<a href="/news.html" class="news__more more-link">
+								Смотреть все
+							</a>
+						</div>
+						<div class="news__items">
+							<div class="news__item" data-animation>
+								<div class="news__item-body">
+									<h3 class="news__item-title title-md">
+										Награждение по итогам года
+									</h3>
+									<time datetime="2022-01-25" class="news__item-time">
+										25 января
+									</time>
+									<p class="news__item-text">
+										По итогам работы 2021 года ООО “ПСК СтройИнвест” наградила 18 сотрудников компании
+										Благодарственными письмами, вскоре мы создадим заводы лучше прежних.
+									</p>
+									<a href="/article.html" class="news__item-link more-link">
+										Подробнее
 									</a>
 								</div>
-								<button type="button" class="article-slider__prev swiper-button-prev"></button>
-								<button type="button" class="article-slider__next swiper-button-next"></button>
-								<div class="article-slider__pagination swiper-pagination"></div>
+								<div class="news__item-image">
+									<picture><source srcset="img/news/02.webp"type="image/webp"><img src="img/news/02.jpg" class="cover-image" alt="news picture"></picture>
+								</div>
 							</div>
-							<div class="article__video">
-								<picture><source srcset="img/news/slider/01.webp"type="image/webp"><img src="img/news/slider/01.jpg" class="cover-image" alt="PSK"></picture>
-								<button type="button" data-modal="modal" data-video data-video-code-rus="C0E1oD1BhTY" class="article__video-btn icon-play-alternate"></button>
+							<div class="news__item" data-animation>
+								<div class="news__item-body">
+									<h3 class="news__item-title title-md">
+										Татарстанский международный форум по энергетике и энергоресурсоэффектив<wbr>ности
+									</h3>
+									<time datetime="2021-11-19" class="news__item-time">
+										19 ноября 2021 г.
+									</time>
+									<p class="news__item-text">
+										С 19 по 21 апреля в МВЦ "Казань Экспо" проходит Татарстанский международный форум по
+										энергетике и энергоресурсоэффективности
+									</p>
+									<a href="/article.html" class="news__item-link more-link">
+										Подробнее
+									</a>
+								</div>
+								<div class="news__item-image">
+									<picture><source srcset="img/news/04.webp"type="image/webp"><img src="img/news/04.jpg" class="cover-image" alt="news picture"></picture>
+								</div>
 							</div>
-							<div>
-								<h2>
-									Партнеры
-								</h2>
-								<p>
-									Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
-									благодаря
-									сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
-								</p>
-								<p>
-									Мы рады, что с нашей помощью строительство объектов энергетического комплекса
-									движется
-									эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
-									идти
-									рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
-									лучших условиях.
-								</p>
-								<ul>
-									<li>Кран балки - 2 шт.</li>
-									<li>Кран балки - 2 шт.</li>
-									<li>Кран балки - 2 шт.</li>
-								</ul>
-							</div>
-							<div>
-								<p>
-									<mark>
-										Компания НИЛЕД, по объему выпускаемой линейной арматуры, занимает лидирующее
-										место в
-										РФ.
-										Производство оснащено новым высокотехнологичным автоматизированным
-										оборудованием.
-										НИЛЕД
-										осуществляет производство и сборку изделий из европейских и отечественных
-										комплектующих
-										на базе собственного производственно-складского комплекса. Долгосрочная
-										стратегия
-										развития компании НИЛЕД предполагает расширение ассортимента изделий.
-									</mark>
-								</p>
-							</div>
-							<div>
-								<h2>
-									Коллеги
-								</h2>
-								<p>
-									Мы уверены, что этот день можно по праву считать нашим общим праздником, ведь
-									благодаря
-									сотрудничеству и здоровой конкуренции растут и развиваются наши с вами проекты.
-								</p>
-								<p>
-									Мы рады, что с нашей помощью строительство объектов энергетического комплекса
-									движется
-									эффективнее и быстрее. Хотим заверить, что в наше непростое время мы и дальше будем
-									идти
-									рука об руку, предоставляя вам самые качественные материалы в кратчайшие сроки и на
-									лучших условиях.
-								</p>
-							</div>
-						</article>
-						<div class="article__socials" data-animation>
-							<a href="" class="article__social icon-telegram"></a>
-							<a href="" class="article__social icon-vk"></a>
-							<a href="" class="article__social icon-ok"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<section class="page__news news">
-				<div class="news__container">
-					<div class="news__header" data-animation>
-						<h2 class="news__title title-xxl">
-							Другие новости
-						</h2>
-						<a href="/news.html" class="news__more more-link">
-							Смотреть все
-						</a>
-					</div>
-					<div class="news__items">
-						<div class="news__item" data-animation>
-							<div class="news__item-body">
-								<h3 class="news__item-title title-md">
-									Награждение по итогам года
-								</h3>
-								<time datetime="2022-01-25" class="news__item-time">
-									25 января
-								</time>
-								<p class="news__item-text">
-									По итогам работы 2021 года ООО “ПСК СтройИнвест” наградила 18 сотрудников компании
-									Благодарственными письмами, вскоре мы создадим заводы лучше прежних.
-								</p>
-								<a href="/article.html" class="news__item-link more-link">
-									Подробнее
-								</a>
-							</div>
-							<div class="news__item-image">
-								<picture><source srcset="img/news/02.webp"type="image/webp"><img src="img/news/02.jpg" class="cover-image" alt="news picture"></picture>
+							<div class="news__item" data-animation>
+								<div class="news__item-body">
+									<h3 class="news__item-title title-md">
+										С праздником Курбан-байрам!
+									</h3>
+									<time datetime="2021-11-19" class="news__item-time">
+										19 ноября 2021 г.
+									</time>
+									<p class="news__item-text">
+										ООО «ПСК СтройИнвест» поздравляет всех мусульман со священным праздником
+										Курбан-байрам!
+									</p>
+									<a href="/article.html" class="news__item-link more-link">
+										Подробнее
+									</a>
+								</div>
+								<div class="news__item-image">
+									<picture><source srcset="img/news/06.webp"type="image/webp"><img src="img/news/06.jpg" class="cover-image" alt="news picture"></picture>
+								</div>
 							</div>
 						</div>
-						<div class="news__item" data-animation>
-							<div class="news__item-body">
-								<h3 class="news__item-title title-md">
-									Татарстанский международный форум по энергетике и энергоресурсоэффектив<wbr>ности
-								</h3>
-								<time datetime="2021-11-19" class="news__item-time">
-									19 ноября 2021 г.
-								</time>
-								<p class="news__item-text">
-									С 19 по 21 апреля в МВЦ "Казань Экспо" проходит Татарстанский международный форум по
-									энергетике и энергоресурсоэффективности
-								</p>
-								<a href="/article.html" class="news__item-link more-link">
-									Подробнее
-								</a>
-							</div>
-							<div class="news__item-image">
-								<picture><source srcset="img/news/04.webp"type="image/webp"><img src="img/news/04.jpg" class="cover-image" alt="news picture"></picture>
-							</div>
-						</div>
-						<div class="news__item" data-animation>
-							<div class="news__item-body">
-								<h3 class="news__item-title title-md">
-									С праздником Курбан-байрам!
-								</h3>
-								<time datetime="2021-11-19" class="news__item-time">
-									19 ноября 2021 г.
-								</time>
-								<p class="news__item-text">
-									ООО «ПСК СтройИнвест» поздравляет всех мусульман со священным праздником
-									Курбан-байрам!
-								</p>
-								<a href="/article.html" class="news__item-link more-link">
-									Подробнее
-								</a>
-							</div>
-							<div class="news__item-image">
-								<picture><source srcset="img/news/06.webp"type="image/webp"><img src="img/news/06.jpg" class="cover-image" alt="news picture"></picture>
-							</div>
+						<div class="news__btn" data-animation>
+							<a href="/news.html" class="btn btn-blue">
+								Смотреть все
+							</a>
 						</div>
 					</div>
-					<div class="news__btn" data-animation>
-						<a href="/news.html" class="btn btn-blue">
-							Смотреть все
-						</a>
-					</div>
-				</div>
-			</section>
-		</main>
-		<footer class="footer">
+				</section>
+			</main>
+			<footer class="footer">
     <div class="footer__body footer-body">
         <div class="footer-body__container">
             <div class="footer-body__main">
@@ -568,8 +565,8 @@
         </div>
     </div>
 </footer>
-	</div>
-	<div id="modal" class="popup">
+		</div>
+		<div id="modal" class="popup">
     <div class="popup__content">
         <button type="button" class="popup__close icon-close"></button>
         <div class="popup__body">
@@ -592,16 +589,16 @@
         </div>
     </div>
 </div>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js?_v=20231114234520"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20231114234520"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js?_v=20231225203242"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.js?_v=20231225203242"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20231114234520"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20231114234520"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20231114234520"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20231114234520"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20231114234520"></script>
-<script src="https://www.youtube.com/iframe_api?v2.18&_v=20231114234520"></script>
-<script src="js/app.min.js?_v=20231114234520"></script>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?_v=20231225203242"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js?_v=20231225203242"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js?_v=20231225203242"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js?_v=20231225203242"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&_v=20231225203242"></script>
+<script src="https://www.youtube.com/iframe_api?v2.18&_v=20231225203242"></script>
+<script src="js/app.min.js?_v=20231225203242"></script>
+	</body>
 
 </html>

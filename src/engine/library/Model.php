@@ -29,6 +29,7 @@ abstract class Model {
     'goods' => 'data_goody',
     'goods_chars' => 'data_goody_char',
     'goods_photos' => 'data_goody_photo',
+    'goods_related' => 'data_goody_related',
     'company' => 'page_company',
     'register' => 'page_register',
     'staff' => 'page_staff',
