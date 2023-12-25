@@ -31,6 +31,8 @@ class Components {
 	 * @return string
 	 */
 	static function getNavigation($db, $currentPageCode, $currentSubPageCode) {
+		define('PRODUCTION_ITEM_ID', 4);
+
 		$urlData = parse_url($_SERVER['REQUEST_URI']);
 		$lastPathNode = array_pop(array_filter(explode('/', $urlData['path'])));
 
@@ -78,6 +80,7 @@ class Components {
 				}
 
 				$item['List'] = $subNavigation->Parse([
+					'CLASS' => $item['Id'] == PRODUCTION_ITEM_ID ? 'submenu-lg' : '',
 					'CONTENT'	=> $subItems
 				]);
 			}
