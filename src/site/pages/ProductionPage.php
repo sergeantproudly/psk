@@ -513,6 +513,7 @@ class ProductionPage extends Page {
     // ]);
 
     $relatedGoods = $this->model->getRelatedGoods($goody['Id'], 4);
+    var_dump($relatedGoods);
     $relatedGoods = Common::setLinksByFields($relatedGoods, 'production', 'ProductCode', 'SubcategoryCode', 'Code');
     $blockRelatedTemplate = new Template('bl-related', 'production');
     $blockRelatedItemTemplate = new ListTemplate('bl-related__item', 'production/partial');
