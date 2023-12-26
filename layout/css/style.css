@@ -254,7 +254,7 @@ body._pc .anim-content .products.active .products__item {
 
 .fslightbox-source {
   background: #fff;
-  max-height: 50vh !important;
+  max-height: 70vh !important;
   position: relative;
   width: auto !important;
   padding: 0.625em;
@@ -1788,6 +1788,7 @@ body._pc .anim-content .products.active .products__item {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  aspect-ratio: 1;
 }
 
 .main__product-title {
@@ -3893,6 +3894,10 @@ body._pc .anim-content .products.active .products__item {
   padding: 1.875em 0 5em;
 }
 
+.more-products + .more-products {
+  padding: 0em 0 5em;
+}
+
 .more-products__grid {
   margin: 1.5em 0em 0em 0em;
   display: -ms-grid;
@@ -5505,6 +5510,10 @@ body._pc .anim-content .products.active .products__item {
 
   .more-products {
     padding: 3.125em 0 5em;
+  }
+
+  .more-products + .more-products {
+    padding: 0em 0 5em;
   }
 
   .more-products__grid {
