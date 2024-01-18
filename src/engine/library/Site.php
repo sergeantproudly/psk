@@ -92,7 +92,8 @@ class Site {
 		global $Settings;
 
 		$code = $page->code();
-		$pageData = $this->db->getRow("SELECT * FROM `pages` WHERE `Code` = ?s", $code);
+		global $Site;
+		$pageData = $this->db->getRow("SELECT * FROM `pages` WHERE `Code` = ?s", $code !== 'static' ? $code : $Site->action);
 
 		if ($pageData) {
 			$page->init($pageData);
