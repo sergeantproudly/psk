@@ -231,7 +231,7 @@ class Site {
 				'Navigation' => Components::getNavigation($this->db, $code, $params['code']),
 				//'Login' => $login,
 				//'Logo' => '/img/logo-white.svg',
-				'Logo' => '/img/logo-scaling.svg',
+				'Logo' => '/img/logo_white_plr.svg',
 				'Alt' => htmlspecialchars($Settings->get('SiteTitle'), ENT_QUOTES),
 			],
 			'Content' => $page->{$action}($params),

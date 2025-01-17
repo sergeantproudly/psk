@@ -19,6 +19,9 @@ class ProductionPage extends Page {
   function __construct () {
     parent::__construct(self::CODE, self::DIR);
 
+    // временный редирект всех страниц каталога на главную
+    Common::Redirect('/');
+
     $this->setPages([
       'index' => ['template' => 'production_directions'], 
       'direction' => ['template' => 'production_direction'], 
