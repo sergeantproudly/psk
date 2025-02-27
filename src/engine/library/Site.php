@@ -149,24 +149,32 @@ class Site {
 	    // modals
 	    $templateModal = new Template('modal_base', 'modals');
 	    if ($this->isHome($code) || $this->isCompany($code)) {
-	    	$youtube = new Youtube();
+	    	//$youtube = new Youtube();
+	    	$vkvideo = new VkVideo();
 	    	$templateModalVideo = new Template('modal_video', 'modals');
 	    	$modalsRendered[] = $templateModal->parse([
 		    	'Code' => 'video',
 		    	'Id' => 'video',
 		    	'Content' => $templateModalVideo->parse([
-		    		'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
-        			'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+		    		'CodeRus' => $vkvideo->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+        			'CodeEng' => $vkvideo->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+        			'Owner' => $vkvideo->GetOwnerFromSource($Settings->get('YoutubeCodeRus')),
 		    	]),
 		    ]);
 
 	    } elseif ($this->isCompanyMedia($code) || $this->isArticle($code)) {
-	    	$youtube = new Youtube();
-	    	$templateModalVideo = new Template('modal_video2', 'modals');
+	    	//$youtube = new Youtube();
+	    	$vkvideo = new VkVideo();
+	    	//$templateModalVideo = new Template('modal_video2', 'modals');
+	    	$templateModalVideo = new Template('modal_video', 'modals');
 	    	$modalsRendered[] = $templateModal->parse([
 		    	'Code' => 'video',
 		    	'Id' => 'video',
-		    	'Content' => $templateModalVideo->parse(),
+		    	'Content' => $templateModalVideo->parse([
+		    		'CodeRus' => $vkvideo->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+        			'CodeEng' => $vkvideo->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+        			'Owner' => $vkvideo->GetOwnerFromSource($Settings->get('YoutubeCodeRus')),
+		    	]),
 		    ]);
 	    }
 

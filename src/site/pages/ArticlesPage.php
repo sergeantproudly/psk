@@ -143,9 +143,11 @@ class ArticlesPage extends Page {
     $article['ShareImage'] = urlencode($Settings->get('SiteUrl')) . htmlspecialchars($article['Image'], ENT_QUOTES);
 
     if ($article['CodeVideo']) {
-      $youtube = new Youtube();
+      //$youtube = new Youtube();
+      $vkvideo = new VkVideo();
       $article['CoverVideoWebp'] = Common::flGetWebpByImage($article['CoverVideo']);
-      $article['CodeVideo'] = $youtube->GetCodeFromSource($article['CodeVideo']);
+      $article['CodeVideo'] = $vkvideo->GetCodeFromSource($article['CodeVideo']);
+      $article['Owner'] = $vkvideo->GetOwnerFromSource($article['CodeVideo']);
       $videoTemplate = new Template('articles__detail__video', 'articles');
       $videoRendered = $videoTemplate->parse($article);
     }

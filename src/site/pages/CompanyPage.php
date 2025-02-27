@@ -4,7 +4,8 @@ use Engine\Library\ListTemplate;
 use Engine\Library\Common;
 use Engine\Library\Page;
 use Engine\Library\Template;
-use Engine\Library\Youtube;
+//use Engine\Library\Youtube;
+use Engine\Library\VkVideo;
 use Site\Components\BreadcrumbsComponent;
 use Site\Models\PageModel;
 
@@ -65,11 +66,15 @@ class CompanyPage extends Page {
       ]);
 
       // VIDEO
-      $youtube = new Youtube();
-      $templateVideoBlock = new Template('bl-video', 'video');
+      //$youtube = new Youtube();
+      $vkvideo = new VkVideo();
+      $templateVideoBlock = new Template('bl-video-main', 'video');
       $videoBlockRendered = $templateVideoBlock->parse([
-        'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
-        'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+        // 'CodeRus' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeRus')),
+            // 'CodeEng' => $youtube->GetCodeFromSource($Settings->get('YoutubeCodeEng')),
+            'CodeRus' => $vkvideo->GetCodeFromSource($Settings->get('VkVideoCodeRus')),
+            'CodeEng' => $vkvideo->GetCodeFromSource($Settings->get('VkVideoCodeEng')),
+            'Owner' => $vkvideo->GetOwnerFromSource($Settings->get('VkVideoCodeRus')),
       ]);
 
       $advantages = $this->model->getAdvantages();
@@ -329,11 +334,13 @@ class CompanyPage extends Page {
             $photosRendered = $galleryPhotoTemplate->parse($photos);
 
             $videos = $mediaModel->getGalleryVideos($galleryCode);
-            $youtube = new Youtube();
+            //$youtube = new Youtube();
+            $vkvideo = new VkVideo();
             foreach ($videos as &$video) {
               $video['Alt'] = htmlspecialchars($photo['Title'], ENT_QUOTES);
               $video['CoverWebp'] = Common::flGetWebpByImage($video['Cover']);
-              $video['Code'] = $youtube->GetCodeFromSource($video['Code']);
+              $video['Owner'] = $vkvideo->GetOwnerFromSource($video['Code']);
+              $video['Code'] = $vkvideo->GetCodeFromSource($video['Code']);
             }
             $galleryVideoTemplate = new ListTemplate('company__media__gallery__video', 'company/partial');
             $videosRendered = $galleryVideoTemplate->parse($videos);
